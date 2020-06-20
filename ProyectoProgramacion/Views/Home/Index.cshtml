@@ -44,7 +44,7 @@
 
 
 <!-- Modal -->
-<form class="form-control">
+<form class="form-control" id="frmInicioSesion">
     <div class="modal fade" id="FormularioInicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
         <div class="modal-dialog" role="alertdialog">
             <div class="modal-content">
@@ -75,4 +75,9 @@
             </div>
         </div>
     </div>
+    @Html.ValidationSummary(true)
+    @section Scripts{
+
+        <script src="~/Scripts/InicioSesion/InicioSesion.js"></script>
+    }
 </form>
