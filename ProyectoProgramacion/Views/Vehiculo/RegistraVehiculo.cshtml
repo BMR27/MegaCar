@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "RegistraVehiculo";
+}
+<div class="container">
+
+    <div class="main">
+        <div class="titulo">
+            <div class="jumbotron">
+                <center><h2>Registro de Vehiculos</h2></center>
+            </div>
+        </div>
+        <section class="formulario">
+            <center>
+                <form id="frmRegistraVehiculo" action="/" method="post">
+
+                    <div class="form-group">
+                        <input type="text" name="C_PLACA" id="C_PLACA" placeholder="Número de placa" value="" class="form-control"
+                               title="Ingreso de número e placa" data-toggle="tooltip"/>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="C_CANT_PUERTAS" id="C_CANT_PUERTAS" placeholder="Cantidad de puertas" value="" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="C_CANT_RUEDAS" id="C_CANT_RUEDAS" placeholder="Cantidad de ruedas" value="" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="C_YEAR" id="C_YEAR" placeholder="Año" value="" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipo</label>
+                        <select name="IdTipo" id="IdTipo" class="form-control">
+                            <option value="">Seleccione un Tipo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipo de Marca</label>
+                        <select name="IdMarca" id="IdMarca" class="form-control">
+                            <option value="">Seleccione una Marca</option>
+                            <option value="value2">texto 2</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipo de Modelo</label>
+                        <select name="IdModelo" id="IdModelo" class="form-control">
+                            <option value="">Seleccione un Modelo</option>
+                        </select>
+                    </div>
+                    <div class="bottom">
+                        <input type="submit" name="btnRegistrar" id="btnRegistrar" value="Registrar" class="btn btn-success" />
+                        <input type="reset" name="btnLimpiar" id="btnLimpiar" value="Limpiar" class="btn btn-primary" />
+                    </div>
+
+                </form>
+            </center>
+        </section>
+    </div>
+
+</div>
+
+@Html.ValidationSummary(true)
+@section Scripts{
+    <script src="~/Scripts/RegistroVehiculo/RegistroVehiculo.js"></script>
+}
