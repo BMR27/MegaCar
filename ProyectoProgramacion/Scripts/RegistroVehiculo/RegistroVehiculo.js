@@ -1,6 +1,6 @@
 ﻿$(function () {
     
-    myfunction();
+    ValidarRegistroVehiculo();
 });
 /*Validamos los campos del formulario*/
 function ValidarRegistroVehiculo() {
@@ -44,37 +44,4 @@ function ValidarRegistroVehiculo() {
 
         }
     );
-};
-
-/*Agregamos un tooltip*/
-function MensajeTexto() {
-    $("#C_PLACA").tooltip({
-        trigger: "click"
-    });
-};
-
-/*Prueba de boostrapvalidate*/
-
-function myfunction() {
-    $('#frmRegistraVehiculo').bootstrapValidator({
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            C_PLACA: {
-                validators: {
-                    stringLength: {
-                        min: 6,
-                        message: "Debe ingresar como  minimo 6"
-                    },
-                    notEmpty: {
-                        message:"Ingrese un número de placa"
-                    }
-                }
-            }
-        }
-      
-    });
 };
