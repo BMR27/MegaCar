@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="programacion6Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="programacion6Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Canton">
           <Key>
             <PropertyRef Name="id_Canton" />
@@ -557,6 +557,14 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_RetornaCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="APELLIDO1" Type="varchar" Mode="In" />
+          <Parameter Name="APELLIDO2" Type="varchar" Mode="In" />
+          <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_RetornaCliente_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Cliente" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Validar_Inicio_Sesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="USUARIO" Type="varchar" Mode="In" />
@@ -658,8 +666,7 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
             <End Role="TBL_VEHICULO_CLIENTE" EntitySet="TBL_VEHICULO_CLIENTE" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="programacion6Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1136,7 +1143,7 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="programacion6Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="programacionBDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Canton" EntityType="Self.Canton" />
           <EntitySet Name="Distrito" EntityType="Self.Distrito" />
           <EntitySet Name="Provincia" EntityType="Self.Provincia" />
@@ -1236,14 +1243,14 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
             <Parameter Name="id_Provincia" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RetornaCantonesID" ReturnType="Collection(programacion6Model.RetornaCantonesID_Result)">
-            <Parameter Name="id_Canton" Mode="In" Type="Int32" />
+          <Parameter Name="id_Canton" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RetornaDistrito" ReturnType="Collection(programacion6Model.RetornaDistrito_Result)">
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="id_Canton" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RetornaProvincias" ReturnType="Collection(programacion6Model.RetornaProvincias_Result)">
-            <Parameter Name="nombre" Mode="In" Type="String" />
+          <Parameter Name="nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Actualizar_Cliente">
             <Parameter Name="ID_CLIENTE" Mode="In" Type="Int32" />
@@ -1287,13 +1294,13 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EliminaCanton">
-            <Parameter Name="id_Canton" Mode="In" Type="Int32" />
+          <Parameter Name="id_Canton" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Eliminar_Cliente">
-            <Parameter Name="ID_CLIENTE" Mode="In" Type="Int32" />
+          <Parameter Name="ID_CLIENTE" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Eliminar_Vehiculo">
-            <Parameter Name="ID_VEHICULO" Mode="In" Type="Int32" />
+          <Parameter Name="ID_VEHICULO" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(programacion6Model.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1339,6 +1346,14 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RetornaCliente" ReturnType="Collection(programacion6Model.sp_RetornaCliente_Result)">
+            <Parameter Name="APELLIDO1" Mode="In" Type="String" />
+            <Parameter Name="APELLIDO2" Mode="In" Type="String" />
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RetornaCliente_ID" ReturnType="Collection(programacion6Model.sp_RetornaCliente_ID_Result)">
+          <Parameter Name="id_Cliente" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="sp_Validar_Inicio_Sesion" ReturnType="Collection(programacion6Model.sp_Validar_Inicio_Sesion_Result)">
@@ -1420,6 +1435,26 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="sp_RetornaCliente_Result">
+          <Property Type="Int32" Name="C_ID_CLIENTE" Nullable="false" />
+          <Property Type="String" Name="C_APELLIDO1" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_APELLIDO2" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_NOMBRE_CLIENTE" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_TELEFONO" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="C_CORREO" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="id_Provincia" Nullable="false" />
+          <Property Type="String" Name="nombreProvincia" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_RetornaCliente_ID_Result">
+          <Property Type="Int32" Name="C_ID_CLIENTE" Nullable="false" />
+          <Property Type="String" Name="C_APELLIDO1" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_APELLIDO2" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_NOMBRE_CLIENTE" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_TELEFONO" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="C_CORREO" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="id_Provincia" Nullable="false" />
+          <Property Type="String" Name="nombreProvincia" Nullable="false" MaxLength="100" />
+        </ComplexType>
         <ComplexType Name="sp_Validar_Inicio_Sesion_Result">
           <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="182" />
           <Property Type="String" Name="C_NOMBRE_TIPO_USUARIO" Nullable="false" MaxLength="60" />
@@ -1430,7 +1465,7 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="programacion6ModelStoreContainer" CdmEntityContainer="programacion6Entities">
+        <EntityContainerMapping StorageEntityContainer="programacion6ModelStoreContainer" CdmEntityContainer="programacionBDEntities">
           <EntitySetMapping Name="Canton">
             <EntityTypeMapping TypeName="programacion6Model.Canton">
               <MappingFragment StoreEntitySet="Canton">
@@ -1790,6 +1825,34 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
           <FunctionImportMapping FunctionImportName="sp_Registrar_Cliente" FunctionName="programacion6Model.Store.sp_Registrar_Cliente" />
           <FunctionImportMapping FunctionImportName="sp_Registrar_Vehiculo" FunctionName="programacion6Model.Store.sp_Registrar_Vehiculo" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="programacion6Model.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_RetornaCliente" FunctionName="programacion6Model.Store.sp_RetornaCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.sp_RetornaCliente_Result">
+                <ScalarProperty Name="C_ID_CLIENTE" ColumnName="C_ID_CLIENTE" />
+                <ScalarProperty Name="C_APELLIDO1" ColumnName="C_APELLIDO1" />
+                <ScalarProperty Name="C_APELLIDO2" ColumnName="C_APELLIDO2" />
+                <ScalarProperty Name="C_NOMBRE_CLIENTE" ColumnName="C_NOMBRE_CLIENTE" />
+                <ScalarProperty Name="C_TELEFONO" ColumnName="C_TELEFONO" />
+                <ScalarProperty Name="C_CORREO" ColumnName="C_CORREO" />
+                <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
+                <ScalarProperty Name="nombreProvincia" ColumnName="nombreProvincia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RetornaCliente_ID" FunctionName="programacion6Model.Store.sp_RetornaCliente_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.sp_RetornaCliente_ID_Result">
+                <ScalarProperty Name="C_ID_CLIENTE" ColumnName="C_ID_CLIENTE" />
+                <ScalarProperty Name="C_APELLIDO1" ColumnName="C_APELLIDO1" />
+                <ScalarProperty Name="C_APELLIDO2" ColumnName="C_APELLIDO2" />
+                <ScalarProperty Name="C_NOMBRE_CLIENTE" ColumnName="C_NOMBRE_CLIENTE" />
+                <ScalarProperty Name="C_TELEFONO" ColumnName="C_TELEFONO" />
+                <ScalarProperty Name="C_CORREO" ColumnName="C_CORREO" />
+                <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
+                <ScalarProperty Name="nombreProvincia" ColumnName="nombreProvincia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="programacion6Model.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="sp_Validar_Inicio_Sesion" FunctionName="programacion6Model.Store.sp_Validar_Inicio_Sesion">
             <ResultMapping>
