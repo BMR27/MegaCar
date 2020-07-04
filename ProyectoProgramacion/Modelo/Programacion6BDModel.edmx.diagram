@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b41d77f37cdd41b5bd6a9a01daffbb64" Name="Diagram1" ZoomLevel="52">
+        <EntityTypeShape EntityType="programacion6Model.Canton" Width="1.5" PointX="28.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.Distrito" Width="1.5" PointX="30.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.Provincia" Width="1.5" PointX="26.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.sysdiagrams" Width="1.5" PointX="22.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_APERTURA_CIERRE_CAJA" Width="1.5" PointX="19.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_BITACORA_ERRORES" Width="1.5" PointX="24.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_CLIENTE" Width="1.5" PointX="24.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_DETALLE_ENCABEZADO_FACTURA" Width="1.5" PointX="28.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_ENCABEZADO_FACTURA" Width="1.5" PointX="26.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_FABRICANTES" Width="1.5" PointX="17.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_INGRESOS_USUARIOS" Width="1.5" PointX="19.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_MARCA" Width="1.5" PointX="19.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_MODELO" Width="1.5" PointX="22" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_PAIS" Width="1.5" PointX="15.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_PARAMETROS" Width="1.5" PointX="29.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_SERVICIOS" Width="1.5" PointX="26.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_TIPO_MOVIMIENTO_CAJA" Width="1.5" PointX="17.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_TIPO_USUARIO" Width="1.5" PointX="15.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_TIPO_VEHICULO" Width="1.5" PointX="22" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_USUARIOS" Width="1.5" PointX="17.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_VEHICULO" Width="1.5" PointX="24.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_VEHICULO_CLIENTE" Width="1.5" PointX="29.5" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="programacion6Model.Canton_ref_Provincia" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.Distrito_ref_Canton" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_APERT__C_FK___123EB7A3" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_APERT__C_FK___1332DBDC" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_ENCAB__C_FK___17036CC0" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_VEHIC__C_FK___778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_DETAL__C_FK___1AD3FDA4" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_DETAL__C_FK___1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_ENCAB__C_FK___17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_FABRI__C_FK___5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_MARCA__C_FK___60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_INGRE__C_FK___01142BA1" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_MODEL__C_FK___6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_VEHIC__C_FK___72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_VEHIC__C_FK___74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_USUAR__C_FK___7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_VEHIC__C_FK___73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_VEHIC__C_FK___787EE5A0" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

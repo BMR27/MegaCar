@@ -45,10 +45,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -126,6 +132,111 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\Canton.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Distrito.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Programacion6BDModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Programacion6BDModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Programacion6BDModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Programacion6BDModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Programacion6BDModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Provincia.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\RetornaCantonesID_Result.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\RetornaCantones_Result.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\RetornaDistrito_Result.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\RetornaProvincias_Result.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\SP_CONSULTAR_VEHICULOS_Result.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\sp_Validar_Inicio_Sesion_Result.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\sysdiagrams.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_APERTURA_CIERRE_CAJA.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_BITACORA_ERRORES.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_CLIENTE.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_DETALLE_ENCABEZADO_FACTURA.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_ENCABEZADO_FACTURA.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_FABRICANTES.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_INGRESOS_USUARIOS.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_MARCA.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_MODELO.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_PAIS.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_PARAMETROS.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_SERVICIOS.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_TIPO_MOVIMIENTO_CAJA.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_TIPO_USUARIO.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_TIPO_VEHICULO.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_USUARIOS.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_VEHICULO.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TBL_VEHICULO_CLIENTE.cs">
+      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -143,8 +254,25 @@
     <Content Include="Imagenes\3.jpg" />
     <Content Include="Imagenes\4.jpg" />
     <Content Include="Imagenes\5.jpg" />
+    <Content Include="Modelo\Programacion6BDModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Programacion6BDModel.Context.cs</LastGenOutput>
+      <DependentUpon>Programacion6BDModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Modelo\Programacion6BDModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Programacion6BDModel.edmx</DependentUpon>
+      <LastGenOutput>Programacion6BDModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Modelo\Programacion6BDModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Programacion6BDModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Modelo\Programacion6BDModel.edmx.diagram">
+      <DependentUpon>Programacion6BDModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\InicioSesion\InicioSesion.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -179,7 +307,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -193,6 +320,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
