@@ -42,11 +42,9 @@ namespace ProyectoProgramacion.Controllers
                         modeloVista.C_TELEFONO,
                         modeloVista.C_CORREO,
                         modeloVista.id_Provincia,
-                        null,
-                        null,
-                        null
-
-               
+                        modeloVista.id_Canton1,
+                        modeloVista.id_Distrito,
+                        modeloVista.C_DIRECCION               
                         );
             }
             catch (Exception error)

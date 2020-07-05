@@ -14,12 +14,40 @@ namespace ProyectoProgramacion.Modelo
     public partial class sp_RetornaCliente_Result
     {
         public int C_ID_CLIENTE { get; set; }
+        public string C_NOMBRE_CLIENTE { get; set; }
+        public string C_CEDULA { get; set; }
+        public int C_FK_PROVINCIA { get; set; }
+        public int C_FK_CANTON { get; set; }
+        public int C_FK_DISTRITO { get; set; }
+        public string C_DIRECCION { get; set; }
         public string C_APELLIDO1 { get; set; }
         public string C_APELLIDO2 { get; set; }
-        public string C_NOMBRE_CLIENTE { get; set; }
-        public string C_TELEFONO { get; set; }
         public string C_CORREO { get; set; }
+        public string C_TELEFONO { get; set; }
         public int id_Provincia { get; set; }
-        public string nombreProvincia { get; set; }
+        public string nombre { get; set; }
+        public string usuarioCrea { get; set; }
+        public Nullable<System.DateTime> fechaCrea { get; set; }
+        public string usuarioModifica { get; set; }
+        public Nullable<System.DateTime> fechaModifica { get; set; }
+        public string vc_Estado { get; set; }
+        public int id_Canton { get; set; }
+        public int id_Provincia1 { get; set; }
+        public string nombre1 { get; set; }
+        public string usuarioCrea1 { get; set; }
+        public Nullable<System.DateTime> fechaCrea1 { get; set; }
+        public string usuarioModifica1 { get; set; }
+        public Nullable<System.DateTime> fechaModifica1 { get; set; }
+        public string vc_Estado1 { get; set; }
+        public int id_CantonInec { get; set; }
+        public int id_Distrito { get; set; }
+        public Nullable<int> id_Canton1 { get; set; }
+        public string nombre2 { get; set; }
+        public string usuarioCrea2 { get; set; }
+        public Nullable<System.DateTime> fechaCrea2 { get; set; }
+        public string usuarioModifica2 { get; set; }
+        public Nullable<System.DateTime> fechaModifica2 { get; set; }
+        public string vc_Estado2 { get; set; }
+        public Nullable<int> id_DistritoInec { get; set; }
     }
 }

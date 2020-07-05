@@ -122,11 +122,6 @@
           <Property Name="C_NOMBRE_FABRICANTE" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="C_FK_PAIS" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TBL_IMPUESTO_VENTAS">
-          <Property Name="C_IMPUESTO_VENTAS" Type="decimal" Precision="2" Scale="0" />
-        </EntityType>-->
         <EntityType Name="TBL_INGRESOS_USUARIOS">
           <Key>
             <PropertyRef Name="C_ID_INGRESOS" />
@@ -1347,11 +1342,6 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_RetornaCliente" ReturnType="Collection(programacion6Model.sp_RetornaCliente_Result)">
-            <Parameter Name="APELLIDO1" Mode="In" Type="String" />
-            <Parameter Name="APELLIDO2" Mode="In" Type="String" />
-            <Parameter Name="NOMBRE" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="sp_RetornaCliente_ID" ReturnType="Collection(programacion6Model.sp_RetornaCliente_ID_Result)">
           <Parameter Name="id_Cliente" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1359,6 +1349,11 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
           <FunctionImport Name="sp_Validar_Inicio_Sesion" ReturnType="Collection(programacion6Model.sp_Validar_Inicio_Sesion_Result)">
             <Parameter Name="USUARIO" Mode="In" Type="String" />
             <Parameter Name="PASS" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RetornaCliente" ReturnType="Collection(programacion6Model.sp_RetornaCliente_Result)">
+            <Parameter Name="APELLIDO1" Mode="In" Type="String" />
+            <Parameter Name="APELLIDO2" Mode="In" Type="String" />
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
@@ -1435,16 +1430,6 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="sp_RetornaCliente_Result">
-          <Property Type="Int32" Name="C_ID_CLIENTE" Nullable="false" />
-          <Property Type="String" Name="C_APELLIDO1" Nullable="false" MaxLength="60" />
-          <Property Type="String" Name="C_APELLIDO2" Nullable="false" MaxLength="60" />
-          <Property Type="String" Name="C_NOMBRE_CLIENTE" Nullable="false" MaxLength="60" />
-          <Property Type="String" Name="C_TELEFONO" Nullable="true" MaxLength="12" />
-          <Property Type="String" Name="C_CORREO" Nullable="true" MaxLength="30" />
-          <Property Type="Int32" Name="id_Provincia" Nullable="false" />
-          <Property Type="String" Name="nombreProvincia" Nullable="false" MaxLength="100" />
-        </ComplexType>
         <ComplexType Name="sp_RetornaCliente_ID_Result">
           <Property Type="Int32" Name="C_ID_CLIENTE" Nullable="false" />
           <Property Type="String" Name="C_APELLIDO1" Nullable="false" MaxLength="60" />
@@ -1459,6 +1444,44 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
           <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="182" />
           <Property Type="String" Name="C_NOMBRE_TIPO_USUARIO" Nullable="false" MaxLength="60" />
           <Property Type="Boolean" Name="C_ESTADO" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_RetornaCliente_Result">
+          <Property Type="Int32" Name="C_ID_CLIENTE" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_CLIENTE" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_CEDULA" Nullable="false" MaxLength="12" />
+          <Property Type="Int32" Name="C_FK_PROVINCIA" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_CANTON" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_DISTRITO" Nullable="false" />
+          <Property Type="String" Name="C_DIRECCION" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="C_APELLIDO1" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_APELLIDO2" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_CORREO" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="C_TELEFONO" Nullable="true" MaxLength="12" />
+          <Property Type="Int32" Name="id_Provincia" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="usuarioCrea" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaCrea" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usuarioModifica" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaModifica" Nullable="true" Precision="23" />
+          <Property Type="String" Name="vc_Estado" Nullable="true" MaxLength="3" />
+          <Property Type="Int32" Name="id_Canton" Nullable="false" />
+          <Property Type="Int32" Name="id_Provincia1" Nullable="false" />
+          <Property Type="String" Name="nombre1" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="usuarioCrea1" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaCrea1" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usuarioModifica1" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaModifica1" Nullable="true" Precision="23" />
+          <Property Type="String" Name="vc_Estado1" Nullable="true" MaxLength="3" />
+          <Property Type="Int32" Name="id_CantonInec" Nullable="false" />
+          <Property Type="Int32" Name="id_Distrito" Nullable="false" />
+          <Property Type="Int32" Name="id_Canton1" Nullable="true" />
+          <Property Type="String" Name="nombre2" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="usuarioCrea2" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaCrea2" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usuarioModifica2" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaModifica2" Nullable="true" Precision="23" />
+          <Property Type="String" Name="vc_Estado2" Nullable="true" MaxLength="3" />
+          <Property Type="Int32" Name="id_DistritoInec" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1825,20 +1848,6 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
           <FunctionImportMapping FunctionImportName="sp_Registrar_Cliente" FunctionName="programacion6Model.Store.sp_Registrar_Cliente" />
           <FunctionImportMapping FunctionImportName="sp_Registrar_Vehiculo" FunctionName="programacion6Model.Store.sp_Registrar_Vehiculo" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="programacion6Model.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_RetornaCliente" FunctionName="programacion6Model.Store.sp_RetornaCliente">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="programacion6Model.sp_RetornaCliente_Result">
-                <ScalarProperty Name="C_ID_CLIENTE" ColumnName="C_ID_CLIENTE" />
-                <ScalarProperty Name="C_APELLIDO1" ColumnName="C_APELLIDO1" />
-                <ScalarProperty Name="C_APELLIDO2" ColumnName="C_APELLIDO2" />
-                <ScalarProperty Name="C_NOMBRE_CLIENTE" ColumnName="C_NOMBRE_CLIENTE" />
-                <ScalarProperty Name="C_TELEFONO" ColumnName="C_TELEFONO" />
-                <ScalarProperty Name="C_CORREO" ColumnName="C_CORREO" />
-                <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
-                <ScalarProperty Name="nombreProvincia" ColumnName="nombreProvincia" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_RetornaCliente_ID" FunctionName="programacion6Model.Store.sp_RetornaCliente_ID">
             <ResultMapping>
               <ComplexTypeMapping TypeName="programacion6Model.sp_RetornaCliente_ID_Result">
@@ -1860,6 +1869,48 @@ advertencia 6013: La tabla o vista 'programacion6.dbo.TBL_IMPUESTO_VENTAS' no ti
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="C_NOMBRE_TIPO_USUARIO" ColumnName="C_NOMBRE_TIPO_USUARIO" />
                 <ScalarProperty Name="C_ESTADO" ColumnName="C_ESTADO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RetornaCliente" FunctionName="programacion6Model.Store.sp_RetornaCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.sp_RetornaCliente_Result">
+                <ScalarProperty Name="C_ID_CLIENTE" ColumnName="C_ID_CLIENTE" />
+                <ScalarProperty Name="C_NOMBRE_CLIENTE" ColumnName="C_NOMBRE_CLIENTE" />
+                <ScalarProperty Name="C_CEDULA" ColumnName="C_CEDULA" />
+                <ScalarProperty Name="C_FK_PROVINCIA" ColumnName="C_FK_PROVINCIA" />
+                <ScalarProperty Name="C_FK_CANTON" ColumnName="C_FK_CANTON" />
+                <ScalarProperty Name="C_FK_DISTRITO" ColumnName="C_FK_DISTRITO" />
+                <ScalarProperty Name="C_DIRECCION" ColumnName="C_DIRECCION" />
+                <ScalarProperty Name="C_APELLIDO1" ColumnName="C_APELLIDO1" />
+                <ScalarProperty Name="C_APELLIDO2" ColumnName="C_APELLIDO2" />
+                <ScalarProperty Name="C_CORREO" ColumnName="C_CORREO" />
+                <ScalarProperty Name="C_TELEFONO" ColumnName="C_TELEFONO" />
+                <ScalarProperty Name="id_Provincia" ColumnName="id_Provincia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="usuarioCrea" ColumnName="usuarioCrea" />
+                <ScalarProperty Name="fechaCrea" ColumnName="fechaCrea" />
+                <ScalarProperty Name="usuarioModifica" ColumnName="usuarioModifica" />
+                <ScalarProperty Name="fechaModifica" ColumnName="fechaModifica" />
+                <ScalarProperty Name="vc_Estado" ColumnName="vc_Estado" />
+                <ScalarProperty Name="id_Canton" ColumnName="id_Canton" />
+                <ScalarProperty Name="id_Provincia1" ColumnName="id_Provincia1" />
+                <ScalarProperty Name="nombre1" ColumnName="nombre1" />
+                <ScalarProperty Name="usuarioCrea1" ColumnName="usuarioCrea1" />
+                <ScalarProperty Name="fechaCrea1" ColumnName="fechaCrea1" />
+                <ScalarProperty Name="usuarioModifica1" ColumnName="usuarioModifica1" />
+                <ScalarProperty Name="fechaModifica1" ColumnName="fechaModifica1" />
+                <ScalarProperty Name="vc_Estado1" ColumnName="vc_Estado1" />
+                <ScalarProperty Name="id_CantonInec" ColumnName="id_CantonInec" />
+                <ScalarProperty Name="id_Distrito" ColumnName="id_Distrito" />
+                <ScalarProperty Name="id_Canton1" ColumnName="id_Canton1" />
+                <ScalarProperty Name="nombre2" ColumnName="nombre2" />
+                <ScalarProperty Name="usuarioCrea2" ColumnName="usuarioCrea2" />
+                <ScalarProperty Name="fechaCrea2" ColumnName="fechaCrea2" />
+                <ScalarProperty Name="usuarioModifica2" ColumnName="usuarioModifica2" />
+                <ScalarProperty Name="fechaModifica2" ColumnName="fechaModifica2" />
+                <ScalarProperty Name="vc_Estado2" ColumnName="vc_Estado2" />
+                <ScalarProperty Name="id_DistritoInec" ColumnName="id_DistritoInec" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

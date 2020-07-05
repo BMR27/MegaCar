@@ -171,3 +171,4 @@ function procesarResultadoCantones(data) {
         ///agregamos la opción al dropdownlist
         ddlCantones.append(nuevaOpción);
     });
+}
