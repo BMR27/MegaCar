@@ -13,8 +13,15 @@ namespace ProyectoProgramacion.Modelo
     
     public partial class sp_Validar_Inicio_Sesion_Result
     {
-        public string NOMBRE { get; set; }
-        public string C_NOMBRE_TIPO_USUARIO { get; set; }
+        public int C_ID_USUARIO { get; set; }
+        public string C_NOMBRE { get; set; }
+        public string C_APELLIDO1 { get; set; }
+        public string C_APELLIDO2 { get; set; }
+        public string C_USUARIO { get; set; }
+        public string C_PASS { get; set; }
+        public int C_FK_TIPO { get; set; }
         public bool C_ESTADO { get; set; }
+        public int C_ID_TIPO_USUARIO { get; set; }
+        public string C_NOMBRE_TIPO_USUARIO { get; set; }
     }
 }

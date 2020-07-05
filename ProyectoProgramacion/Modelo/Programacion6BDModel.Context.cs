@@ -442,19 +442,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
-        public virtual ObjectResult<sp_Validar_Inicio_Sesion_Result> sp_Validar_Inicio_Sesion(string uSUARIO, string pASS)
-        {
-            var uSUARIOParameter = uSUARIO != null ?
-                new ObjectParameter("USUARIO", uSUARIO) :
-                new ObjectParameter("USUARIO", typeof(string));
-    
-            var pASSParameter = pASS != null ?
-                new ObjectParameter("PASS", pASS) :
-                new ObjectParameter("PASS", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Validar_Inicio_Sesion_Result>("sp_Validar_Inicio_Sesion", uSUARIOParameter, pASSParameter);
-        }
-    
         public virtual ObjectResult<sp_RetornaCliente_Result> sp_RetornaCliente(string aPELLIDO1, string aPELLIDO2, string nOMBRE)
         {
             var aPELLIDO1Parameter = aPELLIDO1 != null ?
@@ -470,6 +457,19 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("NOMBRE", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaCliente_Result>("sp_RetornaCliente", aPELLIDO1Parameter, aPELLIDO2Parameter, nOMBREParameter);
+        }
+    
+        public virtual ObjectResult<sp_Validar_Inicio_Sesion_Result> sp_Validar_Inicio_Sesion(string uSUARIO, string pASS)
+        {
+            var uSUARIOParameter = uSUARIO != null ?
+                new ObjectParameter("USUARIO", uSUARIO) :
+                new ObjectParameter("USUARIO", typeof(string));
+    
+            var pASSParameter = pASS != null ?
+                new ObjectParameter("PASS", pASS) :
+                new ObjectParameter("PASS", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Validar_Inicio_Sesion_Result>("sp_Validar_Inicio_Sesion", uSUARIOParameter, pASSParameter);
         }
     }
 }

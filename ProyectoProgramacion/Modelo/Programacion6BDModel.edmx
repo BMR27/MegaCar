@@ -1346,14 +1346,14 @@
           <Parameter Name="id_Cliente" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <FunctionImport Name="sp_Validar_Inicio_Sesion" ReturnType="Collection(programacion6Model.sp_Validar_Inicio_Sesion_Result)">
-            <Parameter Name="USUARIO" Mode="In" Type="String" />
-            <Parameter Name="PASS" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="sp_RetornaCliente" ReturnType="Collection(programacion6Model.sp_RetornaCliente_Result)">
             <Parameter Name="APELLIDO1" Mode="In" Type="String" />
             <Parameter Name="APELLIDO2" Mode="In" Type="String" />
             <Parameter Name="NOMBRE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Validar_Inicio_Sesion" ReturnType="Collection(programacion6Model.sp_Validar_Inicio_Sesion_Result)">
+            <Parameter Name="USUARIO" Mode="In" Type="String" />
+            <Parameter Name="PASS" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
@@ -1440,11 +1440,6 @@
           <Property Type="Int32" Name="id_Provincia" Nullable="false" />
           <Property Type="String" Name="nombreProvincia" Nullable="false" MaxLength="100" />
         </ComplexType>
-        <ComplexType Name="sp_Validar_Inicio_Sesion_Result">
-          <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="182" />
-          <Property Type="String" Name="C_NOMBRE_TIPO_USUARIO" Nullable="false" MaxLength="60" />
-          <Property Type="Boolean" Name="C_ESTADO" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="sp_RetornaCliente_Result">
           <Property Type="Int32" Name="C_ID_CLIENTE" Nullable="false" />
           <Property Type="String" Name="C_NOMBRE_CLIENTE" Nullable="false" MaxLength="60" />
@@ -1482,6 +1477,18 @@
           <Property Type="DateTime" Name="fechaModifica2" Nullable="true" Precision="23" />
           <Property Type="String" Name="vc_Estado2" Nullable="true" MaxLength="3" />
           <Property Type="Int32" Name="id_DistritoInec" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Validar_Inicio_Sesion_Result">
+          <Property Type="Int32" Name="C_ID_USUARIO" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_APELLIDO1" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_APELLIDO2" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_USUARIO" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="C_PASS" Nullable="false" MaxLength="6" />
+          <Property Type="Int32" Name="C_FK_TIPO" Nullable="false" />
+          <Property Type="Boolean" Name="C_ESTADO" Nullable="false" />
+          <Property Type="Int32" Name="C_ID_TIPO_USUARIO" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_TIPO_USUARIO" Nullable="false" MaxLength="60" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1863,15 +1870,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="programacion6Model.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="sp_Validar_Inicio_Sesion" FunctionName="programacion6Model.Store.sp_Validar_Inicio_Sesion">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="programacion6Model.sp_Validar_Inicio_Sesion_Result">
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-                <ScalarProperty Name="C_NOMBRE_TIPO_USUARIO" ColumnName="C_NOMBRE_TIPO_USUARIO" />
-                <ScalarProperty Name="C_ESTADO" ColumnName="C_ESTADO" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_RetornaCliente" FunctionName="programacion6Model.Store.sp_RetornaCliente">
             <ResultMapping>
               <ComplexTypeMapping TypeName="programacion6Model.sp_RetornaCliente_Result">
@@ -1911,6 +1909,22 @@
                 <ScalarProperty Name="fechaModifica2" ColumnName="fechaModifica2" />
                 <ScalarProperty Name="vc_Estado2" ColumnName="vc_Estado2" />
                 <ScalarProperty Name="id_DistritoInec" ColumnName="id_DistritoInec" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Validar_Inicio_Sesion" FunctionName="programacion6Model.Store.sp_Validar_Inicio_Sesion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.sp_Validar_Inicio_Sesion_Result">
+                <ScalarProperty Name="C_ID_USUARIO" ColumnName="C_ID_USUARIO" />
+                <ScalarProperty Name="C_NOMBRE" ColumnName="C_NOMBRE" />
+                <ScalarProperty Name="C_APELLIDO1" ColumnName="C_APELLIDO1" />
+                <ScalarProperty Name="C_APELLIDO2" ColumnName="C_APELLIDO2" />
+                <ScalarProperty Name="C_USUARIO" ColumnName="C_USUARIO" />
+                <ScalarProperty Name="C_PASS" ColumnName="C_PASS" />
+                <ScalarProperty Name="C_FK_TIPO" ColumnName="C_FK_TIPO" />
+                <ScalarProperty Name="C_ESTADO" ColumnName="C_ESTADO" />
+                <ScalarProperty Name="C_ID_TIPO_USUARIO" ColumnName="C_ID_TIPO_USUARIO" />
+                <ScalarProperty Name="C_NOMBRE_TIPO_USUARIO" ColumnName="C_NOMBRE_TIPO_USUARIO" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
