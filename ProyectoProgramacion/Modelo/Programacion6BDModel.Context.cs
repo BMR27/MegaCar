@@ -16,10 +16,10 @@ namespace ProyectoProgramacion.Modelo
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class programacion6Entities : DbContext
+    public partial class programacionBDEntities : DbContext
     {
-        public programacion6Entities()
-            : base("name=programacion6Entities")
+        public programacionBDEntities()
+            : base("name=programacionBDEntities")
         {
         }
     
@@ -426,6 +426,32 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("new_diagramname", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaCliente_Result> sp_RetornaCliente(string aPELLIDO1, string aPELLIDO2, string nOMBRE)
+        {
+            var aPELLIDO1Parameter = aPELLIDO1 != null ?
+                new ObjectParameter("APELLIDO1", aPELLIDO1) :
+                new ObjectParameter("APELLIDO1", typeof(string));
+    
+            var aPELLIDO2Parameter = aPELLIDO2 != null ?
+                new ObjectParameter("APELLIDO2", aPELLIDO2) :
+                new ObjectParameter("APELLIDO2", typeof(string));
+    
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaCliente_Result>("sp_RetornaCliente", aPELLIDO1Parameter, aPELLIDO2Parameter, nOMBREParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaCliente_ID_Result> sp_RetornaCliente_ID(Nullable<int> id_Cliente)
+        {
+            var id_ClienteParameter = id_Cliente.HasValue ?
+                new ObjectParameter("id_Cliente", id_Cliente) :
+                new ObjectParameter("id_Cliente", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaCliente_ID_Result>("sp_RetornaCliente_ID", id_ClienteParameter);
         }
     
         public virtual int sp_upgraddiagrams()

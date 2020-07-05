@@ -133,109 +133,115 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Modelo\Canton.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\Distrito.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\Programacion6BDModel.Context.cs">
+    <Compile Include="Modelo\programacion6BDModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Programacion6BDModel.Context.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\Programacion6BDModel.cs">
+    <Compile Include="Modelo\programacion6BDModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\Programacion6BDModel.Designer.cs">
+    <Compile Include="Modelo\programacion6BDModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Programacion6BDModel.edmx</DependentUpon>
+      <DependentUpon>programacion6BDModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Modelo\Provincia.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\RetornaCantonesID_Result.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\RetornaCantones_Result.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\RetornaDistrito_Result.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\RetornaProvincias_Result.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\SP_CONSULTAR_VEHICULOS_Result.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\sp_RetornaCliente_ID_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\sp_RetornaCliente_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\sp_Validar_Inicio_Sesion_Result.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\sysdiagrams.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_APERTURA_CIERRE_CAJA.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_BITACORA_ERRORES.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_CLIENTE.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_DETALLE_ENCABEZADO_FACTURA.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_ENCABEZADO_FACTURA.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_FABRICANTES.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_INGRESOS_USUARIOS.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_MARCA.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_MODELO.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_PAIS.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_PARAMETROS.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_SERVICIOS.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_TIPO_MOVIMIENTO_CAJA.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_TIPO_USUARIO.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_TIPO_VEHICULO.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_USUARIOS.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_VEHICULO.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_VEHICULO_CLIENTE.cs">
-      <DependentUpon>Programacion6BDModel.tt</DependentUpon>
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -254,24 +260,24 @@
     <Content Include="Imagenes\3.jpg" />
     <Content Include="Imagenes\4.jpg" />
     <Content Include="Imagenes\5.jpg" />
-    <Content Include="Modelo\Programacion6BDModel.Context.tt">
+    <Content Include="Modelo\programacion6BDModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Programacion6BDModel.Context.cs</LastGenOutput>
-      <DependentUpon>Programacion6BDModel.edmx</DependentUpon>
+      <DependentUpon>programacion6BDModel.edmx</DependentUpon>
+      <LastGenOutput>programacion6BDModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Modelo\Programacion6BDModel.tt">
+    <Content Include="Modelo\programacion6BDModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Programacion6BDModel.edmx</DependentUpon>
-      <LastGenOutput>Programacion6BDModel.cs</LastGenOutput>
+      <DependentUpon>programacion6BDModel.edmx</DependentUpon>
+      <LastGenOutput>programacion6BDModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Modelo\Programacion6BDModel.edmx">
+    <EntityDeploy Include="Modelo\programacion6BDModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Programacion6BDModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>programacion6BDModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Modelo\Programacion6BDModel.edmx.diagram">
-      <DependentUpon>Programacion6BDModel.edmx</DependentUpon>
+    <Content Include="Modelo\programacion6BDModel.edmx.diagram">
+      <DependentUpon>programacion6BDModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\InicioSesion\InicioSesion.js" />
