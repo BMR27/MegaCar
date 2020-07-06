@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -22,36 +23,41 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Clientes</a>
-                        <div class="dropdown-menu" style="background-color:black">
-                            <ul class="nav navbar-nav">
-                                <li>@Html.ActionLink("Registro Clientes", "RegistroCliente", "Cliente")</li>
-                                <li>@Html.ActionLink("Listado Clientes", "RegistroCliente", "Cliente")</li>
-                                <li>@Html.ActionLink("Otros", "RegistroCliente", "Cliente")</li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Vehiculos</a>
-                        <div class="dropdown-menu" style="background-color:black">
-                            <ul class="nav navbar-nav">
-                                <li>@Html.ActionLink("Registro Vehiculos", "RegistraVehiculo", "Vehiculo")</li>
-                                <li>@Html.ActionLink("Listado Vehiculos", "RegistraVehiculo", "Vehiculo")</li>
-                                <li>@Html.ActionLink("Otros", "RegistraVehiculo", "Vehiculo")</li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Reportes</a>
-                        <div class="dropdown-menu" style="background-color:black">
-                            <ul class="nav navbar-nav">
-                                <li>@Html.ActionLink("Reportes Clientes", "RegistraVehiculo", "Vehiculo")</li>
-                                <li>@Html.ActionLink("Reportes Vehiculo", "RegistraVehiculo", "Vehiculo")</li>
-                                <li>@Html.ActionLink("Otros", "RegistraVehiculo", "Vehiculo")</li>
-                            </ul>
-                        </div>
-                    </li>
+                    @{
+                        if (Convert.ToBoolean(this.Session["Logueado"]) == true)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Clientes</a>
+                                <div class="dropdown-menu" style="background-color:black">
+                                    <ul class="nav navbar-nav">
+                                        <li>@Html.ActionLink("Registro Clientes", "RegistroCliente", "Cliente")</li>
+                                        <li>@Html.ActionLink("Listado Clientes", "RegistroCliente", "Cliente")</li>
+                                        <li>@Html.ActionLink("Otros", "RegistroCliente", "Cliente")</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Vehiculos</a>
+                                <div class="dropdown-menu" style="background-color:black">
+                                    <ul class="nav navbar-nav">
+                                        <li>@Html.ActionLink("Registro Vehiculos", "RegistraVehiculo", "Vehiculo")</li>
+                                        <li>@Html.ActionLink("Listado Vehiculos", "RegistraVehiculo", "Vehiculo")</li>
+                                        <li>@Html.ActionLink("Otros", "RegistraVehiculo", "Vehiculo")</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Reportes</a>
+                                <div class="dropdown-menu" style="background-color:black">
+                                    <ul class="nav navbar-nav">
+                                        <li>@Html.ActionLink("Reportes Clientes", "RegistraVehiculo", "Vehiculo")</li>
+                                        <li>@Html.ActionLink("Reportes Vehiculo", "RegistraVehiculo", "Vehiculo")</li>
+                                        <li>@Html.ActionLink("Otros", "RegistraVehiculo", "Vehiculo")</li>
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                    }
 
 
                 </ul>

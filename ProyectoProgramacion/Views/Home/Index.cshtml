@@ -1,14 +1,21 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    string Direccion = Url.Action("ValidarInicioSesion", "Home");
 }
 
 <div class="jumbotron">
     <h1>Servicios Automotriz</h1>
     <p class="lead">Lavado de autos, pulimos su vehiculo y todo tipo de reparaciones</p>
-    <p><label id="NombreCompletoUsuario"></label></p>
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#FormularioInicio">
-        Iniciar Sesion
-    </button>
+
+    @{
+        if (Convert.ToBoolean(this.Session["Logueado"]) != true)
+        {
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#FormularioInicio">
+                Iniciar Sesion
+            </button>
+        }
+    }
+
 </div>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -45,7 +52,7 @@
 
 
 <!-- Modal -->
-<form class="form-control" id="frmInicioSesion">
+<form class="form-control" id="frmInicioSesion" action="@Direccion" method="post">
     <div class="modal fade" id="FormularioInicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
         <div class="modal-dialog" role="alertdialog">
             <div class="modal-content">
@@ -71,7 +78,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="btnIniciar" id="btnCerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" name="btnIniciar" id="btnCerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

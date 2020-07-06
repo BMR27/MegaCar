@@ -14,32 +14,31 @@ namespace ProyectoProgramacion.Controllers
         public ActionResult Index()
         {
             return View();
+
         }
         /* METODOS DE LA CLASE */
         #region METODOS DE CLASE
         /*  */
         #endregion
-        public ActionResult ValidarInicioSesion(string pNombre, string pContrasena)
+        [HttpPost]
+        public ActionResult ValidarInicioSesion(string NombreUsuario, string Contrasena)
         {
             sp_Validar_Inicio_Sesion_Result DatosInicioSesion =
-                this.ModeloDB.sp_Validar_Inicio_Sesion(pNombre, pContrasena).FirstOrDefault();
-
-            string NombreUsuario = DatosInicioSesion.C_NOMBRE + " " +
-                                   DatosInicioSesion.C_APELLIDO1 + " " +
-                                   DatosInicioSesion.C_APELLIDO2;
-                                
+                this.ModeloDB.sp_Validar_Inicio_Sesion(NombreUsuario, Contrasena).FirstOrDefault();
 
             if (DatosInicioSesion != null)
             {
                 this.Session.Add("Logueado", true);
                 this.Session.Add("DatosUsuario", DatosInicioSesion);
-               
+                return RedirectToAction("BienvenidaUsuario", "Bienvenida");
             }
             else
             {
-                /* MOSTRAMOS EL ERROR */
+                Response.Write("<script language=javascript>alert('Usuario no encontrado');</script>");
+                return View("Index");
             }
-            return Json(DatosInicioSesion);
+
+                      
         }
         public ActionResult About()
         {

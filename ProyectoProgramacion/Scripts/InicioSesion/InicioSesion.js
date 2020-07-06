@@ -1,6 +1,6 @@
 ﻿$(function () {
     ValidarCamposInicioSesion();
-    EventoCapturaDatosLogin();
+   // EventoCapturaDatosLogin();
 });
 /* EVENTO QUE VALIDA LOS CAMPOS DE INICIO DE SESION */
 function ValidarCamposInicioSesion() {
@@ -13,7 +13,7 @@ function ValidarCamposInicioSesion() {
                     maxlength: 30,
                     minlength: 3
                 },
-                Contraseña: {
+                Contrasena: {
                     required: true,
                     maxlength: 30,
                     minlength:3
@@ -35,24 +35,22 @@ function EventoCapturaDatosLogin() {
 
         if (formulario.valid()) {
             ValidarInicio();
-        }
+        };
 
-    })
+    });
 }
-
 /* METODO ENVIA LOS DATOS DEL FORMULARIO */
 function ValidarInicio() {
     /* DIRECCION DONDE SE ENVIARAN LOS DATOS */
-    var url = '/HomeController/ValidarInicioSesion';
+    var Direccion = '/Home/ValidarInicioSesion';
     /* PARAMETROS ENVIADOS */
     var parametros = {
-        pNombre: $("#NombreUsuario").val,
-        pPass: $("#Contrasena").val
+        pNombre: $("#NombreUsuario").val(),
+        pPass: $("#Contrasena").val()
     };
-
-    /* METODO ENCARGADO DE ENVIAR Y RECIBIR DATOS */
+    /* PROCESA LOS DATOS RETORNADOS DESDE EL SERVIDOR */
     $.ajax({
-        url = url,
+        url: Direccion,
         dataType: 'json',
         type: 'post',
         contentType: 'application/json',
@@ -60,17 +58,19 @@ function ValidarInicio() {
         success: function (data, textStatus, jQxhr) {
             ProcesarDatosInicioSesion(data);
         },
-        error: function (jQxhr, textStatus, errorThrow) {
-            alert(errorThrow);
-        }
+        error: function (jQxhr, textStatus, errorThrown) {
+            alert(errorThrown);
+        },
+    });
 
+}
 
+function ProcesarDatosInicioSesion(data) {
+
+    /* MOSTRAMOS LOS DATOS EN LA PAGINA DE INICIO */
+    $(data).each(function () {
+        var DatosUsuario = this;
+        alert(DatosUsuario.C_NOMBRE);
     });
 }
 
-/* PROCESA LOS DATOS RETORNADOS DESDE EL SERVIDOR */
-
-function ProcesarDatosInicioSesion(data) {
-    
-    /* MOSTRAMOS LOS DATOS EN LA PAGINA DE INICIO */
-}

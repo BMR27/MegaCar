@@ -1,0 +1,27 @@
+﻿@model ProyectoProgramacion.Modelo.sp_Validar_Inicio_Sesion_Result
+@{
+    ViewBag.Title = "BienvenidaUsuario";
+}
+
+<div class="jumbotron">
+    <center>
+        <h1>Bienvenido</h1>
+        <p><h3>@Model.C_NOMBRE @Model.C_APELLIDO1 @Model.C_APELLIDO2</h3></p>
+    </center>
+</div>
+
+<div class="container">
+    <center>
+        <video controls="controls" width="320" height="240">
+            <source src="~/Video/5%20Pasos%20Para%20Mantener%20Su%20Auto%20Limpio%20(470p_30fps_H264-128kbit_AAC).mp4" type="video/mp4" />
+        </video>
+    </center>
+</div>
+
+<div class="container">
+    <center>
+        <audio controls="controls">
+            <source src="~/Audio/5 Pasos Para Mantener Su Auto Limpio (152kbit_Opus).ogg" type="audio/ogg" />
+        </audio>
+    </center>
+</div>

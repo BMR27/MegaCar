@@ -126,6 +126,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BienvenidaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Audio\5 Pasos Para Mantener Su Auto Limpio %28152kbit_Opus%29.ogg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -294,6 +296,7 @@
     <Content Include="Scripts\Registro Cliente\RegistroCliente.js" />
     <Content Include="Scripts\RegistroVehiculo\RegistroVehiculo.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
+    <Content Include="Video\5 Pasos Para Mantener Su Auto Limpio %28470p_30fps_H264-128kbit_AAC%29.mp4" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -310,6 +313,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Vehiculo\RegistraVehiculo.cshtml" />
     <Content Include="Views\Cliente\RegistroCliente.cshtml" />
+    <Content Include="Views\Bienvenida\BienvenidaUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
