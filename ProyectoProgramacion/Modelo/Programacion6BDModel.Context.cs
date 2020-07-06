@@ -471,5 +471,42 @@ namespace ProyectoProgramacion.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Validar_Inicio_Sesion_Result>("sp_Validar_Inicio_Sesion", uSUARIOParameter, pASSParameter);
         }
+    
+        public virtual ObjectResult<SP_RETORNA_TIPO_VEHICULO_Result> SP_RETORNA_TIPO_VEHICULO()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_TIPO_VEHICULO_Result>("SP_RETORNA_TIPO_VEHICULO");
+        }
+    
+        public virtual ObjectResult<SP_RETORNA_PAIS_Result> SP_RETORNA_PAIS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_PAIS_Result>("SP_RETORNA_PAIS");
+        }
+    
+        public virtual ObjectResult<SP_RETORNAR_FABRICANTES_Result> SP_RETORNAR_FABRICANTES(Nullable<int> fK_PAIS)
+        {
+            var fK_PAISParameter = fK_PAIS.HasValue ?
+                new ObjectParameter("FK_PAIS", fK_PAIS) :
+                new ObjectParameter("FK_PAIS", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_FABRICANTES_Result>("SP_RETORNAR_FABRICANTES", fK_PAISParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNA_MARCA_Result> SP_RETORNA_MARCA(Nullable<int> fK_FABRICANTE)
+        {
+            var fK_FABRICANTEParameter = fK_FABRICANTE.HasValue ?
+                new ObjectParameter("FK_FABRICANTE", fK_FABRICANTE) :
+                new ObjectParameter("FK_FABRICANTE", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_MARCA_Result>("SP_RETORNA_MARCA", fK_FABRICANTEParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNA_MODELO_Result> SP_RETORNA_MODELO(Nullable<int> fK_MARCA)
+        {
+            var fK_MARCAParameter = fK_MARCA.HasValue ?
+                new ObjectParameter("FK_MARCA", fK_MARCA) :
+                new ObjectParameter("FK_MARCA", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_MODELO_Result>("SP_RETORNA_MODELO", fK_MARCAParameter);
+        }
     }
 }

@@ -37,23 +37,35 @@
 
                     <div class="form-group">
                         <label>Tipo</label>
-                        <select name="IdTipo" id="IdTipo" class="form-control">
+                        <select name="Tipos" id="Tipos" class="form-control">
                             <option value="">Seleccione un Tipo</option>
                         </select>
                     </div>
 
                     <div class="form-group">
+                        <label>Pais Fabricante</label>
+                        <select name="Pais" id="Pais" class="form-control">
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fabricante</label>
+                        <select name="Fabricante" id="Fabricante" class="form-control">
+                            <option value="">Seleccione un Fabricante</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label>Tipo de Marca</label>
-                        <select name="IdMarca" id="IdMarca" class="form-control">
+                        <select name="Marcas" id="Marcas" class="form-control">
                             <option value="">Seleccione una Marca</option>
-                            <option value="value2">texto 2</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Tipo de Modelo</label>
-                        <select name="IdModelo" id="IdModelo" class="form-control">
-                            <option value="">Seleccione un Modelo</option>
+                        <select name="Modelos" id="Modelos" class="form-control">
+                            <option value=" ">Seleccione un Modelo</option>
                         </select>
                     </div>
                     <div class="bottom">
@@ -70,8 +82,6 @@
 
 @Html.ValidationSummary(true)
 @section Scripts{
-    <script src="~/Scripts/RegistroVehiculo/RegistroVehiculo.js"></script>
-    <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
 
+<script src="~/Scripts/RegistroVehiculo/RegistrarVehiculo.js"></script>
 }
