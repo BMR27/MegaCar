@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Lista de Vehiculos Registrados";
+}
+
+<div class="jumbotron">
+    <center>
+        <h1>@ViewBag.Title</h1>
+    </center>
+</div>
+
+<div class="container">
+    <form action="MostrarVevhiculos" method="post">
+        <div class="form-group">
+            <center>
+                <input type="text" name="C_PLACA" id="C_PLACA" placeholder="Ingrese el número de placa" value="" class="form-control" />
+            </center>
+        </div>
+        <div class="form-group">
+            <center>
+                <input type="submit" name="btnConsultar" id="btnConsultar" value="Consultar" class="btn btn-success form-control" />
+            </center>
+        </div>
+    </form>
+    <br />
+    <table class="table table-responsive">
+        <tr>
+            <th>Placa</th>
+            <th>Cantidad Puertas</th>
+            <th>Cantidad Llantas</th>
+            <th>Año</th>
+            <th>Tipo Vehiculo</th>
+            <th>Tipo Marca</th>
+            <th>Tipo Modelo</th>
+        </tr>
+        @{
+            foreach (ProyectoProgramacion.Modelo.SP_CONSULTAR_VEHICULOS_Result item in
+                this.ViewBag.ListaVehiculos)
+            {
+                <tr>
+                    <td>@item.C_PLACA</td>
+                    <td>@item.C_CANT_PUERTAS</td>
+                    <td>@item.C_CANT_RUEDAS</td>
+                    <td>@item.C_YEAR</td>
+                    <td>@item.C_NOMBRE_TIPO</td>
+                    <td>@item.C_NOMBRE_MARCA</td>
+                    <td>@item.C_NOMBRE_MODELO</td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+

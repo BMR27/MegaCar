@@ -203,11 +203,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
         }
     
-        public virtual ObjectResult<SP_CONSULTAR_VEHICULOS_Result> SP_CONSULTAR_VEHICULOS()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CONSULTAR_VEHICULOS_Result>("SP_CONSULTAR_VEHICULOS");
-        }
-    
         public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
             var diagramnameParameter = diagramname != null ?
@@ -378,39 +373,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Registrar_Cliente", cEDULAParameter, nOMBREParameter, aPELLIDO1Parameter, aPELLIDO2Parameter, tELEFONOParameter, cORREOParameter, iD_PROVINCIAParameter, iD_CANTONParameter, iD_DISTRITOParameter, dIRECCIONParameter);
         }
     
-        public virtual int sp_Registrar_Vehiculo(string pLACA, Nullable<int> iD_MARCA, Nullable<int> iD_TIPO, Nullable<int> iD_MODELO, Nullable<short> cANTIDAD_PUERTAS, Nullable<short> cANTIDAD_RUEDAS, string aÑO)
-        {
-            var pLACAParameter = pLACA != null ?
-                new ObjectParameter("PLACA", pLACA) :
-                new ObjectParameter("PLACA", typeof(string));
-    
-            var iD_MARCAParameter = iD_MARCA.HasValue ?
-                new ObjectParameter("ID_MARCA", iD_MARCA) :
-                new ObjectParameter("ID_MARCA", typeof(int));
-    
-            var iD_TIPOParameter = iD_TIPO.HasValue ?
-                new ObjectParameter("ID_TIPO", iD_TIPO) :
-                new ObjectParameter("ID_TIPO", typeof(int));
-    
-            var iD_MODELOParameter = iD_MODELO.HasValue ?
-                new ObjectParameter("ID_MODELO", iD_MODELO) :
-                new ObjectParameter("ID_MODELO", typeof(int));
-    
-            var cANTIDAD_PUERTASParameter = cANTIDAD_PUERTAS.HasValue ?
-                new ObjectParameter("CANTIDAD_PUERTAS", cANTIDAD_PUERTAS) :
-                new ObjectParameter("CANTIDAD_PUERTAS", typeof(short));
-    
-            var cANTIDAD_RUEDASParameter = cANTIDAD_RUEDAS.HasValue ?
-                new ObjectParameter("CANTIDAD_RUEDAS", cANTIDAD_RUEDAS) :
-                new ObjectParameter("CANTIDAD_RUEDAS", typeof(short));
-    
-            var aÑOParameter = aÑO != null ?
-                new ObjectParameter("AÑO", aÑO) :
-                new ObjectParameter("AÑO", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Registrar_Vehiculo", pLACAParameter, iD_MARCAParameter, iD_TIPOParameter, iD_MODELOParameter, cANTIDAD_PUERTASParameter, cANTIDAD_RUEDASParameter, aÑOParameter);
-        }
-    
         public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
         {
             var diagramnameParameter = diagramname != null ?
@@ -507,6 +469,48 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("FK_MARCA", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_MODELO_Result>("SP_RETORNA_MODELO", fK_MARCAParameter);
+        }
+    
+        public virtual int sp_Registrar_Vehiculo(string pLACA, Nullable<int> iD_MARCA, Nullable<int> iD_TIPO, Nullable<int> iD_MODELO, Nullable<short> cANTIDAD_PUERTAS, Nullable<short> cANTIDAD_RUEDAS, string yEAR)
+        {
+            var pLACAParameter = pLACA != null ?
+                new ObjectParameter("PLACA", pLACA) :
+                new ObjectParameter("PLACA", typeof(string));
+    
+            var iD_MARCAParameter = iD_MARCA.HasValue ?
+                new ObjectParameter("ID_MARCA", iD_MARCA) :
+                new ObjectParameter("ID_MARCA", typeof(int));
+    
+            var iD_TIPOParameter = iD_TIPO.HasValue ?
+                new ObjectParameter("ID_TIPO", iD_TIPO) :
+                new ObjectParameter("ID_TIPO", typeof(int));
+    
+            var iD_MODELOParameter = iD_MODELO.HasValue ?
+                new ObjectParameter("ID_MODELO", iD_MODELO) :
+                new ObjectParameter("ID_MODELO", typeof(int));
+    
+            var cANTIDAD_PUERTASParameter = cANTIDAD_PUERTAS.HasValue ?
+                new ObjectParameter("CANTIDAD_PUERTAS", cANTIDAD_PUERTAS) :
+                new ObjectParameter("CANTIDAD_PUERTAS", typeof(short));
+    
+            var cANTIDAD_RUEDASParameter = cANTIDAD_RUEDAS.HasValue ?
+                new ObjectParameter("CANTIDAD_RUEDAS", cANTIDAD_RUEDAS) :
+                new ObjectParameter("CANTIDAD_RUEDAS", typeof(short));
+    
+            var yEARParameter = yEAR != null ?
+                new ObjectParameter("YEAR", yEAR) :
+                new ObjectParameter("YEAR", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Registrar_Vehiculo", pLACAParameter, iD_MARCAParameter, iD_TIPOParameter, iD_MODELOParameter, cANTIDAD_PUERTASParameter, cANTIDAD_RUEDASParameter, yEARParameter);
+        }
+    
+        public virtual ObjectResult<SP_CONSULTAR_VEHICULOS_Result> SP_CONSULTAR_VEHICULOS(string c_PLACA)
+        {
+            var c_PLACAParameter = c_PLACA != null ?
+                new ObjectParameter("C_PLACA", c_PLACA) :
+                new ObjectParameter("C_PLACA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CONSULTAR_VEHICULOS_Result>("SP_CONSULTAR_VEHICULOS", c_PLACAParameter);
         }
     }
 }

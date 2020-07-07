@@ -487,7 +487,9 @@
           <Parameter Name="version" Type="int" Mode="In" />
           <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
         </Function>
-        <Function Name="SP_CONSULTAR_VEHICULOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_CONSULTAR_VEHICULOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="C_PLACA" Type="char" Mode="In" />
+        </Function>
         <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -545,7 +547,7 @@
           <Parameter Name="ID_MODELO" Type="int" Mode="In" />
           <Parameter Name="CANTIDAD_PUERTAS" Type="smallint" Mode="In" />
           <Parameter Name="CANTIDAD_RUEDAS" Type="smallint" Mode="In" />
-          <Parameter Name="AÑO" Type="char" Mode="In" />
+          <Parameter Name="YEAR" Type="char" Mode="In" />
         </Function>
         <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -1288,7 +1290,6 @@
             <Parameter Name="version" Mode="In" Type="Int32" />
             <Parameter Name="definition" Mode="In" Type="Binary" />
           </FunctionImport>
-          <FunctionImport Name="SP_CONSULTAR_VEHICULOS" ReturnType="Collection(programacion6Model.SP_CONSULTAR_VEHICULOS_Result)" />
           <FunctionImport Name="sp_creatediagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -1339,15 +1340,6 @@
             <Parameter Name="ID_DISTRITO" Mode="In" Type="Int32" />
             <Parameter Name="DIRECCION" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_Registrar_Vehiculo">
-            <Parameter Name="PLACA" Mode="In" Type="String" />
-            <Parameter Name="ID_MARCA" Mode="In" Type="Int32" />
-            <Parameter Name="ID_TIPO" Mode="In" Type="Int32" />
-            <Parameter Name="ID_MODELO" Mode="In" Type="Int32" />
-            <Parameter Name="CANTIDAD_PUERTAS" Mode="In" Type="Int16" />
-            <Parameter Name="CANTIDAD_RUEDAS" Mode="In" Type="Int16" />
-            <Parameter Name="AÑO" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="sp_renamediagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -1375,7 +1367,19 @@
           <Parameter Name="FK_FABRICANTE" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_RETORNA_MODELO" ReturnType="Collection(programacion6Model.SP_RETORNA_MODELO_Result)">
-            <Parameter Name="FK_MARCA" Mode="In" Type="Int32" />
+          <Parameter Name="FK_MARCA" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Registrar_Vehiculo">
+            <Parameter Name="PLACA" Mode="In" Type="String" />
+            <Parameter Name="ID_MARCA" Mode="In" Type="Int32" />
+            <Parameter Name="ID_TIPO" Mode="In" Type="Int32" />
+            <Parameter Name="ID_MODELO" Mode="In" Type="Int32" />
+            <Parameter Name="CANTIDAD_PUERTAS" Mode="In" Type="Int16" />
+            <Parameter Name="CANTIDAD_RUEDAS" Mode="In" Type="Int16" />
+            <Parameter Name="YEAR" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CONSULTAR_VEHICULOS" ReturnType="Collection(programacion6Model.SP_CONSULTAR_VEHICULOS_Result)">
+            <Parameter Name="C_PLACA" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
@@ -1422,24 +1426,6 @@
           <Property Type="String" Name="usuarioModifica" Nullable="true" MaxLength="50" />
           <Property Type="DateTime" Name="fechaModifica" Nullable="true" Precision="23" />
           <Property Type="String" Name="vc_Estado" Nullable="true" MaxLength="3" />
-        </ComplexType>
-        <ComplexType Name="SP_CONSULTAR_VEHICULOS_Result">
-          <Property Type="Int32" Name="C_ID_VEHICULO" Nullable="false" />
-          <Property Type="String" Name="C_PLACA" Nullable="false" MaxLength="6" />
-          <Property Type="Int32" Name="C_FK_MARCA" Nullable="false" />
-          <Property Type="Int32" Name="C_FK_TIPO" Nullable="false" />
-          <Property Type="Int32" Name="C_FK_MODELO" Nullable="false" />
-          <Property Type="Int16" Name="C_CANT_PUERTAS" Nullable="false" />
-          <Property Type="Int16" Name="C_CANT_RUEDAS" Nullable="false" />
-          <Property Type="String" Name="C_YEAR" Nullable="false" MaxLength="4" />
-          <Property Type="Int32" Name="C_ID_MARCA" Nullable="false" />
-          <Property Type="String" Name="C_NOMBRE_MARCA" Nullable="false" MaxLength="60" />
-          <Property Type="Int32" Name="C_FK_FABRICANTE" Nullable="true" />
-          <Property Type="Int32" Name="C_ID_MODELO" Nullable="false" />
-          <Property Type="String" Name="C_NOMBRE_MODELO" Nullable="false" MaxLength="60" />
-          <Property Type="Int32" Name="C_FK_MARCA1" Nullable="true" />
-          <Property Type="Int32" Name="C_ID_TIPO_VEHICULO" Nullable="false" />
-          <Property Type="String" Name="C_NOMBRE_TIPO" Nullable="false" MaxLength="60" />
         </ComplexType>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1534,6 +1520,22 @@
           <Property Type="Int32" Name="C_ID_MODELO" Nullable="false" />
           <Property Type="String" Name="C_NOMBRE_MODELO" Nullable="false" MaxLength="60" />
           <Property Type="Int32" Name="C_FK_MARCA" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_CONSULTAR_VEHICULOS_Result">
+          <Property Type="Int32" Name="C_ID_VEHICULO" Nullable="false" />
+          <Property Type="String" Name="C_PLACA" Nullable="false" MaxLength="6" />
+          <Property Type="Int32" Name="C_FK_MARCA" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_TIPO" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_MODELO" Nullable="false" />
+          <Property Type="Int16" Name="C_CANT_PUERTAS" Nullable="false" />
+          <Property Type="Int16" Name="C_CANT_RUEDAS" Nullable="false" />
+          <Property Type="String" Name="C_YEAR" Nullable="false" MaxLength="4" />
+          <Property Type="Int32" Name="C_ID_MARCA" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_MARCA" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="C_ID_MODELO" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_MODELO" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="C_ID_TIPO_VEHICULO" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_TIPO" Nullable="false" MaxLength="60" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1849,28 +1851,6 @@
           <FunctionImportMapping FunctionImportName="sp_Actualizar_Vehiculo" FunctionName="programacion6Model.Store.sp_Actualizar_Vehiculo" />
           <FunctionImportMapping FunctionImportName="sp_Agregar_Cliente_x_Vehiculo" FunctionName="programacion6Model.Store.sp_Agregar_Cliente_x_Vehiculo" />
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="programacion6Model.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="SP_CONSULTAR_VEHICULOS" FunctionName="programacion6Model.Store.SP_CONSULTAR_VEHICULOS">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="programacion6Model.SP_CONSULTAR_VEHICULOS_Result">
-                <ScalarProperty Name="C_ID_VEHICULO" ColumnName="C_ID_VEHICULO" />
-                <ScalarProperty Name="C_PLACA" ColumnName="C_PLACA" />
-                <ScalarProperty Name="C_FK_MARCA" ColumnName="C_FK_MARCA" />
-                <ScalarProperty Name="C_FK_TIPO" ColumnName="C_FK_TIPO" />
-                <ScalarProperty Name="C_FK_MODELO" ColumnName="C_FK_MODELO" />
-                <ScalarProperty Name="C_CANT_PUERTAS" ColumnName="C_CANT_PUERTAS" />
-                <ScalarProperty Name="C_CANT_RUEDAS" ColumnName="C_CANT_RUEDAS" />
-                <ScalarProperty Name="C_YEAR" ColumnName="C_YEAR" />
-                <ScalarProperty Name="C_ID_MARCA" ColumnName="C_ID_MARCA" />
-                <ScalarProperty Name="C_NOMBRE_MARCA" ColumnName="C_NOMBRE_MARCA" />
-                <ScalarProperty Name="C_FK_FABRICANTE" ColumnName="C_FK_FABRICANTE" />
-                <ScalarProperty Name="C_ID_MODELO" ColumnName="C_ID_MODELO" />
-                <ScalarProperty Name="C_NOMBRE_MODELO" ColumnName="C_NOMBRE_MODELO" />
-                <ScalarProperty Name="C_FK_MARCA1" ColumnName="C_FK_MARCA1" />
-                <ScalarProperty Name="C_ID_TIPO_VEHICULO" ColumnName="C_ID_TIPO_VEHICULO" />
-                <ScalarProperty Name="C_NOMBRE_TIPO" ColumnName="C_NOMBRE_TIPO" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="programacion6Model.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="programacion6Model.Store.sp_dropdiagram" />
           <FunctionImportMapping FunctionImportName="sp_EliminaCanton" FunctionName="programacion6Model.Store.sp_EliminaCanton" />
@@ -1898,7 +1878,6 @@
           <FunctionImportMapping FunctionImportName="sp_InsertaCanton" FunctionName="programacion6Model.Store.sp_InsertaCanton" />
           <FunctionImportMapping FunctionImportName="sp_ModificaCanton" FunctionName="programacion6Model.Store.sp_ModificaCanton" />
           <FunctionImportMapping FunctionImportName="sp_Registrar_Cliente" FunctionName="programacion6Model.Store.sp_Registrar_Cliente" />
-          <FunctionImportMapping FunctionImportName="sp_Registrar_Vehiculo" FunctionName="programacion6Model.Store.sp_Registrar_Vehiculo" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="programacion6Model.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_RetornaCliente_ID" FunctionName="programacion6Model.Store.sp_RetornaCliente_ID">
             <ResultMapping>
@@ -2013,6 +1992,27 @@
                 <ScalarProperty Name="C_ID_MODELO" ColumnName="C_ID_MODELO" />
                 <ScalarProperty Name="C_NOMBRE_MODELO" ColumnName="C_NOMBRE_MODELO" />
                 <ScalarProperty Name="C_FK_MARCA" ColumnName="C_FK_MARCA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Registrar_Vehiculo" FunctionName="programacion6Model.Store.sp_Registrar_Vehiculo" />
+          <FunctionImportMapping FunctionImportName="SP_CONSULTAR_VEHICULOS" FunctionName="programacion6Model.Store.SP_CONSULTAR_VEHICULOS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_CONSULTAR_VEHICULOS_Result">
+                <ScalarProperty Name="C_ID_VEHICULO" ColumnName="C_ID_VEHICULO" />
+                <ScalarProperty Name="C_PLACA" ColumnName="C_PLACA" />
+                <ScalarProperty Name="C_FK_MARCA" ColumnName="C_FK_MARCA" />
+                <ScalarProperty Name="C_FK_TIPO" ColumnName="C_FK_TIPO" />
+                <ScalarProperty Name="C_FK_MODELO" ColumnName="C_FK_MODELO" />
+                <ScalarProperty Name="C_CANT_PUERTAS" ColumnName="C_CANT_PUERTAS" />
+                <ScalarProperty Name="C_CANT_RUEDAS" ColumnName="C_CANT_RUEDAS" />
+                <ScalarProperty Name="C_YEAR" ColumnName="C_YEAR" />
+                <ScalarProperty Name="C_ID_MARCA" ColumnName="C_ID_MARCA" />
+                <ScalarProperty Name="C_NOMBRE_MARCA" ColumnName="C_NOMBRE_MARCA" />
+                <ScalarProperty Name="C_ID_MODELO" ColumnName="C_ID_MODELO" />
+                <ScalarProperty Name="C_NOMBRE_MODELO" ColumnName="C_NOMBRE_MODELO" />
+                <ScalarProperty Name="C_ID_TIPO_VEHICULO" ColumnName="C_ID_TIPO_VEHICULO" />
+                <ScalarProperty Name="C_NOMBRE_TIPO" ColumnName="C_NOMBRE_TIPO" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

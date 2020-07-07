@@ -329,6 +329,7 @@
     <Content Include="Views\Vehiculo\RegistraVehiculo.cshtml" />
     <Content Include="Views\Cliente\RegistroCliente.cshtml" />
     <Content Include="Views\Bienvenida\BienvenidaUsuario.cshtml" />
+    <Content Include="Views\Vehiculo\MostrarVevhiculos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,10 +23,8 @@ namespace ProyectoProgramacion.Modelo
         public string C_YEAR { get; set; }
         public int C_ID_MARCA { get; set; }
         public string C_NOMBRE_MARCA { get; set; }
-        public Nullable<int> C_FK_FABRICANTE { get; set; }
         public int C_ID_MODELO { get; set; }
         public string C_NOMBRE_MODELO { get; set; }
-        public Nullable<int> C_FK_MARCA1 { get; set; }
         public int C_ID_TIPO_VEHICULO { get; set; }
         public string C_NOMBRE_TIPO { get; set; }
     }

@@ -32,13 +32,13 @@ function ValidarRegistroVehiculo() {
                     maxlength: 4,
                     minlength: 4
                 },
-                Modelos: {
+                C_ID_MODELO: {
                     required: true
                 },
-                Tipos: {
+                C_ID_TIPO: {
                     required: true
                 },
-                Marcas: {
+                C_ID_MARCA: {
                     required: true
                 },
                 Pais: {
@@ -65,8 +65,8 @@ function EventoChange() {
         CargarListaMarcas(fabricante);
     });
 
-    $("#Marcas").change(function () {
-        var marca = $("#Marcas").val();
+    $("#C_ID_MARCA").change(function () {
+        var marca = $("#C_ID_MARCA").val();
         CargarListaModelos(marca);
     });
 }
@@ -181,7 +181,7 @@ function CargarListaMarcas(pC_ID_MARCA) {
 }
 
 function ProcesaResultadoMarcas(data) {
-    var ddlMarcas = $("#Marcas");
+    var ddlMarcas = $("#C_ID_MARCA");
     ddlMarcas.empty();
     var nuevaAccion = "<option value=''>Seleccione un Marca</option>";
     ddlMarcas.append(nuevaAccion);
@@ -217,7 +217,7 @@ function CargarListaModelos(pC_ID_MODELO) {
 }
 
 function ProcesaResultadoModelo(data) {
-    var ddlModelos = $("#Modelos");
+    var ddlModelos = $("#C_ID_MODELO");
     ddlModelos.empty();
     var nuevaAccion = "<option value=''>Seleccione un Modelo</option>";
     ddlModelos.append(nuevaAccion);
@@ -256,13 +256,13 @@ function cargarListaTipos() {
 
 function procesarResultadoTipos(data) {
     ///mediante un selector nos posicionamos sobre la lista de provincias
-    var ddlTipos = $("#Tipos");
+    var ddlTipos = $("#C_ID_TIPO_VEHICULO");
     ///"limpiamos" todas las opciones de la lista de provincias
     ddlTipos.empty();
 
     ///empezamos a trabajar con los datos que nos retorna el servidor
     ///creamos la primera opción de la lista, con un valor vacío y el texto de "Seleecione un valor"
-    var nuevaOpción = "<option value=''>Seleccione una Pais</option>";
+    var nuevaOpción = "<option value=''>Seleccione un Tipo</option>";
     ///agregamos la opción al dropdownlist
     ddlTipos.append(nuevaOpción);
     ///empezamos a recorerrer cada uno de los registros obtenidos
