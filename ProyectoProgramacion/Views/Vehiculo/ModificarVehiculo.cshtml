@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Modificar Vehiculo";
+}
+
+<div class="jumbotron">
+    <center>
+        <h1>@ViewBag.Title</h1>
+    </center>
+</div>
+<div class="container">
+    <center>
+        <form id="frmRegistraVehiculo" action="ModificarVehiculo" method="post">
+            @{
+                foreach (ProyectoProgramacion.Modelo.SP_CONSULTAR_VEHICULOS_Result item in
+                    this.ViewBag.ListaVehiculos)
+                {
+
+                    <div class="form-group">
+                        <label class="control-label">Placa del Vehiculo:</label>
+                        <input type="text" name="C_PLACA" id="C_PLACA" placeholder="Número de placa" value="@item.C_PLACA" class="form-control"
+                               title="Ingreso de número e placa" data-toggle="tooltip" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Cantidad de Puertas del Vehiculo:</label>
+                        <input type="text" name="C_CANT_PUERTAS" id="C_CANT_PUERTAS" placeholder="Cantidad de puertas" value="@item.C_CANT_PUERTAS" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Cantidad de Ruedas del Vehiculo:</label>
+                        <input type="text" name="C_CANT_RUEDAS" id="C_CANT_RUEDAS" placeholder="Cantidad de ruedas" value="@item.C_CANT_RUEDAS" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Año del Vehiculo:</label>
+                        <input type="text" name="C_YEAR" id="C_YEAR" placeholder="Año" value="@item.C_YEAR" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipo</label>
+                        <select name="C_ID_TIPO_VEHICULO" id="C_ID_TIPO_VEHICULO" class="form-control">
+                            <option value="">Seleccione un Tipo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pais Fabricante</label>
+                        <select name="Pais" id="Pais" class="form-control"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fabricante</label>
+                        <select name="Fabricante" id="Fabricante" class="form-control">
+                            <option value="">Seleccione un Fabricante</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipo de Marca</label>
+                        <select name="C_ID_MARCA" id="C_ID_MARCA" class="form-control">
+                            <option value="">Seleccione una Marca</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipo de Modelo</label>
+                        <select name="C_ID_MODELO" id="C_ID_MODELO" class="form-control">
+                            <option value=" ">Seleccione un Modelo</option>
+                        </select>
+                    </div>
+                }
+            }
+            <div class="bottom">
+                <input type="submit" name="btnModificar" id="btnModificar" value="Modificar" class="btn btn-success" />
+                <input type="reset" name="btnLimpiar" id="btnLimpiar" value="Limpiar" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </center>
+</div>
+

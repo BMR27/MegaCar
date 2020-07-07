@@ -100,6 +100,11 @@ namespace ProyectoProgramacion.Controllers
         }
 
         /* METODO MODIFICA LOS DATOS DEL VEHICULO */
+        public ActionResult ModificarVehiculo(SP_CONSULTAR_VEHICULOS_Result ModeloVista)
+        {
+            CrearListaVehiculos(ModeloVista);
+            return View();
+        }
         /* METODO CONULTA LOS VECHICULOS */
         public void CrearListaVehiculos(SP_CONSULTAR_VEHICULOS_Result ModeloVista)
         {
@@ -110,6 +115,28 @@ namespace ProyectoProgramacion.Controllers
         {
             CrearListaVehiculos(ModeloVista);
             return View();
+        }
+
+        /* METODO ELIMINA UN VEHICULO */
+        public ActionResult EliminarVehiculo(SP_CONSULTAR_VEHICULOS_Result ModeloVista)
+        {
+            string mensaje = string.Empty;
+            int filas = 0;
+            try
+            {
+                filas = this.ModeloDB.sp_Eliminar_Vehiculo(ModeloVista.C_PLACA);
+            }
+            catch (Exception error)
+            {
+
+                mensaje = "Error: " + error.Message;
+            }
+            if (filas > 0)
+            {
+                return View();
+            }
+            Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+            return View("MostrarVevhiculos");           
         }
     }
 

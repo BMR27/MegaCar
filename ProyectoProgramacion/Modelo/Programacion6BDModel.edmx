@@ -507,7 +507,7 @@
           <Parameter Name="ID_CLIENTE" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Eliminar_Vehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ID_VEHICULO" Type="int" Mode="In" />
+          <Parameter Name="C_PLACA" Type="char" Mode="In" />
         </Function>
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -1306,9 +1306,6 @@
           <FunctionImport Name="sp_Eliminar_Cliente">
           <Parameter Name="ID_CLIENTE" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_Eliminar_Vehiculo">
-          <Parameter Name="ID_VEHICULO" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(programacion6Model.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -1379,6 +1376,9 @@
             <Parameter Name="YEAR" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_CONSULTAR_VEHICULOS" ReturnType="Collection(programacion6Model.SP_CONSULTAR_VEHICULOS_Result)">
+          <Parameter Name="C_PLACA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Eliminar_Vehiculo">
             <Parameter Name="C_PLACA" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
@@ -1855,7 +1855,6 @@
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="programacion6Model.Store.sp_dropdiagram" />
           <FunctionImportMapping FunctionImportName="sp_EliminaCanton" FunctionName="programacion6Model.Store.sp_EliminaCanton" />
           <FunctionImportMapping FunctionImportName="sp_Eliminar_Cliente" FunctionName="programacion6Model.Store.sp_Eliminar_Cliente" />
-          <FunctionImportMapping FunctionImportName="sp_Eliminar_Vehiculo" FunctionName="programacion6Model.Store.sp_Eliminar_Vehiculo" />
           <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="programacion6Model.Store.sp_helpdiagramdefinition">
             <ResultMapping>
               <ComplexTypeMapping TypeName="programacion6Model.sp_helpdiagramdefinition_Result">
@@ -2016,6 +2015,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Eliminar_Vehiculo" FunctionName="programacion6Model.Store.sp_Eliminar_Vehiculo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

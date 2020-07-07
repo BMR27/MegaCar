@@ -255,15 +255,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Eliminar_Cliente", iD_CLIENTEParameter);
         }
     
-        public virtual int sp_Eliminar_Vehiculo(Nullable<int> iD_VEHICULO)
-        {
-            var iD_VEHICULOParameter = iD_VEHICULO.HasValue ?
-                new ObjectParameter("ID_VEHICULO", iD_VEHICULO) :
-                new ObjectParameter("ID_VEHICULO", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Eliminar_Vehiculo", iD_VEHICULOParameter);
-        }
-    
         public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
         {
             var diagramnameParameter = diagramname != null ?
@@ -511,6 +502,15 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("C_PLACA", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CONSULTAR_VEHICULOS_Result>("SP_CONSULTAR_VEHICULOS", c_PLACAParameter);
+        }
+    
+        public virtual int sp_Eliminar_Vehiculo(string c_PLACA)
+        {
+            var c_PLACAParameter = c_PLACA != null ?
+                new ObjectParameter("C_PLACA", c_PLACA) :
+                new ObjectParameter("C_PLACA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Eliminar_Vehiculo", c_PLACAParameter);
         }
     }
 }

@@ -32,20 +32,28 @@
             <th>Tipo Vehiculo</th>
             <th>Tipo Marca</th>
             <th>Tipo Modelo</th>
+            <th>Modificar</th>
+            <th>Eliminar</th>
         </tr>
         @{
             foreach (ProyectoProgramacion.Modelo.SP_CONSULTAR_VEHICULOS_Result item in
                 this.ViewBag.ListaVehiculos)
             {
-                <tr>
-                    <td>@item.C_PLACA</td>
-                    <td>@item.C_CANT_PUERTAS</td>
-                    <td>@item.C_CANT_RUEDAS</td>
-                    <td>@item.C_YEAR</td>
-                    <td>@item.C_NOMBRE_TIPO</td>
-                    <td>@item.C_NOMBRE_MARCA</td>
-                    <td>@item.C_NOMBRE_MODELO</td>
-                </tr>
+        <tr>
+            <td>@item.C_PLACA</td>
+            <td>@item.C_CANT_PUERTAS</td>
+            <td>@item.C_CANT_RUEDAS</td>
+            <td>@item.C_YEAR</td>
+            <td>@item.C_NOMBRE_TIPO</td>
+            <td>@item.C_NOMBRE_MARCA</td>
+            <td>@item.C_NOMBRE_MODELO</td>
+            <td>
+                <a href="~/Vehiculo/ModificarVehiculo?C_PLACA=@item.C_PLACA">Modificar</a>
+            </td>
+            <td>
+                <a href="~/Vehiculo/EliminarVehiculo?C_PLACA=@item.C_PLACA">Eliminar</a>
+            </td>
+        </tr>
             }
         }
     </table>
