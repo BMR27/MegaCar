@@ -560,7 +560,9 @@
         <Function Name="SP_RETORNA_MODELO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FK_MARCA" Type="int" Mode="In" />
         </Function>
-        <Function Name="SP_RETORNA_PAIS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_RETORNA_PAIS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SP_RETORNA_TIPO_VEHICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_RetornaCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="APELLIDO1" Type="varchar" Mode="In" />
@@ -1356,7 +1358,6 @@
             <Parameter Name="PASS" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_RETORNA_TIPO_VEHICULO" ReturnType="Collection(programacion6Model.SP_RETORNA_TIPO_VEHICULO_Result)" />
-          <FunctionImport Name="SP_RETORNA_PAIS" ReturnType="Collection(programacion6Model.SP_RETORNA_PAIS_Result)" />
           <FunctionImport Name="SP_RETORNAR_FABRICANTES" ReturnType="Collection(programacion6Model.SP_RETORNAR_FABRICANTES_Result)">
           <Parameter Name="FK_PAIS" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1379,7 +1380,10 @@
           <Parameter Name="C_PLACA" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Eliminar_Vehiculo">
-            <Parameter Name="C_PLACA" Mode="In" Type="String" />
+          <Parameter Name="C_PLACA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_RETORNA_PAIS" ReturnType="Collection(programacion6Model.SP_RETORNA_PAIS_Result)">
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
@@ -1502,10 +1506,6 @@
           <Property Type="Int32" Name="C_ID_TIPO_VEHICULO" Nullable="false" />
           <Property Type="String" Name="C_NOMBRE_TIPO" Nullable="false" MaxLength="60" />
         </ComplexType>
-        <ComplexType Name="SP_RETORNA_PAIS_Result">
-          <Property Type="Int32" Name="C_ID_PAIS" Nullable="false" />
-          <Property Type="String" Name="C_NOMBRE_PAIS" Nullable="false" MaxLength="60" />
-        </ComplexType>
         <ComplexType Name="SP_RETORNAR_FABRICANTES_Result">
           <Property Type="Int32" Name="C_ID_FABRICANTE" Nullable="false" />
           <Property Type="String" Name="C_NOMBRE_FABRICANTE" Nullable="false" MaxLength="60" />
@@ -1536,6 +1536,10 @@
           <Property Type="String" Name="C_NOMBRE_MODELO" Nullable="false" MaxLength="60" />
           <Property Type="Int32" Name="C_ID_TIPO_VEHICULO" Nullable="false" />
           <Property Type="String" Name="C_NOMBRE_TIPO" Nullable="false" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_RETORNA_PAIS_Result">
+          <Property Type="Int32" Name="C_ID_PAIS" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_PAIS" Nullable="false" MaxLength="60" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1959,14 +1963,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_RETORNA_PAIS" FunctionName="programacion6Model.Store.SP_RETORNA_PAIS">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="programacion6Model.SP_RETORNA_PAIS_Result">
-                <ScalarProperty Name="C_ID_PAIS" ColumnName="C_ID_PAIS" />
-                <ScalarProperty Name="C_NOMBRE_PAIS" ColumnName="C_NOMBRE_PAIS" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_RETORNAR_FABRICANTES" FunctionName="programacion6Model.Store.SP_RETORNAR_FABRICANTES">
             <ResultMapping>
               <ComplexTypeMapping TypeName="programacion6Model.SP_RETORNAR_FABRICANTES_Result">
@@ -2016,6 +2012,14 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Eliminar_Vehiculo" FunctionName="programacion6Model.Store.sp_Eliminar_Vehiculo" />
+          <FunctionImportMapping FunctionImportName="SP_RETORNA_PAIS" FunctionName="programacion6Model.Store.SP_RETORNA_PAIS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_RETORNA_PAIS_Result">
+                <ScalarProperty Name="C_ID_PAIS" ColumnName="C_ID_PAIS" />
+                <ScalarProperty Name="C_NOMBRE_PAIS" ColumnName="C_NOMBRE_PAIS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

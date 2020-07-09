@@ -21,7 +21,7 @@ namespace ProyectoProgramacion.Controllers
         public ActionResult RetornarPais()
         {
             List<SP_RETORNA_PAIS_Result> ListaPais =
-                this.ModeloDB.SP_RETORNA_PAIS().ToList();
+                this.ModeloDB.SP_RETORNA_PAIS(null).ToList();
 
             return Json(ListaPais);
         }

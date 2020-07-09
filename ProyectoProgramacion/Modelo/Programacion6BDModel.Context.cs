@@ -430,11 +430,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_TIPO_VEHICULO_Result>("SP_RETORNA_TIPO_VEHICULO");
         }
     
-        public virtual ObjectResult<SP_RETORNA_PAIS_Result> SP_RETORNA_PAIS()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_PAIS_Result>("SP_RETORNA_PAIS");
-        }
-    
         public virtual ObjectResult<SP_RETORNAR_FABRICANTES_Result> SP_RETORNAR_FABRICANTES(Nullable<int> fK_PAIS)
         {
             var fK_PAISParameter = fK_PAIS.HasValue ?
@@ -511,6 +506,15 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("C_PLACA", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Eliminar_Vehiculo", c_PLACAParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNA_PAIS_Result> SP_RETORNA_PAIS(string nOMBRE)
+        {
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_PAIS_Result>("SP_RETORNA_PAIS", nOMBREParameter);
         }
     }
 }

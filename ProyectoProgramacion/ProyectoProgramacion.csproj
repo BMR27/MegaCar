@@ -129,6 +129,7 @@
     <Compile Include="Controllers\BienvenidaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -308,6 +309,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Pais\RegistrarPais.js" />
     <Content Include="Scripts\Registro Cliente\RegistroCliente.js" />
     <Content Include="Scripts\RegistroVehiculo\RegistrarVehiculo.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
@@ -332,6 +334,8 @@
     <Content Include="Views\Vehiculo\MostrarVevhiculos.cshtml" />
     <Content Include="Views\Vehiculo\ModificarVehiculo.cshtml" />
     <Content Include="Views\Vehiculo\EliminarVehiculo.cshtml" />
+    <Content Include="Views\Pais\MostrarListaPaises.cshtml" />
+    <Content Include="Views\Pais\RegistrarPais.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

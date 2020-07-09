@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Registrar País";
+}
+<div class="jumbotron">
+    <center>
+        <h2>@ViewBag.Title</h2>
+    </center>
+</div>
+
+<div class="container">
+    <form id="frmRegistraPais" action="/" method="post">
+        <center>
+            <div class="form-group">
+                <label>Nombre de País</label>
+                <input type="text" name="C_NOMBRE_PAIS" id="C_NOMBRE_PAIS" placeholder="Ingrese el nombre del País" value="" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" name="btn_Registrar" id="btn_Registrar" value="Registrar País" />
+            </div>
+        </center>
+    </form>
+</div>
+
+@Html.ValidationSummary(true)
+@section Scripts{
+<script src="~/Scripts/Pais/RegistrarPais.js"></script>
+}
