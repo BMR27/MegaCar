@@ -9,22 +9,46 @@ namespace ProyectoProgramacion.Controllers
 {
     public class ClienteController : Controller
     {
-
+        #region INSTANCIAS DE CLASE
         programacionBDEntities modeloBD = new programacionBDEntities();
+        #endregion
         // GET: Cliente
         public ActionResult RegistroCliente()
         {
-            this.AgregaProvinciasViewBag();
+
             return View();
         }
 
-        private void AgregaProvinciasViewBag()
+        /* RETORNA LA LISTA DE LAS PROVINCIAS */
+        public ActionResult RetornarProvincias()
         {
-            this.ViewBag.ListaProvincias = this.modeloBD.RetornaProvincias("").ToList();
+            List<RetornaProvincias_Result> Provincias =
+                this.modeloBD.RetornaProvincias(null).ToList();
+
+            return Json(Provincias, JsonRequestBehavior.AllowGet);
         }
 
+        /* RETORNA LA LISTA DE CANTONES */
+        public ActionResult RetornaCantones(int id_Provincia)
+        {
+            List<RetornaCantones_Result> Cantones =
+                this.modeloBD.RetornaCantones(null, id_Provincia).ToList();
+            return Json(Cantones);
+        }
+
+        public ActionResult RetornarDistritos(int id_Canton)
+        {
+            List<RetornaDistrito_Result> Distritos =
+                this.modeloBD.RetornaDistrito(null, id_Canton).ToList();
+            return Json(Distritos);
+        }
+
+
+
+
+
         [HttpPost]
-        public ActionResult RegistroCliente(sp_RetornaCliente_Result   modeloVista)
+        public ActionResult RegistroCliente(sp_RetornaCliente_Result modeloVista)
         {
 
             int cantRegistrosAfectados = 0;
@@ -42,9 +66,9 @@ namespace ProyectoProgramacion.Controllers
                         modeloVista.C_TELEFONO,
                         modeloVista.C_CORREO,
                         modeloVista.id_Provincia,
-                        modeloVista.id_Canton1,
+                        modeloVista.id_Canton,
                         modeloVista.id_Distrito,
-                        modeloVista.C_DIRECCION               
+                        modeloVista.C_DIRECCION
                         );
             }
             catch (Exception error)
@@ -60,42 +84,15 @@ namespace ProyectoProgramacion.Controllers
             }
 
             Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
-            this.AgregaProvinciasViewBag();
-            return View();
+
+            return View("RegistroCliente");
         }
+    }
+
+}
 
         //---------------------------------------------------------------------------------------------
 
   
         
-        public JsonResult RetornaProvincias()
-        {
-            List<RetornaProvincias_Result> provincias =
-                this.modeloBD.RetornaProvincias(null).ToList();
-            return Json(provincias, JsonRequestBehavior.AllowGet);
-        }
-        /// <summary>
-        /// Retorna los cantones tomando en cuenta el id de la provincia.
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult RetornaCantones(int id_Provincia)
-        {
-            List<RetornaCantones_Result> cantones =
-                this.modeloBD.RetornaCantones(null, id_Provincia)
-                .ToList();
-
-            return Json(cantones);
-        }
-        /// <summary>
-        /// Retorna los distritos tomando en cuenta el id del cantón.
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult RetornaDistritos(int id_Canton)
-        {
-            List<RetornaDistrito_Result> distritos =
-                this.modeloBD.RetornaDistrito(null, id_Canton).ToList();
-
-            return Json(distritos);
-        }
-    }
-}
+       
