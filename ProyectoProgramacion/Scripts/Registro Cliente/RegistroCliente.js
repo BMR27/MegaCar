@@ -2,12 +2,7 @@
 
 $(function () {
     creaValidaciones();
-    ///llamamos a la función que se encargará de crear los eventos
-    //que nos permitirán controlar cuando se haga una selección en las respectivas listas
     estableceEventosChange();
-
-    ///Carga inicialmente la lista der provincias, ya que es 
-    //la lista con la que iniciaremos.
     cargaDropdownListProvincias();
 
 });
@@ -21,8 +16,7 @@ function creaValidaciones() {
             rules: {
                 C_NOMBRE_CLIENTE: {
                     required: true,
-                    minlength: 3,
-                    maxlength: 7
+
                 },
                 C_APELLIDO1: {
                     required: true
@@ -32,11 +26,14 @@ function creaValidaciones() {
                 },
                 C_CEDULA: {
                     required: true,
-                    email: true
+                    minlength: 9,
+                    maxlength: 10
+                   
                 },
                 C_CORREO: {
                     required: true,
-                    maxlength: 12
+                    email: true
+                   
                 },
                 C_DIRECCION: {
                     required: true
@@ -64,20 +61,30 @@ function creaValidaciones() {
 //cuando se ejecute el método change de las respectivas listas
 function estableceEventosChange() {
     ///Evento change de la Lista de provincias
-    $("#provincia").change(function () {
+    $("#id_Provincia").change(function () {
         ///obtenemos el id de la provincia seleccionada
-        var provincia = $("#provincia").val();
+        var provincia = $("#id_Provincia").val();
         ///llamamos la función que nos permitirá cargar
         ///todos los cantones asociados a la provincia seleccionada
         cargaDropdownListCantones(provincia);
     });
+
+    $("#id_Canton").change(function () {
+        ///obtenemos el id del canton seleccionado
+        var canton = $("#id_Canton").val();
+        ///llamamos la función que nos permitirá cargar
+        ///todos los cantones asociados a la provincia seleccionada
+        cargaDropdownListDistritos(canton);
+    });
+
+
 }
 
 
 ///carga los registros de las provincias
 function cargaDropdownListProvincias() {
     ///dirección a donde se enviarán los datos
-    var url = '/EjemploPost/RetornaProvincias';
+    var url = '/Cliente/RetornarProvincias';
     ///parámetros del método, es CASE-SENSITIVE
     var parametros = {
     };
@@ -103,12 +110,12 @@ function cargaDropdownListProvincias() {
  */
 function procesarResultadoProvincias(data) {
     ///mediante un selector nos posicionamos sobre la lista de provincias
-    var ddlProvincias = $("#provincia");
+    var ddlProvincias = $("#id_Provincia");
     ///"limpiamos" todas las opciones de la lista de provincias
     ddlProvincias.empty();
 
     ///empezamos a trabajar con los datos que nos retorna el servidor
-    ///creamos la primera opción de la lista, con un valor vacío y el texto de "Seleecione un valor"
+    ///creamos la primera opción de la lista, con un valor vacío y el texto de "Selecione un valor"
     var nuevaOpción = "<option value=''>Seleccione una Provincia</option>";
     ///agregamos la opción al dropdownlist
     ddlProvincias.append(nuevaOpción);
@@ -118,7 +125,7 @@ function procesarResultadoProvincias(data) {
         //ahora podemos acceder a todas las propiedades
         ///por ejemplo provinciaActual.nombre nos retorna el nombre de la provincia
         var provinciaActual = this;
-        ///creamos la opción de la lista, con el valor del id de provioncia y el texto con el nomnbre
+        ///creamos la opción de la lista, con el valor del id de provincia y el texto con el nomnbre
         nuevaOpción = "<option value='" + provinciaActual.id_Provincia + "'>" + provinciaActual.nombre + "</option>";
         ///agregamos la opción al dropdownlist
         ddlProvincias.append(nuevaOpción);
@@ -129,7 +136,7 @@ function procesarResultadoProvincias(data) {
 function cargaDropdownListCantones(pIdProvincia) {
 
     ///dirección a donde se enviarán los datos
-    var url = '/EjemploPost/RetornaCantones';
+    var url = '/Cliente/RetornaCantones';
     ///parámetros del método, es CASE-SENSITIVE
     var parametros = {
         id_Provincia: pIdProvincia
@@ -153,16 +160,16 @@ function cargaDropdownListCantones(pIdProvincia) {
 
 function procesarResultadoCantones(data) {
     ///mediante un selector nos posicionamos sobre la lista de cantones
-    var ddlCantones = $("#canton");
+    var ddlCantones = $("#id_Canton");
     ///"limpiamos" todas las opciones de la lista de cantones            
     ddlCantones.empty();
 
     ///empezamos a trabajar con los datos que nos retorna el servidor
-    ///creamos la primera opción de la lista, con un valor vacío y el texto de "Seleecione un valor"
+    ///creamos la primera opción de la lista, con un valor vacío y el texto de "Selecione un valor"
     var nuevaOpción = "<option value=''>Seleccione un cantón</option>";
     ///agregamos la opción al dropdownlist
     ddlCantones.append(nuevaOpción);
-    ///empezamos a recorerrer cada uno de los registros obtenidos
+    ///empezamos a recorrer cada uno de los registros obtenidos
     $(data).each(function () {
         ///obtenemos el objeto de tipo Canton haciendo uso de la claúsula "this"                        
         //ahora podemos acceder a todas las propiedades
@@ -172,5 +179,55 @@ function procesarResultadoCantones(data) {
         nuevaOpción = "<option value='" + cantonActual.id_Canton + "'>" + cantonActual.nombre + "</option>";
         ///agregamos la opción al dropdownlist
         ddlCantones.append(nuevaOpción);
+    });
+}
+
+
+///carga los registros de los distrtos
+function cargaDropdownListDistritos(pIdCanton) {
+
+    ///dirección a donde se enviarán los datos
+    var url = '/Cliente/RetornarDistritos';
+    ///parámetros del método, es CASE-SENSITIVE
+    var parametros = {
+        id_Canton: pIdCanton
+    };
+    ///invocar el método
+    $.ajax({
+        url: url,
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json',
+        data: JSON.stringify(parametros),
+        success: function (data, textStatus, jQxhr) {
+            procesarResultadoDistrito(data);
+        },
+        error: function (jQxhr, textStatus, errorThrown) {
+            alert(errorThrown);
+        },
+    });
+}
+
+function procesarResultadoDistrito(data) {
+    ///mediante un selector nos posicionamos sobre la lista de distritos
+    var ddlDistritos = $("#id_Distrito");
+    ///"limpiamos" todas las opciones de la lista de cantones            
+    ddlDistritos.empty();
+
+    ///empezamos a trabajar con los datos que nos retorna el servidor
+    ///creamos la primera opción de la lista, con un valor vacío y el texto de "Selecione un valor"
+    var nuevaOpción = "<option value=''>Seleccione un distrito</option>";
+    ///agregamos la opción al dropdownlist
+    ddlDistritos.append(nuevaOpción);
+    ///empezamos a recorrer cada uno de los registros obtenidos
+    $(data).each(function () {
+        ///obtenemos el objeto de tipo Distrito haciendo uso de la claúsula "this"                        
+        //ahora podemos acceder a todas las propiedades
+        ///por ejemplo distritoActual.nombre nos retorna el nombre del distrito
+        var distritoActual = this;
+        ///creamos la opción de la lista, con el valor del id del distrito y el texto con el nomnbre
+        nuevaOpción = "<option value='" + distritoActual.id_Distrito + "'>" + distritoActual.nombre + "</option>";
+        ///agregamos la opción al dropdownlist
+        ddlDistritos.append(nuevaOpción);
     });
 }

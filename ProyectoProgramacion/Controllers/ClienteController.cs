@@ -22,28 +22,26 @@ namespace ProyectoProgramacion.Controllers
         /* RETORNA LA LISTA DE LAS PROVINCIAS */
         public ActionResult RetornarProvincias()
         {
-            List<RetornaProvincias_Result> Provincias =
+            List<RetornaProvincias_Result> provincias =
                 this.modeloBD.RetornaProvincias(null).ToList();
 
-            return Json(Provincias, JsonRequestBehavior.AllowGet);
+            return Json(provincias);
         }
 
         /* RETORNA LA LISTA DE CANTONES */
         public ActionResult RetornaCantones(int id_Provincia)
         {
-            List<RetornaCantones_Result> Cantones =
+            List<RetornaCantones_Result> cantones =
                 this.modeloBD.RetornaCantones(null, id_Provincia).ToList();
-            return Json(Cantones);
+            return Json(cantones);
         }
-
+        /* RETORNA LA LISTA DE DISTRITOS */
         public ActionResult RetornarDistritos(int id_Canton)
         {
-            List<RetornaDistrito_Result> Distritos =
+            List<RetornaDistrito_Result> distritos =
                 this.modeloBD.RetornaDistrito(null, id_Canton).ToList();
-            return Json(Distritos);
+            return Json(distritos);
         }
-
-
 
 
 
@@ -51,42 +49,47 @@ namespace ProyectoProgramacion.Controllers
         public ActionResult RegistroCliente(sp_RetornaCliente_Result modeloVista)
         {
 
-            int cantRegistrosAfectados = 0;
-            string resultado = "";
-
+            string mensaje = string.Empty;
+            int filas = 0;
             try
             {
-                cantRegistrosAfectados =
-                    this.modeloBD.
-                    sp_Registrar_Cliente(
-                        Convert.ToString(modeloVista.C_ID_CLIENTE),
-                        modeloVista.C_APELLIDO1,
-                        modeloVista.C_APELLIDO2,
-                        modeloVista.C_NOMBRE_CLIENTE,
-                        modeloVista.C_TELEFONO,
-                        modeloVista.C_CORREO,
-                        modeloVista.id_Provincia,
-                        modeloVista.id_Canton,
-                        modeloVista.id_Distrito,
-                        modeloVista.C_DIRECCION
-                        );
+                /* CONSULTAMOS SI EXISTEN DATOS DEL CLIENTE */
+                List<sp_RetornaCliente_Result> Id =
+                    this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_ID_CLIENTE).ToList();
+                if (Id.Count > 0)
+                {
+                    mensaje = "Este cliente ya se ecuentra registrado";
+                }
+                else
+                {
+                    filas = this.modeloBD.sp_Registrar_Cliente(modeloVista.C_CEDULA,
+                                                                modeloVista.C_NOMBRE_CLIENTE,
+                                                                modeloVista.C_APELLIDO1,
+                                                                modeloVista.C_APELLIDO2,
+                                                                modeloVista.C_TELEFONO,
+                                                                modeloVista.C_CORREO,
+                                                                modeloVista.id_Provincia,
+                                                                modeloVista.id_Canton,
+                                                                modeloVista.id_Distrito,
+                                                                modeloVista.C_DIRECCION);
+                }
             }
             catch (Exception error)
             {
-                resultado = "Ocurrió un error: " + error.Message;
+
+                mensaje = "Error: " + error.Message;
             }
             finally
             {
-                if (cantRegistrosAfectados > 0)
-                    resultado = "Registro insertado";
-                else
-                    resultado += "No se pudo insertar";
+                if (filas > 0)
+                {
+                    mensaje = "Exito al registrar el cliente";
+                }
+                Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
             }
-
-            Response.Write("<script language=javascript>alert('" + resultado + "');</script>");
-
             return View("RegistroCliente");
         }
+
     }
 
 }
