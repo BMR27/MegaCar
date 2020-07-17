@@ -46,7 +46,7 @@ namespace ProyectoProgramacion.Controllers
 
 
         [HttpPost]
-        public ActionResult RegistroCliente(sp_RetornaCliente_ID_Result modeloVista)
+        public ActionResult RegistroCliente(sp_RetornaCliente_Result modeloVista)
         {
 
             string mensaje = string.Empty;
@@ -62,16 +62,19 @@ namespace ProyectoProgramacion.Controllers
                 }
                 else
                 {
-                    filas = this.modeloBD.sp_Registrar_Cliente(Convert.ToString(modeloVista.C_ID_CLIENTE),
+
+                    filas = this.modeloBD.sp_Registrar_Cliente(modeloVista.C_CEDULA,
                                                                modeloVista.C_NOMBRE_CLIENTE,
                                                                modeloVista.C_APELLIDO1,
                                                                modeloVista.C_APELLIDO2,
                                                                modeloVista.C_TELEFONO,
                                                                modeloVista.C_CORREO,
+                                                               modeloVista.C_FK_PROVINCIA,
+                                                               modeloVista.C_FK_CANTON,
+                                                               modeloVista.C_FK_DISTRITO,
+                                                               modeloVista.C_DIRECCION);
 
-                                                        
-                                                                                                
-                   );
+                    
                 }
             }
             catch (Exception error)
