@@ -46,7 +46,7 @@ namespace ProyectoProgramacion.Controllers
 
 
         [HttpPost]
-        public ActionResult RegistroCliente(sp_RetornaCliente_Result modeloVista)
+        public ActionResult RegistroCliente(sp_RetornaCliente_ID_Result modeloVista)
         {
 
             string mensaje = string.Empty;
@@ -62,16 +62,16 @@ namespace ProyectoProgramacion.Controllers
                 }
                 else
                 {
-                    filas = this.modeloBD.sp_Registrar_Cliente(modeloVista.C_CEDULA,
-                                                                modeloVista.C_NOMBRE_CLIENTE,
-                                                                modeloVista.C_APELLIDO1,
-                                                                modeloVista.C_APELLIDO2,
-                                                                modeloVista.C_TELEFONO,
-                                                                modeloVista.C_CORREO,
-                                                                modeloVista.id_Provincia,
-                                                                modeloVista.id_Canton,
-                                                                modeloVista.id_Distrito,
-                                                                modeloVista.C_DIRECCION);
+                    filas = this.modeloBD.sp_Registrar_Cliente(Convert.ToString(modeloVista.C_ID_CLIENTE),
+                                                               modeloVista.C_NOMBRE_CLIENTE,
+                                                               modeloVista.C_APELLIDO1,
+                                                               modeloVista.C_APELLIDO2,
+                                                               modeloVista.C_TELEFONO,
+                                                               modeloVista.C_CORREO,
+
+                                                        
+                                                                                                
+                   );
                 }
             }
             catch (Exception error)
@@ -87,6 +87,7 @@ namespace ProyectoProgramacion.Controllers
                 }
                 Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
             }
+
             return View("RegistroCliente");
         }
 
