@@ -54,9 +54,9 @@ namespace ProyectoProgramacion.Controllers
             try
             {
                 /* CONSULTAMOS SI EXISTEN DATOS DEL CLIENTE */
-                List<sp_RetornaCliente_Result> Id =
-                    this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_ID_CLIENTE).ToList();
-                if (Id.Count > 0)
+                List<sp_RetornaCliente_Result> Nombre =
+                    this.modeloBD.sp_RetornaCliente(modeloVista.C_APELLIDO1, modeloVista.C_APELLIDO2, modeloVista.C_NOMBRE_CLIENTE).ToList();
+                if (Nombre.Count > 0)
                 {
                     mensaje = "Este cliente ya se ecuentra registrado";
                 }
@@ -87,6 +87,7 @@ namespace ProyectoProgramacion.Controllers
                 }
                 Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
             }
+
             return View("RegistroCliente");
         }
 
