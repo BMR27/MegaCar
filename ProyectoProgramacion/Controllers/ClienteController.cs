@@ -54,7 +54,7 @@ namespace ProyectoProgramacion.Controllers
             try
             {
                 /* CONSULTAMOS SI EXISTEN DATOS DEL CLIENTE */
-                List<sp_RetornaCliente_Result> Id =
+                List<sp_RetornaCliente_ID_Result> Id =
                     this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_ID_CLIENTE).ToList();
                 if (Id.Count > 0)
                 {

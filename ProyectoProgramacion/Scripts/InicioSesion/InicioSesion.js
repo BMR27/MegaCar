@@ -1,6 +1,6 @@
 ﻿$(function () {
     ValidarCamposInicioSesion();
-   // EventoCapturaDatosLogin();
+    EventoCapturaDatosLogin();
 });
 /* EVENTO QUE VALIDA LOS CAMPOS DE INICIO DE SESION */
 function ValidarCamposInicioSesion() {
@@ -44,9 +44,15 @@ function ValidarInicio() {
     /* DIRECCION DONDE SE ENVIARAN LOS DATOS */
     var Direccion = '/Home/ValidarInicioSesion';
     /* PARAMETROS ENVIADOS */
+    //var parametros = {
+    //    pNombre: $("#NombreUsuario").val(),
+    //    pPass: $("#Contrasena").val()
+    //};
     var parametros = {
-        pNombre: $("#NombreUsuario").val(),
-        pPass: $("#Contrasena").val()
+
+            C_USUARIO: $("#NombreUsuario").val(),
+            C_PASS:$("#Contrasena").val()
+
     };
     /* PROCESA LOS DATOS RETORNADOS DESDE EL SERVIDOR */
     $.ajax({

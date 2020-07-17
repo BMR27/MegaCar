@@ -21,10 +21,10 @@ namespace ProyectoProgramacion.Controllers
         /*  */
         #endregion
         [HttpPost]
-        public ActionResult ValidarInicioSesion(string NombreUsuario, string Contrasena)
+        public ActionResult ValidarInicioSesion(sp_Validar_Inicio_Sesion_Result ModeloVista)
         {
             sp_Validar_Inicio_Sesion_Result DatosInicioSesion =
-                this.ModeloDB.sp_Validar_Inicio_Sesion(NombreUsuario, Contrasena).FirstOrDefault();
+                this.ModeloDB.sp_Validar_Inicio_Sesion(ModeloVista.C_USUARIO, ModeloVista.C_PASS).FirstOrDefault();
 
             if (DatosInicioSesion != null)
             {
