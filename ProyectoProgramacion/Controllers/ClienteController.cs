@@ -46,7 +46,7 @@ namespace ProyectoProgramacion.Controllers
 
 
         [HttpPost]
-        public ActionResult RegistroCliente(sp_RetornaCliente_Result modeloVista)
+        public ActionResult RegistroCliente(sp_RetornaCliente_ID_Result modeloVista)
         {
 
             string mensaje = string.Empty;
@@ -54,24 +54,24 @@ namespace ProyectoProgramacion.Controllers
             try
             {
                 /* CONSULTAMOS SI EXISTEN DATOS DEL CLIENTE */
-                List<sp_RetornaCliente_Result> Nombre =
-                    this.modeloBD.sp_RetornaCliente(modeloVista.C_APELLIDO1, modeloVista.C_APELLIDO2, modeloVista.C_NOMBRE_CLIENTE).ToList();
-                if (Nombre.Count > 0)
+                List<sp_RetornaCliente_ID_Result> Id =
+                    this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_ID_CLIENTE).ToList();
+                if (Id.Count > 0)
                 {
                     mensaje = "Este cliente ya se ecuentra registrado";
                 }
                 else
                 {
-                    filas = this.modeloBD.sp_Registrar_Cliente(modeloVista.C_CEDULA,
-                                                                modeloVista.C_NOMBRE_CLIENTE,
-                                                                modeloVista.C_APELLIDO1,
-                                                                modeloVista.C_APELLIDO2,
-                                                                modeloVista.C_TELEFONO,
-                                                                modeloVista.C_CORREO,
-                                                                modeloVista.id_Provincia,
-                                                                modeloVista.id_Canton,
-                                                                modeloVista.id_Distrito,
-                                                                modeloVista.C_DIRECCION);
+                    filas = this.modeloBD.sp_Registrar_Cliente(Convert.ToString(modeloVista.C_ID_CLIENTE),
+                                                               modeloVista.C_NOMBRE_CLIENTE,
+                                                               modeloVista.C_APELLIDO1,
+                                                               modeloVista.C_APELLIDO2,
+                                                               modeloVista.C_TELEFONO,
+                                                               modeloVista.C_CORREO,
+
+                                                        
+                                                                                                
+                   );
                 }
             }
             catch (Exception error)
