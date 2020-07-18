@@ -41,13 +41,13 @@ function creaValidaciones() {
                 C_TELEFONO: {
                     required: true
                 },
-                id_Provincia: {
+                C_FK_PROVINCIA: {
                     required: true
                 },
-                id_Canton: {
+                C_FK_CANTON: {
                     required: true
                 },
-                id_Distrito: {
+                C_FK_DISTRITO: {
                     required: true
                 }
             }
@@ -56,30 +56,26 @@ function creaValidaciones() {
 }
 
 
-
 //función que registrará los eventos necesarios para "monitorear"
 //cuando se ejecute el método change de las respectivas listas
 function estableceEventosChange() {
     ///Evento change de la Lista de provincias
-    $("#id_Provincia").change(function () {
+    $("#C_FK_PROVINCIA").change(function () {
         ///obtenemos el id de la provincia seleccionada
-        var provincia = $("#id_Provincia").val();
+        var provincia = $("#C_FK_PROVINCIA").val();
         ///llamamos la función que nos permitirá cargar
         ///todos los cantones asociados a la provincia seleccionada
         cargaDropdownListCantones(provincia);
     });
 
-    $("#id_Canton").change(function () {
+    $("#C_FK_CANTON").change(function () {
         ///obtenemos el id del canton seleccionado
-        var canton = $("#id_Canton").val();
+        var canton = $("#C_FK_CANTON").val();
         ///llamamos la función que nos permitirá cargar
         ///todos los cantones asociados a la provincia seleccionada
         cargaDropdownListDistritos(canton);
     });
-
-
 }
-
 
 ///carga los registros de las provincias
 function cargaDropdownListProvincias() {
@@ -110,7 +106,7 @@ function cargaDropdownListProvincias() {
  */
 function procesarResultadoProvincias(data) {
     ///mediante un selector nos posicionamos sobre la lista de provincias
-    var ddlProvincias = $("#id_Provincia");
+    var ddlProvincias = $("#C_FK_PROVINCIA");
     ///"limpiamos" todas las opciones de la lista de provincias
     ddlProvincias.empty();
 
@@ -139,7 +135,7 @@ function cargaDropdownListCantones(pIdProvincia) {
     var url = '/Cliente/RetornaCantones';
     ///parámetros del método, es CASE-SENSITIVE
     var parametros = {
-        id_Provincia: pIdProvincia
+        C_FK_PROVINCIA: pIdProvincia
     };
     ///invocar el método
     $.ajax({
@@ -160,7 +156,7 @@ function cargaDropdownListCantones(pIdProvincia) {
 
 function procesarResultadoCantones(data) {
     ///mediante un selector nos posicionamos sobre la lista de cantones
-    var ddlCantones = $("#id_Canton");
+    var ddlCantones = $("#C_FK_CANTON");
     ///"limpiamos" todas las opciones de la lista de cantones            
     ddlCantones.empty();
 
@@ -190,7 +186,7 @@ function cargaDropdownListDistritos(pIdCanton) {
     var url = '/Cliente/RetornarDistritos';
     ///parámetros del método, es CASE-SENSITIVE
     var parametros = {
-        id_Canton: pIdCanton
+        C_FK_CANTON: pIdCanton
     };
     ///invocar el método
     $.ajax({
@@ -210,7 +206,7 @@ function cargaDropdownListDistritos(pIdCanton) {
 
 function procesarResultadoDistrito(data) {
     ///mediante un selector nos posicionamos sobre la lista de distritos
-    var ddlDistritos = $("#id_Distrito");
+    var ddlDistritos = $("#C_FK_DISTRITO");
     ///"limpiamos" todas las opciones de la lista de cantones            
     ddlDistritos.empty();
 
@@ -226,7 +222,7 @@ function procesarResultadoDistrito(data) {
         ///por ejemplo distritoActual.nombre nos retorna el nombre del distrito
         var distritoActual = this;
         ///creamos la opción de la lista, con el valor del id del distrito y el texto con el nomnbre
-        nuevaOpción = "<option value='" + distritoActual.id_Distrito + "'>" + distritoActual.nombre + "</option>";
+        nuevaOpción = "<option value='" + distritoActual.C_FK_DISTRITO + "'>" + distritoActual.nombre + "</option>";
         ///agregamos la opción al dropdownlist
         ddlDistritos.append(nuevaOpción);
     });
