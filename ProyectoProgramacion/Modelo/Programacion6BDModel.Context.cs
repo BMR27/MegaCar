@@ -381,15 +381,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
         }
     
-        public virtual ObjectResult<sp_RetornaCliente_ID_Result> sp_RetornaCliente_ID(Nullable<int> id_Cliente)
-        {
-            var id_ClienteParameter = id_Cliente.HasValue ?
-                new ObjectParameter("id_Cliente", id_Cliente) :
-                new ObjectParameter("id_Cliente", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaCliente_ID_Result>("sp_RetornaCliente_ID", id_ClienteParameter);
-        }
-    
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
@@ -515,6 +506,15 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("NOMBRE", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_PAIS_Result>("SP_RETORNA_PAIS", nOMBREParameter);
+        }
+    
+        public virtual ObjectResult<sp_RetornaCliente_ID_Result> sp_RetornaCliente_ID(string cedula)
+        {
+            var cedulaParameter = cedula != null ?
+                new ObjectParameter("Cedula", cedula) :
+                new ObjectParameter("Cedula", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaCliente_ID_Result>("sp_RetornaCliente_ID", cedulaParameter);
         }
     }
 }

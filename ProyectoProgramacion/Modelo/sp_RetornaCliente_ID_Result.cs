@@ -13,12 +13,14 @@ namespace ProyectoProgramacion.Modelo
     
     public partial class sp_RetornaCliente_ID_Result
     {
+        public string C_CEDULA { get; set; }
         public int C_ID_CLIENTE { get; set; }
         public string C_APELLIDO1 { get; set; }
         public string C_APELLIDO2 { get; set; }
         public string C_NOMBRE_CLIENTE { get; set; }
         public string C_TELEFONO { get; set; }
         public string C_CORREO { get; set; }
+        public string C_DIRECCION { get; set; }
         public int id_Provincia { get; set; }
         public string nombreProvincia { get; set; }
     }
