@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "RegistroCliente";
+    string Direccion = Url.Action("RegistroCliente", "Cliente");
 }
 
 <body>
@@ -14,7 +15,7 @@
         </div>
         <section class="formulario">
             <center>
-                <form id="frmRegistraCliente" action="/" method="post">
+                <form id="frmRegistraCliente" action="@Direccion" method="post">
 
                     <div class="form-group">
                         <label class="control-label">Nombre del Cliente:</label>

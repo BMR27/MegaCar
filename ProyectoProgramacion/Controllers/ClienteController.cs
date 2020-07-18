@@ -55,7 +55,7 @@ namespace ProyectoProgramacion.Controllers
             {
                 /* CONSULTAMOS SI EXISTEN DATOS DEL CLIENTE */
                 List<sp_RetornaCliente_ID_Result> Id =
-                    this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_ID_CLIENTE).ToList();
+                    this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_CEDULA).ToList();
                 if (Id.Count > 0)
                 {
                     mensaje = "Este cliente ya se ecuentra registrado";
