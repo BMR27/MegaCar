@@ -58,7 +58,7 @@ namespace ProyectoProgramacion.Controllers
                     this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_ID_CLIENTE).ToList();
                 if (Id.Count > 0)
                 {
-                    mensaje = "Este cliente ya se ecuentra registrado";
+                    mensaje = "Este cliente ya se encuentra registrado";
                 }
                 else
                 {
@@ -74,7 +74,7 @@ namespace ProyectoProgramacion.Controllers
                                                                modeloVista.C_FK_DISTRITO,
                                                                modeloVista.C_DIRECCION);
 
-                    
+ 
                 }
             }
             catch (Exception error)
