@@ -29,17 +29,17 @@ namespace ProyectoProgramacion.Controllers
         }
 
         /* RETORNA LA LISTA DE CANTONES */
-        public ActionResult RetornaCantones(int id_Provincia)
+        public ActionResult RetornaCantones(int C_FK_PROVINCIA)
         {
             List<RetornaCantones_Result> cantones =
-                this.modeloBD.RetornaCantones(null, id_Provincia).ToList();
+                this.modeloBD.RetornaCantones(null, C_FK_PROVINCIA).ToList();
             return Json(cantones);
         }
         /* RETORNA LA LISTA DE DISTRITOS */
-        public ActionResult RetornarDistritos(int id_Canton)
+        public ActionResult RetornarDistritos(int C_FK_CANTON)
         {
             List<RetornaDistrito_Result> distritos =
-                this.modeloBD.RetornaDistrito(null, id_Canton).ToList();
+                this.modeloBD.RetornaDistrito(null, C_FK_CANTON).ToList();
             return Json(distritos);
         }
 
@@ -55,7 +55,7 @@ namespace ProyectoProgramacion.Controllers
             {
                 /* CONSULTAMOS SI EXISTEN DATOS DEL CLIENTE */
                 List<sp_RetornaCliente_ID_Result> Id =
-                    this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_ID_CLIENTE).ToList();
+                    this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_CEDULA).ToList();
                 if (Id.Count > 0)
                 {
                     mensaje = "Este cliente ya se encuentra registrado";
