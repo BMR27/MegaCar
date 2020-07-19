@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Lista de Clientes Registrados";
+}
+
+<div class="jumbotron">
+    <center>
+        <h1>@ViewBag.Title</h1>
+    </center>
+</div>
+
+<div class="container">
+    <form action="MostrarCliente" method="post">
+        <div class="form-group">
+            <center>
+                <input type="text" name="C_CEDULA" id="C_CEDULA" placeholder="Ingrese el número de cedula" value="" class="form-control" />
+            </center>
+        </div>
+        <div class="form-group">
+            <center>
+                <input type="submit" name="btnConsultar" id="btnConsultar" value="Consultar" class="btn btn-success form-control" />
+            </center>
+        </div>
+    </form>
+    <br />
+    <table class="table table-responsive">
+        <tr>
+            <th>Cedula</th>
+            <th>Nombre del Cliente</th>
+            <th>Apellido 1</th>
+            <th>Apellido 2</th>
+            <th>Provincia</th>
+            <th>Canton</th>
+            <th>Distrito</th>
+            <th>Direccion</th>
+            <th>Correo</th>
+            <th>Telefono</th>
+            <th>Modificar</th>
+            <th>Eliminar</th>
+        </tr>
+        @{
+            foreach (ProyectoProgramacion.Modelo.sp_RetornaCliente_Result item in
+                this.ViewBag.ListaCliente)
+            {
+                <tr>
+                    <td>@item.C_CEDULA</td>
+                    <td>@item.C_NOMBRE_CLIENTE</td>
+                    <td>@item.C_APELLIDO1</td>
+                    <td>@item.C_APELLIDO2</td>
+                    <td>@item.C_FK_PROVINCIA</td>
+                    <td>@item.C_FK_CANTON</td>
+                    <td>@item.C_FK_DISTRITO</td>
+                    <td>@item.C_DIRECCION</td>
+                    <td>@item.C_CORREO</td>
+                    <td>@item.C_TELEFONO</td>
+                    <td>
+                        <a href="~/Cliente/ModificarCliente?C_CEDULA=@item.C_CEDULA">Modificar</a>
+                    </td>
+                    <td>
+                        <a href="~/Cliente/EliminarCliente?C_CEDULA=@item.C_CEDULA">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+
+

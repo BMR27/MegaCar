@@ -26,8 +26,8 @@ function creaValidaciones() {
                 },
                 C_CEDULA: {
                     required: true,
-                    minlength: 9,
-                    maxlength: 10
+                    minlength: 12,
+                    maxlength: 12
                    
                 },
                 C_CORREO: {
@@ -222,7 +222,7 @@ function procesarResultadoDistrito(data) {
         ///por ejemplo distritoActual.nombre nos retorna el nombre del distrito
         var distritoActual = this;
         ///creamos la opción de la lista, con el valor del id del distrito y el texto con el nomnbre
-        nuevaOpción = "<option value='" + distritoActual.C_FK_DISTRITO + "'>" + distritoActual.nombre + "</option>";
+        nuevaOpción = "<option value='" + distritoActual.id_Distrito + "'>" + distritoActual.nombre + "</option>";
         ///agregamos la opción al dropdownlist
         ddlDistritos.append(nuevaOpción);
     });

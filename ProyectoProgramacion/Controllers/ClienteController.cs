@@ -43,8 +43,6 @@ namespace ProyectoProgramacion.Controllers
             return Json(distritos);
         }
 
-
-
         [HttpPost]
         public ActionResult RegistroCliente(sp_RetornaCliente_Result modeloVista)
         {
@@ -62,7 +60,6 @@ namespace ProyectoProgramacion.Controllers
                 }
                 else
                 {
-
                     filas = this.modeloBD.sp_Registrar_Cliente(modeloVista.C_CEDULA,
                                                                modeloVista.C_NOMBRE_CLIENTE,
                                                                modeloVista.C_APELLIDO1,
@@ -73,8 +70,6 @@ namespace ProyectoProgramacion.Controllers
                                                                modeloVista.C_FK_CANTON,
                                                                modeloVista.C_FK_DISTRITO,
                                                                modeloVista.C_DIRECCION);
-
- 
                 }
             }
             catch (Exception error)
@@ -94,9 +89,52 @@ namespace ProyectoProgramacion.Controllers
             return View("RegistroCliente");
         }
 
+        //--------------------------------------------------------------------------------------------
+
+        /* METODO MODIFICA LOS DATOS DEL CLIENTE */
+        public ActionResult ModificarCliente(sp_RetornaCliente_Result modeloVista)
+        {
+            CrearListaClientes(modeloVista);
+            return View();
+        }
+        /* METODO CONSULTA LOS CLIENTES */
+        public void CrearListaClientes(sp_RetornaCliente_Result modeloVista)
+        {
+            this.ViewBag.ListaCliente =
+                this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_CEDULA);
+        }
+        public ActionResult MostrarCliente(sp_RetornaCliente_Result modeloVista)
+        {
+            CrearListaClientes(modeloVista);
+            return View();
+        }
+
+        /* METODO ELIMINA UN CLIENTE */
+        public ActionResult EliminarCliente(sp_RetornaCliente_Result modeloVista)
+        {
+            string mensaje = string.Empty;
+            int filas = 0;
+            try
+            {
+                filas = this.modeloBD.sp_Eliminar_Cliente(modeloVista.C_ID_CLIENTE);
+            }
+            catch (Exception error)
+            {
+
+                mensaje = "Error: " + error.Message;
+            }
+            if (filas > 0)
+            {
+                return View();
+            }
+            Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+            return View("MostrarVevhiculos");
+        }
     }
 
 }
+
+
 
         //---------------------------------------------------------------------------------------------
 
