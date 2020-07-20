@@ -101,7 +101,7 @@ namespace ProyectoProgramacion.Controllers
         public void CrearListaClientes(sp_RetornaCliente_Result modeloVista)
         {
            this.ViewBag.ListaCliente =
-                this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_CEDULA).ToList();
+                this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_CEDULA);
         }
         public ActionResult MostrarCliente(sp_RetornaCliente_Result modeloVista)
         {
