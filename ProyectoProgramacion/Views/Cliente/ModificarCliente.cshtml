@@ -12,7 +12,7 @@
     <center>
         <form id="frmRegistraCliente" action="ModificarCliente" method="post">
             @{
-                foreach (ProyectoProgramacion.Modelo.sp_RetornaCliente_Result item in
+                foreach (ProyectoProgramacion.Modelo.sp_RetornaCliente_ID_Result item in
                     this.ViewBag.ListaCliente)
                 {
                     <div class="form-group">
@@ -78,11 +78,7 @@
                         </select>
                     </div>
 
-                    <div class="bottom">
-                        <input type="submit" name="btnRegistrar" id="btnRegistrar" value="Registrar" class="btn btn-success" />
-                        <input type="reset" name="btnLimpiar" id="btnLimpiar" value="Limpiar" class="btn btn-primary" />
-                    </div>
-
+                
                 }
             }
             <div class="bottom">
