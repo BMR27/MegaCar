@@ -128,7 +128,7 @@ namespace ProyectoProgramacion.Controllers
                 return View();
             }
             Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
-            return View("MostrarVevhiculos");
+            return View("MostrarCliente");
         }
     }
 
