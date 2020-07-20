@@ -100,8 +100,8 @@ namespace ProyectoProgramacion.Controllers
         /* METODO CONSULTA LOS CLIENTES */
         public void CrearListaClientes(sp_RetornaCliente_Result modeloVista)
         {
-            this.ViewBag.ListaCliente =
-                this.modeloBD.sp_RetornaCliente_ID(null);
+           this.ViewBag.ListaCliente =
+                this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_CEDULA).ToList();
         }
         public ActionResult MostrarCliente(sp_RetornaCliente_Result modeloVista)
         {
