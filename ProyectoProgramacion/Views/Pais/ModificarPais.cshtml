@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Modificar el Nombre de un País";
+}
+
+<div class="jumbotron">
+    <h1>@ViewBag.Title</h1>
+</div>
+<div>
+    <center>
+        <form id="frmRegistraPais" action="ModificarNombrePais" method="post">
+            @{
+                foreach (ProyectoProgramacion.Modelo.SP_RETORNA_PAIS_ID_Result item in
+                    this.ViewBag.ListaPaisId)
+                {
+                    <div class="form-group">
+                        <label>Id del País</label>
+                        <input type="text" name="C_ID_PAIS" id="C_ID_PAIS" value="@item.C_ID_PAIS" class="form-control" readonly />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nombre del País</label>
+                        <input type="text" name="C_NOMBRE_PAIS" id="C_NOMBRE_PAIS" placeholder="Ingrese el nombre del País" value="@item.C_NOMBRE_PAIS" class="form-control" />
+                    </div>
+                }
+            }
+
+            <div class="form-group">
+                <input type="submit" name="btnModificar" id="btnModificar" value="Modificar Nombre" class="btn btn-success form-control" />
+            </div>
+            <div class="form-group">
+                <a href="~/Pais/MostrarListaPaises">Regresar a la lista</a>
+            </div>
+        </form>
+    </center>
+</div>
+@Html.ValidationSummary(true)
+@section Scripts{
+    <script src="~/Scripts/Pais/RegistrarPais.js"></script>
+}

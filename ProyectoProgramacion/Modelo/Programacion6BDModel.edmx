@@ -528,6 +528,10 @@
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="id_CantonInec" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_MODIFICAR_PAIS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDPAIS" Type="int" Mode="In" />
+          <Parameter Name="NOMBRE_NUEVO" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_Registrar_Cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CEDULA" Type="char" Mode="In" />
           <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
@@ -539,6 +543,9 @@
           <Parameter Name="ID_CANTON" Type="int" Mode="In" />
           <Parameter Name="ID_DISTRITO" Type="int" Mode="In" />
           <Parameter Name="DIRECCION" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_REGISTRAR_PAIS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NOMBRE_PAIS" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_Registrar_Vehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PLACA" Type="char" Mode="In" />
@@ -562,6 +569,9 @@
         </Function>
         <Function Name="SP_RETORNA_PAIS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_RETORNA_PAIS_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="C_ID_PAIS" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_RETORNA_TIPO_VEHICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_RetornaCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1383,7 +1393,17 @@
           <Parameter Name="NOMBRE" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_RetornaCliente_ID" ReturnType="Collection(programacion6Model.sp_RetornaCliente_ID_Result)">
-            <Parameter Name="Cedula" Mode="In" Type="String" />
+          <Parameter Name="Cedula" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_REGISTRAR_PAIS">
+          <Parameter Name="NOMBRE_PAIS" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_MODIFICAR_PAIS">
+            <Parameter Name="IDPAIS" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_NUEVO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_RETORNA_PAIS_ID" ReturnType="Collection(programacion6Model.SP_RETORNA_PAIS_ID_Result)">
+            <Parameter Name="C_ID_PAIS" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
@@ -1549,6 +1569,10 @@
           <Property Type="String" Name="CANTON" Nullable="false" MaxLength="100" />
           <Property Type="Int32" Name="id_Distrito" Nullable="false" />
           <Property Type="String" Name="DISTRITO" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_RETORNA_PAIS_ID_Result">
+          <Property Type="Int32" Name="C_ID_PAIS" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_PAIS" Nullable="false" MaxLength="60" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2035,6 +2059,16 @@
                 <ScalarProperty Name="CANTON" ColumnName="CANTON" />
                 <ScalarProperty Name="id_Distrito" ColumnName="id_Distrito" />
                 <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_REGISTRAR_PAIS" FunctionName="programacion6Model.Store.SP_REGISTRAR_PAIS" />
+          <FunctionImportMapping FunctionImportName="SP_MODIFICAR_PAIS" FunctionName="programacion6Model.Store.SP_MODIFICAR_PAIS" />
+          <FunctionImportMapping FunctionImportName="SP_RETORNA_PAIS_ID" FunctionName="programacion6Model.Store.SP_RETORNA_PAIS_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_RETORNA_PAIS_ID_Result">
+                <ScalarProperty Name="C_ID_PAIS" ColumnName="C_ID_PAIS" />
+                <ScalarProperty Name="C_NOMBRE_PAIS" ColumnName="C_NOMBRE_PAIS" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

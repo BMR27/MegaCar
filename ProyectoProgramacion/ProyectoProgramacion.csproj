@@ -194,6 +194,9 @@
     <Compile Include="Modelo\SP_RETORNA_MODELO_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\SP_RETORNA_PAIS_ID_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\SP_RETORNA_PAIS_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
@@ -339,6 +342,7 @@
     <Content Include="Views\Cliente\MostrarCliente.cshtml" />
     <Content Include="Views\Cliente\ModificarCliente.cshtml" />
     <Content Include="Views\Cliente\EliminarCliente.cshtml" />
+    <Content Include="Views\Pais\ModificarPais.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

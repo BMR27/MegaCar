@@ -9,15 +9,17 @@
 </div>
 
 <div class="container">
-    <form id="frmBuscarPais" action="MostrarListaPaises" method="post">
-        <div class="form-group">
-            <label>Nombre del País a buscar</label>
-            <input type="text" name="C_NOMBRE_PAIS" id="C_NOMBRE_PAIS" placeholder="Ingrese un nombre de País" value="" class="form-control" />
-        </div>
-        <div class="form-group">
-            <input type="submit" name="btnBuscar" id="btnBuscar" value="Buscar" class="btn btn-success form-control" />
-        </div>
-    </form>
+    <center>
+        <form id="frmBuscarPais" action="MostrarListaPaises" method="post">
+            <div class="form-group">
+                <label>Nombre del País a buscar</label>
+                <input type="text" name="C_NOMBRE_PAIS" id="C_NOMBRE_PAIS" placeholder="Ingrese un nombre de País" value="" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" name="btnBuscar" id="btnBuscar" value="Buscar" class="btn btn-success form-control" />
+            </div>
+        </form>
+    </center>
     <table class="table table-responsive table-bordered">
         <tr>
             <th>Id Pais</th>
@@ -32,7 +34,9 @@
                 <tr>
                     <td>@item.C_ID_PAIS</td>
                     <td>@item.C_NOMBRE_PAIS</td>
-                    <td><a href="#">Modificar</a></td>
+                    <td>
+                        <a href="~/Pais/ModificarPais?C_ID_PAIS=@item.C_ID_PAIS">Modificar</a>
+                    </td>
                     <td><a href="#">Eliminar</a></td>
                 </tr>
             }

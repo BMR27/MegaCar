@@ -516,5 +516,36 @@ namespace ProyectoProgramacion.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaCliente_ID_Result>("sp_RetornaCliente_ID", cedulaParameter);
         }
+    
+        public virtual int SP_REGISTRAR_PAIS(string nOMBRE_PAIS)
+        {
+            var nOMBRE_PAISParameter = nOMBRE_PAIS != null ?
+                new ObjectParameter("NOMBRE_PAIS", nOMBRE_PAIS) :
+                new ObjectParameter("NOMBRE_PAIS", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_PAIS", nOMBRE_PAISParameter);
+        }
+    
+        public virtual int SP_MODIFICAR_PAIS(Nullable<int> iDPAIS, string nOMBRE_NUEVO)
+        {
+            var iDPAISParameter = iDPAIS.HasValue ?
+                new ObjectParameter("IDPAIS", iDPAIS) :
+                new ObjectParameter("IDPAIS", typeof(int));
+    
+            var nOMBRE_NUEVOParameter = nOMBRE_NUEVO != null ?
+                new ObjectParameter("NOMBRE_NUEVO", nOMBRE_NUEVO) :
+                new ObjectParameter("NOMBRE_NUEVO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_PAIS", iDPAISParameter, nOMBRE_NUEVOParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNA_PAIS_ID_Result> SP_RETORNA_PAIS_ID(Nullable<int> c_ID_PAIS)
+        {
+            var c_ID_PAISParameter = c_ID_PAIS.HasValue ?
+                new ObjectParameter("C_ID_PAIS", c_ID_PAIS) :
+                new ObjectParameter("C_ID_PAIS", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_PAIS_ID_Result>("SP_RETORNA_PAIS_ID", c_ID_PAISParameter);
+        }
     }
 }

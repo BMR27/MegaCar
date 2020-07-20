@@ -13,13 +13,13 @@
         <form id="frmRegistraVehiculo" action="ModificarVehiculo" method="post">
             @{
                 foreach (ProyectoProgramacion.Modelo.SP_CONSULTAR_VEHICULOS_Result item in
-                    this.ViewBag.ListaVehiculo)
+                    this.ViewBag.ListaVehiculos)
                 {
 
                     <div class="form-group">
                         <label class="control-label">Placa del Vehiculo:</label>
                         <input type="text" name="C_PLACA" id="C_PLACA" placeholder="Número de placa" value="@item.C_PLACA" class="form-control"
-                               title="Ingreso de número e placa" data-toggle="tooltip" />
+                               title="Ingreso de número e placa" data-toggle="tooltip" readonly />
                     </div>
 
                     <div class="form-group">
