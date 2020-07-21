@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Registrar Tipo de vehiculo";
+}
+<div class="jumbotron">
+    <h2>@ViewBag.Title</h2>
+</div>
+<div class="container">
+    <center>
+        <form id="frmRegistrarTipo" action="RegistrarTipo" method="post">
+            <div class="form-group">
+                <label>Nombre de tipo</label>
+                <input type="text" name="C_NOMBRE_TIPO" id="C_NOMBRE_TIPO" placeholder="Ingrese un Nombre" value="" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" name="btnRegistrar" id="btnRegistrar" value="Registrar" class="btn btn-success form-control" />
+            </div>
+            <div>
+                <a href="~/TipoVehiculo/TiposVehiculos">Ir a lista de tipos</a>
+            </div>
+        </form>
+    </center>
+</div>
+@Html.ValidationSummary(true)
+@section Scripts{
+<script src="~/Scripts/Tipos Vehiculo/RegistrarTipoVehiculo.js"></script>
+}

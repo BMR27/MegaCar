@@ -1,10 +1,10 @@
 ﻿$(function () {
-    ValidarCamposPais();
+    ValidarCamposTipo();
     // EventoCapturaDatosLogin();
 });
 /* EVENTO QUE VALIDA LOS CAMPOS DE INICIO DE SESION */
-function ValidarCamposPais() {
-    $("#frmRegistraPais").validate(
+function ValidarCamposTipo() {
+    $("#frmRegistrarTipo").validate(
 
         {
             rules: {
@@ -18,5 +18,3 @@ function ValidarCamposPais() {
         }
     );
 }
-
-

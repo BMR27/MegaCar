@@ -54,7 +54,7 @@ namespace ProyectoProgramacion.Controllers
         public ActionResult RetornarTipos()
         {
             List<SP_RETORNA_TIPO_VEHICULO_Result> ListaTipos =
-                this.ModeloDB.SP_RETORNA_TIPO_VEHICULO().ToList();
+                this.ModeloDB.SP_RETORNA_TIPO_VEHICULO(null).ToList();
             return Json(ListaTipos);
         }
 

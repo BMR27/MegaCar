@@ -416,11 +416,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Validar_Inicio_Sesion_Result>("sp_Validar_Inicio_Sesion", uSUARIOParameter, pASSParameter);
         }
     
-        public virtual ObjectResult<SP_RETORNA_TIPO_VEHICULO_Result> SP_RETORNA_TIPO_VEHICULO()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_TIPO_VEHICULO_Result>("SP_RETORNA_TIPO_VEHICULO");
-        }
-    
         public virtual ObjectResult<SP_RETORNAR_FABRICANTES_Result> SP_RETORNAR_FABRICANTES(Nullable<int> fK_PAIS)
         {
             var fK_PAISParameter = fK_PAIS.HasValue ?
@@ -517,15 +512,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RetornaCliente_ID_Result>("sp_RetornaCliente_ID", cedulaParameter);
         }
     
-        public virtual int SP_REGISTRAR_PAIS(string nOMBRE_PAIS)
-        {
-            var nOMBRE_PAISParameter = nOMBRE_PAIS != null ?
-                new ObjectParameter("NOMBRE_PAIS", nOMBRE_PAIS) :
-                new ObjectParameter("NOMBRE_PAIS", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_PAIS", nOMBRE_PAISParameter);
-        }
-    
         public virtual int SP_MODIFICAR_PAIS(Nullable<int> iDPAIS, string nOMBRE_NUEVO)
         {
             var iDPAISParameter = iDPAIS.HasValue ?
@@ -546,6 +532,51 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("C_ID_PAIS", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_PAIS_ID_Result>("SP_RETORNA_PAIS_ID", c_ID_PAISParameter);
+        }
+    
+        public virtual int SP_REGISTRAR_PAIS(string nOMBRE_PAIS)
+        {
+            var nOMBRE_PAISParameter = nOMBRE_PAIS != null ?
+                new ObjectParameter("NOMBRE_PAIS", nOMBRE_PAIS) :
+                new ObjectParameter("NOMBRE_PAIS", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_PAIS", nOMBRE_PAISParameter);
+        }
+    
+        public virtual int SP_ELIMINAR_PAIS(Nullable<int> iD_PAIS)
+        {
+            var iD_PAISParameter = iD_PAIS.HasValue ?
+                new ObjectParameter("ID_PAIS", iD_PAIS) :
+                new ObjectParameter("ID_PAIS", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ELIMINAR_PAIS", iD_PAISParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNA_TIPO_VEHICULO_ID_Result> SP_RETORNA_TIPO_VEHICULO_ID(Nullable<int> iD_TIPO)
+        {
+            var iD_TIPOParameter = iD_TIPO.HasValue ?
+                new ObjectParameter("ID_TIPO", iD_TIPO) :
+                new ObjectParameter("ID_TIPO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_TIPO_VEHICULO_ID_Result>("SP_RETORNA_TIPO_VEHICULO_ID", iD_TIPOParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNA_TIPO_VEHICULO_Result> SP_RETORNA_TIPO_VEHICULO(string nOMBRE_TIPO)
+        {
+            var nOMBRE_TIPOParameter = nOMBRE_TIPO != null ?
+                new ObjectParameter("NOMBRE_TIPO", nOMBRE_TIPO) :
+                new ObjectParameter("NOMBRE_TIPO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_TIPO_VEHICULO_Result>("SP_RETORNA_TIPO_VEHICULO", nOMBRE_TIPOParameter);
+        }
+    
+        public virtual int SP_REGISTRAR_TIPO_VEHICULO(string nOMBRE_TIPO)
+        {
+            var nOMBRE_TIPOParameter = nOMBRE_TIPO != null ?
+                new ObjectParameter("NOMBRE_TIPO", nOMBRE_TIPO) :
+                new ObjectParameter("NOMBRE_TIPO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_TIPO_VEHICULO", nOMBRE_TIPOParameter);
         }
     }
 }

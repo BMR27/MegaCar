@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoProgramacion.Modelo;
+using System.Data.SqlClient;
 namespace ProyectoProgramacion.Controllers
 {
     public class PaisController : Controller
@@ -58,7 +59,7 @@ namespace ProyectoProgramacion.Controllers
             catch (Exception error)
             {
 
-                mensaje = "Error: " + error;
+                mensaje = "Error: " + error.Message;
             }
             finally
             {
@@ -77,7 +78,29 @@ namespace ProyectoProgramacion.Controllers
         /* ELIMINA UN PAIS */
         public ActionResult EliminarPais(SP_RETORNA_PAIS_ID_Result ModeloVista)
         {
+            string mensaje = string.Empty;
+            int filas = 0;
+            try
+            {
+                filas = this.ModeloDB.SP_ELIMINAR_PAIS(ModeloVista.C_ID_PAIS);
+            }
+            catch (Exception error)
+            {
 
+                mensaje = "Error: " + error;
+            }
+            finally
+            {
+                if (filas > 0)
+                {
+                    mensaje = "País Eliminado con exito";
+                }
+                else
+                {
+                    mensaje = "No se pudo eliminar el país puede que este relacionado con otra tabla";
+                }
+                Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+            }
             return View();
         }
         /* METODO MODIFICA EL NOMBRE DEL PAIS */

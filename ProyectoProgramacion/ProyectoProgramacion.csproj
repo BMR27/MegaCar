@@ -130,6 +130,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\TipoVehiculoController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -198,6 +199,9 @@
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\SP_RETORNA_PAIS_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\SP_RETORNA_TIPO_VEHICULO_ID_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\SP_RETORNA_TIPO_VEHICULO_Result.cs">
@@ -315,6 +319,7 @@
     <Content Include="Scripts\Pais\RegistrarPais.js" />
     <Content Include="Scripts\Registro Cliente\RegistroCliente.js" />
     <Content Include="Scripts\RegistroVehiculo\RegistrarVehiculo.js" />
+    <Content Include="Scripts\Tipos Vehiculo\RegistrarTipoVehiculo.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
     <Content Include="Video\5 Pasos Para Mantener Su Auto Limpio %28470p_30fps_H264-128kbit_AAC%29.mp4" />
     <Content Include="Web.config" />
@@ -343,6 +348,9 @@
     <Content Include="Views\Cliente\ModificarCliente.cshtml" />
     <Content Include="Views\Cliente\EliminarCliente.cshtml" />
     <Content Include="Views\Pais\ModificarPais.cshtml" />
+    <Content Include="Views\Pais\EliminarPais.cshtml" />
+    <Content Include="Views\TipoVehiculo\TiposVehiculos.cshtml" />
+    <Content Include="Views\TipoVehiculo\RegistrarTipo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
