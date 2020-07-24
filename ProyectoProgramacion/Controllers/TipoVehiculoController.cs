@@ -73,6 +73,7 @@ namespace ProyectoProgramacion.Controllers
                 if (filas > 0)
                 {
                     mensaje = "Exito al modiicar el tipo de vehiculo";
+                    mensaje = "Exito al modiicar el tipo de vehiculo";
                 }
                 Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
             }
