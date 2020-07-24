@@ -535,6 +535,10 @@
           <Parameter Name="IDPAIS" Type="int" Mode="In" />
           <Parameter Name="NOMBRE_NUEVO" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_MODIFICAR_TIPO_VEHICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_TIPO" Type="int" Mode="In" />
+          <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_Registrar_Cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CEDULA" Type="char" Mode="In" />
           <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
@@ -1425,7 +1429,11 @@
           <Parameter Name="NOMBRE_TIPO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_REGISTRAR_TIPO_VEHICULO">
-            <Parameter Name="NOMBRE_TIPO" Mode="In" Type="String" />
+          <Parameter Name="NOMBRE_TIPO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_MODIFICAR_TIPO_VEHICULO">
+            <Parameter Name="FK_TIPO" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
@@ -2108,6 +2116,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_REGISTRAR_TIPO_VEHICULO" FunctionName="programacion6Model.Store.SP_REGISTRAR_TIPO_VEHICULO" />
+          <FunctionImportMapping FunctionImportName="SP_MODIFICAR_TIPO_VEHICULO" FunctionName="programacion6Model.Store.SP_MODIFICAR_TIPO_VEHICULO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

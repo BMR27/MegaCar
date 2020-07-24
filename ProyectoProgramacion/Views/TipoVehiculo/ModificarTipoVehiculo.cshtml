@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Modificar Tipo de vehiculo";
+}
+<div class="jumbotron">
+    <center>
+        <h2>@ViewBag.Title</h2>
+    </center>
+</div>
+<div class="container">
+    <center>
+        <form id="frmRegistrarTipo" action="ModificarNombreTipoVehiculo" method="post">
+            @{
+                foreach (ProyectoProgramacion.Modelo.SP_RETORNA_TIPO_VEHICULO_ID_Result item in
+                    this.ViewBag.ListaTipos)
+                {
+                    <div class="form-group">
+                        <label>Id de tipo</label>
+                        <input type="text" name="C_ID_TIPO_VEHICULO" id="C_ID_TIPO_VEHICULO" placeholder="Ingrese un Nombre" value="@item.C_ID_TIPO_VEHICULO" class="form-control" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre de tipo</label>
+                        <input type="text" name="C_NOMBRE_TIPO" id="C_NOMBRE_TIPO" placeholder="Ingrese un Nombre" value="@item.C_NOMBRE_TIPO" class="form-control" />
+                    </div>
+
+                }
+            }
+
+            <div class="form-group">
+                <input type="submit" name="btnModificar" id="btnModificar" value="Modificar" class="btn btn-success form-control" />
+            </div>
+            <div>
+                <a href="~/TipoVehiculo/TiposVehiculos">Ir a lista de tipos</a>
+            </div>
+        </form>
+    </center>
+</div>
+@Html.ValidationSummary(true)
+@section Scripts{
+    <script src="~/Scripts/Tipos Vehiculo/RegistrarTipoVehiculo.js"></script>
+}

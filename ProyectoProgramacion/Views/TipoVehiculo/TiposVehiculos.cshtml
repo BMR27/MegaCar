@@ -23,8 +23,7 @@
         <tr>
             <th>Id</th>
             <th>Nombre</th>
-            <th>Modificar</th>
-            <th>Eliminar</th>
+            <th>Opciones</th>
         </tr>
         @{
             foreach (ProyectoProgramacion.Modelo.SP_RETORNA_TIPO_VEHICULO_Result item in
@@ -34,10 +33,8 @@
                     <td>@item.C_ID_TIPO_VEHICULO</td>
                     <td>@item.C_NOMBRE_TIPO</td>
                     <td>
-                        <a href="#">Modificar</a>
-                    </td>
-                    <td>
-                        <a href="#">Eliminar</a>
+                        <a href="~/TipoVehiculo/ModificarTipoVehiculo?C_ID_TIPO_VEHICULO=@item.C_ID_TIPO_VEHICULO">Modificar</a> <br />
+                        <a href="~/TipoVehiculo/EliminarTipoVehiculo?C_ID_TIPO_VEHICULO=@item.C_ID_TIPO_VEHICULO">Eliminar</a>
                     </td>
                 </tr>
             }

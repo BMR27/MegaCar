@@ -351,6 +351,7 @@
     <Content Include="Views\Pais\EliminarPais.cshtml" />
     <Content Include="Views\TipoVehiculo\TiposVehiculos.cshtml" />
     <Content Include="Views\TipoVehiculo\RegistrarTipo.cshtml" />
+    <Content Include="Views\TipoVehiculo\ModificarTipoVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

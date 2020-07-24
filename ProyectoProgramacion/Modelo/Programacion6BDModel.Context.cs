@@ -578,5 +578,18 @@ namespace ProyectoProgramacion.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_TIPO_VEHICULO", nOMBRE_TIPOParameter);
         }
+    
+        public virtual int SP_MODIFICAR_TIPO_VEHICULO(Nullable<int> fK_TIPO, string nOMBRE)
+        {
+            var fK_TIPOParameter = fK_TIPO.HasValue ?
+                new ObjectParameter("FK_TIPO", fK_TIPO) :
+                new ObjectParameter("FK_TIPO", typeof(int));
+    
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_TIPO_VEHICULO", fK_TIPOParameter, nOMBREParameter);
+        }
     }
 }
