@@ -102,7 +102,7 @@ namespace ProyectoProgramacion.Controllers
         /* METODO MODIFICA LOS DATOS DEL VEHICULO */
         public ActionResult ModificarVehiculo(SP_CONSULTAR_VEHICULOS_Result ModeloVista)
         {
-            CrearListaVehiculos(ModeloVista);
+            
             return View();
         }
         /* METODO CONULTA LOS VECHICULOS */
@@ -113,10 +113,20 @@ namespace ProyectoProgramacion.Controllers
         }
         public ActionResult MostrarVevhiculos(SP_CONSULTAR_VEHICULOS_Result ModeloVista)
         {
-            CrearListaVehiculos(ModeloVista);
+            //CrearListaVehiculos(ModeloVista);
+           
             return View();
         }
-
+        [HttpPost]
+        public ActionResult RetornaLista(SP_CONSULTAR_VEHICULOS_Result ModeloVista)
+        {
+            List<SP_CONSULTAR_VEHICULOS_Result> lista =
+               this.ModeloDB.SP_CONSULTAR_VEHICULOS(ModeloVista.C_PLACA).ToList();
+            return Json(new
+            {
+                resultado = lista
+            });
+        }
         /* METODO ELIMINA UN VEHICULO */
         public ActionResult EliminarVehiculo(SP_CONSULTAR_VEHICULOS_Result ModeloVista)
         {

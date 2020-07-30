@@ -318,7 +318,9 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Pais\RegistrarPais.js" />
     <Content Include="Scripts\Registro Cliente\RegistroCliente.js" />
+    <Content Include="Scripts\RegistroVehiculo\ModificarVehiculo.js" />
     <Content Include="Scripts\RegistroVehiculo\RegistrarVehiculo.js" />
+    <Content Include="Scripts\ScriptGenerico.js" />
     <Content Include="Scripts\Tipos Vehiculo\RegistrarTipoVehiculo.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
     <Content Include="Video\5 Pasos Para Mantener Su Auto Limpio %28470p_30fps_H264-128kbit_AAC%29.mp4" />
@@ -352,6 +354,7 @@
     <Content Include="Views\TipoVehiculo\TiposVehiculos.cshtml" />
     <Content Include="Views\TipoVehiculo\RegistrarTipo.cshtml" />
     <Content Include="Views\TipoVehiculo\ModificarTipoVehiculo.cshtml" />
+    <Content Include="Views\TipoVehiculo\EliminarTipoVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,7 +3,7 @@
     EventoChange();
     cargaListaPais();
     cargarListaTipos();
-    obtenerRegistrosVehiculo();
+    obtenerDetalleVehiculo();
 });
 
 function ValidarRegistroVehiculo() {
@@ -128,7 +128,7 @@ function CargarListaCasasFabricantes(pC_ID_PAIS) {
     var url = '/Vehiculo/RetornaFabricantes';
     ///parámetros del método, es CASE-SENSITIVE
     var parametros = {
-        C_ID_PAIS : pC_ID_PAIS
+        C_ID_PAIS: pC_ID_PAIS
     };
     ///invocar el método
     $.ajax({
@@ -146,7 +146,7 @@ function CargarListaCasasFabricantes(pC_ID_PAIS) {
     });
 }
 
-function ProcesaResultadoFabricantes( data) {
+function ProcesaResultadoFabricantes(data) {
     var ddlFabricantes = $("#Fabricante");
     ddlFabricantes.empty();
     var nuevaAccion = "<option value=''>Seleccione un Fabricante</option>";
@@ -281,73 +281,24 @@ function procesarResultadoTipos(data) {
 
 
 
+/* CONSULTAMOS LOS DATOS DEL VEHICULO A MODIFICAR */
 
-/// funcion que obtiene los registros
-// del metodo del controlador
-// RetornaPersonasLista()
-function obtenerRegistrosVehiculo() {
+function obtenerDetalleVehiculo() {
     /////construir la dirección del método del servidor
     var urlMetodo = '/Vehiculo/RetornaLista'
-    var parametros = {};
-    var funcion = creaGrid;
+    var parametros = {
+            C_PLACA:"123457"};
+    var funcion = MostrarDetalleVehiculo;
     ///ejecuta la función $.ajax utilizando un método genérico
     //para no declarar toda la instrucción siempre
     ejecutaAjax(urlMetodo, parametros, funcion);
 }
 
-///encargada de crear el grid de kendo y mostrar
-//los datos obtenidos al llamar al método
-// RetornaListaClientes
-function creaGrid(data) {
-    $("#divListaVehiculos").kendoGrid({
-        dataSource: {
-            data: data.resultado,
-            pageSize: 2
-        },
-        pageable: true,
-        columns: [
-            /*cada columsa se agrega co llaves*/
-            {
-                //propiedad de la fuente de datos a mostrar
-                field: 'C_PLACA',
-                ///texto del encabezado
-                title: 'Placa'
-            },
-            {
-                field: 'C_CANT_PUERTAS',
-                title: 'Puertas'
-            },
-            {
-                field: 'C_CANT_RUEDAS',
-                title: 'Ruedas'
-            },
-            {
-                field: 'C_YEAR',
-                title: 'Año'
-            },
-            {
-                field: 'C_NOMBRE_TIPO',
-                title: 'Tipo'
-            },
-            {
-                field: 'C_NOMBRE_MARCA',
-                title: 'Marca'
-            },
-            {
-                field: 'C_NOMBRE_MODELO',
-                title: 'Modelo'
-            },
-            {
-                title: 'Acciones',
-                template: function (dataItem) {
-                    return "<a href='/Vehiculo/ModificarVehiculo?C_PLACA=" + dataItem.C_PLACA + "'>Modificar</a>"
-                }
-            }
-        ],
-        columnMenu: true,
-        sortable: true,
-        toolbar: ["search"]
+function MostrarDetalleVehiculo(data) {
+    $(data).each(function () {
+        var TipoActual = this;
+        var nombre = TipoActual.C_PLACA;
+
+        alert(nombre);
     });
 }
-
-
