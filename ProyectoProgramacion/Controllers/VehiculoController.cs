@@ -27,6 +27,7 @@ namespace ProyectoProgramacion.Controllers
         }
 
         /* RETORNA LA LISTA DE LOS FABRICANTES */
+        [HttpPost]
         public ActionResult RetornaFabricantes(string C_ID_PAIS)
         {
             List<SP_RETORNAR_FABRICANTES_Result> ListaFabricantes =

@@ -33,7 +33,6 @@ namespace ProyectoProgramacion.Controllers
         #endregion
 
         /* METODOS DE ACTIONRESULT */
-        #region METODOS DE ACTION RESULT
         // GET: Fabricantes
         /* MOSTRAMOS LA LISTA DE LOS FABRICANTES */
         public ActionResult MostrarListaFabricantes(SP_RETORNAR_FABRICANTES_Result ModeloVista)
@@ -54,7 +53,7 @@ namespace ProyectoProgramacion.Controllers
             int filas = 0;
             try
             {
-                filas = this.ModeloDB.SP_REGISTRAR_FABRICANTE(ModeloVista.C_ID_FABRICANTE);
+               // filas = this.ModeloDB.SP_REGISTRAR_FABRICANTE(ModeloVista.C_ID_FABRICANTE);
             }
             catch (Exception error)
             {

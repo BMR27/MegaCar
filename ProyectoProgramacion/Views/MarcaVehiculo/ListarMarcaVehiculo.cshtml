@@ -16,6 +16,60 @@
     </div>
 </div>
 
+<div class="container">
+    <h2>Registrar una nueva marca</h2>
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Registrar Marca
+    </button>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal"  data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Registro de nueva marca</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <center>
+                        <form id="frmRegistroMarca" action="/" method="post">
+                            <div class="form-group">
+                                <label>País</label>
+                                <select class="form-control" name="Pais" id="Pais">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Fabricante</label>
+                                <select class="form-control" name="Fabricante" id="Fabricante">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre de marca</label>
+                                <input class="form-control" type="text" name="C_NOMBRE_MARCA" id="C_NOMBRE_MARCA" placeholder="Ingrese una marca" value="" />
+                            </div>
+                            <div class="form-group">
+                                
+                            </div>
+                        </form>
+                    </center>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-success" name="btnRegistrar" id="btnRegistrar" value="Registrar Marca" form="frmRegistroMarca" />
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 @Html.ValidationSummary(true)
 @section Scripts{
 
@@ -23,5 +77,6 @@
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
     <script src="~/Scripts/ScriptGenerico.js"></script>
     <script src="~/Scripts/MarcasVehiculo/MarcasVehiculo.js"></script>
+
 }
 
