@@ -89,6 +89,9 @@ namespace ProyectoProgramacion.Controllers
             return View("RegistroCliente");
         }
 
+       
+
+
         //--------------------------------------------------------------------------------------------
 
         /* METODO MODIFICA LOS DATOS DEL CLIENTE */
@@ -135,8 +138,6 @@ namespace ProyectoProgramacion.Controllers
 }
 
 
-
-        //---------------------------------------------------------------------------------------------
 
   
         
