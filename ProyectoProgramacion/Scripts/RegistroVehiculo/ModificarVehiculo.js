@@ -297,7 +297,7 @@ function obtenerDetalleVehiculo() {
 function MostrarDetalleVehiculo(data) {
     $(data).each(function () {
         var TipoActual = this;
-        var nombre = TipoActual.C_PLACA;
+        var nombre = TipoActual.resultado[0].C_PLACA;
 
         alert(nombre);
     });

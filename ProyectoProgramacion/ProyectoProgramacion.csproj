@@ -128,7 +128,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BienvenidaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\FabricanteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MarcaVehiculoController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\TipoVehiculoController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
@@ -315,6 +317,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MarcasVehiculo\MarcasVehiculo.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Pais\RegistrarPais.js" />
     <Content Include="Scripts\Registro Cliente\RegistroCliente.js" />
@@ -355,9 +358,11 @@
     <Content Include="Views\TipoVehiculo\RegistrarTipo.cshtml" />
     <Content Include="Views\TipoVehiculo\ModificarTipoVehiculo.cshtml" />
     <Content Include="Views\TipoVehiculo\EliminarTipoVehiculo.cshtml" />
+    <Content Include="Views\MarcaVehiculo\ListarMarcaVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Fabricante\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

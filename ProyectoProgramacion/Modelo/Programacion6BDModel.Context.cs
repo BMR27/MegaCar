@@ -600,5 +600,22 @@ namespace ProyectoProgramacion.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ELIMINAR_TIPO_VEHICULO", fK_TIPOParameter);
         }
+    
+        public virtual int SP_REGISTRAR_FABRICANTE(Nullable<int> iD_FABRICANTE, string nOMBRE_FABRICANTE, Nullable<int> pAIS)
+        {
+            var iD_FABRICANTEParameter = iD_FABRICANTE.HasValue ?
+                new ObjectParameter("ID_FABRICANTE", iD_FABRICANTE) :
+                new ObjectParameter("ID_FABRICANTE", typeof(int));
+    
+            var nOMBRE_FABRICANTEParameter = nOMBRE_FABRICANTE != null ?
+                new ObjectParameter("NOMBRE_FABRICANTE", nOMBRE_FABRICANTE) :
+                new ObjectParameter("NOMBRE_FABRICANTE", typeof(string));
+    
+            var pAISParameter = pAIS.HasValue ?
+                new ObjectParameter("PAIS", pAIS) :
+                new ObjectParameter("PAIS", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_FABRICANTE", iD_FABRICANTEParameter, nOMBRE_FABRICANTEParameter, pAISParameter);
+        }
     }
 }
