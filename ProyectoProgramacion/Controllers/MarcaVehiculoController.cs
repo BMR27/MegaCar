@@ -22,6 +22,8 @@ namespace ProyectoProgramacion.Controllers
         {
             List<SP_RETORNA_MARCA_Result> ListaMarcas =
                 this.ModeloDB.SP_RETORNA_MARCA(ModeloDB.C_FK_FABRICANTE).ToList();
+            this.ModeloDB.sp_regis
+           
             return Json(new
             {
                 resultado = ListaMarcas
