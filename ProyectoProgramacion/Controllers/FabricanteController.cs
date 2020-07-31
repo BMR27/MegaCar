@@ -33,6 +33,7 @@ namespace ProyectoProgramacion.Controllers
         #endregion
 
         /* METODOS DE ACTIONRESULT */
+        #region METODOS DE ACTION RESULT
         // GET: Fabricantes
         /* MOSTRAMOS LA LISTA DE LOS FABRICANTES */
         public ActionResult MostrarListaFabricantes(SP_RETORNAR_FABRICANTES_Result ModeloVista)
@@ -53,7 +54,7 @@ namespace ProyectoProgramacion.Controllers
             int filas = 0;
             try
             {
-               // filas = this.ModeloDB.SP_REGISTRAR_FABRICANTE(ModeloVista.C_ID_FABRICANTE);
+                filas = this.ModeloDB.SP_REGISTRAR_FABRICANTE(ModeloVista.C_ID_FABRICANTE, ModeloVista.C_NOMBRE_FABRICANTE, ModeloVista.C_FK_PAIS);
             }
             catch (Exception error)
             {
@@ -74,5 +75,71 @@ namespace ProyectoProgramacion.Controllers
             }
             return View();
         }
+
+        /* ELIMINA UN FABRICANTE */
+        public ActionResult EliminarFabricante(SP_RETORNAR_FABRICANTES_Result ModeloVista)
+        {
+            string mensaje = string.Empty;
+            int filas = 0;
+            try
+            {
+                filas = this.ModeloDB.(ModeloVista.C_ID_PAIS);
+            }
+            catch (Exception error)
+            {
+
+                mensaje = "Error: " + error;
+            }
+            finally
+            {
+                if (filas > 0)
+                {
+                    mensaje = "Fabricante Eliminado con exito";
+                }
+                else
+                {
+                    mensaje = "No se pudo eliminar el  puede que este relacionado con otra tabla";
+                }
+                Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+            }
+            return View();
+        }
+        /* METODO MODIFICA EL NOMBRE DEL FABRICANTE */
+        public ActionResult ModificarFabricante(SP_RETORNAR_FABRICANTES_Result ModeloVista)
+        {
+            pc_MostrarFabricanteId(ModeloVista);
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ModificarNombreFabricante(SP_RETORNAR_FABRICANTES_Result ModeloVista)
+        {
+            string mensaje = string.Empty;
+            int filas = 0;
+            try
+            {
+                filas = this.ModeloDB.SP_MODIFICAR_FABRICANTE(ModeloVista.C_ID_PAIS,
+                                                        ModeloVista.C_NOMBRE_PAIS);
+            }
+            catch (Exception error)
+            {
+
+                mensaje = "Error: " + error;
+            }
+            finally
+            {
+                if (filas > 0)
+                {
+                    mensaje = "Fabricante modificado con exito";
+                }
+                else
+                {
+                    mensaje = "No se pudo modificar el nombre";
+                }
+                Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+            }
+            pc_MostrarFabricanteId(ModeloVista);
+            return View("ModificarFabricante");
+        }
+        #endregion
     }
 }

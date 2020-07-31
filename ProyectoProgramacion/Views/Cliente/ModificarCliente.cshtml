@@ -1,4 +1,4 @@
-﻿
+﻿@model ProyectoProgramacion.Modelo.sp_RetornaCliente_ID_Result
 @{
     ViewBag.Title = "Modificar Cliente";
 }
@@ -59,8 +59,9 @@
 
                     <div class="form-group">
                         <label>Provincia:</label>
-                        <select name="C_FK_PROVINCIA" id="C_FK_PROVINCIA" value="@item.C_FK_PROVINCIA" class="form-control">
+                        <select name="C_FK_PROVINCIA" id="C_FK_PROVINCIA"  class="form-control">
                             <option value="">Seleccione una Provincia</option>
+                            
                         </select>
                     </div>
 
@@ -68,6 +69,7 @@
                         <label>Canton:</label>
                         <select name="C_FK_CANTON" id="C_FK_CANTON" value="@item.C_FK_CANTON" class="form-control">
                             <option value="">Seleccione un Canton</option>
+
                         </select>
                     </div>
 
