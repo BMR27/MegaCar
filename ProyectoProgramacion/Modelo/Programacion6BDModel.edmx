@@ -506,6 +506,9 @@
         <Function Name="sp_Eliminar_Cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_CLIENTE" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_ELIMINAR_FABRICANTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_FABRICANTE" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_ELIMINAR_PAIS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_PAIS" Type="int" Mode="In" />
         </Function>
@@ -1451,6 +1454,9 @@
             <Parameter Name="NOMBRE_FABRICANTE" Mode="In" Type="String" />
             <Parameter Name="PAIS" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_ELIMINAR_FABRICANTE">
+            <Parameter Name="ID_FABRICANTE" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -2135,6 +2141,7 @@
           <FunctionImportMapping FunctionImportName="SP_MODIFICAR_TIPO_VEHICULO" FunctionName="programacion6Model.Store.SP_MODIFICAR_TIPO_VEHICULO" />
           <FunctionImportMapping FunctionImportName="SP_ELIMINAR_TIPO_VEHICULO" FunctionName="programacion6Model.Store.SP_ELIMINAR_TIPO_VEHICULO" />
           <FunctionImportMapping FunctionImportName="SP_REGISTRAR_FABRICANTE" FunctionName="programacion6Model.Store.SP_REGISTRAR_FABRICANTE" />
+          <FunctionImportMapping FunctionImportName="SP_ELIMINAR_FABRICANTE" FunctionName="programacion6Model.Store.SP_ELIMINAR_FABRICANTE" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
