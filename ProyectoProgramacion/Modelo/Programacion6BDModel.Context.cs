@@ -425,15 +425,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_FABRICANTES_Result>("SP_RETORNAR_FABRICANTES", fK_PAISParameter);
         }
     
-        public virtual ObjectResult<SP_RETORNA_MARCA_Result> SP_RETORNA_MARCA(Nullable<int> fK_FABRICANTE)
-        {
-            var fK_FABRICANTEParameter = fK_FABRICANTE.HasValue ?
-                new ObjectParameter("FK_FABRICANTE", fK_FABRICANTE) :
-                new ObjectParameter("FK_FABRICANTE", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_MARCA_Result>("SP_RETORNA_MARCA", fK_FABRICANTEParameter);
-        }
-    
         public virtual ObjectResult<SP_RETORNA_MODELO_Result> SP_RETORNA_MODELO(Nullable<int> fK_MARCA)
         {
             var fK_MARCAParameter = fK_MARCA.HasValue ?
@@ -599,6 +590,15 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("FK_TIPO", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ELIMINAR_TIPO_VEHICULO", fK_TIPOParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNA_MARCA_Result> SP_RETORNA_MARCA(Nullable<int> fK_FABRICANTE)
+        {
+            var fK_FABRICANTEParameter = fK_FABRICANTE.HasValue ?
+                new ObjectParameter("FK_FABRICANTE", fK_FABRICANTE) :
+                new ObjectParameter("FK_FABRICANTE", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_MARCA_Result>("SP_RETORNA_MARCA", fK_FABRICANTEParameter);
         }
     }
 }

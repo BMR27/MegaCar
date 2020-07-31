@@ -16,5 +16,8 @@ namespace ProyectoProgramacion.Modelo
         public int C_ID_MARCA { get; set; }
         public string C_NOMBRE_MARCA { get; set; }
         public Nullable<int> C_FK_FABRICANTE { get; set; }
+        public int C_ID_FABRICANTE { get; set; }
+        public string C_NOMBRE_FABRICANTE { get; set; }
+        public Nullable<int> C_FK_PAIS { get; set; }
     }
 }

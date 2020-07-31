@@ -1,6 +1,6 @@
 ﻿$(function () {
     ValidarCamposInicioSesion();
-    EventoCapturaDatosLogin();
+   // EventoCapturaDatosLogin();
 });
 /* EVENTO QUE VALIDA LOS CAMPOS DE INICIO DE SESION */
 function ValidarCamposInicioSesion() {
@@ -8,12 +8,12 @@ function ValidarCamposInicioSesion() {
 
         {
             rules: {
-                NombreUsuario: {
+                C_USUARIO: {
                     required: true,
                     maxlength: 30,
                     minlength: 3
                 },
-                Contrasena: {
+                C_PASS: {
                     required: true,
                     maxlength: 30,
                     minlength:3

@@ -1,0 +1,27 @@
+﻿@section CSS{
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
+}
+@{
+    ViewBag.Title = "Marcas de Vehiculos";
+}
+<div class="container">
+    <div class="jumbotron">
+        <h1>@this.ViewBag.Title</h1>
+        <p>Mantenimiento de las marcas de vehiculos, insertar, modificar e eliminar</p>
+    </div>
+
+    <div id="divListaMarcas">
+
+    </div>
+</div>
+
+@Html.ValidationSummary(true)
+@section Scripts{
+
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
+    <script src="~/Scripts/ScriptGenerico.js"></script>
+    <script src="~/Scripts/MarcasVehiculo/MarcasVehiculo.js"></script>
+}
+
