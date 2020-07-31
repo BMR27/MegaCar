@@ -83,7 +83,7 @@ namespace ProyectoProgramacion.Controllers
             int filas = 0;
             try
             {
-                filas = this.ModeloDB.SP(ModeloVista.C_ID_PAIS);
+                filas = this.ModeloDB.(ModeloVista.C_ID_PAIS);
             }
             catch (Exception error)
             {
@@ -98,26 +98,26 @@ namespace ProyectoProgramacion.Controllers
                 }
                 else
                 {
-                    mensaje = "No se pudo eliminar el país puede que este relacionado con otra tabla";
+                    mensaje = "No se pudo eliminar el  puede que este relacionado con otra tabla";
                 }
                 Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
             }
             return View();
         }
-        /* METODO MODIFICA EL NOMBRE DEL PAIS */
-        public ActionResult ModificarPais(SP_RETORNA_PAIS_Result ModeloVista)
+        /* METODO MODIFICA EL NOMBRE DEL FABRICANTE */
+        public ActionResult ModificarFabricante(SP_RETORNAR_FABRICANTES_Result ModeloVista)
         {
-            pc_MostrarPaisId(ModeloVista);
+            pc_MostrarFabricanteId(ModeloVista);
             return View();
         }
         [HttpPost]
-        public ActionResult ModificarNombrePais(SP_RETORNA_PAIS_Result ModeloVista)
+        public ActionResult ModificarNombreFabricante(SP_RETORNAR_FABRICANTES_Result ModeloVista)
         {
             string mensaje = string.Empty;
             int filas = 0;
             try
             {
-                filas = this.ModeloDB.SP_MODIFICAR_PAIS(ModeloVista.C_ID_PAIS,
+                filas = this.ModeloDB.SP_MODIFICAR_FABRICANTE(ModeloVista.C_ID_PAIS,
                                                         ModeloVista.C_NOMBRE_PAIS);
             }
             catch (Exception error)
@@ -129,7 +129,7 @@ namespace ProyectoProgramacion.Controllers
             {
                 if (filas > 0)
                 {
-                    mensaje = "País modificado con exito";
+                    mensaje = "Fabricante modificado con exito";
                 }
                 else
                 {
@@ -137,8 +137,8 @@ namespace ProyectoProgramacion.Controllers
                 }
                 Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
             }
-            pc_MostrarPaisId(ModeloVista);
-            return View("ModificarPais");
+            pc_MostrarFabricanteId(ModeloVista);
+            return View("ModificarFabricante");
         }
         #endregion
     }
