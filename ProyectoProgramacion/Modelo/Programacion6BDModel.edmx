@@ -562,6 +562,10 @@
           <Parameter Name="NOMBRE_FABRICANTE" Type="varchar" Mode="In" />
           <Parameter Name="PAIS" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_REGISTRAR_MARCA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NOMBRE_MARCA" Type="varchar" Mode="In" />
+          <Parameter Name="FK_FABRICANTE" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_REGISTRAR_PAIS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NOMBRE_PAIS" Type="varchar" Mode="In" />
         </Function>
@@ -1455,7 +1459,11 @@
             <Parameter Name="PAIS" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_ELIMINAR_FABRICANTE">
-            <Parameter Name="ID_FABRICANTE" Mode="In" Type="Int32" />
+          <Parameter Name="ID_FABRICANTE" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_REGISTRAR_MARCA">
+            <Parameter Name="NOMBRE_MARCA" Mode="In" Type="String" />
+            <Parameter Name="FK_FABRICANTE" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
@@ -2142,6 +2150,7 @@
           <FunctionImportMapping FunctionImportName="SP_ELIMINAR_TIPO_VEHICULO" FunctionName="programacion6Model.Store.SP_ELIMINAR_TIPO_VEHICULO" />
           <FunctionImportMapping FunctionImportName="SP_REGISTRAR_FABRICANTE" FunctionName="programacion6Model.Store.SP_REGISTRAR_FABRICANTE" />
           <FunctionImportMapping FunctionImportName="SP_ELIMINAR_FABRICANTE" FunctionName="programacion6Model.Store.SP_ELIMINAR_FABRICANTE" />
+          <FunctionImportMapping FunctionImportName="SP_REGISTRAR_MARCA" FunctionName="programacion6Model.Store.SP_REGISTRAR_MARCA" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

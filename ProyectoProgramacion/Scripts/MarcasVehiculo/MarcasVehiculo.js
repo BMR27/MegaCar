@@ -21,7 +21,7 @@ function ValidarRegistroVehiculo() {
                 Pais: {
                     required: true
                 },
-                Fabricantes: {
+                Fabricante: {
                     required: true
                 }
 
@@ -32,24 +32,36 @@ function ValidarRegistroVehiculo() {
 }
 //CAPTURAMOS LOS DATOS DEL FORMULARIO
 function CapturarDatosFormulario() {
-    $("#btnRegistrar").click(function () {
-        //CAPTURMAOS LOS DATOS SELECCIONADOS
-        var Fabricante = $("#Pais").val()
-        var Nombre = $("#C_NOMBRE_MARCA").val()
-        /////construir la dirección del método del servidor
-        var urlMetodo = '/MarcaVehiculo/RegistrarMarca'
-        var parametros = {
-            C_NOMBRE_MARCA: Nombre,
-            C_FK_FABRICANTE: Fabricante
-        };
-        var funcion = MostrarResultadoRegistro;
-        ///ejecuta la función $.ajax utilizando un método genérico
-        //para no declarar toda la instrucción siempre
-        ejecutaAjax(urlMetodo, parametros, funcion);
+
+    $("#btnRegistrar").on("click", function () {
+        ///asignar a la variable formulario
+        ///el resultado del selector
+        var formulario = $("#frmRegistroMarca");
+        ///ejecutar el método de validación
+        formulario.validate();
+        ///si el formulario es válido, proceder a
+        ///ejecutar la función invocarMetodoPost
+        if (formulario.valid()) {
+            //CAPTURMAOS LOS DATOS SELECCIONADOS
+            var Fabricante = $("#Pais").val()
+            var Nombre = $("#C_NOMBRE_MARCA").val()
+            /////construir la dirección del método del servidor
+            var urlMetodo = '/MarcaVehiculo/RegistrarMarca'
+            var parametros = {
+                C_NOMBRE_MARCA: Nombre,
+                C_FK_FABRICANTE: Fabricante
+            };
+            var funcion = MostrarResultadoRegistro;
+            ///ejecuta la función $.ajax utilizando un método genérico
+            //para no declarar toda la instrucción siempre
+            ejecutaAjax(urlMetodo, parametros, funcion);
+        }
     });
 }
 function MostrarResultadoRegistro(data) {
     alert(data.resultado);
+    $("#lblMensaje").val(data.resultado);
+    ConsultarListaMarcas();
 }
 
 
