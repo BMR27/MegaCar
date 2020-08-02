@@ -6,8 +6,21 @@ $(function () {
     ConsultarListaPais();
     ConsultarListaFabricante();
     CapturarDatosFormulario();
+    OcultarAlertas();
+    ObetenerDatoGrid();
 });
-
+//OCULTAMOS LAS ALERTAS
+function OcultarAlertas() {
+    $("#AlertaExito").hide();
+    $("#btnModificarMarca").hide();
+    $("#divIdMarca").hide();
+}
+//MOSTRAMOS ALERTA
+function MostrarAlertaExito() {
+    $('#AlertaExito').fadeTo(2000, 500).slideUp(500, function () {
+        $("#AlertaExito").slideUp(500);
+    }); //muestro mediante id
+}
 //VALIDAR FORMULARIO
 function ValidarRegistroVehiculo() {
     $("#frmRegistroMarca").validate(
@@ -21,7 +34,7 @@ function ValidarRegistroVehiculo() {
                 Pais: {
                     required: true
                 },
-                Fabricantes: {
+                Fabricante: {
                     required: true
                 }
 
@@ -32,24 +45,54 @@ function ValidarRegistroVehiculo() {
 }
 //CAPTURAMOS LOS DATOS DEL FORMULARIO
 function CapturarDatosFormulario() {
-    $("#btnRegistrar").click(function () {
-        //CAPTURMAOS LOS DATOS SELECCIONADOS
-        var Fabricante = $("#Pais").val()
-        var Nombre = $("#C_NOMBRE_MARCA").val()
-        /////construir la dirección del método del servidor
-        var urlMetodo = '/MarcaVehiculo/RegistrarMarca'
-        var parametros = {
-            C_NOMBRE_MARCA: Nombre,
-            C_FK_FABRICANTE: Fabricante
-        };
-        var funcion = MostrarResultadoRegistro;
-        ///ejecuta la función $.ajax utilizando un método genérico
-        //para no declarar toda la instrucción siempre
-        ejecutaAjax(urlMetodo, parametros, funcion);
+
+    $("#btnRegistrar").on("click", function () {
+        ///asignar a la variable formulario
+        ///el resultado del selector
+        var formulario = $("#frmRegistroMarca");
+        ///ejecutar el método de validación
+        formulario.validate();
+        ///si el formulario es válido, proceder a
+        ///ejecutar la función invocarMetodoPost
+        if (formulario.valid()) {
+            //CAPTURMAOS LOS DATOS SELECCIONADOS
+            var Fabricante = $("#Fabricante").val()
+            var Nombre = $("#C_NOMBRE_MARCA").val()
+            /////construir la dirección del método del servidor
+            var urlMetodo = '/MarcaVehiculo/RegistrarMarca'
+            var parametros = {
+                C_NOMBRE_MARCA: Nombre,
+                C_FK_FABRICANTE: Fabricante
+            };
+            var funcion = MostrarResultadoRegistro;
+            ///ejecuta la función $.ajax utilizando un método genérico
+            //para no declarar toda la instrucción siempre
+            ejecutaAjax(urlMetodo, parametros, funcion);
+        }
+    });
+
+    //MODIFICAR DATOS
+    $("#btnModificarMarca").on("click", function () {
+        ///asignar a la variable formulario
+        ///el resultado del selector
+        var formulario = $("#frmRegistroMarca");
+        ///ejecutar el método de validación
+        formulario.validate();
+        ///si el formulario es válido, proceder a
+        ///ejecutar la función invocarMetodoPost
+        if (formulario.valid()) {
+            ObtenerDatosModificarMarcas();
+            ConsultarListaMarcas();
+        }
     });
 }
 function MostrarResultadoRegistro(data) {
-    alert(data.resultado);
+    //alert(data.resultado);
+    //$("#lblMensaje").val(data.resultado);
+    ConsultarListaMarcas();
+
+    $("#lblMensaje").text(data.resultado);
+    MostrarAlertaExito();
 }
 
 
@@ -76,11 +119,12 @@ function creaGrid(data) {
     $("#divListaMarcas").kendoGrid({
         dataSource: {
             data: data.resultado,    
-            pageSize: 3
+            pageSize: 6
         },
         pageable: true,
         columnMenu: true,
         sortable: true,
+        selectable: "multiple",
         toolbar: ["search"],
         columns: [
             {
@@ -92,10 +136,8 @@ function creaGrid(data) {
                 title:'Nombre'
             },
             {
-                title: 'Acciones',
-                template: function (dataItem) {
-                    return "<a href='/Vehiculo/ModificarVehiculo?C_PLACA=" + dataItem.C_PLACA + "'>Modificar</a>"
-                }
+                field: 'C_NOMBRE_FABRICANTE',
+                title: 'Fabricante'
             }
         ]
 
@@ -161,3 +203,41 @@ function ProcesaResultadoFabricantes(data) {
         ddlFabricantes.append(nuevaAccion);
     });
 }
+
+//FUNCION OBTIENE EL DATO SELECCIONADO DEL GRID
+function ObetenerDatoGrid() {
+    $("#btnModificar").on("click", function () {
+        //Apagams el boton de registrar
+        $("#btnRegistrar").hide();
+        //Encendemos el boton de modificar
+        $("#btnModificarMarca").show();
+        //ENCENDEMOS EL DIV DEL ID DE LA MARCA
+        $("#divIdMarca").show();
+        //CAPTURAMOS LOS DATOS DEL GRID
+        var grid = $("#divListaMarcas").data("kendoGrid");
+        var selectedDataItem = grid.dataItem(grid.select());
+        //SELECCIONAMOS O MOSTRAMOS EL PAIS DE FABRICANTE
+        $("#Pais").val(selectedDataItem.C_FK_PAIS);
+        ConsultarListaFabricante(selectedDataItem.C_FK_PAIS);
+        $("#Fabricante").val(selectedDataItem.C_ID_FABRICANTE);
+        $("#C_NOMBRE_MARCA").val(selectedDataItem.C_NOMBRE_MARCA)
+        $("#C_ID_MARCA").val(selectedDataItem.C_ID_MARCA)
+    });
+    
+}
+
+//FUNCION MODIFICA LOS DATOS DE LAS MARCAS
+function ObtenerDatosModificarMarcas() {
+    /////construir la dirección del método del servidor
+    var urlMetodo = '/MarcaVehiculo/ModificarMarca'
+    var parametros = {
+        C_ID_MARCA: $("#C_ID_MARCA").val(),
+        C_ID_FABRICANTE: $("#Fabricante").val(),
+        C_NOMBRE_MARCA: $("#C_NOMBRE_MARCA").val()
+    };
+    var funcion = MostrarResultadoRegistro;
+    ///ejecuta la función $.ajax utilizando un método genérico
+    //para no declarar toda la instrucción siempre
+    ejecutaAjax(urlMetodo, parametros, funcion);
+}
+
