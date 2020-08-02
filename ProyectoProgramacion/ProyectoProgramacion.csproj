@@ -359,10 +359,10 @@
     <Content Include="Views\TipoVehiculo\ModificarTipoVehiculo.cshtml" />
     <Content Include="Views\TipoVehiculo\EliminarTipoVehiculo.cshtml" />
     <Content Include="Views\MarcaVehiculo\ListarMarcaVehiculo.cshtml" />
+    <Content Include="Views\Fabricante\RegistrarFabricante.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Fabricante\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
