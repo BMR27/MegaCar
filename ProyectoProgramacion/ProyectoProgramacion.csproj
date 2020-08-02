@@ -131,6 +131,7 @@
     <Compile Include="Controllers\FabricanteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarcaVehiculoController.cs" />
+    <Compile Include="Controllers\ModelosController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\TipoVehiculoController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
@@ -307,7 +308,6 @@
       <DependentUpon>programacion6BDModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\FabricanteVehiculo\FabricanteVehiculo.js" />
     <Content Include="Scripts\InicioSesion\InicioSesion.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -360,7 +360,8 @@
     <Content Include="Views\TipoVehiculo\ModificarTipoVehiculo.cshtml" />
     <Content Include="Views\TipoVehiculo\EliminarTipoVehiculo.cshtml" />
     <Content Include="Views\MarcaVehiculo\ListarMarcaVehiculo.cshtml" />
-    <Content Include="Views\Fabricante\ListarFabricanteVehiculo.cshtml" />
+    <Content Include="Views\Fabricante\RegistrarFabricante.cshtml" />
+    <Content Include="Views\Modelos\ModeloVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
