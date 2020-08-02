@@ -3,15 +3,15 @@
     <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
 }
 @{
-    ViewBag.Title = "Marcas de Vehiculos";
+    ViewBag.Title = "Modelos de Vehiculos";
 }
 <div class="container">
     <div class="jumbotron">
         <h1>@this.ViewBag.Title</h1>
-        <p>Mantenimiento de las marcas de vehiculos, insertar, modificar e eliminar</p>
+        <p>Mantenimiento de las Modelo de vehiculos, insertar, modificar e eliminar</p>
     </div>
 
-    <div id="divListaMarcas">
+    <div id="divListaModelo">
 
     </div>
     <div class="row">
@@ -27,10 +27,10 @@
 </div>
 
 <div class="container">
-    <h2>Mantenimiento de marcas</h2>
+    <h2>Mantenimiento de Modelo</h2>
     <!-- Button to Open the Modal -->
-    <button type="button" class="btn btn-primary" name="btnRegistrarMarca" id="btnRegistrarMarca" data-toggle="modal" data-target="#myModal">Registrar Marca</button>
-    <button type="button" class="btn btn-primary" name="btnModificar" id="btnModificar" value="Modificar" data-toggle="modal" data-target="#myModal">Modificar Marca</button>
+    <button type="button" class="btn btn-primary" name="btnRegistrarModelo" id="btnRegistrarModelo" data-toggle="modal" data-target="#myModal">Registrar Modelo</button>
+    <button type="button" class="btn btn-primary" name="btnModificar" id="btnModificar" value="Modificar" data-toggle="modal" data-target="#myModal">Modificar Modelo</button>
     <button type="button" class="btn btn-danger" name="btnEliminar" id="btnEliminar">Eliminar Marca</button>
 
     <!-- The Modal -->
@@ -40,14 +40,14 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Registro de nueva marca</h4>
+                    <h4 class="modal-title">Registro de nuevo Modelo</h4>
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
                     <center>
-                        <form id="frmRegistroMarca" action="/" method="post">
+                        <form id="frmRegistroModelo" action="/" method="post">
                             <div class="form-group">
                                 <label>País</label>
                                 <select class="form-control" name="Pais" id="Pais"></select>
@@ -56,13 +56,17 @@
                                 <label>Fabricante</label>
                                 <select class="form-control" name="Fabricante" id="Fabricante"></select>
                             </div>
-                            <div id="divIdMarca" class="form-group">
-                                <label>Id de marca</label>
-                                <input class="form-control" type="text" name="C_ID_MARCA" id="C_ID_MARCA" placeholder="Ingrese una marca" value="" readonly />
+                            <div class="form-group">
+                                <label>Marca</label>
+                                <select class="form-control" name="C_ID_MARCA" id="C_ID_MARCA"></select>
+                            </div>
+                            <div id="divIdModelo" class="form-group">
+                                <label>Id de Modelo</label>
+                                <input class="form-control" type="text" name="C_ID_MODELO" id="C_ID_MODELO"value="" readonly />
                             </div>
                             <div class="form-group">
-                                <label>Nombre de marca</label>
-                                <input class="form-control" type="text" name="C_NOMBRE_MARCA" id="C_NOMBRE_MARCA" placeholder="Ingrese una marca" value="" />
+                                <label>Nombre de Modelo</label>
+                                <input class="form-control" type="text" name="C_NOMBRE_MODELO" id="C_NOMBRE_MODELO" placeholder="Ingrese un Nombre" value="" />
                             </div>
                             <div class="form-group">
                                 <div id="AlertaExito" class="alert alert-success">
@@ -75,8 +79,9 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <input type="button" class="btn btn-success" name="btnRegistrar" id="btnRegistrar" value="Registrar Marca" form="frmRegistroMarca" />
-                    <input type="button" class="btn btn-success" name="btnModificarMarca" id="btnModificarMarca" value="Modificar Marca" form="frmRegistroMarca" />
+                    <input type="button" class="btn btn-success" name="btnRegistrar" id="btnRegistrar" value="Registrar Modelo" form="frmRegistroModelo" />
+                    <input type="button" class="btn btn-success" name="btnModificarModelo" id="btnModificarModelo" value="Modificar Modelo" form="frmRegistroModelo" />
+                    <button type="reset" class="btn btn-warning" form="frmRegistroModelo">Limpiar</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
 
@@ -93,7 +98,6 @@
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
     <script src="~/Scripts/ScriptGenerico.js"></script>
-    <script src="~/Scripts/MarcasVehiculo/MarcasVehiculo.js"></script>
-
+    <script src="~/Scripts/ModeloVehiculo/ModeloVehiculo.js"></script>
 }
 

@@ -54,7 +54,7 @@ namespace ProyectoProgramacion.Controllers
             int filas = 0;
             try
             {
-                filas = this.ModeloDB.SP_REGISTRAR_FABRICANTE(ModeloVista.C_ID_FABRICANTE, ModeloVista.C_NOMBRE_FABRICANTE, ModeloVista.C_FK_PAIS);
+               // filas = this.ModeloDB.SP_REGISTRAR_FABRICANTE(ModeloVista.C_ID_FABRICANTE, ModeloVista.C_NOMBRE_FABRICANTE, ModeloVista.C_FK_PAIS);
             }
             catch (Exception error)
             {

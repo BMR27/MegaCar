@@ -13,8 +13,13 @@ namespace ProyectoProgramacion.Modelo
     
     public partial class SP_RETORNA_MODELO_Result
     {
+        public int C_ID_MARCA { get; set; }
+        public string C_NOMBRE_MARCA { get; set; }
         public int C_ID_MODELO { get; set; }
         public string C_NOMBRE_MODELO { get; set; }
-        public Nullable<int> C_FK_MARCA { get; set; }
+        public int C_ID_FABRICANTE { get; set; }
+        public string C_NOMBRE_FABRICANTE { get; set; }
+        public int C_ID_PAIS { get; set; }
+        public string C_NOMBRE_PAIS { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace ProyectoProgramacion.Controllers
                 resultado = ListaMarcas
             });
         }
-        /* CONSULTAMOS LAS MARCAS */
+        /* CONSULTAMOS LOS PAISES */
         [HttpPost]
         public ActionResult ListaPais(SP_RETORNA_PAIS_ID_Result ModeloVista)
         {
@@ -37,7 +37,7 @@ namespace ProyectoProgramacion.Controllers
 
             return Json(ListaPais);
         }
-
+        /* REGISTRA LA MARCA DE VEHICULO */
         [HttpPost]
         public ActionResult RegistrarMarca(SP_RETORNA_MARCA_Result ModeloVista)
         {
@@ -96,6 +96,38 @@ namespace ProyectoProgramacion.Controllers
                 else
                 {
                     mensaje = "No se pudo registrar la marca, posiblemente ya exista en la base de datos";
+                }
+            }
+            return Json(new
+            {
+                resultado = mensaje
+            });
+        }
+
+        /* METODO ELIMINA UNA MARCA */
+        [HttpPost]
+        public ActionResult EliminarMarca(SP_RETORNA_MARCA_Result ModeloVista)
+        {
+            string mensaje = string.Empty;
+            int filas = 0;
+            try
+            {
+                filas = this.ModeloDB.SP_ELIMINAR_MARCA(ModeloVista.C_ID_MARCA);
+            }
+            catch (Exception error)
+            {
+
+                mensaje = error.Message;
+            }
+            finally
+            {
+                if (filas > 0)
+                {
+                    mensaje = "Exito al Eliminar la marca";
+                }
+                else
+                {
+                    mensaje = "No se pudo Eliminar la marca, posiblemente tenga datos relacionados en la base de datos";
                 }
             }
             return Json(new

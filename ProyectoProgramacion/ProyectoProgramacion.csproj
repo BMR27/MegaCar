@@ -131,6 +131,7 @@
     <Compile Include="Controllers\FabricanteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarcaVehiculoController.cs" />
+    <Compile Include="Controllers\ModelosController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\TipoVehiculoController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
@@ -318,6 +319,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\MarcasVehiculo\MarcasVehiculo.js" />
+    <Content Include="Scripts\ModeloVehiculo\ModeloVehiculo.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Pais\RegistrarPais.js" />
     <Content Include="Scripts\Registro Cliente\RegistroCliente.js" />
@@ -359,6 +361,7 @@
     <Content Include="Views\TipoVehiculo\ModificarTipoVehiculo.cshtml" />
     <Content Include="Views\TipoVehiculo\EliminarTipoVehiculo.cshtml" />
     <Content Include="Views\MarcaVehiculo\ListarMarcaVehiculo.cshtml" />
+    <Content Include="Views\Modelos\ModeloVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
