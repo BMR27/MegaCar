@@ -83,7 +83,7 @@ namespace ProyectoProgramacion.Controllers
             int filas = 0;
             try
             {
-                filas = this.ModeloDB.(ModeloVista.C_ID_PAIS);
+               // filas = this.ModeloDB.(ModeloVista.C_ID_PAIS);
             }
             catch (Exception error)
             {
@@ -105,41 +105,41 @@ namespace ProyectoProgramacion.Controllers
             return View();
         }
         /* METODO MODIFICA EL NOMBRE DEL FABRICANTE */
-        public ActionResult ModificarFabricante(SP_RETORNAR_FABRICANTES_Result ModeloVista)
-        {
-            pc_MostrarFabricanteId(ModeloVista);
-            return View();
-        }
-        [HttpPost]
-        public ActionResult ModificarNombreFabricante(SP_RETORNAR_FABRICANTES_Result ModeloVista)
-        {
-            string mensaje = string.Empty;
-            int filas = 0;
-            try
-            {
-                filas = this.ModeloDB.SP_MODIFICAR_FABRICANTE(ModeloVista.C_ID_PAIS,
-                                                        ModeloVista.C_NOMBRE_PAIS);
-            }
-            catch (Exception error)
-            {
+        //public ActionResult ModificarFabricante(SP_RETORNAR_FABRICANTES_Result ModeloVista)
+        //{
+        //    pc_MostrarFabricanteId(ModeloVista);
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult ModificarNombreFabricante(SP_RETORNAR_FABRICANTES_Result ModeloVista)
+        //{
+        //    string mensaje = string.Empty;
+        //    int filas = 0;
+        //    try
+        //    {
+        //        filas = this.ModeloDB.SP_MODIFICAR_FABRICANTE(ModeloVista.C_ID_PAIS,
+        //                                                ModeloVista.C_NOMBRE_PAIS);
+        //    }
+        //    catch (Exception error)
+        //    {
 
-                mensaje = "Error: " + error;
-            }
-            finally
-            {
-                if (filas > 0)
-                {
-                    mensaje = "Fabricante modificado con exito";
-                }
-                else
-                {
-                    mensaje = "No se pudo modificar el nombre";
-                }
-                Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
-            }
-            pc_MostrarFabricanteId(ModeloVista);
-            return View("ModificarFabricante");
-        }
+        //        mensaje = "Error: " + error;
+        //    }
+        //    finally
+        //    {
+        //        if (filas > 0)
+        //        {
+        //            mensaje = "Fabricante modificado con exito";
+        //        }
+        //        else
+        //        {
+        //            mensaje = "No se pudo modificar el nombre";
+        //        }
+        //        Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
+        //    }
+        //    pc_MostrarFabricanteId(ModeloVista);
+        //    return View("ModificarFabricante");
+        //}
         #endregion
     }
 }
