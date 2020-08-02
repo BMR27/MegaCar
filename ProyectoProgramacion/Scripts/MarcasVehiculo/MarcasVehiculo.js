@@ -14,11 +14,18 @@ function OcultarAlertas() {
     $("#AlertaExito").hide();
     $("#btnModificarMarca").hide();
     $("#divIdMarca").hide();
+    $("#divAlertaElimina").hide();
 }
 //MOSTRAMOS ALERTA
 function MostrarAlertaExito() {
     $('#AlertaExito').fadeTo(2000, 500).slideUp(500, function () {
         $("#AlertaExito").slideUp(500);
+    }); //muestro mediante id
+}
+//MOSTRAMOS ELIMINA
+function MostrarAlertaElimina() {
+    $('#divAlertaElimina').fadeTo(2000, 500).slideUp(500, function () {
+        $("#divAlertaElimina").slideUp(500);
     }); //muestro mediante id
 }
 //VALIDAR FORMULARIO
@@ -45,6 +52,12 @@ function ValidarRegistroVehiculo() {
 }
 //CAPTURAMOS LOS DATOS DEL FORMULARIO
 function CapturarDatosFormulario() {
+    //Activa el boton registrar en el modal
+    $("#btnRegistrarMarca").on("click", function () {
+        $("#btnRegistrar").show();
+        $("#btnModificarModelo").hide();
+        $("#btnEliminarMarca").hide();
+    });
 
     $("#btnRegistrar").on("click", function () {
         ///asignar a la variable formulario
@@ -85,7 +98,13 @@ function CapturarDatosFormulario() {
             ConsultarListaMarcas();
         }
     });
+
+    //ELIMINAR DATOS MARCA
+    $("#btnEliminar").on("click", function () {
+        ObtenerDatosEliminaMarca();
+    });
 }
+//MUESTRA EL RESULTADO AL REGISTRAR O MODIFICAR UNA MARCA
 function MostrarResultadoRegistro(data) {
     //alert(data.resultado);
     //$("#lblMensaje").val(data.resultado);
@@ -93,6 +112,13 @@ function MostrarResultadoRegistro(data) {
 
     $("#lblMensaje").text(data.resultado);
     MostrarAlertaExito();
+}
+//MUESTRA EL RESULTADO AL ELIMINAR UNA MARCA
+function MostrarResultadoElimina(data) {
+    ConsultarListaMarcas();
+
+    $("#lblElimina").text(data.resultado);
+    MostrarAlertaElimina();
 }
 
 
@@ -236,6 +262,22 @@ function ObtenerDatosModificarMarcas() {
         C_NOMBRE_MARCA: $("#C_NOMBRE_MARCA").val()
     };
     var funcion = MostrarResultadoRegistro;
+    ///ejecuta la función $.ajax utilizando un método genérico
+    //para no declarar toda la instrucción siempre
+    ejecutaAjax(urlMetodo, parametros, funcion);
+}
+
+//FUNCION ELIMINA UNA MARCA
+function ObtenerDatosEliminaMarca() {
+    //Obtenemos los datos desde el grid
+    var grid = $("#divListaMarcas").data("kendoGrid");
+    var selectedDataItem = grid.dataItem(grid.select());
+    /////construir la dirección del método del servidor
+    var urlMetodo = '/MarcaVehiculo/EliminarMarca'
+    var parametros = {
+        C_ID_MARCA: selectedDataItem.C_ID_MARCA
+    };
+    var funcion = MostrarResultadoElimina;
     ///ejecuta la función $.ajax utilizando un método genérico
     //para no declarar toda la instrucción siempre
     ejecutaAjax(urlMetodo, parametros, funcion);

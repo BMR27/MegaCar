@@ -425,15 +425,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_FABRICANTES_Result>("SP_RETORNAR_FABRICANTES", fK_PAISParameter);
         }
     
-        public virtual ObjectResult<SP_RETORNA_MODELO_Result> SP_RETORNA_MODELO(Nullable<int> fK_MARCA)
-        {
-            var fK_MARCAParameter = fK_MARCA.HasValue ?
-                new ObjectParameter("FK_MARCA", fK_MARCA) :
-                new ObjectParameter("FK_MARCA", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_MODELO_Result>("SP_RETORNA_MODELO", fK_MARCAParameter);
-        }
-    
         public virtual int sp_Registrar_Vehiculo(string pLACA, Nullable<int> iD_MARCA, Nullable<int> iD_TIPO, Nullable<int> iD_MODELO, Nullable<short> cANTIDAD_PUERTAS, Nullable<short> cANTIDAD_RUEDAS, string yEAR)
         {
             var pLACAParameter = pLACA != null ?
@@ -592,12 +583,8 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ELIMINAR_TIPO_VEHICULO", fK_TIPOParameter);
         }
     
-        public virtual int SP_REGISTRAR_FABRICANTE(Nullable<int> iD_FABRICANTE, string nOMBRE_FABRICANTE, Nullable<int> pAIS)
+        public virtual int SP_REGISTRAR_FABRICANTE(string nOMBRE_FABRICANTE, Nullable<int> pAIS)
         {
-            var iD_FABRICANTEParameter = iD_FABRICANTE.HasValue ?
-                new ObjectParameter("ID_FABRICANTE", iD_FABRICANTE) :
-                new ObjectParameter("ID_FABRICANTE", typeof(int));
-    
             var nOMBRE_FABRICANTEParameter = nOMBRE_FABRICANTE != null ?
                 new ObjectParameter("NOMBRE_FABRICANTE", nOMBRE_FABRICANTE) :
                 new ObjectParameter("NOMBRE_FABRICANTE", typeof(string));
@@ -606,7 +593,7 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("PAIS", pAIS) :
                 new ObjectParameter("PAIS", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_FABRICANTE", iD_FABRICANTEParameter, nOMBRE_FABRICANTEParameter, pAISParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_FABRICANTE", nOMBRE_FABRICANTEParameter, pAISParameter);
         }
     
         public virtual int SP_ELIMINAR_FABRICANTE(Nullable<int> iD_FABRICANTE)
@@ -655,6 +642,54 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("NOMBRE_MARCA", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_MARCA", fK_MARCAParameter, fK_FABRICANTEParameter, nOMBRE_MARCAParameter);
+        }
+    
+        public virtual int SP_ELIMINAR_MARCA(Nullable<int> fK_MARCA)
+        {
+            var fK_MARCAParameter = fK_MARCA.HasValue ?
+                new ObjectParameter("FK_MARCA", fK_MARCA) :
+                new ObjectParameter("FK_MARCA", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ELIMINAR_MARCA", fK_MARCAParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNA_MODELO_Result> SP_RETORNA_MODELO(Nullable<int> fK_MARCA)
+        {
+            var fK_MARCAParameter = fK_MARCA.HasValue ?
+                new ObjectParameter("FK_MARCA", fK_MARCA) :
+                new ObjectParameter("FK_MARCA", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_MODELO_Result>("SP_RETORNA_MODELO", fK_MARCAParameter);
+        }
+    
+        public virtual int SP_REGISTRAR_MODELO(Nullable<int> fK_MARCA, string nOMBRE_MODELO)
+        {
+            var fK_MARCAParameter = fK_MARCA.HasValue ?
+                new ObjectParameter("FK_MARCA", fK_MARCA) :
+                new ObjectParameter("FK_MARCA", typeof(int));
+    
+            var nOMBRE_MODELOParameter = nOMBRE_MODELO != null ?
+                new ObjectParameter("NOMBRE_MODELO", nOMBRE_MODELO) :
+                new ObjectParameter("NOMBRE_MODELO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_MODELO", fK_MARCAParameter, nOMBRE_MODELOParameter);
+        }
+    
+        public virtual int SP_MODIFICAR_MODELO(Nullable<int> iD_MODELO, Nullable<int> fK_MARCA, string nOMBRE_MODELO)
+        {
+            var iD_MODELOParameter = iD_MODELO.HasValue ?
+                new ObjectParameter("ID_MODELO", iD_MODELO) :
+                new ObjectParameter("ID_MODELO", typeof(int));
+    
+            var fK_MARCAParameter = fK_MARCA.HasValue ?
+                new ObjectParameter("FK_MARCA", fK_MARCA) :
+                new ObjectParameter("FK_MARCA", typeof(int));
+    
+            var nOMBRE_MODELOParameter = nOMBRE_MODELO != null ?
+                new ObjectParameter("NOMBRE_MODELO", nOMBRE_MODELO) :
+                new ObjectParameter("NOMBRE_MODELO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_MODELO", iD_MODELOParameter, fK_MARCAParameter, nOMBRE_MODELOParameter);
         }
     }
 }
