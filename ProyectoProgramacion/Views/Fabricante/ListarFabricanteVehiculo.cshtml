@@ -1,0 +1,83 @@
+﻿@section CSS{
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
+}
+
+
+@{
+    ViewBag.Title = "Fabricante de Vehiculo";
+}
+
+<h2>ListarFabricanteVehiculo</h2>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>@this.ViewBag.Title</h1>
+        <p>Mantenimiento de los fabricantes de vehiculos, insertar, modificar e eliminar</p>
+    </div>
+
+    <div id="divListaFabricantes">
+
+    </div>
+</div>
+
+<div class="container">
+    <h2>Registrar un nuevo fabricante</h2>
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Registrar Fabricante
+    </button>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Registro de un nuevo fabricante</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <center>
+                        <form id="frmRegistroFabricante" action="RegistroFabricante" method="post">
+                            <div class="form-group">
+                                <label>País</label>
+                                <select class="form-control" name="Pais" id="Pais">
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Nombre de Fabricante</label>
+                                <input class="form-control" type="text" name="C_NOMBRE_FABRICANTE" id="C_NOMBRE_FABRICANTE" placeholder="Ingrese una fabricante" value="" />
+                            </div>
+                            <div class="form-group">
+
+                            </div>
+                        </form>
+                    </center>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-success" name="btnRegistrar" id="btnRegistrar" value="Registrar Fabricante" form="frmRegistroFabricante" />
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.ValidationSummary(true)
+@section Scripts{
+
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
+    <script src="~/Scripts/ScriptGenerico.js"></script>
+    <script src="~/Scripts/MarcasVehiculo/MarcasVehiculo.js"></script>
+
+}
+
