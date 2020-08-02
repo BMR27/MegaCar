@@ -22,7 +22,7 @@ namespace ProyectoProgramacion.Controllers
         public ActionResult ListaFabricantes(SP_RETORNAR_FABRICANTES_Result ModeloDB)
         {
             List<SP_RETORNAR_FABRICANTES_Result> ListaFabricantes =
-                this.ModeloDB.SP_RETORNAR_FABRICANTES(ModeloDB.C_FK_PAIS).ToList();
+                this.ModeloDB.SP_RETORNAR_FABRICANTES(null).ToList();
 
             return Json(new
             {

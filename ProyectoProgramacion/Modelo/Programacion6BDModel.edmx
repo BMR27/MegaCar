@@ -1415,9 +1415,6 @@
             <Parameter Name="USUARIO" Mode="In" Type="String" />
             <Parameter Name="PASS" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_RETORNAR_FABRICANTES" ReturnType="Collection(programacion6Model.SP_RETORNAR_FABRICANTES_Result)">
-          <Parameter Name="FK_PAIS" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_Registrar_Vehiculo">
             <Parameter Name="PLACA" Mode="In" Type="String" />
             <Parameter Name="ID_MARCA" Mode="In" Type="Int32" />
@@ -1506,6 +1503,9 @@
             <Parameter Name="FK_FABRICANTE" Mode="In" Type="Int32" />
             <Parameter Name="FK_PAIS" Mode="In" Type="Int32" />
             <Parameter Name="NOMBRE_FABRICANTE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_RETORNAR_FABRICANTES" ReturnType="Collection(programacion6Model.SP_RETORNAR_FABRICANTES_Result)">
+            <Parameter Name="FK_PAIS" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
@@ -1614,11 +1614,6 @@
           <Property Type="Int32" Name="C_ID_TIPO_USUARIO" Nullable="false" />
           <Property Type="String" Name="C_NOMBRE_TIPO_USUARIO" Nullable="false" MaxLength="60" />
         </ComplexType>
-        <ComplexType Name="SP_RETORNAR_FABRICANTES_Result">
-          <Property Type="Int32" Name="C_ID_FABRICANTE" Nullable="false" />
-          <Property Type="String" Name="C_NOMBRE_FABRICANTE" Nullable="false" MaxLength="60" />
-          <Property Type="Int32" Name="C_FK_PAIS" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="SP_CONSULTAR_VEHICULOS_Result">
           <Property Type="Int32" Name="C_ID_VEHICULO" Nullable="false" />
           <Property Type="String" Name="C_PLACA" Nullable="false" MaxLength="6" />
@@ -1685,6 +1680,13 @@
           <Property Type="String" Name="C_NOMBRE_MODELO" Nullable="false" MaxLength="60" />
           <Property Type="Int32" Name="C_ID_FABRICANTE" Nullable="false" />
           <Property Type="String" Name="C_NOMBRE_FABRICANTE" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="C_ID_PAIS" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_PAIS" Nullable="false" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_RETORNAR_FABRICANTES_Result">
+          <Property Type="Int32" Name="C_ID_FABRICANTE" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_FABRICANTE" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="C_FK_PAIS" Nullable="true" />
           <Property Type="Int32" Name="C_ID_PAIS" Nullable="false" />
           <Property Type="String" Name="C_NOMBRE_PAIS" Nullable="false" MaxLength="60" />
         </ComplexType>
@@ -2088,15 +2090,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_RETORNAR_FABRICANTES" FunctionName="programacion6Model.Store.SP_RETORNAR_FABRICANTES">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="programacion6Model.SP_RETORNAR_FABRICANTES_Result">
-                <ScalarProperty Name="C_ID_FABRICANTE" ColumnName="C_ID_FABRICANTE" />
-                <ScalarProperty Name="C_NOMBRE_FABRICANTE" ColumnName="C_NOMBRE_FABRICANTE" />
-                <ScalarProperty Name="C_FK_PAIS" ColumnName="C_FK_PAIS" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Registrar_Vehiculo" FunctionName="programacion6Model.Store.sp_Registrar_Vehiculo" />
           <FunctionImportMapping FunctionImportName="SP_CONSULTAR_VEHICULOS" FunctionName="programacion6Model.Store.SP_CONSULTAR_VEHICULOS">
             <ResultMapping>
@@ -2214,6 +2207,17 @@
           <FunctionImportMapping FunctionImportName="SP_REGISTRAR_MODELO" FunctionName="programacion6Model.Store.SP_REGISTRAR_MODELO" />
           <FunctionImportMapping FunctionImportName="SP_MODIFICAR_MODELO" FunctionName="programacion6Model.Store.SP_MODIFICAR_MODELO" />
           <FunctionImportMapping FunctionImportName="SP_MODIFICAR_FABRICANTE" FunctionName="programacion6Model.Store.SP_MODIFICAR_FABRICANTE" />
+          <FunctionImportMapping FunctionImportName="SP_RETORNAR_FABRICANTES" FunctionName="programacion6Model.Store.SP_RETORNAR_FABRICANTES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_RETORNAR_FABRICANTES_Result">
+                <ScalarProperty Name="C_ID_FABRICANTE" ColumnName="C_ID_FABRICANTE" />
+                <ScalarProperty Name="C_NOMBRE_FABRICANTE" ColumnName="C_NOMBRE_FABRICANTE" />
+                <ScalarProperty Name="C_FK_PAIS" ColumnName="C_FK_PAIS" />
+                <ScalarProperty Name="C_ID_PAIS" ColumnName="C_ID_PAIS" />
+                <ScalarProperty Name="C_NOMBRE_PAIS" ColumnName="C_NOMBRE_PAIS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -416,15 +416,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Validar_Inicio_Sesion_Result>("sp_Validar_Inicio_Sesion", uSUARIOParameter, pASSParameter);
         }
     
-        public virtual ObjectResult<SP_RETORNAR_FABRICANTES_Result> SP_RETORNAR_FABRICANTES(Nullable<int> fK_PAIS)
-        {
-            var fK_PAISParameter = fK_PAIS.HasValue ?
-                new ObjectParameter("FK_PAIS", fK_PAIS) :
-                new ObjectParameter("FK_PAIS", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_FABRICANTES_Result>("SP_RETORNAR_FABRICANTES", fK_PAISParameter);
-        }
-    
         public virtual int sp_Registrar_Vehiculo(string pLACA, Nullable<int> iD_MARCA, Nullable<int> iD_TIPO, Nullable<int> iD_MODELO, Nullable<short> cANTIDAD_PUERTAS, Nullable<short> cANTIDAD_RUEDAS, string yEAR)
         {
             var pLACAParameter = pLACA != null ?
@@ -690,6 +681,32 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("NOMBRE_MODELO", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_MODELO", iD_MODELOParameter, fK_MARCAParameter, nOMBRE_MODELOParameter);
+        }
+    
+        public virtual int SP_MODIFICAR_FABRICANTE(Nullable<int> fK_FABRICANTE, Nullable<int> fK_PAIS, string nOMBRE_FABRICANTE)
+        {
+            var fK_FABRICANTEParameter = fK_FABRICANTE.HasValue ?
+                new ObjectParameter("FK_FABRICANTE", fK_FABRICANTE) :
+                new ObjectParameter("FK_FABRICANTE", typeof(int));
+    
+            var fK_PAISParameter = fK_PAIS.HasValue ?
+                new ObjectParameter("FK_PAIS", fK_PAIS) :
+                new ObjectParameter("FK_PAIS", typeof(int));
+    
+            var nOMBRE_FABRICANTEParameter = nOMBRE_FABRICANTE != null ?
+                new ObjectParameter("NOMBRE_FABRICANTE", nOMBRE_FABRICANTE) :
+                new ObjectParameter("NOMBRE_FABRICANTE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_FABRICANTE", fK_FABRICANTEParameter, fK_PAISParameter, nOMBRE_FABRICANTEParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNAR_FABRICANTES_Result> SP_RETORNAR_FABRICANTES(Nullable<int> fK_PAIS)
+        {
+            var fK_PAISParameter = fK_PAIS.HasValue ?
+                new ObjectParameter("FK_PAIS", fK_PAIS) :
+                new ObjectParameter("FK_PAIS", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_FABRICANTES_Result>("SP_RETORNAR_FABRICANTES", fK_PAISParameter);
         }
     }
 }

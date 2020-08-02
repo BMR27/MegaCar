@@ -1,9 +1,6 @@
 ﻿//Document ready
 $(function () {
-    ValidarRegistroVehiculo();
-    EventoChange();
-    ConsultarListaPais();
-    CapturarDatosFormulario();
+    ConsultarListaFabricantes();
 });
 
 //VALIDAR FORMULARIO
@@ -57,9 +54,9 @@ function EventoChange() {
 }
 
 /*consulta la lista de paises*/
-function ConsultarListaPaises() {
+function ConsultarListaFabricantes() {
     /////construir la dirección del método del servidor
-    var urlMetodo = '/Fabricante/ListaPais'
+    var urlMetodo = '/Fabricante/ListaFabricantes'
     var parametros = {};
     var funcion = creaGrid;
     ///ejecuta la función $.ajax utilizando un método genérico
@@ -68,7 +65,7 @@ function ConsultarListaPaises() {
 }
 //Funcion para cargar el grid
 function creaGrid(data) {
-    $("#divListaPais").kendoGrid({
+    $("#divListaFabricantes").kendoGrid({
         dataSource: {
             data: data.resultado,
             pageSize: 3
@@ -79,12 +76,16 @@ function creaGrid(data) {
         toolbar: ["search"],
         columns: [
             {
-                field: 'C_FK_PAIS',
-                title: 'Id Pais'
+                field: 'C_ID_FABRICANTE',
+                title: 'Id Fabricante'
             },
             {
                 field: 'C_NOMBRE_FABRICANTE',
                 title: 'Nombre'
+            },
+            {
+                field: 'C_NOMBRE_PAIS',
+                title: 'Nombre Pais'
             },
             {
                 title: 'Acciones',
