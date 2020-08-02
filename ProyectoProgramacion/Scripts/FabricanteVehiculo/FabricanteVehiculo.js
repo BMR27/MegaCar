@@ -12,7 +12,7 @@ $(function () {
 //OCULTAMOS LAS ALERTAS
 function OcultarAlertas() {
     $("#AlertaExito").hide();
-    $("#btnModificarMarca").hide();
+    $("#btnModificarMar").hide();
     $("#divIdMarca").hide();
 }
 //MOSTRAMOS ALERTA
