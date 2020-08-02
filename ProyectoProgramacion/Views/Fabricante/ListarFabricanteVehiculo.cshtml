@@ -1,15 +1,11 @@
-﻿@section CSS{
+﻿
+@section CSS{
     <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" rel="stylesheet" />
     <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
 }
-
-
 @{
-    ViewBag.Title = "Fabricante de Vehiculo";
+    ViewBag.Title = "Listar Fabricante Vehiculo";
 }
-
-<h2>ListarFabricanteVehiculo</h2>
-
 <div class="container">
     <div class="jumbotron">
         <h1>@this.ViewBag.Title</h1>
@@ -19,14 +15,24 @@
     <div id="divListaFabricantes">
 
     </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div id="divAlertaElimina" class="alert alert-success">
+                <label id="lblElimina"></label>
+            </div>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
 </div>
 
 <div class="container">
-    <h2>Registrar un nuevo fabricante</h2>
+    <h2>Mantenimiento de Fabricantes</h2>
     <!-- Button to Open the Modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        Registrar Fabricante
-    </button>
+    <button type="button" class="btn btn-primary" name="btnRegistrarFabricante" id="btnRegistrarFabricante" data-toggle="modal" data-target="#myModal">Registrar Fabricante</button>
+    <button type="button" class="btn btn-primary" name="btnModificar" id="btnModificar" value="Modificar" data-toggle="modal" data-target="#myModal">Modificar Fabricante</button>
+    <button type="button" class="btn btn-danger" name="btnEliminar" id="btnEliminar">Eliminar Marca</button>
 
     <!-- The Modal -->
     <div class="modal fade" id="myModal" data-backdrop="static">
@@ -35,26 +41,26 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Registro de un nuevo fabricante</h4>
+                    <h4 class="modal-title">Registro de nuevo fabricante</h4>
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
                     <center>
-                        <form id="frmRegistroFabricante" action="RegistroFabricante" method="post">
+                        <form id="frmRegistroFabricante" action="/" method="post">
                             <div class="form-group">
                                 <label>País</label>
-                                <select class="form-control" name="Pais" id="Pais">
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Nombre de Fabricante</label>
-                                <input class="form-control" type="text" name="C_NOMBRE_FABRICANTE" id="C_NOMBRE_FABRICANTE" placeholder="Ingrese una fabricante" value="" />
+                                <select class="form-control" name="Pais" id="Pais"></select>
                             </div>
                             <div class="form-group">
-
+                                <label>Nombre de fabricante</label>
+                                <input class="form-control" type="text" name="C_NOMBRE_FABRICANTE" id="C_NOMBRE_FABRICANTE" placeholder="Ingrese un fabricante" value="" />
+                            </div>
+                            <div class="form-group">
+                                <div id="AlertaExito" class="alert alert-success">
+                                    <label id="lblMensaje"></label>
+                                </div>
                             </div>
                         </form>
                     </center>
@@ -62,13 +68,15 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-success" name="btnRegistrar" id="btnRegistrar" value="Registrar Fabricante" form="frmRegistroFabricante" />
+                    <input type="button" class="btn btn-success" name="btnRegistrar" id="btnRegistrar" value="Registrar Fabricante" form="frmRegistroFabricante" />
+                    <input type="button" class="btn btn-success" name="btnModificarFabricante" id="btnModificarFabricante" value="Modificar Marca" form="frmRegistroFabricante" />
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
 
             </div>
         </div>
     </div>
+
 </div>
 
 @Html.ValidationSummary(true)
@@ -77,7 +85,7 @@
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
     <script src="~/Scripts/ScriptGenerico.js"></script>
-    <script src="~/Scripts/MarcasVehiculo/MarcasVehiculo.js"></script>
-
+    <script src="~/Scripts/Fabricantes/Fabricantes.js"></script>
 }
+
 

@@ -540,6 +540,11 @@
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="id_CantonInec" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_MODIFICAR_FABRICANTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_FABRICANTE" Type="int" Mode="In" />
+          <Parameter Name="FK_PAIS" Type="int" Mode="In" />
+          <Parameter Name="NOMBRE_FABRICANTE" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SP_MODIFICAR_MARCA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FK_MARCA" Type="int" Mode="In" />
           <Parameter Name="FK_FABRICANTE" Type="int" Mode="In" />
@@ -1497,6 +1502,11 @@
             <Parameter Name="FK_MARCA" Mode="In" Type="Int32" />
             <Parameter Name="NOMBRE_MODELO" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SP_MODIFICAR_FABRICANTE">
+            <Parameter Name="FK_FABRICANTE" Mode="In" Type="Int32" />
+            <Parameter Name="FK_PAIS" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE_FABRICANTE" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -2203,6 +2213,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_REGISTRAR_MODELO" FunctionName="programacion6Model.Store.SP_REGISTRAR_MODELO" />
           <FunctionImportMapping FunctionImportName="SP_MODIFICAR_MODELO" FunctionName="programacion6Model.Store.SP_MODIFICAR_MODELO" />
+          <FunctionImportMapping FunctionImportName="SP_MODIFICAR_FABRICANTE" FunctionName="programacion6Model.Store.SP_MODIFICAR_FABRICANTE" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

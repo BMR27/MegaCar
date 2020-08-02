@@ -2,9 +2,7 @@
 $(function () {
     ValidarRegistroVehiculo();
     EventoChange();
-    ConsultarListaMarcas();
     ConsultarListaPais();
-    ConsultarListaFabricante();
     CapturarDatosFormulario();
 });
 
@@ -20,11 +18,8 @@ function ValidarRegistroVehiculo() {
                 },
                 Pais: {
                     required: true
-                },
-                Fabricantes: {
-                    required: true
                 }
-
+              
             }
 
         }
@@ -37,7 +32,7 @@ function CapturarDatosFormulario() {
         var Fabricante = $("#Pais").val()
         var Nombre = $("#C_NOMBRE_FABRICANTE").val()
         /////construir la dirección del método del servidor
-        var urlMetodo = '/Fabricante/RegistrarFabricante'
+        var urlMetodo = '/Fabricante/RegistrarFabricantes'
         var parametros = {
             C_NOMBRE_FABRICANTE: Nombre,
             C_FK_PAIS: Pais
@@ -61,10 +56,10 @@ function EventoChange() {
     });
 }
 
-/*consulta la lista de marcas*/
-function ConsultarListaMarcas() {
+/*consulta la lista de paises*/
+function ConsultarListaPaises() {
     /////construir la dirección del método del servidor
-    var urlMetodo = '/MarcaVehiculo/ListaMarcas'
+    var urlMetodo = '/Fabricante/ListaPais'
     var parametros = {};
     var funcion = creaGrid;
     ///ejecuta la función $.ajax utilizando un método genérico
@@ -73,7 +68,7 @@ function ConsultarListaMarcas() {
 }
 //Funcion para cargar el grid
 function creaGrid(data) {
-    $("#divListaMarcas").kendoGrid({
+    $("#divListaPais").kendoGrid({
         dataSource: {
             data: data.resultado,
             pageSize: 3
@@ -84,8 +79,8 @@ function creaGrid(data) {
         toolbar: ["search"],
         columns: [
             {
-                field: 'C_ID_FABRICANTE',
-                title: 'Id Marca'
+                field: 'C_FK_PAIS',
+                title: 'Id Pais'
             },
             {
                 field: 'C_NOMBRE_FABRICANTE',
@@ -94,7 +89,7 @@ function creaGrid(data) {
             {
                 title: 'Acciones',
                 template: function (dataItem) {
-                    return "<a href='/Vehiculo/ModificarVehiculo?C_PLACA=" + dataItem.C_PLACA + "'>Modificar</a>"
+                    return "<a href='/Fabricante/ModificarFabricante?C_PLACA=" + dataItem.C_PLACA + "'>Modificar</a>"
                 }
             }
         ]

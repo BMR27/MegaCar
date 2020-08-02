@@ -308,6 +308,7 @@
       <DependentUpon>programacion6BDModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Fabricantes\Fabricantes.js" />
     <Content Include="Scripts\InicioSesion\InicioSesion.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -319,6 +320,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\MarcasVehiculo\MarcasVehiculo.js" />
+    <Content Include="Scripts\Modelos\ModeloVehiculo.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Pais\RegistrarPais.js" />
     <Content Include="Scripts\Registro Cliente\RegistroCliente.js" />
@@ -360,8 +362,8 @@
     <Content Include="Views\TipoVehiculo\ModificarTipoVehiculo.cshtml" />
     <Content Include="Views\TipoVehiculo\EliminarTipoVehiculo.cshtml" />
     <Content Include="Views\MarcaVehiculo\ListarMarcaVehiculo.cshtml" />
-    <Content Include="Views\Fabricante\RegistrarFabricante.cshtml" />
     <Content Include="Views\Modelos\ModeloVehiculo.cshtml" />
+    <Content Include="Views\Fabricante\ListarFabricanteVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
