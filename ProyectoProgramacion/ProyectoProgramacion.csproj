@@ -307,6 +307,7 @@
       <DependentUpon>programacion6BDModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\FabricantesVehiculo\FabricantesVehiculo.js" />
     <Content Include="Scripts\InicioSesion\InicioSesion.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -359,10 +360,10 @@
     <Content Include="Views\TipoVehiculo\ModificarTipoVehiculo.cshtml" />
     <Content Include="Views\TipoVehiculo\EliminarTipoVehiculo.cshtml" />
     <Content Include="Views\MarcaVehiculo\ListarMarcaVehiculo.cshtml" />
+    <Content Include="Views\Fabricante\ListarFabricanteVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Fabricante\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
