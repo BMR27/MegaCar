@@ -1,7 +1,17 @@
 ﻿//Document ready
 $(function () {
     ConsultarListaFabricantes();
+    OcultarAlertasBotones();
+    CapturarDatosFormulario();
 });
+
+//OCULTAR ALERTAS Y BOTONES
+function OcultarAlertasBotones() {
+    $("#AlertaExito").hide();
+    $("#btnModificarFabricante").hide();
+    $("#divIdFabricante").hide();
+    $("#divAlertaElimina").hide();
+}
 
 //VALIDAR FORMULARIO
 function ValidarRegistroVehiculo() {
@@ -39,6 +49,11 @@ function CapturarDatosFormulario() {
         //para no declarar toda la instrucción siempre
         ejecutaAjax(urlMetodo, parametros, funcion);
     });
+
+    //ELIMINAR DATOS MARCA
+    $("#btnEliminar").on("click", function () {
+        ObtenerDatosEliminaMarca();
+    });
 }
 function MostrarResultadoRegistro(data) {
     alert(data.resultado);
@@ -73,6 +88,7 @@ function creaGrid(data) {
         pageable: true,
         columnMenu: true,
         sortable: true,
+        selectable: "multiple",
         toolbar: ["search"],
         columns: [
             {
@@ -133,27 +149,47 @@ function procesarResultadoPais(data) {
         ddlPais.append(nuevaOpción);
     });
 }
-//FUNCION QUE CONSULTA LOS FABRICANTES
-//Funcion que carga los fabricantes
-function ConsultarListaFabricante(pais) {
+
+
+//FUNCION ELIMINA UNA MARCA
+function ObtenerDatosEliminaMarca() {
+    //Obtenemos los datos desde el grid
+    var grid = $("#divListaFabricantes").data("kendoGrid");
+    var selectedDataItem = grid.dataItem(grid.select());
     /////construir la dirección del método del servidor
-    var urlMetodo = '/Vehiculo/RetornaFabricantes'
+    var urlMetodo = '/Fabricante/EliminarFabricante'
     var parametros = {
-        C_ID_PAIS: pais
+        C_ID_FABRICANTE: selectedDataItem.C_ID_FABRICANTE
     };
-    var funcion = ProcesaResultadoFabricantes;
+    var funcion = MostrarResultadoElimina;
     ///ejecuta la función $.ajax utilizando un método genérico
     //para no declarar toda la instrucción siempre
     ejecutaAjax(urlMetodo, parametros, funcion);
 }
-function ProcesaResultadoFabricantes(data) {
-    var ddlFabricantes = $("#Fabricante");
-    ddlFabricantes.empty();
-    var nuevaAccion = "<option value=''>Seleccione un Fabricante</option>";
-    ddlFabricantes.append(nuevaAccion);
-    $(data).each(function () {
-        var FabricanteActual = this;
-        nuevaAccion = "<option value='" + FabricanteActual.C_ID_FABRICANTE + "'>" + FabricanteActual.C_NOMBRE_FABRICANTE + "</option>";
-        ddlFabricantes.append(nuevaAccion);
-    });
+
+//MUESTRA EL RESULTADO AL REGISTRAR O MODIFICAR UNA MARCA
+function MostrarResultadoRegistro(data) {
+    //alert(data.resultado);
+    //$("#lblMensaje").val(data.resultado);
+    $("#lblMensaje").text(data.resultado);
+    MostrarAlertaExito();
+}
+//MUESTRA EL RESULTADO AL ELIMINAR UNA MARCA
+function MostrarResultadoElimina(data) {
+
+    $("#lblElimina").text(data.resultado);
+    MostrarAlertaElimina();
+}
+
+//MOSTRAMOS ALERTA
+function MostrarAlertaExito() {
+    $('#AlertaExito').fadeTo(2000, 500).slideUp(500, function () {
+        $("#AlertaExito").slideUp(500);
+    }); //muestro mediante id
+}
+//MOSTRAMOS ELIMINA
+function MostrarAlertaElimina() {
+    $('#divAlertaElimina').fadeTo(2000, 500).slideUp(500, function () {
+        $("#divAlertaElimina").slideUp(500);
+    }); //muestro mediante id
 }
