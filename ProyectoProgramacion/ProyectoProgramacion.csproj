@@ -133,6 +133,7 @@
     <Compile Include="Controllers\MarcaVehiculoController.cs" />
     <Compile Include="Controllers\ModelosController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Controllers\TipoVehiculoController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -364,6 +365,7 @@
     <Content Include="Views\MarcaVehiculo\ListarMarcaVehiculo.cshtml" />
     <Content Include="Views\Modelos\ModeloVehiculo.cshtml" />
     <Content Include="Views\Fabricante\ListarFabricanteVehiculo.cshtml" />
+    <Content Include="Views\Servicios\Servicio_Producto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
