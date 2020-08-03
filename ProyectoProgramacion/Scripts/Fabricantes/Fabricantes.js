@@ -1,35 +1,34 @@
 ﻿//Document ready
 $(function () {
-    ConsultarListaFabricantes();
+    ConsultarListaServicios();
     OcultarAlertasBotones();
     CapturarDatosFormulario();
-    ConsultarListaPais();
-    ValidarRegistroFabricante();
+    ValidarRegistroServicio();
     ObetenerDatoGrid();
 });
 
 //OCULTAR ALERTAS Y BOTONES
 function OcultarAlertasBotones() {
     $("#AlertaExito").hide();
-    $("#btnModificarFabricante").hide();
-    $("#divIdFabricante").hide();
+    $("#btnModificarServicio").hide();
+    $("#divIdServicio").hide();
     $("#divAlertaElimina").hide();
 }
 
 //VALIDAR FORMULARIO
-function ValidarRegistroFabricante() {
-    $("#frmRegistroFabricante").validate(
+function ValidarRegistroServicio() {
+    $("#frmRegistroServicio").validate(
         {
             rules: {
-                C_NOMBRE_FABRICANTE: {
+                C_NOMBRE_SERVICIO: {
                     required: true,
                     maxlength: 60,
                     minlength: 1
                 },
-                Pais: {
+                C_PRECIO: {
                     required: true
                 }
-              
+
             }
 
         }
@@ -38,10 +37,10 @@ function ValidarRegistroFabricante() {
 //CAPTURAMOS LOS DATOS DEL FORMULARIO
 function CapturarDatosFormulario() {
     //Activa el boton registrar en el modal
-    $("#btnRegistrarFabricante").on("click", function () {
+    $("#btnRegistrarServicio").on("click", function () {
         $("#btnRegistrar").show();
-        $("#btnModificarFabricante").hide();
-        $("#divListaFabricantes").hide();
+        $("#btnModificarServicio").hide();
+        $("#divListaServicios").hide();
     });
 
     $("#btnRegistrar").click(function () {

@@ -5,7 +5,7 @@
     <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
 }
 @{
-    ViewBag.Title = "Servicio_Producto";
+    ViewBag.Title = "Servicio y Producto";
 }
 <div class="container">
     <div class="jumbotron">
@@ -51,13 +51,17 @@
                     <center>
                         <form id="frmRegistroServicio" action="/" method="post">
                             <div class="form-group">
-                                <label>Nombre del servicio</label>
-                                <select class="form-control" name="C_NOMBRE_SERVICIO" id="C_NOMBRE_SERVICIO"></select>
+                                <label>Nombre del servicio</label>        
+                                <input class="form-control" type="text" name="C_NOMBRE_SERVICIO" id="C_NOMBRE_SERVICIO" placeholder="Ingrese un servicio" value="" />
+                            </div>
+                            <div id="divIdServicio" class="form-group">
+                                <label>Id de servicio</label>
+                                <input class="form-control" type="text" name="C_ID_SERVICIO" id="C_ID_SERVICIO" value="" readonly />
                             </div>
                             <div class="form-group">
-                                <label>Precio</label>
-                                <select class="form-control" name="C_PRECIO" id=" C_PRECIO"></select>
-                            </div>                         
+                                <label>Precio</label>                             
+                                <input class="form-control" type="text" name="C_PRECIO" id="C_PRECIO" placeholder="Ingrese un precio" value="" />
+                            </div>
                             <div class="form-group">
                                 <div id="AlertaExito" class="alert alert-success">
                                     <label id="lblMensaje"></label>
@@ -88,7 +92,7 @@
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
     <script src="~/Scripts/ScriptGenerico.js"></script>
-    <script src="~/Scripts/Modelos/ModeloVehiculo.js"></script>
+    <script src="~/Scripts/Servicios/Servicios.js"></script>
 }
 
 
