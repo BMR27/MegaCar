@@ -72,7 +72,7 @@ function CapturarDatosFormulario() {
         }
     });
 
-    //ELIMINAR DATOS MARCA
+    //ELIMINAR DATOS SERVICIO
     $("#btnEliminar").on("click", function () {
         ObtenerDatosEliminaServicio();
     });
@@ -90,7 +90,7 @@ function EventoChange() {
     });
 }
 
-/*consulta la lista de paises*/
+/*consulta la lista de Servicios*/
 function ConsultarListaServicios() {
     /////construir la dirección del método del servidor
     var urlMetodo = '/Servicios/MostrarServicios'
@@ -131,51 +131,16 @@ function creaGrid(data) {
     });
 }
 
-//Funcion que carga los fabricantes
-function ConsultarListaPais() {
-    /////construir la dirección del método del servidor
-    var urlMetodo = '/MarcaVehiculo/ListaPais'
-    var parametros = {};
-    var funcion = procesarResultadoPais;
-    ///ejecuta la función $.ajax utilizando un método genérico
-    //para no declarar toda la instrucción siempre
-    ejecutaAjax(urlMetodo, parametros, funcion);
-}
 
-function procesarResultadoPais(data) {
-    ///mediante un selector nos posicionamos sobre la lista de provincias
-    var ddlPais = $("#Pais");
-    ///"limpiamos" todas las opciones de la lista de provincias
-    ddlPais.empty();
-
-    ///empezamos a trabajar con los datos que nos retorna el servidor
-    ///creamos la primera opción de la lista, con un valor vacío y el texto de "Seleecione un valor"
-    var nuevaOpción = "<option value=''>Seleccione una Pais</option>";
-    ///agregamos la opción al dropdownlist
-    ddlPais.append(nuevaOpción);
-    ///empezamos a recorerrer cada uno de los registros obtenidos
-    $(data).each(function () {
-        ///obtenemos el objeto de tipo Provincia haciendo uso de la claúsula "this"                        
-        //ahora podemos acceder a todas las propiedades
-        ///por ejemplo provinciaActual.nombre nos retorna el nombre de la provincia
-        var paisActual = this;
-        ///creamos la opción de la lista, con el valor del id de provioncia y el texto con el nomnbre
-        nuevaOpción = "<option value='" + paisActual.C_ID_PAIS + "'>" + paisActual.C_NOMBRE_PAIS + "</option>";
-        ///agregamos la opción al dropdownlist
-        ddlPais.append(nuevaOpción);
-    });
-}
-
-
-//FUNCION ELIMINA UNA MARCA
-function ObtenerDatosEliminaMarca() {
+//FUNCION ELIMINA UN SERVICIO
+function ObtenerDatosEliminaServicio() {
     //Obtenemos los datos desde el grid
-    var grid = $("#divListaFabricantes").data("kendoGrid");
+    var grid = $("#divListaServicios").data("kendoGrid");
     var selectedDataItem = grid.dataItem(grid.select());
     /////construir la dirección del método del servidor
-    var urlMetodo = '/Fabricante/EliminarFabricante'
+    var urlMetodo = '/Servicios/EliminarServicio'
     var parametros = {
-        C_ID_FABRICANTE: selectedDataItem.C_ID_FABRICANTE
+        C_ID_SERVICIO: selectedDataItem.C_ID_SERVICIO
     };
     var funcion = MostrarResultadoElimina;
     ///ejecuta la función $.ajax utilizando un método genérico
@@ -183,14 +148,14 @@ function ObtenerDatosEliminaMarca() {
     ejecutaAjax(urlMetodo, parametros, funcion);
 }
 
-//MUESTRA EL RESULTADO AL REGISTRAR O MODIFICAR UNA MARCA
+//MUESTRA EL RESULTADO AL REGISTRAR O MODIFICAR UN SERVICIO
 function MostrarResultadoRegistro(data) {
     //alert(data.resultado);
     //$("#lblMensaje").val(data.resultado);
     $("#lblMensaje").text(data.resultado);
     MostrarAlertaExito();
 }
-//MUESTRA EL RESULTADO AL ELIMINAR UNA MARCA
+//MUESTRA EL RESULTADO AL ELIMINAR UN SERVICIO
 function MostrarResultadoElimina(data) {
 
     $("#lblElimina").text(data.resultado);
@@ -231,7 +196,7 @@ function ObetenerDatoGrid() {
 }
 
 
-//FUNCION MODIFICA LOS DATOS DE LAS MARCAS
+//FUNCION MODIFICA LOS DATOS DE LOS SERVICIOS
 function ObtenerDatosModificarModelo() {
     /////construir la dirección del método del servidor
     var urlMetodo = '/Servicio/ModificarServicio'

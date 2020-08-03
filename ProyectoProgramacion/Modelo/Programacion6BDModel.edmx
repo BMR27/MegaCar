@@ -515,6 +515,9 @@
         <Function Name="SP_ELIMINAR_PAIS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_PAIS" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_ELIMINAR_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_SERVICIO" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_ELIMINAR_TIPO_VEHICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FK_TIPO" Type="int" Mode="In" />
         </Function>
@@ -1529,7 +1532,10 @@
           <Parameter Name="NOMBRE" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Eliminar_Cliente">
-            <Parameter Name="CEDULA" Mode="In" Type="String" />
+          <Parameter Name="CEDULA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ELIMINAR_SERVICIO">
+            <Parameter Name="ID_SERVICIO" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
@@ -2258,6 +2264,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Eliminar_Cliente" FunctionName="programacion6Model.Store.sp_Eliminar_Cliente" />
+          <FunctionImportMapping FunctionImportName="SP_ELIMINAR_SERVICIO" FunctionName="programacion6Model.Store.SP_ELIMINAR_SERVICIO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

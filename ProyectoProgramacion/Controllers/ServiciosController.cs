@@ -96,5 +96,38 @@ namespace ProyectoProgramacion.Controllers
                 resultado = mensaje
             });
         }
+
+        /* METODO ELIMINA UN SERVICIO */
+        [HttpPost]
+        public ActionResult EliminarServicio(SP_RETORNA_SERVICIOS_Result ModeloVista)
+        {
+            string mensaje = string.Empty;
+            int filas = 0;
+            try
+            {
+                filas = this.ModeloDB.SP_ELIMINAR_SERVICIO(ModeloVista.C_ID_SERVICIO);
+            }
+            catch (Exception error)
+            {
+
+                mensaje = error.Message;
+            }
+            finally
+            {
+                if (filas > 0)
+                {
+                    mensaje = "Exito al Eliminar el servicio";
+                }
+                else
+                {
+                    mensaje = "No se pudo Eliminar el servicio, posiblemente tenga datos relacionados en la base de datos";
+                }
+            }
+            return Json(new
+            {
+                resultado = mensaje
+            });
+        }
     }
+
 }
