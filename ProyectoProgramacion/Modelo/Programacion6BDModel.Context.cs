@@ -246,15 +246,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EliminaCanton", id_CantonParameter);
         }
     
-        public virtual int sp_Eliminar_Cliente(Nullable<int> iD_CLIENTE)
-        {
-            var iD_CLIENTEParameter = iD_CLIENTE.HasValue ?
-                new ObjectParameter("ID_CLIENTE", iD_CLIENTE) :
-                new ObjectParameter("ID_CLIENTE", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Eliminar_Cliente", iD_CLIENTEParameter);
-        }
-    
         public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
         {
             var diagramnameParameter = diagramname != null ?
@@ -746,6 +737,15 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("NOMBRE", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_SERVICIOS_Result>("SP_RETORNA_SERVICIOS", nOMBREParameter);
+        }
+    
+        public virtual int sp_Eliminar_Cliente(string cEDULA)
+        {
+            var cEDULAParameter = cEDULA != null ?
+                new ObjectParameter("CEDULA", cEDULA) :
+                new ObjectParameter("CEDULA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Eliminar_Cliente", cEDULAParameter);
         }
     }
 }

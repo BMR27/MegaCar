@@ -119,7 +119,7 @@ namespace ProyectoProgramacion.Controllers
             int filas = 0;
             try
             {
-                filas = this.modeloBD.sp_Eliminar_Cliente(modeloVista.C_ID_CLIENTE);
+                filas = this.modeloBD.sp_Eliminar_Cliente(modeloVista.C_CEDULA);
             }
             catch (Exception error)
             {

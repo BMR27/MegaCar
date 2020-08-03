@@ -504,7 +504,7 @@
           <Parameter Name="id_Canton" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Eliminar_Cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ID_CLIENTE" Type="int" Mode="In" />
+          <Parameter Name="CEDULA" Type="char" Mode="In" />
         </Function>
         <Function Name="SP_ELIMINAR_FABRICANTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_FABRICANTE" Type="int" Mode="In" />
@@ -1378,9 +1378,6 @@
           <FunctionImport Name="sp_EliminaCanton">
           <Parameter Name="id_Canton" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_Eliminar_Cliente">
-          <Parameter Name="ID_CLIENTE" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(programacion6Model.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -1529,7 +1526,10 @@
             <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_RETORNA_SERVICIOS" ReturnType="Collection(programacion6Model.SP_RETORNA_SERVICIOS_Result)">
-            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+          <Parameter Name="NOMBRE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Eliminar_Cliente">
+            <Parameter Name="CEDULA" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
@@ -2036,7 +2036,6 @@
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="programacion6Model.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="programacion6Model.Store.sp_dropdiagram" />
           <FunctionImportMapping FunctionImportName="sp_EliminaCanton" FunctionName="programacion6Model.Store.sp_EliminaCanton" />
-          <FunctionImportMapping FunctionImportName="sp_Eliminar_Cliente" FunctionName="programacion6Model.Store.sp_Eliminar_Cliente" />
           <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="programacion6Model.Store.sp_helpdiagramdefinition">
             <ResultMapping>
               <ComplexTypeMapping TypeName="programacion6Model.sp_helpdiagramdefinition_Result">
@@ -2258,6 +2257,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Eliminar_Cliente" FunctionName="programacion6Model.Store.sp_Eliminar_Cliente" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
