@@ -3,6 +3,9 @@ $(function () {
     ConsultarListaFabricantes();
     OcultarAlertasBotones();
     CapturarDatosFormulario();
+    ConsultarListaPais();
+    ValidarRegistroFabricante();
+    ObetenerDatoGrid();
 });
 
 //OCULTAR ALERTAS Y BOTONES
@@ -14,7 +17,7 @@ function OcultarAlertasBotones() {
 }
 
 //VALIDAR FORMULARIO
-function ValidarRegistroVehiculo() {
+function ValidarRegistroFabricante() {
     $("#frmRegistroFabricante").validate(
         {
             rules: {
@@ -34,20 +37,40 @@ function ValidarRegistroVehiculo() {
 }
 //CAPTURAMOS LOS DATOS DEL FORMULARIO
 function CapturarDatosFormulario() {
+    //Activa el boton registrar en el modal
+    $("#btnRegistrarFabricante").on("click", function () {
+        $("#btnRegistrar").show();
+        $("#btnModificarFabricante").hide();
+        $("#divListaFabricantes").hide();
+    });
+
     $("#btnRegistrar").click(function () {
         //CAPTURAMOS LOS DATOS SELECCIONADOS
-        var Fabricante = $("#Pais").val()
+        var Pais = $("#Pais").val()
         var Nombre = $("#C_NOMBRE_FABRICANTE").val()
         /////construir la dirección del método del servidor
         var urlMetodo = '/Fabricante/RegistrarFabricantes'
         var parametros = {
             C_NOMBRE_FABRICANTE: Nombre,
-            C_FK_PAIS: Pais
+            C_ID_PAIS: Pais
         };
         var funcion = MostrarResultadoRegistro;
         ///ejecuta la función $.ajax utilizando un método genérico
         //para no declarar toda la instrucción siempre
         ejecutaAjax(urlMetodo, parametros, funcion);
+    });
+    //MODIFICAR DATOS
+    $("#btnModificarFabricante").on("click", function () {
+        ///asignar a la variable formulario
+        ///el resultado del selector
+        var formulario = $("#frmRegistroFabricante");
+        ///ejecutar el método de validación
+        formulario.validate();
+        ///si el formulario es válido, proceder a
+        ///ejecutar la función invocarMetodoPost
+        if (formulario.valid()) {
+            ObtenerDatosModificarModelo();
+        }
     });
 
     //ELIMINAR DATOS MARCA
@@ -102,12 +125,6 @@ function creaGrid(data) {
             {
                 field: 'C_NOMBRE_PAIS',
                 title: 'Nombre Pais'
-            },
-            {
-                title: 'Acciones',
-                template: function (dataItem) {
-                    return "<a href='/Fabricante/ModificarFabricante?C_PLACA=" + dataItem.C_PLACA + "'>Modificar</a>"
-                }
             }
         ]
 
@@ -192,4 +209,40 @@ function MostrarAlertaElimina() {
     $('#divAlertaElimina').fadeTo(2000, 500).slideUp(500, function () {
         $("#divAlertaElimina").slideUp(500);
     }); //muestro mediante id
+}
+
+//FUNCION OBTIENE EL DATO SELECCIONADO DEL GRID
+function ObetenerDatoGrid() {
+    $("#btnModificar").on("click", function () {
+        //Apagams el boton de registrar
+        $("#btnRegistrar").hide();
+        //Encendemos el boton de modificar
+        $("#btnModificarFabricante").show();
+        //ENCENDEMOS EL DIV DEL ID DE LA MARCA
+        $("#divIdFabricante").show();
+        //CAPTURAMOS LOS DATOS DEL GRID
+        var grid = $("#divListaFabricantes").data("kendoGrid");
+        var selectedDataItem = grid.dataItem(grid.select());
+        //SELECCIONAMOS O MOSTRAMOS EL PAIS DE FABRICANTE
+        $("#Pais").val(selectedDataItem.C_ID_PAIS);
+        $("#C_NOMBRE_FABRICANTE").val(selectedDataItem.C_NOMBRE_FABRICANTE)
+        $("#C_ID_FABRICANTE").val(selectedDataItem.C_ID_FABRICANTE)
+    });
+
+}
+
+
+//FUNCION MODIFICA LOS DATOS DE LAS MARCAS
+function ObtenerDatosModificarModelo() {
+    /////construir la dirección del método del servidor
+    var urlMetodo = '/Fabricante/ModificarFabricante'
+    var parametros = {
+        C_ID_FABRICANTE: $("#C_ID_FABRICANTE").val(),
+        C_ID_PAIS: $("#Pais").val(),
+        C_NOMBRE_FABRICANTE: $("#C_NOMBRE_FABRICANTE").val()
+    };
+    var funcion = MostrarResultadoRegistro;
+    ///ejecuta la función $.ajax utilizando un método genérico
+    //para no declarar toda la instrucción siempre
+    ejecutaAjax(urlMetodo, parametros, funcion);
 }

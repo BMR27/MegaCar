@@ -205,6 +205,9 @@
     <Compile Include="Modelo\SP_RETORNA_PAIS_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\SP_RETORNA_SERVICIOS_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\SP_RETORNA_TIPO_VEHICULO_ID_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>

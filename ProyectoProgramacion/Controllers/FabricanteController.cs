@@ -47,7 +47,7 @@ namespace ProyectoProgramacion.Controllers
             try
             {
                 filas = this.ModeloDB.SP_REGISTRAR_FABRICANTE(ModeloVista.C_NOMBRE_FABRICANTE,
-                                                         ModeloVista.C_FK_PAIS);
+                                                         ModeloVista.C_ID_PAIS);
             }
             catch (Exception error)
             {
@@ -80,8 +80,8 @@ namespace ProyectoProgramacion.Controllers
             try
             {
                 filas = this.ModeloDB.SP_MODIFICAR_FABRICANTE(ModeloVista.C_ID_FABRICANTE,
-                                                         ModeloVista.C_FK_PAIS,
-                                                         ModeloVista.C_NOMBRE_FABRICANTE);
+                                                              ModeloVista.C_ID_PAIS,
+                                                              ModeloVista.C_NOMBRE_FABRICANTE);
             }
             catch (Exception error)
             {

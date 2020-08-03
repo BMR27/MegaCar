@@ -708,5 +708,44 @@ namespace ProyectoProgramacion.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_FABRICANTES_Result>("SP_RETORNAR_FABRICANTES", fK_PAISParameter);
         }
+    
+        public virtual int SP_MODIFICAR_SERVICIO(Nullable<int> iD_SERVICIO, string nOMBRE, Nullable<decimal> pRECIO)
+        {
+            var iD_SERVICIOParameter = iD_SERVICIO.HasValue ?
+                new ObjectParameter("ID_SERVICIO", iD_SERVICIO) :
+                new ObjectParameter("ID_SERVICIO", typeof(int));
+    
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            var pRECIOParameter = pRECIO.HasValue ?
+                new ObjectParameter("PRECIO", pRECIO) :
+                new ObjectParameter("PRECIO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_SERVICIO", iD_SERVICIOParameter, nOMBREParameter, pRECIOParameter);
+        }
+    
+        public virtual int SP_REGISTRAR_SERVICIO(string nOMBRE, Nullable<decimal> pRECIO)
+        {
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            var pRECIOParameter = pRECIO.HasValue ?
+                new ObjectParameter("PRECIO", pRECIO) :
+                new ObjectParameter("PRECIO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_SERVICIO", nOMBREParameter, pRECIOParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNA_SERVICIOS_Result> SP_RETORNA_SERVICIOS(string nOMBRE)
+        {
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_SERVICIOS_Result>("SP_RETORNA_SERVICIOS", nOMBREParameter);
+        }
     }
 }
