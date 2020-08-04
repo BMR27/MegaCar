@@ -1,11 +1,9 @@
 ﻿$(function () {
-    ValidarRegistroVehiculo();
     EventoChange();
-    cargaListaPais();
-    cargarListaTipos();
-    obtenerDetalleVehiculo();
+    ValidarRegistroVehiculo();
+    OcultarDivMensaje();
+    EventosClick();
 });
-
 function ValidarRegistroVehiculo() {
     $("#frmRegistraVehiculo").validate(
         {
@@ -54,7 +52,6 @@ function ValidarRegistroVehiculo() {
         }
     );
 }
-
 function EventoChange() {
     $("#Pais").change(function () {
         var pais = $("#Pais").val();
@@ -71,6 +68,7 @@ function EventoChange() {
         CargarListaModelos(marca);
     });
 }
+
 
 ///carga los registros de las provincias
 function cargaListaPais() {
@@ -229,76 +227,45 @@ function ProcesaResultadoModelo(data) {
     });
 }
 
-/* CARGAMOS LA LISTA DE LOS TIPOS DE VEHICULOS */
 
-///carga los registros de las provincias
-function cargarListaTipos() {
-    ///dirección a donde se enviarán los datos
-    var url = '/Vehiculo/RetornarTipos';
-    ///parámetros del método, es CASE-SENSITIVE
-    var parametros = {
-    };
-    ///invocar el método
-    $.ajax({
-        url: url,
-        dataType: 'json',
-        type: 'post',
-        contentType: 'application/json',
-        data: JSON.stringify(parametros),
-        success: function (data, textStatus, jQxhr) {
-            procesarResultadoTipos(data);
-        },
-        error: function (jQxhr, textStatus, errorThrown) {
-            alert(errorThrown);
-        },
+function OcultarDivMensaje() {
+    $("#divAlerta").hide();
+}
+
+function EventosClick() {
+    $("#btnModificar").on("click", function () {
+        var formulario = $("#frmRegistraVehiculo");
+        formulario.validate();
+        if (formulario.valid()) {
+            CapturaDatosModificar();
+        }
     });
 }
 
-
-function procesarResultadoTipos(data) {
-    ///mediante un selector nos posicionamos sobre la lista de provincias
-    var ddlTipos = $("#C_ID_TIPO_VEHICULO");
-    ///"limpiamos" todas las opciones de la lista de provincias
-    ddlTipos.empty();
-
-    ///empezamos a trabajar con los datos que nos retorna el servidor
-    ///creamos la primera opción de la lista, con un valor vacío y el texto de "Seleecione un valor"
-    var nuevaOpción = "<option value=''>Seleccione un Tipo</option>";
-    ///agregamos la opción al dropdownlist
-    ddlTipos.append(nuevaOpción);
-    ///empezamos a recorerrer cada uno de los registros obtenidos
-    $(data).each(function () {
-        ///obtenemos el objeto de tipo Provincia haciendo uso de la claúsula "this"                        
-        //ahora podemos acceder a todas las propiedades
-        ///por ejemplo provinciaActual.nombre nos retorna el nombre de la provincia
-        var TipoActual = this;
-        ///creamos la opción de la lista, con el valor del id de provioncia y el texto con el nomnbre
-        nuevaOpción = "<option value='" + TipoActual.C_ID_TIPO_VEHICULO + "'>" + TipoActual.C_NOMBRE_TIPO + "</option>";
-        ///agregamos la opción al dropdownlist
-        ddlTipos.append(nuevaOpción);
-    });
-}
-
-
-
-/* CONSULTAMOS LOS DATOS DEL VEHICULO A MODIFICAR */
-
-function obtenerDetalleVehiculo() {
-    /////construir la dirección del método del servidor
-    var urlMetodo = '/Vehiculo/RetornaLista'
+/* METODO OBTIENE LOS DATOS DEL FORMULARIO PARA MODIFICAR EL CLIENTE*/
+function CapturaDatosModificar() {
+    var urlMetodo = '/Vehiculo/ModificarDatosVehiculo'
     var parametros = {
-            C_PLACA:"123457"};
-    var funcion = MostrarDetalleVehiculo;
-    ///ejecuta la función $.ajax utilizando un método genérico
-    //para no declarar toda la instrucción siempre
+        C_PLACA: $("#C_PLACA").val(),
+        C_CANT_PUERTAS: $("#C_CANT_PUERTAS").val(),
+        C_CANT_RUEDAS: $("#C_CANT_RUEDAS").val(),
+        C_YEAR: $("#C_YEAR").val(),
+        C_FK_TIPO: $("#C_ID_TIPO_VEHICULO").val(),
+        C_FK_MARCA: $("#C_ID_MARCA").val(),
+        C_FK_MODELO: $("#C_ID_MODELO").val()
+    }
+    var funcion = MostrarResultado;
     ejecutaAjax(urlMetodo, parametros, funcion);
 }
 
-function MostrarDetalleVehiculo(data) {
-    $(data).each(function () {
-        var TipoActual = this;
-        var nombre = TipoActual.resultado[0].C_PLACA;
-
-        alert(nombre);
-    });
+//MUESTRA EL RESULTADO AL REGISTRAR O MODIFICAR UNA MARCA
+function MostrarResultado(data) {
+    $("#lblMensaje").text(data.resultado);
+    MostrarAlertaExito();
+}
+//MOSTRAMOS ALERTA
+function MostrarAlertaExito() {
+    $('#divAlerta').fadeTo(2000, 500).slideUp(500, function () {
+        $("#divAlerta").slideUp(500);
+    }); //muestro mediante id
 }

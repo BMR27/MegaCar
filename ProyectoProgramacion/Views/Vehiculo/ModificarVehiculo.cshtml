@@ -1,4 +1,4 @@
-﻿
+﻿@model ProyectoProgramacion.Modelo.SP_CONSULTAR_VEHICULOS_Result
 @{
     ViewBag.Title = "Modificar Vehiculo";
 }
@@ -14,41 +14,91 @@
 
             <div class="form-group">
                 <label class="control-label">Placa del Vehiculo:</label>
-                <input type="text" name="C_PLACA" id="C_PLACA" placeholder="Número de placa" class="form-control"
+                <input type="text" name="C_PLACA" id="C_PLACA" placeholder="Número de placa" value="@Model.C_PLACA" class="form-control"
                        title="Ingreso de número e placa" data-toggle="tooltip" readonly />
             </div>
 
             <div class="form-group">
                 <label class="control-label">Cantidad de Puertas del Vehiculo:</label>
-                <input type="text" name="C_CANT_PUERTAS" id="C_CANT_PUERTAS" placeholder="Cantidad de puertas" class="form-control" />
+                <input type="text" name="C_CANT_PUERTAS" id="C_CANT_PUERTAS" placeholder="Cantidad de puertas" class="form-control" value="@Model.C_CANT_PUERTAS" />
             </div>
 
             <div class="form-group">
                 <label class="control-label">Cantidad de Ruedas del Vehiculo:</label>
-                <input type="text" name="C_CANT_RUEDAS" id="C_CANT_RUEDAS" placeholder="Cantidad de ruedas" class="form-control" />
+                <input type="text" name="C_CANT_RUEDAS" id="C_CANT_RUEDAS" placeholder="Cantidad de ruedas" class="form-control"value="@Model.C_CANT_RUEDAS" />
             </div>
 
             <div class="form-group">
                 <label class="control-label">Año del Vehiculo:</label>
-                <input type="text" name="C_YEAR" id="C_YEAR" placeholder="Año"class="form-control" />
+                <input type="text" name="C_YEAR" id="C_YEAR" placeholder="Año"class="form-control"value="@Model.C_YEAR" />
             </div>
 
             <div class="form-group">
                 <label>Tipo</label>
                 <select name="C_ID_TIPO_VEHICULO" id="C_ID_TIPO_VEHICULO" class="form-control">
                     <option value="">Seleccione un Tipo</option>
+                    @{
+                        foreach (ProyectoProgramacion.Modelo.SP_RETORNA_TIPO_VEHICULO_Result item in
+                            this.ViewBag.ListaTipos)
+                        {
+                            bool EsIdTipo = Model.C_ID_TIPO_VEHICULO == item.C_ID_TIPO_VEHICULO;
+                            if (EsIdTipo)
+                            {
+                                <option value="@item.C_ID_TIPO_VEHICULO" selected>@item.C_NOMBRE_TIPO</option>
+                            }
+                            else
+                            {
+                                <option value="@item.C_ID_TIPO_VEHICULO">@item.C_NOMBRE_TIPO</option>
+                            }
+                        }
+                    }
                 </select>
             </div>
 
             <div class="form-group">
-                <label>Pais Fabricante</label>
-                <select name="Pais" id="Pais" class="form-control"></select>
+                <label>Pais</label>
+                <select name="Pais" id="Pais" class="form-control">
+                    <option value="">Seleccione un Pais</option>
+                    @{
+                        foreach (ProyectoProgramacion.Modelo.SP_RETORNA_PAIS_Result item in
+                            this.ViewBag.ListaPais)
+                        {
+                            bool EsIdPais = Model.C_ID_PAIS == item.C_ID_PAIS;
+                            if (EsIdPais)
+                            {
+                                <option value="@item.C_ID_PAIS" selected>@item.C_NOMBRE_PAIS</option>
+                            }
+                            else
+                            {
+                                <option value="@item.C_ID_PAIS">@item.C_NOMBRE_PAIS</option>
+                            }
+                        }
+                    }
+
+
+                </select>
+
             </div>
 
             <div class="form-group">
                 <label>Fabricante</label>
                 <select name="Fabricante" id="Fabricante" class="form-control">
                     <option value="">Seleccione un Fabricante</option>
+                    @{
+                        foreach (ProyectoProgramacion.Modelo.SP_RETORNAR_FABRICANTES_Result item in
+                            this.ViewBag.ListaFabricantes)
+                        {
+                            bool EsIdFabricante = Model.C_ID_FABRICANTE == item.C_ID_FABRICANTE;
+                            if (EsIdFabricante)
+                            {
+                                <option value="@item.C_ID_FABRICANTE" selected>@item.C_NOMBRE_FABRICANTE</option>
+                            }
+                            else
+                            {
+                                <option value="@item.C_ID_FABRICANTE">@item.C_NOMBRE_FABRICANTE</option>
+                            }
+                        }
+                    }
                 </select>
             </div>
 
@@ -56,6 +106,21 @@
                 <label>Tipo de Marca</label>
                 <select name="C_ID_MARCA" id="C_ID_MARCA" class="form-control">
                     <option value="">Seleccione una Marca</option>
+                    @{
+                        foreach (ProyectoProgramacion.Modelo.SP_RETORNA_MARCA_Result item in
+                            this.ViewBag.ListaMarca)
+                        {
+                            bool EsIdMarca = Model.C_ID_MARCA == item.C_ID_MARCA;
+                            if (EsIdMarca)
+                            {
+                                <option value="@item.C_ID_MARCA" selected>@item.C_NOMBRE_MARCA</option>
+                            }
+                            else
+                            {
+                                <option value="@item.C_ID_MARCA">@item.C_NOMBRE_MARCA</option>
+                            }
+                        }
+                    }
                 </select>
             </div>
 
@@ -63,14 +128,35 @@
                 <label>Tipo de Modelo</label>
                 <select name="C_ID_MODELO" id="C_ID_MODELO" class="form-control">
                     <option value=" ">Seleccione un Modelo</option>
+                    @{
+                        foreach (ProyectoProgramacion.Modelo.SP_RETORNA_MODELO_Result item in
+                            this.ViewBag.ListaModelo)
+                        {
+                            bool EsIdModelo = Model.C_ID_MARCA == item.C_ID_MARCA;
+                            if (EsIdModelo)
+                            {
+                                <option value="@item.C_ID_MODELO" selected>@item.C_NOMBRE_MODELO</option>
+                            }
+                            else
+                            {
+                                <option value="@item.C_ID_MODELO">@item.C_NOMBRE_MODELO</option>
+                            }
+                        }
+                    }
                 </select>
             </div>
 
             <div class="bottom">
-                <input type="submit" name="btnModificar" id="btnModificar" value="Modificar" class="btn btn-success" />
+                <input type="button" name="btnModificar" id="btnModificar" value="Modificar" class="btn btn-success" />
                 <input type="reset" name="btnLimpiar" id="btnLimpiar" value="Limpiar" class="btn btn-primary" />
             </div>
-
+            <br />
+            <div class="form-group">
+                <a href="~/Vehiculo/MostrarVevhiculos">Lista vehiculos</a>
+            </div>
+            <div class="alert alert-success" id="divAlerta">
+                <label id="lblMensaje"></label>
+            </div>
         </form>
     </center>
 </div>

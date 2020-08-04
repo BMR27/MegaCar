@@ -3,6 +3,7 @@
     EventoChange();
     cargaListaPais();
     cargarListaTipos();
+    obtenerRegistrosVehiculo();
 });
 
 function ValidarRegistroVehiculo() {

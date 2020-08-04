@@ -1,8 +1,5 @@
 ﻿@model ProyectoProgramacion.Modelo.sp_RetornaCliente_ID_Result
-@{
-    ViewBag.Title = "Modificar Cliente";
-}
-
+@{ ViewBag.Title = "Modificar Cliente"; }
 <div class="jumbotron">
     <center>
         <h1>@ViewBag.Title</h1>
@@ -11,84 +8,120 @@
 <div class="container">
     <center>
         <form id="frmRegistraCliente" action="ModificarCliente" method="post">
-            @{
-                foreach (ProyectoProgramacion.Modelo.sp_RetornaCliente_ID_Result item in
-                    this.ViewBag.ListaCliente)
-                {
-                    <div class="form-group">
-                        <label class="control-label">Nombre del Cliente:</label>
-                        <input type="text" name="C_NOMBRE_CLIENTE" id="C_NOMBRE_CLIENTE" placeholder="Escriba su nombre" value="@item.C_NOMBRE_CLIENTE" class="form-control"
-                               title="Ingreso el nombre del cliente" data-toggle="tooltip" />
-                    </div>
+            <div class="form-group">
+                <label class="control-label">Nombre del Cliente:</label>
+                <input type="text" name="C_NOMBRE_CLIENTE" id="C_NOMBRE_CLIENTE" placeholder="Escriba su nombre" value="@Model.C_NOMBRE_CLIENTE" class="form-control"
+                       title="Ingreso el nombre del cliente" data-toggle="tooltip" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Apellido 1:</label>
+                <input type="text" name="C_APELLIDO1" id="C_APELLIDO1" placeholder="Escriba su primer apellido" value="@Model.C_APELLIDO1" class="form-control"
+                       title="Ingreso su primer apellido" data-toggle="tooltip" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Apellido 2:</label>
+                <input type="text" name="C_APELLIDO2" id="C_APELLIDO2" placeholder="Escriba su segundo apellido" value="@Model.C_APELLIDO2" class="form-control"
+                       title="Ingreso su segundo apellido" data-toggle="tooltip" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Cédula:</label>
+                <input type="text" name="C_CEDULA" id="C_CEDULA" placeholder="Cedula" value="@Model.C_CEDULA" class="form-control"
+                       title="Ingrese el numero de cedula" data-toggle="tooltip" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Correo Electrónico:</label>
+                <input type="text" name="C_CORREO" id="C_CORREO" placeholder="Escriba su correo electronico" value="@Model.C_CORREO" class="form-control"
+                       title="Ingrese su correo electronico" data-toggle="tooltip" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Dirección:</label>
+                <input type="text" name="C_DIRECCION" id="C_DIRECCION" placeholder="Escriba su direccion" value="@Model.C_DIRECCION" class="form-control"
+                       title="Ingrese su direccion" data-toggle="tooltip" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Teléfono:</label>
+                <input type="text" name="C_TELEFONO" id="C_TELEFONO" placeholder="Escriba su telefono" value="@Model.C_TELEFONO" class="form-control"
+                       title="Ingrese su telefono" data-toggle="tooltip" />
+            </div>
+            <div class="form-group">
+                <label>Provincia:</label>
+                <select name="C_FK_PROVINCIA" id="C_FK_PROVINCIA" class="form-control">
+                    <option value="">Seleccione una Provincia</option>
+                    @{ foreach (ProyectoProgramacion.Modelo.RetornaProvincias_Result item in
+                                                this.ViewBag.ListaProvincias)
+                        {
+                            bool esIdProvinciaModelo = item.id_Provincia == Model.id_Provincia;
 
-                    <div class="form-group">
-                        <label class="control-label">Apellido 1:</label>
-                        <input type="text" name="C_APELLIDO1" id="C_APELLIDO1" placeholder="Escriba su primer apellido" value="@item.C_APELLIDO1" class="form-control"
-                               title="Ingreso su primer apellido" data-toggle="tooltip" />
-                    </div>
 
-                    <div class="form-group">
-                        <label class="control-label">Apellido 2:</label>
-                        <input type="text" name="C_APELLIDO2" id="C_APELLIDO2" placeholder="Escriba su segundo apellido" value="@item.C_APELLIDO2" class="form-control"
-                               title="Ingreso su segundo apellido" data-toggle="tooltip" />
-                    </div>
+                            if (esIdProvinciaModelo)
+                            {
+                                <option value="@item.id_Provincia" selected> @item.nombre </option>
+                            }
+                            else
+                            {
+                                <option value="@item.id_Provincia"> @item.nombre </option>
+                            }
+                        } }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cantón:</label>
+                <select name="C_FK_CANTON" id="C_FK_CANTON" class="form-control">
+                    <option value="">Seleccione un Canton</option>
+                    @{ foreach (ProyectoProgramacion.Modelo.RetornaCantones_Result item in
+                                             this.ViewBag.ListaCantones)
+                        {
+                            bool esIdCantonModelo = item.id_Canton == Model.id_Canton;
 
-                    <div class="form-group">
-                        <label class="control-label">Cédula:</label>
-                        <input type="text" name="C_CEDULA" id="C_CEDULA" placeholder="Cedula" value="@item.C_CEDULA" class="form-control"
-                               title="Ingrese el numero de cedula" data-toggle="tooltip" />
-                    </div>
 
-                    <div class="form-group">
-                        <label class="control-label">Correo Electrónico:</label>
-                        <input type="text" name="C_CORREO" id="C_CORREO" placeholder="Escriba su correo electronico" value="@item.C_CORREO" class="form-control"
-                               title="Ingrese su correo electronico" data-toggle="tooltip" />
-                    </div>
+                            if (esIdCantonModelo)
+                            {
+                                <option value="@item.id_Canton" selected> @item.nombre </option> }
+                            else
+                            {
+                                <option value="@item.id_Canton"> @item.nombre </option> }
+                        } }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Distrito:</label>
+                <select name="C_FK_DISTRITO" id="C_FK_DISTRITO" class="form-control">
+                    <option value="">Seleccione un Distrito</option>
+                    @{ foreach (ProyectoProgramacion.Modelo.RetornaDistrito_Result item in
+                                         this.ViewBag.ListaDistritos)
+                        {
+                            bool esIdDistritoModelo = item.id_Distrito == Model.id_Distrito;
 
-                    <div class="form-group">
-                        <label class="control-label">Dirección:</label>
-                        <input type="text" name="C_DIRECCION" id="C_DIRECCION" placeholder="Escriba su direccion" value="@item.C_DIRECCION" class="form-control"
-                               title="Ingrese su direccion" data-toggle="tooltip" />
-                    </div>
 
-                    <div class="form-group">
-                        <label class="control-label">Teléfono:</label>
-                        <input type="text" name="C_TELEFONO" id="C_TELEFONO" placeholder="Escriba su telefono" value="@item.C_TELEFONO" class="form-control"
-                               title="Ingrese su telefono" data-toggle="tooltip" />
-                    </div>
-
-                    <div class="form-group">
-                        <label>Provincia:</label>
-                        <select name="C_FK_PROVINCIA" id="C_FK_PROVINCIA"  class="form-control">
-                            <option value="">Seleccione una Provincia</option>
-                            
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Cantón:</label>
-                        <select name="C_FK_CANTON" id="C_FK_CANTON" value="@item.C_FK_CANTON" class="form-control">
-                            <option value="">Seleccione un Canton</option>
-
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Distrito:</label>
-                        <select name="C_FK_DISTRITO" id="C_FK_DISTRITO" value="@item.C_FK_DISTRITO" class="form-control">
-                            <option value="">Seleccione un Distrito</option>
-                        </select>
-                    </div>
-
-                
-                }
-            }
+                            if (esIdDistritoModelo)
+                            {
+                                <option value="@item.id_Distrito" selected> @item.nombre </option>
+                            }
+                            else
+                            {
+                                <option value="@item.id_Distrito"> @item.nombre </option>
+                            }
+                        } }
+                </select>
+            </div>
             <div class="bottom">
-                <input type="submit" name="btnModificar" id="btnModificar" value="Modificar" class="btn btn-success" />
+                <input type="button" name="btnModificar" id="btnModificar" value="Modificar" class="btn btn-success" />
                 <input type="reset" name="btnLimpiar" id="btnLimpiar" value="Limpiar" class="btn btn-primary" />
             </div>
-
+            <br />
+            <div class="form-group">
+                <a href="~/Cliente/MostrarCliente">Lista de clientes</a>
+            </div>
+            <div id="divMensaje" class="form-group">
+                <div class="alert alert-success">
+                    <label id="lblMensaje"></label>
+                </div>
+            </div>
         </form>
     </center>
 </div>
-
+@Html.ValidationSummary(true)
+@section Scripts{
+    <script src="~/Scripts/ScriptGenerico.js"></script>
+    <script src="~/Scripts/Registro Cliente/ModificarCliente.js"></script>
+}

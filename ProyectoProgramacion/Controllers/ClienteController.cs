@@ -89,7 +89,7 @@ namespace ProyectoProgramacion.Controllers
             return View("RegistroCliente");
         }
 
-       
+
 
 
         //--------------------------------------------------------------------------------------------
@@ -97,8 +97,30 @@ namespace ProyectoProgramacion.Controllers
         /* METODO MODIFICA LOS DATOS DEL CLIENTE */
         public ActionResult ModificarCliente(sp_RetornaCliente_Result modeloVista)
         {
-            CrearListaClientes(modeloVista);
-            return View();
+
+            sp_RetornaCliente_ID_Result listaCliente = new sp_RetornaCliente_ID_Result();
+            listaCliente = this.modeloBD.sp_RetornaCliente_ID(modeloVista.C_CEDULA).FirstOrDefault();
+            CrearListaProvincias();
+            CrearListaCantones(listaCliente.id_Provincia);
+            CrearListaDistritos(listaCliente.id_Canton);
+            return View(listaCliente);
+        }
+        /* METODO CONSULTA LOS PROVINCIAS*/
+        public void CrearListaProvincias()
+        {
+            this.ViewBag.ListaProvincias =
+                 this.modeloBD.RetornaProvincias(null);
+        }
+        /* METODO CONSULTA LOS CANTONES*/
+        public void CrearListaCantones(int fkProvincia)
+        {
+            this.ViewBag.ListaCantones =
+                 this.modeloBD.RetornaCantones(null, fkProvincia);
+        }
+        public void CrearListaDistritos(int fkCanton)
+        {
+            this.ViewBag.ListaDistritos =
+                 this.modeloBD.RetornaDistrito(null, fkCanton);
         }
         /* METODO CONSULTA LOS CLIENTES */
         public void CrearListaClientes(sp_RetornaCliente_Result modeloVista)
@@ -132,6 +154,47 @@ namespace ProyectoProgramacion.Controllers
             }
             Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
             return View("MostrarCliente");
+        }
+        /* METODO MODIFICA LOS DATOS DEL CLIENTE */
+        [HttpPost]
+        public ActionResult MofificarDatosCliente(sp_RetornaCliente_ID_Result ModeloVista)
+        {
+            string mensaje = "";
+            int filas = 0;
+            try
+            {
+                filas = this.modeloBD.SP_MODIFICAR_CLIENTE(ModeloVista.C_NOMBRE_CLIENTE,
+                                                           ModeloVista.C_APELLIDO1,
+                                                           ModeloVista.C_APELLIDO2,
+                                                           ModeloVista.C_CEDULA,
+                                                           ModeloVista.C_CORREO,
+                                                           ModeloVista.C_DIRECCION,
+                                                           ModeloVista.C_TELEFONO,
+                                                           ModeloVista.C_FK_PROVINCIA,
+                                                           ModeloVista.C_FK_CANTON,
+                                                           ModeloVista.C_FK_DISTRITO);
+            }
+            catch (Exception error)
+            {
+
+                mensaje = error.Message;
+            }
+            finally
+            {
+                if (filas > 0)
+                {
+                    mensaje = "Exito al Modificar el El cliente";
+                }
+                else
+                {
+                    mensaje = "No se pudo Modificar el Cliente";
+                }
+            }
+
+            return Json(new
+            {
+                resultado = mensaje
+            });
         }
     }
 

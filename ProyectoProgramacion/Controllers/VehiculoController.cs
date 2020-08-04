@@ -103,19 +103,24 @@ namespace ProyectoProgramacion.Controllers
         /* METODO MODIFICA LOS DATOS DEL VEHICULO */
         public ActionResult ModificarVehiculo(SP_CONSULTAR_VEHICULOS_Result ModeloVista)
         {
-            
-            return View();
-        }
-        /* METODO CONULTA LOS VECHICULOS */
-        public void CrearListaVehiculos(SP_CONSULTAR_VEHICULOS_Result ModeloVista)
-        {
-            this.ViewBag.ListaVehiculos =
-                this.ModeloDB.SP_CONSULTAR_VEHICULOS(ModeloVista.C_PLACA);
+            SP_CONSULTAR_VEHICULOS_Result DatosVehiculo = new SP_CONSULTAR_VEHICULOS_Result();
+            DatosVehiculo = this.ModeloDB.SP_CONSULTAR_VEHICULOS(ModeloVista.C_PLACA).FirstOrDefault();
+            /* CREAMOS LA LISTA DE LOS TIPOS */
+            CrearListaTipoVehiculo();
+            /* CREAR LISTA PAIS */
+            CrearListaPais();
+            /* CREAMOS LA LISTA DE LOS FABRICANTES */
+            CrearListaFabricantes(DatosVehiculo.C_ID_PAIS);
+            /* CREAMOS LA LISTA DE MARCAS */
+            CrearMarcaVehiculo(DatosVehiculo.C_ID_FABRICANTE);
+            /* CREAMOS LA LISTA DEL MODELO */
+            CrearModelo(DatosVehiculo.C_ID_MARCA);
+            return View(DatosVehiculo);
         }
         public ActionResult MostrarVevhiculos(SP_CONSULTAR_VEHICULOS_Result ModeloVista)
         {
             //CrearListaVehiculos(ModeloVista);
-           
+
             return View();
         }
         [HttpPost]
@@ -147,8 +152,88 @@ namespace ProyectoProgramacion.Controllers
                 return View();
             }
             Response.Write("<script language=javascript>alert('" + mensaje + "');</script>");
-            return View("MostrarVevhiculos");           
+            return View("MostrarVevhiculos");
         }
+        [HttpPost]
+        public ActionResult ModificarDatosVehiculo( SP_CONSULTAR_VEHICULOS_Result ModeloVista)
+        {
+            string mensaje = "";
+            int filas = 0;
+            try
+            {
+                filas = this.ModeloDB.SP_MODIFICAR_VEHICULO(ModeloVista.C_PLACA,
+                                                            ModeloVista.C_CANT_PUERTAS,
+                                                            ModeloVista.C_CANT_RUEDAS,
+                                                            ModeloVista.C_YEAR,
+                                                            ModeloVista.C_FK_TIPO,
+                                                            ModeloVista.C_FK_MARCA,
+                                                            ModeloVista.C_FK_MODELO);
+            }
+            catch (Exception error)
+            {
+
+                mensaje = error.Message;
+            }
+            finally
+            {
+                if (filas > 0)
+                {
+                    mensaje = "Exito al Modificar el El Vehiculo";
+                }
+                else
+                {
+                    mensaje = "No se pudo Modificar el Vehiculo";
+                }
+            }
+
+            return Json(new
+            {
+                resultado = mensaje
+            });
+        }
+        #region METODOS DE CLASE
+        /* METODO CONULTA LOS VECHICULOS */
+        public void CrearListaVehiculos(SP_CONSULTAR_VEHICULOS_Result ModeloVista)
+        {
+            this.ViewBag.ListaVehiculos =
+                this.ModeloDB.SP_CONSULTAR_VEHICULOS(ModeloVista.C_PLACA);
+        }
+        /* CREA LISTA DE TIPOS VEHICULO */
+        public void CrearListaTipoVehiculo()
+        {
+            this.ViewBag.ListaTipos =
+                this.ModeloDB.SP_RETORNA_TIPO_VEHICULO(null).ToList();
+        }
+
+        /* CREAR LISTA DE LOS FABRICANTES */
+        public void CrearListaFabricantes(int pais)
+        {
+            this.ViewBag.ListaFabricantes =
+                this.ModeloDB.SP_RETORNAR_FABRICANTES(pais).ToList();
+        }
+
+        /* CREAR LISTA DE LOS PAIS */
+        public void CrearListaPais()
+        {
+            this.ViewBag.ListaPais =
+                this.ModeloDB.SP_RETORNA_PAIS(null).ToList();
+        }
+        /* CREAR TIPO DE MARCA */
+        public void CrearMarcaVehiculo(int fabricante)
+        {
+            this.ViewBag.ListaMarca =
+                this.ModeloDB.SP_RETORNA_MARCA(fabricante).ToList();
+        }
+
+        /* CREAR TIPO DE MODELO */
+        public void CrearModelo(int marca)
+        {
+            this.ViewBag.ListaModelo =
+                this.ModeloDB.SP_RETORNA_MODELO(marca).ToList();
+        }
+        #endregion
+
+       
     }
 
 

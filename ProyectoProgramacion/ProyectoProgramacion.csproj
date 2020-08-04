@@ -327,6 +327,7 @@
     <Content Include="Scripts\Modelos\ModeloVehiculo.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Pais\RegistrarPais.js" />
+    <Content Include="Scripts\Registro Cliente\ModificarCliente.js" />
     <Content Include="Scripts\Registro Cliente\RegistroCliente.js" />
     <Content Include="Scripts\RegistroVehiculo\ModificarVehiculo.js" />
     <Content Include="Scripts\RegistroVehiculo\RegistrarVehiculo.js" />

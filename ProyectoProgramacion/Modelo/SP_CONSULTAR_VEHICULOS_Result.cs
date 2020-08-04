@@ -27,5 +27,9 @@ namespace ProyectoProgramacion.Modelo
         public string C_NOMBRE_MODELO { get; set; }
         public int C_ID_TIPO_VEHICULO { get; set; }
         public string C_NOMBRE_TIPO { get; set; }
+        public int C_ID_FABRICANTE { get; set; }
+        public string C_NOMBRE_FABRICANTE { get; set; }
+        public int C_ID_PAIS { get; set; }
+        public string C_NOMBRE_PAIS { get; set; }
     }
 }

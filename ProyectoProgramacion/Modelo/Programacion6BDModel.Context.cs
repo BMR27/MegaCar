@@ -440,15 +440,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Registrar_Vehiculo", pLACAParameter, iD_MARCAParameter, iD_TIPOParameter, iD_MODELOParameter, cANTIDAD_PUERTASParameter, cANTIDAD_RUEDASParameter, yEARParameter);
         }
     
-        public virtual ObjectResult<SP_CONSULTAR_VEHICULOS_Result> SP_CONSULTAR_VEHICULOS(string c_PLACA)
-        {
-            var c_PLACAParameter = c_PLACA != null ?
-                new ObjectParameter("C_PLACA", c_PLACA) :
-                new ObjectParameter("C_PLACA", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CONSULTAR_VEHICULOS_Result>("SP_CONSULTAR_VEHICULOS", c_PLACAParameter);
-        }
-    
         public virtual int sp_Eliminar_Vehiculo(string c_PLACA)
         {
             var c_PLACAParameter = c_PLACA != null ?
@@ -755,6 +746,93 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("ID_SERVICIO", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ELIMINAR_SERVICIO", iD_SERVICIOParameter);
+        }
+    
+        public virtual int SP_MODIFICAR_CLIENTE(string nOMBRE, string aPELLIDO1, string aPELLIDO2, string cEDULA, string cORREO, string dIRECCION, string tELEFONO, Nullable<int> fK_PROVINCIA, Nullable<int> fK_CANTON, Nullable<int> fK_DISTRITO)
+        {
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            var aPELLIDO1Parameter = aPELLIDO1 != null ?
+                new ObjectParameter("APELLIDO1", aPELLIDO1) :
+                new ObjectParameter("APELLIDO1", typeof(string));
+    
+            var aPELLIDO2Parameter = aPELLIDO2 != null ?
+                new ObjectParameter("APELLIDO2", aPELLIDO2) :
+                new ObjectParameter("APELLIDO2", typeof(string));
+    
+            var cEDULAParameter = cEDULA != null ?
+                new ObjectParameter("CEDULA", cEDULA) :
+                new ObjectParameter("CEDULA", typeof(string));
+    
+            var cORREOParameter = cORREO != null ?
+                new ObjectParameter("CORREO", cORREO) :
+                new ObjectParameter("CORREO", typeof(string));
+    
+            var dIRECCIONParameter = dIRECCION != null ?
+                new ObjectParameter("DIRECCION", dIRECCION) :
+                new ObjectParameter("DIRECCION", typeof(string));
+    
+            var tELEFONOParameter = tELEFONO != null ?
+                new ObjectParameter("TELEFONO", tELEFONO) :
+                new ObjectParameter("TELEFONO", typeof(string));
+    
+            var fK_PROVINCIAParameter = fK_PROVINCIA.HasValue ?
+                new ObjectParameter("FK_PROVINCIA", fK_PROVINCIA) :
+                new ObjectParameter("FK_PROVINCIA", typeof(int));
+    
+            var fK_CANTONParameter = fK_CANTON.HasValue ?
+                new ObjectParameter("FK_CANTON", fK_CANTON) :
+                new ObjectParameter("FK_CANTON", typeof(int));
+    
+            var fK_DISTRITOParameter = fK_DISTRITO.HasValue ?
+                new ObjectParameter("FK_DISTRITO", fK_DISTRITO) :
+                new ObjectParameter("FK_DISTRITO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_CLIENTE", nOMBREParameter, aPELLIDO1Parameter, aPELLIDO2Parameter, cEDULAParameter, cORREOParameter, dIRECCIONParameter, tELEFONOParameter, fK_PROVINCIAParameter, fK_CANTONParameter, fK_DISTRITOParameter);
+        }
+    
+        public virtual ObjectResult<SP_CONSULTAR_VEHICULOS_Result> SP_CONSULTAR_VEHICULOS(string c_PLACA)
+        {
+            var c_PLACAParameter = c_PLACA != null ?
+                new ObjectParameter("C_PLACA", c_PLACA) :
+                new ObjectParameter("C_PLACA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CONSULTAR_VEHICULOS_Result>("SP_CONSULTAR_VEHICULOS", c_PLACAParameter);
+        }
+    
+        public virtual int SP_MODIFICAR_VEHICULO(string pLACA, Nullable<int> pUERTAS, Nullable<int> rUEDAS, string yEAR, Nullable<int> tIPO, Nullable<int> mARCA, Nullable<int> mODELO)
+        {
+            var pLACAParameter = pLACA != null ?
+                new ObjectParameter("PLACA", pLACA) :
+                new ObjectParameter("PLACA", typeof(string));
+    
+            var pUERTASParameter = pUERTAS.HasValue ?
+                new ObjectParameter("PUERTAS", pUERTAS) :
+                new ObjectParameter("PUERTAS", typeof(int));
+    
+            var rUEDASParameter = rUEDAS.HasValue ?
+                new ObjectParameter("RUEDAS", rUEDAS) :
+                new ObjectParameter("RUEDAS", typeof(int));
+    
+            var yEARParameter = yEAR != null ?
+                new ObjectParameter("YEAR", yEAR) :
+                new ObjectParameter("YEAR", typeof(string));
+    
+            var tIPOParameter = tIPO.HasValue ?
+                new ObjectParameter("TIPO", tIPO) :
+                new ObjectParameter("TIPO", typeof(int));
+    
+            var mARCAParameter = mARCA.HasValue ?
+                new ObjectParameter("MARCA", mARCA) :
+                new ObjectParameter("MARCA", typeof(int));
+    
+            var mODELOParameter = mODELO.HasValue ?
+                new ObjectParameter("MODELO", mODELO) :
+                new ObjectParameter("MODELO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_VEHICULO", pLACAParameter, pUERTASParameter, rUEDASParameter, yEARParameter, tIPOParameter, mARCAParameter, mODELOParameter);
         }
     }
 }
