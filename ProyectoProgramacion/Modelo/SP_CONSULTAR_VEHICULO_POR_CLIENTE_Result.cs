@@ -10,15 +10,23 @@
 namespace ProyectoProgramacion.Modelo
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TBL_VEHICULO
+    public partial class SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result
     {
-        public TBL_VEHICULO()
-        {
-            this.TBL_ENCABEZADO_FACTURA = new HashSet<TBL_ENCABEZADO_FACTURA>();
-        }
-    
+        public int C_CONSECUTIVO { get; set; }
+        public int C_FK_CLIENTE { get; set; }
+        public string C_FK_VECHICULO { get; set; }
+        public int C_ID_CLIENTE { get; set; }
+        public string C_NOMBRE_CLIENTE { get; set; }
+        public string C_CEDULA { get; set; }
+        public int C_FK_PROVINCIA { get; set; }
+        public int C_FK_CANTON { get; set; }
+        public int C_FK_DISTRITO { get; set; }
+        public string C_DIRECCION { get; set; }
+        public string C_APELLIDO1 { get; set; }
+        public string C_APELLIDO2 { get; set; }
+        public string C_CORREO { get; set; }
+        public string C_TELEFONO { get; set; }
         public int C_ID_VEHICULO { get; set; }
         public string C_PLACA { get; set; }
         public int C_FK_MARCA { get; set; }
@@ -27,10 +35,5 @@ namespace ProyectoProgramacion.Modelo
         public short C_CANT_PUERTAS { get; set; }
         public short C_CANT_RUEDAS { get; set; }
         public string C_YEAR { get; set; }
-    
-        public virtual ICollection<TBL_ENCABEZADO_FACTURA> TBL_ENCABEZADO_FACTURA { get; set; }
-        public virtual TBL_MARCA TBL_MARCA { get; set; }
-        public virtual TBL_MODELO TBL_MODELO { get; set; }
-        public virtual TBL_TIPO_VEHICULO TBL_TIPO_VEHICULO { get; set; }
     }
 }

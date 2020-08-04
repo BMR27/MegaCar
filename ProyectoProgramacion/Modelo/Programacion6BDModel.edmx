@@ -224,7 +224,7 @@
           </Key>
           <Property Name="C_CONSECUTIVO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="C_FK_CLIENTE" Type="int" Nullable="false" />
-          <Property Name="C_FK_VECHICULO" Type="int" Nullable="false" />
+          <Property Name="C_FK_VECHICULO" Type="char" MaxLength="6" Nullable="false" />
         </EntityType>
         <Association Name="Canton_ref_Provincia">
           <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
@@ -382,6 +382,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TBL_VEHIC__C_FK___681373AD">
+          <End Role="TBL_CLIENTE" Type="Self.TBL_CLIENTE" Multiplicity="1" />
+          <End Role="TBL_VEHICULO_CLIENTE" Type="Self.TBL_VEHICULO_CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_CLIENTE">
+              <PropertyRef Name="C_ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="TBL_VEHICULO_CLIENTE">
+              <PropertyRef Name="C_FK_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK__TBL_VEHIC__C_FK___690797E6" />-->
         <Association Name="FK__TBL_VEHIC__C_FK___72C60C4A">
           <End Role="TBL_MARCA" Type="Self.TBL_MARCA" Multiplicity="1" />
           <End Role="TBL_VEHICULO" Type="Self.TBL_VEHICULO" Multiplicity="*" />
@@ -415,30 +430,6 @@
             </Principal>
             <Dependent Role="TBL_VEHICULO">
               <PropertyRef Name="C_FK_MODELO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TBL_VEHIC__C_FK___778AC167">
-          <End Role="TBL_CLIENTE" Type="Self.TBL_CLIENTE" Multiplicity="1" />
-          <End Role="TBL_VEHICULO_CLIENTE" Type="Self.TBL_VEHICULO_CLIENTE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TBL_CLIENTE">
-              <PropertyRef Name="C_ID_CLIENTE" />
-            </Principal>
-            <Dependent Role="TBL_VEHICULO_CLIENTE">
-              <PropertyRef Name="C_FK_CLIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TBL_VEHIC__C_FK___787EE5A0">
-          <End Role="TBL_VEHICULO" Type="Self.TBL_VEHICULO" Multiplicity="1" />
-          <End Role="TBL_VEHICULO_CLIENTE" Type="Self.TBL_VEHICULO_CLIENTE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TBL_VEHICULO">
-              <PropertyRef Name="C_ID_VEHICULO" />
-            </Principal>
-            <Dependent Role="TBL_VEHICULO_CLIENTE">
-              <PropertyRef Name="C_FK_VECHICULO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -487,6 +478,10 @@
           <Parameter Name="version" Type="int" Mode="In" />
           <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
         </Function>
+        <Function Name="SP_CONSULTAR_VEHICULO_POR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PLACA" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SP_CONSULTAR_VEHICULO_SIN_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_CONSULTAR_VEHICULOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="C_PLACA" Type="char" Mode="In" />
         </Function>
@@ -635,6 +630,10 @@
           <Parameter Name="CANTIDAD_RUEDAS" Type="smallint" Mode="In" />
           <Parameter Name="YEAR" Type="char" Mode="In" />
         </Function>
+        <Function Name="SP_REGISTRAR_VEHICULO_POR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_CLIENTE" Type="int" Mode="In" />
+          <Parameter Name="PLACA" Type="char" Mode="In" />
+        </Function>
         <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -752,6 +751,10 @@
             <End Role="TBL_TIPO_USUARIO" EntitySet="TBL_TIPO_USUARIO" />
             <End Role="TBL_USUARIOS" EntitySet="TBL_USUARIOS" />
           </AssociationSet>
+          <AssociationSet Name="FK__TBL_VEHIC__C_FK___681373AD" Association="Self.FK__TBL_VEHIC__C_FK___681373AD">
+            <End Role="TBL_CLIENTE" EntitySet="TBL_CLIENTE" />
+            <End Role="TBL_VEHICULO_CLIENTE" EntitySet="TBL_VEHICULO_CLIENTE" />
+          </AssociationSet>
           <AssociationSet Name="FK__TBL_VEHIC__C_FK___72C60C4A" Association="Self.FK__TBL_VEHIC__C_FK___72C60C4A">
             <End Role="TBL_MARCA" EntitySet="TBL_MARCA" />
             <End Role="TBL_VEHICULO" EntitySet="TBL_VEHICULO" />
@@ -763,14 +766,6 @@
           <AssociationSet Name="FK__TBL_VEHIC__C_FK___74AE54BC" Association="Self.FK__TBL_VEHIC__C_FK___74AE54BC">
             <End Role="TBL_MODELO" EntitySet="TBL_MODELO" />
             <End Role="TBL_VEHICULO" EntitySet="TBL_VEHICULO" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TBL_VEHIC__C_FK___778AC167" Association="Self.FK__TBL_VEHIC__C_FK___778AC167">
-            <End Role="TBL_CLIENTE" EntitySet="TBL_CLIENTE" />
-            <End Role="TBL_VEHICULO_CLIENTE" EntitySet="TBL_VEHICULO_CLIENTE" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TBL_VEHIC__C_FK___787EE5A0" Association="Self.FK__TBL_VEHIC__C_FK___787EE5A0">
-            <End Role="TBL_VEHICULO" EntitySet="TBL_VEHICULO" />
-            <End Role="TBL_VEHICULO_CLIENTE" EntitySet="TBL_VEHICULO_CLIENTE" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -868,7 +863,7 @@
           <Property Name="C_CORREO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="C_TELEFONO" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="TBL_ENCABEZADO_FACTURA" Relationship="Self.FK__TBL_ENCAB__C_FK___17036CC0" FromRole="TBL_CLIENTE" ToRole="TBL_ENCABEZADO_FACTURA" />
-          <NavigationProperty Name="TBL_VEHICULO_CLIENTE" Relationship="Self.FK__TBL_VEHIC__C_FK___778AC167" FromRole="TBL_CLIENTE" ToRole="TBL_VEHICULO_CLIENTE" />
+          <NavigationProperty Name="TBL_VEHICULO_CLIENTE" Relationship="programacion6Model.FK__TBL_VEHIC__C_FK___681373AD" FromRole="TBL_CLIENTE" ToRole="TBL_VEHICULO_CLIENTE" />
         </EntityType>
         <EntityType Name="TBL_DETALLE_ENCABEZADO_FACTURA">
           <Key>
@@ -1022,17 +1017,6 @@
           <NavigationProperty Name="TBL_MARCA" Relationship="Self.FK__TBL_VEHIC__C_FK___72C60C4A" FromRole="TBL_VEHICULO" ToRole="TBL_MARCA" />
           <NavigationProperty Name="TBL_MODELO" Relationship="Self.FK__TBL_VEHIC__C_FK___74AE54BC" FromRole="TBL_VEHICULO" ToRole="TBL_MODELO" />
           <NavigationProperty Name="TBL_TIPO_VEHICULO" Relationship="Self.FK__TBL_VEHIC__C_FK___73BA3083" FromRole="TBL_VEHICULO" ToRole="TBL_TIPO_VEHICULO" />
-          <NavigationProperty Name="TBL_VEHICULO_CLIENTE" Relationship="Self.FK__TBL_VEHIC__C_FK___787EE5A0" FromRole="TBL_VEHICULO" ToRole="TBL_VEHICULO_CLIENTE" />
-        </EntityType>
-        <EntityType Name="TBL_VEHICULO_CLIENTE">
-          <Key>
-            <PropertyRef Name="C_CONSECUTIVO" />
-          </Key>
-          <Property Name="C_CONSECUTIVO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="C_FK_CLIENTE" Type="Int32" Nullable="false" />
-          <Property Name="C_FK_VECHICULO" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TBL_CLIENTE" Relationship="Self.FK__TBL_VEHIC__C_FK___778AC167" FromRole="TBL_VEHICULO_CLIENTE" ToRole="TBL_CLIENTE" />
-          <NavigationProperty Name="TBL_VEHICULO" Relationship="Self.FK__TBL_VEHIC__C_FK___787EE5A0" FromRole="TBL_VEHICULO_CLIENTE" ToRole="TBL_VEHICULO" />
         </EntityType>
         <Association Name="Canton_ref_Provincia">
           <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
@@ -1090,18 +1074,6 @@
               <PropertyRef Name="C_ID_CLIENTE" />
             </Principal>
             <Dependent Role="TBL_ENCABEZADO_FACTURA">
-              <PropertyRef Name="C_FK_CLIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TBL_VEHIC__C_FK___778AC167">
-          <End Role="TBL_CLIENTE" Type="Self.TBL_CLIENTE" Multiplicity="1" />
-          <End Role="TBL_VEHICULO_CLIENTE" Type="Self.TBL_VEHICULO_CLIENTE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TBL_CLIENTE">
-              <PropertyRef Name="C_ID_CLIENTE" />
-            </Principal>
-            <Dependent Role="TBL_VEHICULO_CLIENTE">
               <PropertyRef Name="C_FK_CLIENTE" />
             </Dependent>
           </ReferentialConstraint>
@@ -1238,18 +1210,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TBL_VEHIC__C_FK___787EE5A0">
-          <End Role="TBL_VEHICULO" Type="Self.TBL_VEHICULO" Multiplicity="1" />
-          <End Role="TBL_VEHICULO_CLIENTE" Type="Self.TBL_VEHICULO_CLIENTE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TBL_VEHICULO">
-              <PropertyRef Name="C_ID_VEHICULO" />
-            </Principal>
-            <Dependent Role="TBL_VEHICULO_CLIENTE">
-              <PropertyRef Name="C_FK_VECHICULO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="programacionBDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Canton" EntityType="Self.Canton" />
           <EntitySet Name="Distrito" EntityType="Self.Distrito" />
@@ -1272,7 +1232,6 @@
           <EntitySet Name="TBL_TIPO_VEHICULO" EntityType="Self.TBL_TIPO_VEHICULO" />
           <EntitySet Name="TBL_USUARIOS" EntityType="Self.TBL_USUARIOS" />
           <EntitySet Name="TBL_VEHICULO" EntityType="Self.TBL_VEHICULO" />
-          <EntitySet Name="TBL_VEHICULO_CLIENTE" EntityType="Self.TBL_VEHICULO_CLIENTE" />
           <AssociationSet Name="Canton_ref_Provincia" Association="Self.Canton_ref_Provincia">
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Canton" EntitySet="Canton" />
@@ -1292,10 +1251,6 @@
           <AssociationSet Name="FK__TBL_ENCAB__C_FK___17036CC0" Association="Self.FK__TBL_ENCAB__C_FK___17036CC0">
             <End Role="TBL_CLIENTE" EntitySet="TBL_CLIENTE" />
             <End Role="TBL_ENCABEZADO_FACTURA" EntitySet="TBL_ENCABEZADO_FACTURA" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TBL_VEHIC__C_FK___778AC167" Association="Self.FK__TBL_VEHIC__C_FK___778AC167">
-            <End Role="TBL_CLIENTE" EntitySet="TBL_CLIENTE" />
-            <End Role="TBL_VEHICULO_CLIENTE" EntitySet="TBL_VEHICULO_CLIENTE" />
           </AssociationSet>
           <AssociationSet Name="FK__TBL_DETAL__C_FK___1AD3FDA4" Association="Self.FK__TBL_DETAL__C_FK___1AD3FDA4">
             <End Role="TBL_ENCABEZADO_FACTURA" EntitySet="TBL_ENCABEZADO_FACTURA" />
@@ -1340,10 +1295,6 @@
           <AssociationSet Name="FK__TBL_VEHIC__C_FK___73BA3083" Association="Self.FK__TBL_VEHIC__C_FK___73BA3083">
             <End Role="TBL_TIPO_VEHICULO" EntitySet="TBL_TIPO_VEHICULO" />
             <End Role="TBL_VEHICULO" EntitySet="TBL_VEHICULO" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TBL_VEHIC__C_FK___787EE5A0" Association="Self.FK__TBL_VEHIC__C_FK___787EE5A0">
-            <End Role="TBL_VEHICULO" EntitySet="TBL_VEHICULO" />
-            <End Role="TBL_VEHICULO_CLIENTE" EntitySet="TBL_VEHICULO_CLIENTE" />
           </AssociationSet>
           <FunctionImport Name="RetornaCantones" ReturnType="Collection(programacion6Model.RetornaCantones_Result)">
             <Parameter Name="nombre" Mode="In" Type="String" />
@@ -1579,6 +1530,19 @@
             <Parameter Name="MARCA" Mode="In" Type="Int32" />
             <Parameter Name="MODELO" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_CONSULTAR_VEHICULO_POR_CLIENTE" ReturnType="Collection(programacion6Model.SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result)">
+          <Parameter Name="PLACA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_REGISTRAR_VEHICULO_POR_CLIENTE">
+            <Parameter Name="FK_CLIENTE" Mode="In" Type="Int32" />
+            <Parameter Name="PLACA" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="TBL_VEHICULO_CLIENTE" EntityType="programacion6Model.TBL_VEHICULO_CLIENTE" />
+          <AssociationSet Name="FK__TBL_VEHIC__C_FK___681373AD" Association="programacion6Model.FK__TBL_VEHIC__C_FK___681373AD">
+            <End Role="TBL_CLIENTE" EntitySet="TBL_CLIENTE" />
+            <End Role="TBL_VEHICULO_CLIENTE" EntitySet="TBL_VEHICULO_CLIENTE" />
+          </AssociationSet>
+          <FunctionImport Name="SP_CONSULTAR_VEHICULO_SIN_CLIENTE" ReturnType="Collection(programacion6Model.SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result)" />
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -1770,6 +1734,61 @@
           <Property Type="String" Name="C_NOMBRE_FABRICANTE" Nullable="false" MaxLength="60" />
           <Property Type="Int32" Name="C_ID_PAIS" Nullable="false" />
           <Property Type="String" Name="C_NOMBRE_PAIS" Nullable="false" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result">
+          <Property Type="Int32" Name="C_CONSECUTIVO" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_CLIENTE" Nullable="false" />
+          <Property Type="String" Name="C_FK_VECHICULO" Nullable="false" MaxLength="6" />
+          <Property Type="Int32" Name="C_ID_CLIENTE" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_CLIENTE" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_CEDULA" Nullable="false" MaxLength="12" />
+          <Property Type="Int32" Name="C_FK_PROVINCIA" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_CANTON" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_DISTRITO" Nullable="false" />
+          <Property Type="String" Name="C_DIRECCION" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="C_APELLIDO1" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_APELLIDO2" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_CORREO" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="C_TELEFONO" Nullable="true" MaxLength="12" />
+          <Property Type="Int32" Name="C_ID_VEHICULO" Nullable="false" />
+          <Property Type="String" Name="C_PLACA" Nullable="false" MaxLength="6" />
+          <Property Type="Int32" Name="C_FK_MARCA" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_TIPO" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_MODELO" Nullable="false" />
+          <Property Type="Int16" Name="C_CANT_PUERTAS" Nullable="false" />
+          <Property Type="Int16" Name="C_CANT_RUEDAS" Nullable="false" />
+          <Property Type="String" Name="C_YEAR" Nullable="false" MaxLength="4" />
+        </ComplexType>
+        <EntityType Name="TBL_VEHICULO_CLIENTE">
+          <Key>
+            <PropertyRef Name="C_CONSECUTIVO" />
+          </Key>
+          <Property Name="C_CONSECUTIVO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_FK_CLIENTE" Type="Int32" Nullable="false" />
+          <Property Name="C_FK_VECHICULO" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="TBL_CLIENTE" Relationship="programacion6Model.FK__TBL_VEHIC__C_FK___681373AD" FromRole="TBL_VEHICULO_CLIENTE" ToRole="TBL_CLIENTE" />
+        </EntityType>
+        <Association Name="FK__TBL_VEHIC__C_FK___681373AD">
+          <End Type="programacion6Model.TBL_CLIENTE" Role="TBL_CLIENTE" Multiplicity="1" />
+          <End Type="programacion6Model.TBL_VEHICULO_CLIENTE" Role="TBL_VEHICULO_CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_CLIENTE">
+              <PropertyRef Name="C_ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="TBL_VEHICULO_CLIENTE">
+              <PropertyRef Name="C_FK_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result">
+          <Property Type="Int32" Name="C_ID_VEHICULO" Nullable="false" />
+          <Property Type="String" Name="C_PLACA" Nullable="false" MaxLength="6" />
+          <Property Type="Int32" Name="C_FK_MARCA" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_TIPO" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_MODELO" Nullable="false" />
+          <Property Type="Int16" Name="C_CANT_PUERTAS" Nullable="false" />
+          <Property Type="Int16" Name="C_CANT_RUEDAS" Nullable="false" />
+          <Property Type="String" Name="C_YEAR" Nullable="false" MaxLength="4" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2008,15 +2027,6 @@
                 <ScalarProperty Name="C_CANT_PUERTAS" ColumnName="C_CANT_PUERTAS" />
                 <ScalarProperty Name="C_CANT_RUEDAS" ColumnName="C_CANT_RUEDAS" />
                 <ScalarProperty Name="C_YEAR" ColumnName="C_YEAR" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBL_VEHICULO_CLIENTE">
-            <EntityTypeMapping TypeName="programacion6Model.TBL_VEHICULO_CLIENTE">
-              <MappingFragment StoreEntitySet="TBL_VEHICULO_CLIENTE">
-                <ScalarProperty Name="C_CONSECUTIVO" ColumnName="C_CONSECUTIVO" />
-                <ScalarProperty Name="C_FK_CLIENTE" ColumnName="C_FK_CLIENTE" />
-                <ScalarProperty Name="C_FK_VECHICULO" ColumnName="C_FK_VECHICULO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2317,6 +2327,58 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_MODIFICAR_VEHICULO" FunctionName="programacion6Model.Store.SP_MODIFICAR_VEHICULO" />
+          <FunctionImportMapping FunctionImportName="SP_CONSULTAR_VEHICULO_POR_CLIENTE" FunctionName="programacion6Model.Store.SP_CONSULTAR_VEHICULO_POR_CLIENTE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result">
+                <ScalarProperty Name="C_CONSECUTIVO" ColumnName="C_CONSECUTIVO" />
+                <ScalarProperty Name="C_FK_CLIENTE" ColumnName="C_FK_CLIENTE" />
+                <ScalarProperty Name="C_FK_VECHICULO" ColumnName="C_FK_VECHICULO" />
+                <ScalarProperty Name="C_ID_CLIENTE" ColumnName="C_ID_CLIENTE" />
+                <ScalarProperty Name="C_NOMBRE_CLIENTE" ColumnName="C_NOMBRE_CLIENTE" />
+                <ScalarProperty Name="C_CEDULA" ColumnName="C_CEDULA" />
+                <ScalarProperty Name="C_FK_PROVINCIA" ColumnName="C_FK_PROVINCIA" />
+                <ScalarProperty Name="C_FK_CANTON" ColumnName="C_FK_CANTON" />
+                <ScalarProperty Name="C_FK_DISTRITO" ColumnName="C_FK_DISTRITO" />
+                <ScalarProperty Name="C_DIRECCION" ColumnName="C_DIRECCION" />
+                <ScalarProperty Name="C_APELLIDO1" ColumnName="C_APELLIDO1" />
+                <ScalarProperty Name="C_APELLIDO2" ColumnName="C_APELLIDO2" />
+                <ScalarProperty Name="C_CORREO" ColumnName="C_CORREO" />
+                <ScalarProperty Name="C_TELEFONO" ColumnName="C_TELEFONO" />
+                <ScalarProperty Name="C_ID_VEHICULO" ColumnName="C_ID_VEHICULO" />
+                <ScalarProperty Name="C_PLACA" ColumnName="C_PLACA" />
+                <ScalarProperty Name="C_FK_MARCA" ColumnName="C_FK_MARCA" />
+                <ScalarProperty Name="C_FK_TIPO" ColumnName="C_FK_TIPO" />
+                <ScalarProperty Name="C_FK_MODELO" ColumnName="C_FK_MODELO" />
+                <ScalarProperty Name="C_CANT_PUERTAS" ColumnName="C_CANT_PUERTAS" />
+                <ScalarProperty Name="C_CANT_RUEDAS" ColumnName="C_CANT_RUEDAS" />
+                <ScalarProperty Name="C_YEAR" ColumnName="C_YEAR" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_REGISTRAR_VEHICULO_POR_CLIENTE" FunctionName="programacion6Model.Store.SP_REGISTRAR_VEHICULO_POR_CLIENTE" />
+          <EntitySetMapping Name="TBL_VEHICULO_CLIENTE">
+            <EntityTypeMapping TypeName="programacion6Model.TBL_VEHICULO_CLIENTE">
+              <MappingFragment StoreEntitySet="TBL_VEHICULO_CLIENTE">
+                <ScalarProperty Name="C_FK_VECHICULO" ColumnName="C_FK_VECHICULO" />
+                <ScalarProperty Name="C_FK_CLIENTE" ColumnName="C_FK_CLIENTE" />
+                <ScalarProperty Name="C_CONSECUTIVO" ColumnName="C_CONSECUTIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_CONSULTAR_VEHICULO_SIN_CLIENTE" FunctionName="programacion6Model.Store.SP_CONSULTAR_VEHICULO_SIN_CLIENTE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result">
+                <ScalarProperty Name="C_ID_VEHICULO" ColumnName="C_ID_VEHICULO" />
+                <ScalarProperty Name="C_PLACA" ColumnName="C_PLACA" />
+                <ScalarProperty Name="C_FK_MARCA" ColumnName="C_FK_MARCA" />
+                <ScalarProperty Name="C_FK_TIPO" ColumnName="C_FK_TIPO" />
+                <ScalarProperty Name="C_FK_MODELO" ColumnName="C_FK_MODELO" />
+                <ScalarProperty Name="C_CANT_PUERTAS" ColumnName="C_CANT_PUERTAS" />
+                <ScalarProperty Name="C_CANT_RUEDAS" ColumnName="C_CANT_RUEDAS" />
+                <ScalarProperty Name="C_YEAR" ColumnName="C_YEAR" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -834,5 +834,32 @@ namespace ProyectoProgramacion.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_VEHICULO", pLACAParameter, pUERTASParameter, rUEDASParameter, yEARParameter, tIPOParameter, mARCAParameter, mODELOParameter);
         }
+    
+        public virtual ObjectResult<SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result> SP_CONSULTAR_VEHICULO_POR_CLIENTE(string pLACA)
+        {
+            var pLACAParameter = pLACA != null ?
+                new ObjectParameter("PLACA", pLACA) :
+                new ObjectParameter("PLACA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result>("SP_CONSULTAR_VEHICULO_POR_CLIENTE", pLACAParameter);
+        }
+    
+        public virtual int SP_REGISTRAR_VEHICULO_POR_CLIENTE(Nullable<int> fK_CLIENTE, string pLACA)
+        {
+            var fK_CLIENTEParameter = fK_CLIENTE.HasValue ?
+                new ObjectParameter("FK_CLIENTE", fK_CLIENTE) :
+                new ObjectParameter("FK_CLIENTE", typeof(int));
+    
+            var pLACAParameter = pLACA != null ?
+                new ObjectParameter("PLACA", pLACA) :
+                new ObjectParameter("PLACA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_VEHICULO_POR_CLIENTE", fK_CLIENTEParameter, pLACAParameter);
+        }
+    
+        public virtual ObjectResult<SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result> SP_CONSULTAR_VEHICULO_SIN_CLIENTE()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result>("SP_CONSULTAR_VEHICULO_SIN_CLIENTE");
+        }
     }
 }

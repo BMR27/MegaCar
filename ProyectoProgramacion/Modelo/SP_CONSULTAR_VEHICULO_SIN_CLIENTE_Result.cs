@@ -10,14 +10,16 @@
 namespace ProyectoProgramacion.Modelo
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TBL_VEHICULO_CLIENTE
+    public partial class SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result
     {
-        public int C_CONSECUTIVO { get; set; }
-        public int C_FK_CLIENTE { get; set; }
-        public string C_FK_VECHICULO { get; set; }
-    
-        public virtual TBL_CLIENTE TBL_CLIENTE { get; set; }
+        public int C_ID_VEHICULO { get; set; }
+        public string C_PLACA { get; set; }
+        public int C_FK_MARCA { get; set; }
+        public int C_FK_TIPO { get; set; }
+        public int C_FK_MODELO { get; set; }
+        public short C_CANT_PUERTAS { get; set; }
+        public short C_CANT_RUEDAS { get; set; }
+        public string C_YEAR { get; set; }
     }
 }

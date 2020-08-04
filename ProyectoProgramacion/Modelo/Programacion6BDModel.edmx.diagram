@@ -26,13 +26,11 @@
         <EntityTypeShape EntityType="programacion6Model.TBL_TIPO_VEHICULO" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="programacion6Model.TBL_USUARIOS" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="programacion6Model.TBL_VEHICULO" Width="1.5" PointX="9.75" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="programacion6Model.TBL_VEHICULO_CLIENTE" Width="1.5" PointX="15" PointY="4" IsExpanded="true" />
         <AssociationConnector Association="programacion6Model.Canton_ref_Provincia" ManuallyRouted="false" />
         <AssociationConnector Association="programacion6Model.Distrito_ref_Canton" ManuallyRouted="false" />
         <AssociationConnector Association="programacion6Model.FK__TBL_APERT__C_FK___123EB7A3" ManuallyRouted="false" />
         <AssociationConnector Association="programacion6Model.FK__TBL_APERT__C_FK___1332DBDC" ManuallyRouted="false" />
         <AssociationConnector Association="programacion6Model.FK__TBL_ENCAB__C_FK___17036CC0" ManuallyRouted="false" />
-        <AssociationConnector Association="programacion6Model.FK__TBL_VEHIC__C_FK___778AC167" ManuallyRouted="false" />
         <AssociationConnector Association="programacion6Model.FK__TBL_DETAL__C_FK___1AD3FDA4" ManuallyRouted="false" />
         <AssociationConnector Association="programacion6Model.FK__TBL_DETAL__C_FK___1BC821DD" ManuallyRouted="false" />
         <AssociationConnector Association="programacion6Model.FK__TBL_ENCAB__C_FK___17F790F9" ManuallyRouted="false" />
@@ -44,7 +42,8 @@
         <AssociationConnector Association="programacion6Model.FK__TBL_VEHIC__C_FK___74AE54BC" ManuallyRouted="false" />
         <AssociationConnector Association="programacion6Model.FK__TBL_USUAR__C_FK___7E37BEF6" ManuallyRouted="false" />
         <AssociationConnector Association="programacion6Model.FK__TBL_VEHIC__C_FK___73BA3083" ManuallyRouted="false" />
-        <AssociationConnector Association="programacion6Model.FK__TBL_VEHIC__C_FK___787EE5A0" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="programacion6Model.TBL_VEHICULO_CLIENTE" Width="1.5" PointX="12" PointY="15.125" />
+        <AssociationConnector Association="programacion6Model.FK__TBL_VEHIC__C_FK___681373AD" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

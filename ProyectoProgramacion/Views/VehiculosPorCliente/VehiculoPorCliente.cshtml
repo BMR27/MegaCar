@@ -1,0 +1,92 @@
+﻿
+@section CSS{
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
+}
+@{
+    ViewBag.Title = "Vehiculo Por Cliente";
+}
+<div class="jumbotron">
+    <h1>@this.ViewBag.Title</h1>
+    <p>Lista de Vehiculos por cliente</p>
+</div>
+<div class="container">
+    <div id="DivTablaDatos">
+
+    </div>
+
+    <h2>Mantenimiento Vehiculo Por Cliente</h2>
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" name="btnRegistrarVehiculo" id="btnRegistrarVehiculo" data-toggle="modal" data-target="#myModal">Registrar Modelo</button>
+    <button type="button" class="btn btn-danger" name="btnEliminar" id="btnEliminar">Eliminar Marca</button>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Formulario de registro</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <center>
+                        <form id="frmRegistraVehiculo" action="/" method="post">
+                            <div class="form-group">
+                                <label>Cliente</label>
+                                <select class="form-control" name="Cliente" id="Cliente">
+                                    <option value="">Seleccione un Cliente</option>
+                                    @{
+                                        foreach (ProyectoProgramacion.Modelo.sp_RetornaCliente_ID_Result item in
+                                            this.ViewBag.ListaCliente)
+                                        {
+                                            <option value="@item.C_ID_CLIENTE">@item.C_NOMBRE_CLIENTE @item.C_APELLIDO1 @item.C_APELLIDO2</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Vehiculo</label>
+                                <select class="form-control" name="Vehiculo" id="Vehiculo">
+                                    <option value="">Seleccione un Vehiculo</option>
+                                    @{
+                                        foreach (ProyectoProgramacion.Modelo.SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result item in
+                                            this.ViewBag.ListaVehiculos)
+                                        {
+                                            <option value="@item.C_PLACA">@item.C_PLACA</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                           
+                            <div class="form-group">
+                                <div id="AlertaExito" class="alert alert-success">
+                                    <label id="lblMensaje"></label>
+                                </div>
+                            </div>
+                        </form>
+                    </center>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-success" name="btnRegistrar" id="btnRegistrar" value="Registrar Modelo" form="frmRegistraVehiculo" />
+                    <button type="reset" class="btn btn-warning" form="frmRegistraVehiculo">Limpiar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+@Html.ValidationSummary(true)
+@section Scripts{
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
+    <script src="~/Scripts/ScriptGenerico.js"></script>
+    <script src="~/Scripts/VehiculoPorCliente/VehiculoPorCliente.js"></script>
+}

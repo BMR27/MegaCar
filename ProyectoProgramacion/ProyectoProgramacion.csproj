@@ -136,6 +136,7 @@
     <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Controllers\TipoVehiculoController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
+    <Compile Include="Controllers\VehiculosPorClienteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,6 +177,12 @@
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\SP_CONSULTAR_VEHICULOS_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\sp_helpdiagramdefinition_Result.cs">
@@ -335,6 +342,7 @@
     <Content Include="Scripts\Servicios\Servicios.js" />
     <Content Include="Scripts\Tipos Vehiculo\RegistrarTipoVehiculo.js" />
     <Content Include="Scripts\ValidacionesGenericas.js" />
+    <Content Include="Scripts\VehiculoPorCliente\VehiculoPorCliente.js" />
     <Content Include="Video\5 Pasos Para Mantener Su Auto Limpio %28470p_30fps_H264-128kbit_AAC%29.mp4" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -371,6 +379,7 @@
     <Content Include="Views\Modelos\ModeloVehiculo.cshtml" />
     <Content Include="Views\Fabricante\ListarFabricanteVehiculo.cshtml" />
     <Content Include="Views\Servicios\Servicio_Producto.cshtml" />
+    <Content Include="Views\VehiculosPorCliente\VehiculoPorCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
