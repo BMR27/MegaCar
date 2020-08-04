@@ -197,9 +197,9 @@ function ObetenerDatoGrid() {
 
 
 //FUNCION MODIFICA LOS DATOS DE LOS SERVICIOS
-function ObtenerDatosModificarModelo() {
+function ObtenerDatosModificarServicio() {
     /////construir la dirección del método del servidor
-    var urlMetodo = '/Servicio/ModificarServicio'
+    var urlMetodo = '/Servicios/ModificarServicio'
     var parametros = {
         C_ID_SERVICIO: $("#C_ID_SERVICIO").val(),
         C_PRECIO: $("#C_PRECIO").val(),
