@@ -747,5 +747,14 @@ namespace ProyectoProgramacion.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Eliminar_Cliente", cEDULAParameter);
         }
+    
+        public virtual int SP_ELIMINAR_SERVICIO(Nullable<int> iD_SERVICIO)
+        {
+            var iD_SERVICIOParameter = iD_SERVICIO.HasValue ?
+                new ObjectParameter("ID_SERVICIO", iD_SERVICIO) :
+                new ObjectParameter("ID_SERVICIO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ELIMINAR_SERVICIO", iD_SERVICIOParameter);
+        }
     }
 }
