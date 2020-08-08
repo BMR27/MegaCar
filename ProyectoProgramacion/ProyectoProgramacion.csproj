@@ -129,6 +129,7 @@
     <Compile Include="Controllers\BienvenidaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\FabricanteController.cs" />
+    <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarcaVehiculoController.cs" />
     <Compile Include="Controllers\ModelosController.cs" />
@@ -380,6 +381,7 @@
     <Content Include="Views\Fabricante\ListarFabricanteVehiculo.cshtml" />
     <Content Include="Views\Servicios\Servicio_Producto.cshtml" />
     <Content Include="Views\VehiculosPorCliente\VehiculoPorCliente.cshtml" />
+    <Content Include="Views\Factura\FacturarServicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
