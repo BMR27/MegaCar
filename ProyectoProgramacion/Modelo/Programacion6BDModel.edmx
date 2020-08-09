@@ -485,6 +485,10 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
         <Function Name="SP_CONSULTAR_VEHICULOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="C_PLACA" Type="char" Mode="In" />
         </Function>
+        <Function Name="SP_CREAR_FACTURA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_CLIENTE" Type="int" Mode="In" />
+          <Parameter Name="FK_VEHICULO" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -654,11 +658,17 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
         <Function Name="SP_RETORNA_SERVICIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_RETORNA_SERVICIOS_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="C_ID_SERVICIO" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_RETORNA_TIPO_VEHICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NOMBRE_TIPO" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_RETORNA_TIPO_VEHICULO_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_TIPO" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_RETORNA_VEHICULO_POR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_CLIENTE" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_RetornaCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="APELLIDO1" Type="varchar" Mode="In" />
@@ -1340,12 +1350,6 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
             <Parameter Name="version" Mode="In" Type="Int32" />
             <Parameter Name="definition" Mode="In" Type="Binary" />
           </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
           <FunctionImport Name="sp_dropdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -1488,11 +1492,6 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <FunctionImport Name="SP_RETORNAR_FABRICANTES" ReturnType="Collection(programacion6Model.SP_RETORNAR_FABRICANTES_Result)">
           <Parameter Name="FK_PAIS" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_MODIFICAR_SERVICIO">
-            <Parameter Name="ID_SERVICIO" Mode="In" Type="Int32" />
-            <Parameter Name="NOMBRE" Mode="In" Type="String" />
-            <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
-          </FunctionImport>
           <FunctionImport Name="SP_REGISTRAR_SERVICIO">
             <Parameter Name="NOMBRE" Mode="In" Type="String" />
             <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
@@ -1530,9 +1529,6 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
             <Parameter Name="MARCA" Mode="In" Type="Int32" />
             <Parameter Name="MODELO" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_CONSULTAR_VEHICULO_POR_CLIENTE" ReturnType="Collection(programacion6Model.SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result)">
-          <Parameter Name="PLACA" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SP_REGISTRAR_VEHICULO_POR_CLIENTE">
             <Parameter Name="FK_CLIENTE" Mode="In" Type="Int32" />
             <Parameter Name="PLACA" Mode="In" Type="String" />
@@ -1543,6 +1539,24 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
             <End Role="TBL_VEHICULO_CLIENTE" EntitySet="TBL_VEHICULO_CLIENTE" />
           </AssociationSet>
           <FunctionImport Name="SP_CONSULTAR_VEHICULO_SIN_CLIENTE" ReturnType="Collection(programacion6Model.SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result)" />
+          <FunctionImport Name="SP_CONSULTAR_VEHICULO_POR_CLIENTE" ReturnType="Collection(programacion6Model.SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result)">
+          <Parameter Name="PLACA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_RETORNA_VEHICULO_POR_CLIENTE" ReturnType="Collection(programacion6Model.SP_RETORNA_VEHICULO_POR_CLIENTE_Result)">
+          <Parameter Name="ID_CLIENTE" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CREAR_FACTURA" ReturnType="Collection(programacion6Model.SP_CREAR_FACTURA_Result)">
+            <Parameter Name="FK_CLIENTE" Mode="In" Type="Int32" />
+            <Parameter Name="FK_VEHICULO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_RETORNA_SERVICIOS_ID" ReturnType="Collection(programacion6Model.SP_RETORNA_SERVICIOS_ID_Result)">
+          <Parameter Name="C_ID_SERVICIO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_MODIFICAR_SERVICIO">
+            <Parameter Name="ID_SERVICIO" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -1735,30 +1749,6 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <Property Type="Int32" Name="C_ID_PAIS" Nullable="false" />
           <Property Type="String" Name="C_NOMBRE_PAIS" Nullable="false" MaxLength="60" />
         </ComplexType>
-        <ComplexType Name="SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result">
-          <Property Type="Int32" Name="C_CONSECUTIVO" Nullable="false" />
-          <Property Type="Int32" Name="C_FK_CLIENTE" Nullable="false" />
-          <Property Type="String" Name="C_FK_VECHICULO" Nullable="false" MaxLength="6" />
-          <Property Type="Int32" Name="C_ID_CLIENTE" Nullable="false" />
-          <Property Type="String" Name="C_NOMBRE_CLIENTE" Nullable="false" MaxLength="60" />
-          <Property Type="String" Name="C_CEDULA" Nullable="false" MaxLength="12" />
-          <Property Type="Int32" Name="C_FK_PROVINCIA" Nullable="false" />
-          <Property Type="Int32" Name="C_FK_CANTON" Nullable="false" />
-          <Property Type="Int32" Name="C_FK_DISTRITO" Nullable="false" />
-          <Property Type="String" Name="C_DIRECCION" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="C_APELLIDO1" Nullable="false" MaxLength="60" />
-          <Property Type="String" Name="C_APELLIDO2" Nullable="false" MaxLength="60" />
-          <Property Type="String" Name="C_CORREO" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="C_TELEFONO" Nullable="true" MaxLength="12" />
-          <Property Type="Int32" Name="C_ID_VEHICULO" Nullable="false" />
-          <Property Type="String" Name="C_PLACA" Nullable="false" MaxLength="6" />
-          <Property Type="Int32" Name="C_FK_MARCA" Nullable="false" />
-          <Property Type="Int32" Name="C_FK_TIPO" Nullable="false" />
-          <Property Type="Int32" Name="C_FK_MODELO" Nullable="false" />
-          <Property Type="Int16" Name="C_CANT_PUERTAS" Nullable="false" />
-          <Property Type="Int16" Name="C_CANT_RUEDAS" Nullable="false" />
-          <Property Type="String" Name="C_YEAR" Nullable="false" MaxLength="4" />
-        </ComplexType>
         <EntityType Name="TBL_VEHICULO_CLIENTE">
           <Key>
             <PropertyRef Name="C_CONSECUTIVO" />
@@ -1789,6 +1779,68 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <Property Type="Int16" Name="C_CANT_PUERTAS" Nullable="false" />
           <Property Type="Int16" Name="C_CANT_RUEDAS" Nullable="false" />
           <Property Type="String" Name="C_YEAR" Nullable="false" MaxLength="4" />
+        </ComplexType>
+        <ComplexType Name="SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result">
+          <Property Type="Int32" Name="C_CONSECUTIVO" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_CLIENTE" Nullable="false" />
+          <Property Type="String" Name="C_FK_VECHICULO" Nullable="false" MaxLength="6" />
+          <Property Type="Int32" Name="C_ID_CLIENTE" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_CLIENTE" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_CEDULA" Nullable="false" MaxLength="12" />
+          <Property Type="Int32" Name="C_FK_PROVINCIA" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_CANTON" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_DISTRITO" Nullable="false" />
+          <Property Type="String" Name="C_DIRECCION" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="C_APELLIDO1" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_APELLIDO2" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_CORREO" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="C_TELEFONO" Nullable="true" MaxLength="12" />
+          <Property Type="Int32" Name="C_ID_VEHICULO" Nullable="false" />
+          <Property Type="String" Name="C_PLACA" Nullable="false" MaxLength="6" />
+          <Property Type="Int32" Name="C_FK_MARCA" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_TIPO" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_MODELO" Nullable="false" />
+          <Property Type="Int16" Name="C_CANT_PUERTAS" Nullable="false" />
+          <Property Type="Int16" Name="C_CANT_RUEDAS" Nullable="false" />
+          <Property Type="String" Name="C_YEAR" Nullable="false" MaxLength="4" />
+        </ComplexType>
+        <ComplexType Name="SP_RETORNA_VEHICULO_POR_CLIENTE_Result">
+          <Property Type="Int32" Name="C_ID_CLIENTE" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_CLIENTE" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_CEDULA" Nullable="false" MaxLength="12" />
+          <Property Type="Int32" Name="C_FK_PROVINCIA" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_CANTON" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_DISTRITO" Nullable="false" />
+          <Property Type="String" Name="C_DIRECCION" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="C_APELLIDO1" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_APELLIDO2" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_CORREO" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="C_TELEFONO" Nullable="true" MaxLength="12" />
+          <Property Type="Int32" Name="C_ID_VEHICULO" Nullable="false" />
+          <Property Type="String" Name="C_PLACA" Nullable="false" MaxLength="6" />
+          <Property Type="Int32" Name="C_FK_MARCA" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_TIPO" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_MODELO" Nullable="false" />
+          <Property Type="Int16" Name="C_CANT_PUERTAS" Nullable="false" />
+          <Property Type="Int16" Name="C_CANT_RUEDAS" Nullable="false" />
+          <Property Type="String" Name="C_YEAR" Nullable="false" MaxLength="4" />
+          <Property Type="Int32" Name="C_ID_MODELO" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_MODELO" Nullable="false" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_CREAR_FACTURA_Result">
+          <Property Type="Int32" Name="C_ID_ENCABEZADO_FACTURA" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_CLIENTE" Nullable="false" />
+          <Property Type="Int32" Name="C_FK_VEHICULO" Nullable="false" />
+          <Property Type="DateTime" Name="C_FECHA" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="C_SUBTOTAL" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="C_TOTAL" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="C_TOTAL_IMPUESTO" Nullable="false" Precision="19" />
+          <Property Type="Boolean" Name="C_ESTADO" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_RETORNA_SERVICIOS_ID_Result">
+          <Property Type="Int32" Name="C_ID_SERVICIO" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_SERVICIO" Nullable="false" MaxLength="60" />
+          <Property Type="Decimal" Name="C_PRECIO" Nullable="false" Precision="19" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2095,7 +2147,6 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <FunctionImportMapping FunctionImportName="sp_Actualizar_Vehiculo" FunctionName="programacion6Model.Store.sp_Actualizar_Vehiculo" />
           <FunctionImportMapping FunctionImportName="sp_Agregar_Cliente_x_Vehiculo" FunctionName="programacion6Model.Store.sp_Agregar_Cliente_x_Vehiculo" />
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="programacion6Model.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="programacion6Model.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="programacion6Model.Store.sp_dropdiagram" />
           <FunctionImportMapping FunctionImportName="sp_EliminaCanton" FunctionName="programacion6Model.Store.sp_EliminaCanton" />
           <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="programacion6Model.Store.sp_helpdiagramdefinition">
@@ -2288,7 +2339,6 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_MODIFICAR_SERVICIO" FunctionName="programacion6Model.Store.SP_MODIFICAR_SERVICIO" />
           <FunctionImportMapping FunctionImportName="SP_REGISTRAR_SERVICIO" FunctionName="programacion6Model.Store.SP_REGISTRAR_SERVICIO" />
           <FunctionImportMapping FunctionImportName="SP_RETORNA_SERVICIOS" FunctionName="programacion6Model.Store.SP_RETORNA_SERVICIOS">
             <ResultMapping>
@@ -2327,6 +2377,30 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_MODIFICAR_VEHICULO" FunctionName="programacion6Model.Store.SP_MODIFICAR_VEHICULO" />
+          <FunctionImportMapping FunctionImportName="SP_REGISTRAR_VEHICULO_POR_CLIENTE" FunctionName="programacion6Model.Store.SP_REGISTRAR_VEHICULO_POR_CLIENTE" />
+          <EntitySetMapping Name="TBL_VEHICULO_CLIENTE">
+            <EntityTypeMapping TypeName="programacion6Model.TBL_VEHICULO_CLIENTE">
+              <MappingFragment StoreEntitySet="TBL_VEHICULO_CLIENTE">
+                <ScalarProperty Name="C_FK_VECHICULO" ColumnName="C_FK_VECHICULO" />
+                <ScalarProperty Name="C_FK_CLIENTE" ColumnName="C_FK_CLIENTE" />
+                <ScalarProperty Name="C_CONSECUTIVO" ColumnName="C_CONSECUTIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_CONSULTAR_VEHICULO_SIN_CLIENTE" FunctionName="programacion6Model.Store.SP_CONSULTAR_VEHICULO_SIN_CLIENTE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result">
+                <ScalarProperty Name="C_ID_VEHICULO" ColumnName="C_ID_VEHICULO" />
+                <ScalarProperty Name="C_PLACA" ColumnName="C_PLACA" />
+                <ScalarProperty Name="C_FK_MARCA" ColumnName="C_FK_MARCA" />
+                <ScalarProperty Name="C_FK_TIPO" ColumnName="C_FK_TIPO" />
+                <ScalarProperty Name="C_FK_MODELO" ColumnName="C_FK_MODELO" />
+                <ScalarProperty Name="C_CANT_PUERTAS" ColumnName="C_CANT_PUERTAS" />
+                <ScalarProperty Name="C_CANT_RUEDAS" ColumnName="C_CANT_RUEDAS" />
+                <ScalarProperty Name="C_YEAR" ColumnName="C_YEAR" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_CONSULTAR_VEHICULO_POR_CLIENTE" FunctionName="programacion6Model.Store.SP_CONSULTAR_VEHICULO_POR_CLIENTE">
             <ResultMapping>
               <ComplexTypeMapping TypeName="programacion6Model.SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result">
@@ -2355,19 +2429,20 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_REGISTRAR_VEHICULO_POR_CLIENTE" FunctionName="programacion6Model.Store.SP_REGISTRAR_VEHICULO_POR_CLIENTE" />
-          <EntitySetMapping Name="TBL_VEHICULO_CLIENTE">
-            <EntityTypeMapping TypeName="programacion6Model.TBL_VEHICULO_CLIENTE">
-              <MappingFragment StoreEntitySet="TBL_VEHICULO_CLIENTE">
-                <ScalarProperty Name="C_FK_VECHICULO" ColumnName="C_FK_VECHICULO" />
-                <ScalarProperty Name="C_FK_CLIENTE" ColumnName="C_FK_CLIENTE" />
-                <ScalarProperty Name="C_CONSECUTIVO" ColumnName="C_CONSECUTIVO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SP_CONSULTAR_VEHICULO_SIN_CLIENTE" FunctionName="programacion6Model.Store.SP_CONSULTAR_VEHICULO_SIN_CLIENTE">
+          <FunctionImportMapping FunctionImportName="SP_RETORNA_VEHICULO_POR_CLIENTE" FunctionName="programacion6Model.Store.SP_RETORNA_VEHICULO_POR_CLIENTE">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="programacion6Model.SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result">
+              <ComplexTypeMapping TypeName="programacion6Model.SP_RETORNA_VEHICULO_POR_CLIENTE_Result">
+                <ScalarProperty Name="C_ID_CLIENTE" ColumnName="C_ID_CLIENTE" />
+                <ScalarProperty Name="C_NOMBRE_CLIENTE" ColumnName="C_NOMBRE_CLIENTE" />
+                <ScalarProperty Name="C_CEDULA" ColumnName="C_CEDULA" />
+                <ScalarProperty Name="C_FK_PROVINCIA" ColumnName="C_FK_PROVINCIA" />
+                <ScalarProperty Name="C_FK_CANTON" ColumnName="C_FK_CANTON" />
+                <ScalarProperty Name="C_FK_DISTRITO" ColumnName="C_FK_DISTRITO" />
+                <ScalarProperty Name="C_DIRECCION" ColumnName="C_DIRECCION" />
+                <ScalarProperty Name="C_APELLIDO1" ColumnName="C_APELLIDO1" />
+                <ScalarProperty Name="C_APELLIDO2" ColumnName="C_APELLIDO2" />
+                <ScalarProperty Name="C_CORREO" ColumnName="C_CORREO" />
+                <ScalarProperty Name="C_TELEFONO" ColumnName="C_TELEFONO" />
                 <ScalarProperty Name="C_ID_VEHICULO" ColumnName="C_ID_VEHICULO" />
                 <ScalarProperty Name="C_PLACA" ColumnName="C_PLACA" />
                 <ScalarProperty Name="C_FK_MARCA" ColumnName="C_FK_MARCA" />
@@ -2376,9 +2451,35 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
                 <ScalarProperty Name="C_CANT_PUERTAS" ColumnName="C_CANT_PUERTAS" />
                 <ScalarProperty Name="C_CANT_RUEDAS" ColumnName="C_CANT_RUEDAS" />
                 <ScalarProperty Name="C_YEAR" ColumnName="C_YEAR" />
+                <ScalarProperty Name="C_ID_MODELO" ColumnName="C_ID_MODELO" />
+                <ScalarProperty Name="C_NOMBRE_MODELO" ColumnName="C_NOMBRE_MODELO" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CREAR_FACTURA" FunctionName="programacion6Model.Store.SP_CREAR_FACTURA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_CREAR_FACTURA_Result">
+                <ScalarProperty Name="C_ID_ENCABEZADO_FACTURA" ColumnName="C_ID_ENCABEZADO_FACTURA" />
+                <ScalarProperty Name="C_FK_CLIENTE" ColumnName="C_FK_CLIENTE" />
+                <ScalarProperty Name="C_FK_VEHICULO" ColumnName="C_FK_VEHICULO" />
+                <ScalarProperty Name="C_FECHA" ColumnName="C_FECHA" />
+                <ScalarProperty Name="C_SUBTOTAL" ColumnName="C_SUBTOTAL" />
+                <ScalarProperty Name="C_TOTAL" ColumnName="C_TOTAL" />
+                <ScalarProperty Name="C_TOTAL_IMPUESTO" ColumnName="C_TOTAL_IMPUESTO" />
+                <ScalarProperty Name="C_ESTADO" ColumnName="C_ESTADO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_RETORNA_SERVICIOS_ID" FunctionName="programacion6Model.Store.SP_RETORNA_SERVICIOS_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_RETORNA_SERVICIOS_ID_Result">
+                <ScalarProperty Name="C_ID_SERVICIO" ColumnName="C_ID_SERVICIO" />
+                <ScalarProperty Name="C_NOMBRE_SERVICIO" ColumnName="C_NOMBRE_SERVICIO" />
+                <ScalarProperty Name="C_PRECIO" ColumnName="C_PRECIO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_MODIFICAR_SERVICIO" FunctionName="programacion6Model.Store.SP_MODIFICAR_SERVICIO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

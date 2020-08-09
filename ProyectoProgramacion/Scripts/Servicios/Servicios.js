@@ -40,7 +40,6 @@ function CapturarDatosFormulario() {
     $("#btnRegistrarServicio").on("click", function () {
         $("#btnRegistrar").show();
         $("#btnModificarServicio").hide();
-        $("#divListaServicios").hide();
     });
 
     $("#btnRegistrar").click(function () {
@@ -105,7 +104,7 @@ function creaGrid(data) {
     $("#divListaServicios").kendoGrid({
         dataSource: {
             data: data.resultado,
-            pageSize: 3
+            pageSize: 10
         },
         pageable: true,
         columnMenu: true,
