@@ -103,6 +103,20 @@ namespace ProyectoProgramacion.Controllers
                 resultado = mensaje
             });
         }
+
+        /* METODO REGISTRAR UN SERVICO Y RETORNA EL DETALLE DE LA FACTURA */
+        [HttpPost]
+        public ActionResult RegistrarDetalleFactura(SP_AGREGA_DETALLE_Result ModeloVista)
+        {
+            List<SP_AGREGA_DETALLE_Result> ListaDetalle =
+                this.ModeloDB.SP_AGREGA_DETALLE(ModeloVista.C_ID_ENCABEZADO_FACTURA,
+                                                ModeloVista.C_ID_SERVICIO,
+                                                ModeloVista.C_CANTIDAD).ToList();
+            return Json(new {
+                resultado = ListaDetalle
+            });
+
+        }
         #endregion
 
     }
