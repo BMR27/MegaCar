@@ -1,0 +1,106 @@
+﻿
+@section CSS{
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
+    <link href="~/Content/Facturar.css" rel="stylesheet" />
+
+}
+@{
+    ViewBag.Title = "Facturar Servicio";
+}
+<div class="container">
+    <div class="jumbotron">
+        <h2>@this.ViewBag.Title</h2>
+        <p>Facturación de servicios</p>
+    </div>
+    <div class="row">
+        <center>
+            <div class="col-sm-6">
+                <form id="frmFormularioServicios" action="/" method="post">
+                    <div class="form-group">
+                        <label>Cliente</label>
+                        <select id="cliente" name="cliente" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Vehículo</label>
+                        <select id="vehiculo" name="vehiculo" class="form-control"></select>
+                    </div>
+                    <div id="divServicio" class="form-group">
+                        <label>Servicios</label>
+                        <select id="servicio" name="servicio" class="form-control"></select>
+                        <br />
+                        <label id="lblCantidad">Cantidad</label>
+                        <input type="number" name="C_CANTIDAD" id="C_CANTIDAD" value="" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <div id="divPrecioServicio">
+                            <input type="number" name="C_PRECIO" id="C_PRECIO" value="" class="form-control" />
+                        </div>
+                        <div id="divAlertaPrecio" class="alert alert-info">
+                            <label id="mensajePrecio"></label>
+                        </div>
+                        <div id="divModificar">
+                            <input type="button" name="btnModificarPrecio" id="btnModificarPrecio" value="Modificar Precio" class="btn btn-primary" />
+                        </div>
+                    </div>
+                    <div id="divCrearFactura" class="form-group">
+                        <input type="button" name="btnCrearFactura" id="btnCrearFactura" value="Nueva Factura" class="btn btn-success" />
+                        <input type="button" name="btnAgregarServicio" id="btnAgregarServicio" value="Agregar" class="btn btn-success" />
+                        <div id="divAlertaCrearFactura" class="alert alert-success">
+                            <label id="mensajeCreaFactura"></label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </center>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-8">
+            <label>Número Factura:</label><label id="facturaNumero"></label>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+    <div class="row">
+        <div id="DivTablaFacturacion">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-7 col-lg-9">
+
+        </div>
+        <div class="col-sm-5 col-lg-3">
+            <div class="row" id="Totales">
+                <div class="col col-sm-6 ">
+                    <label>Subtotal:</label>
+                    <br />
+                    <label>Total Impuesto:</label>
+                    <br />
+                    <label>Impuesto:</label>
+                    <br />
+                    <label>Total</label>
+                </div>
+                <div class="col col-sm-6">
+                    <label>125000</label>
+                    <br />
+                    <label>1250</label>
+                    <br />
+                    <label>13%</label>
+                    <br />
+                    <label>126250</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.ValidationSummary(true)
+@section Scripts{
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
+    <script src="~/Scripts/ScriptGenerico.js"></script>
+    <script src="~/Scripts/Facturar/Facturar.js"></script>
+} 

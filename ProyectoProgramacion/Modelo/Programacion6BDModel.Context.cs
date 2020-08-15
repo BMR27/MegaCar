@@ -203,27 +203,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
         }
     
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
         public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
         {
             var diagramnameParameter = diagramname != null ?
@@ -691,23 +670,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_FABRICANTES_Result>("SP_RETORNAR_FABRICANTES", fK_PAISParameter);
         }
     
-        public virtual int SP_MODIFICAR_SERVICIO(Nullable<int> iD_SERVICIO, string nOMBRE, Nullable<decimal> pRECIO)
-        {
-            var iD_SERVICIOParameter = iD_SERVICIO.HasValue ?
-                new ObjectParameter("ID_SERVICIO", iD_SERVICIO) :
-                new ObjectParameter("ID_SERVICIO", typeof(int));
-    
-            var nOMBREParameter = nOMBRE != null ?
-                new ObjectParameter("NOMBRE", nOMBRE) :
-                new ObjectParameter("NOMBRE", typeof(string));
-    
-            var pRECIOParameter = pRECIO.HasValue ?
-                new ObjectParameter("PRECIO", pRECIO) :
-                new ObjectParameter("PRECIO", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_SERVICIO", iD_SERVICIOParameter, nOMBREParameter, pRECIOParameter);
-        }
-    
         public virtual int SP_REGISTRAR_SERVICIO(string nOMBRE, Nullable<decimal> pRECIO)
         {
             var nOMBREParameter = nOMBRE != null ?
@@ -835,15 +797,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_VEHICULO", pLACAParameter, pUERTASParameter, rUEDASParameter, yEARParameter, tIPOParameter, mARCAParameter, mODELOParameter);
         }
     
-        public virtual ObjectResult<SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result> SP_CONSULTAR_VEHICULO_POR_CLIENTE(string pLACA)
-        {
-            var pLACAParameter = pLACA != null ?
-                new ObjectParameter("PLACA", pLACA) :
-                new ObjectParameter("PLACA", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result>("SP_CONSULTAR_VEHICULO_POR_CLIENTE", pLACAParameter);
-        }
-    
         public virtual int SP_REGISTRAR_VEHICULO_POR_CLIENTE(Nullable<int> fK_CLIENTE, string pLACA)
         {
             var fK_CLIENTEParameter = fK_CLIENTE.HasValue ?
@@ -860,6 +813,63 @@ namespace ProyectoProgramacion.Modelo
         public virtual ObjectResult<SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result> SP_CONSULTAR_VEHICULO_SIN_CLIENTE()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result>("SP_CONSULTAR_VEHICULO_SIN_CLIENTE");
+        }
+    
+        public virtual ObjectResult<SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result> SP_CONSULTAR_VEHICULO_POR_CLIENTE(string pLACA)
+        {
+            var pLACAParameter = pLACA != null ?
+                new ObjectParameter("PLACA", pLACA) :
+                new ObjectParameter("PLACA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CONSULTAR_VEHICULO_POR_CLIENTE_Result>("SP_CONSULTAR_VEHICULO_POR_CLIENTE", pLACAParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNA_VEHICULO_POR_CLIENTE_Result> SP_RETORNA_VEHICULO_POR_CLIENTE(Nullable<int> iD_CLIENTE)
+        {
+            var iD_CLIENTEParameter = iD_CLIENTE.HasValue ?
+                new ObjectParameter("ID_CLIENTE", iD_CLIENTE) :
+                new ObjectParameter("ID_CLIENTE", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_VEHICULO_POR_CLIENTE_Result>("SP_RETORNA_VEHICULO_POR_CLIENTE", iD_CLIENTEParameter);
+        }
+    
+        public virtual ObjectResult<SP_CREAR_FACTURA_Result> SP_CREAR_FACTURA(Nullable<int> fK_CLIENTE, Nullable<int> fK_VEHICULO)
+        {
+            var fK_CLIENTEParameter = fK_CLIENTE.HasValue ?
+                new ObjectParameter("FK_CLIENTE", fK_CLIENTE) :
+                new ObjectParameter("FK_CLIENTE", typeof(int));
+    
+            var fK_VEHICULOParameter = fK_VEHICULO.HasValue ?
+                new ObjectParameter("FK_VEHICULO", fK_VEHICULO) :
+                new ObjectParameter("FK_VEHICULO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CREAR_FACTURA_Result>("SP_CREAR_FACTURA", fK_CLIENTEParameter, fK_VEHICULOParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNA_SERVICIOS_ID_Result> SP_RETORNA_SERVICIOS_ID(Nullable<int> c_ID_SERVICIO)
+        {
+            var c_ID_SERVICIOParameter = c_ID_SERVICIO.HasValue ?
+                new ObjectParameter("C_ID_SERVICIO", c_ID_SERVICIO) :
+                new ObjectParameter("C_ID_SERVICIO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_SERVICIOS_ID_Result>("SP_RETORNA_SERVICIOS_ID", c_ID_SERVICIOParameter);
+        }
+    
+        public virtual int SP_MODIFICAR_SERVICIO(Nullable<int> iD_SERVICIO, string nOMBRE, Nullable<decimal> pRECIO)
+        {
+            var iD_SERVICIOParameter = iD_SERVICIO.HasValue ?
+                new ObjectParameter("ID_SERVICIO", iD_SERVICIO) :
+                new ObjectParameter("ID_SERVICIO", typeof(int));
+    
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            var pRECIOParameter = pRECIO.HasValue ?
+                new ObjectParameter("PRECIO", pRECIO) :
+                new ObjectParameter("PRECIO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_SERVICIO", iD_SERVICIOParameter, nOMBREParameter, pRECIOParameter);
         }
     }
 }

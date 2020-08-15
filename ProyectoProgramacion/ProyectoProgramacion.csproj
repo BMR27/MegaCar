@@ -129,6 +129,7 @@
     <Compile Include="Controllers\BienvenidaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\FabricanteController.cs" />
+    <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarcaVehiculoController.cs" />
     <Compile Include="Controllers\ModelosController.cs" />
@@ -185,6 +186,9 @@
     <Compile Include="Modelo\SP_CONSULTAR_VEHICULO_SIN_CLIENTE_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\SP_CREAR_FACTURA_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
@@ -212,6 +216,9 @@
     <Compile Include="Modelo\SP_RETORNA_PAIS_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\SP_RETORNA_SERVICIOS_ID_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\SP_RETORNA_SERVICIOS_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
@@ -219,6 +226,9 @@
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\SP_RETORNA_TIPO_VEHICULO_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\SP_RETORNA_VEHICULO_POR_CLIENTE_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\sp_Validar_Inicio_Sesion_Result.cs">
@@ -289,6 +299,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Facturar.css" />
     <Content Include="CSS\EstilosMenu.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -320,6 +331,7 @@
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Fabricantes\Fabricantes.js" />
+    <Content Include="Scripts\Facturar\Facturar.js" />
     <Content Include="Scripts\InicioSesion\InicioSesion.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -380,6 +392,7 @@
     <Content Include="Views\Fabricante\ListarFabricanteVehiculo.cshtml" />
     <Content Include="Views\Servicios\Servicio_Producto.cshtml" />
     <Content Include="Views\VehiculosPorCliente\VehiculoPorCliente.cshtml" />
+    <Content Include="Views\Factura\FacturarServicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
