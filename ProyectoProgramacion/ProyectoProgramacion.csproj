@@ -177,6 +177,9 @@
     <Compile Include="Modelo\RetornaProvincias_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\SP_AGREGA_DETALLE_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\SP_CONSULTAR_VEHICULOS_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>

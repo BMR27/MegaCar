@@ -871,5 +871,22 @@ namespace ProyectoProgramacion.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_SERVICIO", iD_SERVICIOParameter, nOMBREParameter, pRECIOParameter);
         }
+    
+        public virtual ObjectResult<SP_AGREGA_DETALLE_Result> SP_AGREGA_DETALLE(Nullable<int> fK_ENCABEZADO, Nullable<int> fK_SERVICIO, Nullable<int> cANTIDAD)
+        {
+            var fK_ENCABEZADOParameter = fK_ENCABEZADO.HasValue ?
+                new ObjectParameter("FK_ENCABEZADO", fK_ENCABEZADO) :
+                new ObjectParameter("FK_ENCABEZADO", typeof(int));
+    
+            var fK_SERVICIOParameter = fK_SERVICIO.HasValue ?
+                new ObjectParameter("FK_SERVICIO", fK_SERVICIO) :
+                new ObjectParameter("FK_SERVICIO", typeof(int));
+    
+            var cANTIDADParameter = cANTIDAD.HasValue ?
+                new ObjectParameter("CANTIDAD", cANTIDAD) :
+                new ObjectParameter("CANTIDAD", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_AGREGA_DETALLE_Result>("SP_AGREGA_DETALLE", fK_ENCABEZADOParameter, fK_SERVICIOParameter, cANTIDADParameter);
+        }
     }
 }

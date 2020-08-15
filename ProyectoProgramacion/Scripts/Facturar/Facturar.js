@@ -30,6 +30,9 @@ function EventosClick() {
             ModificarPrecio();
         }
     });
+    $("#btnAgregarServicio").on("click", function () {
+        AgregarDetalleFactura();
+    });
 }
 //FUNCION OCULTAR
 function OcultarSelectores() {
@@ -266,3 +269,50 @@ function ProcesarModificarPrecio(data) {
     MostrarCantidad();
 }
 
+//FUNCION AGREGA EL DETALLE DE LA FACTURA Y RETORNA LOS DATOS DE ELLA MISMA
+function AgregarDetalleFactura() {
+    var urlMetodo = '/Factura/RegistrarDetalleFactura'
+    var parametros = {
+        C_ID_ENCABEZADO_FACTURA: $("#facturaNumero").text(),
+        C_ID_SERVICIO: $("#servicio").val(),
+        C_CANTIDAD: $("#C_CANTIDAD").val()
+    };
+    var funcion = CrearGrid;
+    ejecutaAjax(urlMetodo, parametros, funcion);
+}
+function CrearGrid(data) {
+    $("#DivTablaFacturacion").kendoGrid({
+        dataSource: {
+            data: data.resultado,
+            pageSize: 10
+        },
+        pageable: true,
+        columnMenu: true,
+        sortable: true,
+        selectable: "multiple",
+        toolbar: ["search"],
+        columns: [
+            {
+                field: 'C_NOMBRE_SERVICIO',
+                title: 'Nombre Servicio'
+            },
+            {
+                field: 'C_CANTIDAD',
+                title: 'Cantidad'
+            },
+            {
+                field: 'C_PRECIO',
+                title: 'Precio'
+            },
+            {
+                field: 'C_SUBTOTAL',
+                title: 'Total'
+            }
+        ]
+    });
+
+    $("#subtotal").text(data.resultado[0].SUBTOTAL_FACTURA);
+    $("#totalImpuesto").text(data.resultado[0].C_TOTAL_IMPUESTO);
+    $("#totalFactura").text(data.resultado[0].C_TOTAL);
+
+}
