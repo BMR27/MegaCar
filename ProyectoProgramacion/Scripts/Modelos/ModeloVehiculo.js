@@ -155,11 +155,11 @@ function ProcesaResultadoFabricantes(data) {
     });
 }
 //Funcion que carga los Marcas
-function CargarListaMarcas(pC_ID_MARCA) {
+function CargarListaMarcas(pC_ID_FABRICANTE) {
     /////construir la dirección del método del servidor
-    var urlMetodo = '/Vehiculo/RetornaMarcas';
+    var urlMetodo = '/Vehiculo/RetornaMarcasFabricante';
     var parametros = {
-        C_ID_MARCA: pC_ID_MARCA
+        C_ID_FABRICANTE: pC_ID_FABRICANTE
     };
     var funcion = ProcesaResultadoMarcas;
     ///ejecuta la función $.ajax utilizando un método genérico
@@ -232,7 +232,7 @@ function ObetenerDatoGrid() {
         $("#Pais").val(selectedDataItem.C_ID_PAIS);
         ConsultarListaFabricante(selectedDataItem.C_ID_PAIS);
         $("#Fabricante").val(selectedDataItem.C_ID_FABRICANTE);
-        CargarListaMarcas(selectedDataItem.C_ID_MARCA);
+        CargarListaMarcas(selectedDataItem.C_ID_FABRICANTE);
         $("#C_ID_MARCA").val(selectedDataItem.C_ID_MARCA);//SELECCIONA LA LISTA DE MARCAS
         $("#C_NOMBRE_MODELO").val(selectedDataItem.C_NOMBRE_MODELO)
         $("#C_ID_MODELO").val(selectedDataItem.C_ID_MODELO)

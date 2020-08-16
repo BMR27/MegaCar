@@ -10,18 +10,12 @@
 namespace ProyectoProgramacion.Modelo
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TBL_TIPO_MOVIMIENTO_CAJA
+    public partial class SP_RETORNAR_APERTURA_CAJA_FECHA_Result
     {
-        public TBL_TIPO_MOVIMIENTO_CAJA()
-        {
-            this.TBL_APERTURA_CIERRE_CAJA = new HashSet<TBL_APERTURA_CIERRE_CAJA>();
-        }
-    
-        public int C_ID_MOVIMIENTO { get; set; }
-        public string C_NOMBRE_TIPO { get; set; }
-    
-        public virtual ICollection<TBL_APERTURA_CIERRE_CAJA> TBL_APERTURA_CIERRE_CAJA { get; set; }
+        public int C_ID_APERTURA { get; set; }
+        public System.DateTime C_FECHA { get; set; }
+        public decimal C_MONTO { get; set; }
+        public int C_FK_USUARIO { get; set; }
     }
 }

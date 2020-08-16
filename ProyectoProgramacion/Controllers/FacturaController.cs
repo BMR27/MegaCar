@@ -47,7 +47,7 @@ namespace ProyectoProgramacion.Controllers
         [HttpPost]
         public ActionResult CrearFactura(SP_RETORNA_VEHICULO_POR_CLIENTE_Result ModeloVista)
         {
-           List<SP_CREAR_FACTURA_Result> Lista = this.ModeloDB.SP_CREAR_FACTURA(ModeloVista.C_ID_CLIENTE,
+            List<SP_CREAR_FACTURA_Result> Lista = this.ModeloDB.SP_CREAR_FACTURA(ModeloVista.C_ID_CLIENTE,
                                                                ModeloVista.C_ID_VEHICULO).ToList();
             return Json(Lista);
         }
@@ -117,6 +117,8 @@ namespace ProyectoProgramacion.Controllers
             });
 
         }
+
+
         #endregion
 
     }

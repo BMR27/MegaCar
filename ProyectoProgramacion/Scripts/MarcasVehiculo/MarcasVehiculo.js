@@ -55,7 +55,7 @@ function CapturarDatosFormulario() {
     //Activa el boton registrar en el modal
     $("#btnRegistrarMarca").on("click", function () {
         $("#btnRegistrar").show();
-        $("#btnModificarModelo").hide();
+        $("#btnModificarMarca").hide();
         $("#btnEliminarMarca").hide();
     });
 

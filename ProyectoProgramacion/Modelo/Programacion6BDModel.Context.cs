@@ -32,7 +32,6 @@ namespace ProyectoProgramacion.Modelo
         public DbSet<Distrito> Distrito { get; set; }
         public DbSet<Provincia> Provincia { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public DbSet<TBL_APERTURA_CIERRE_CAJA> TBL_APERTURA_CIERRE_CAJA { get; set; }
         public DbSet<TBL_BITACORA_ERRORES> TBL_BITACORA_ERRORES { get; set; }
         public DbSet<TBL_CLIENTE> TBL_CLIENTE { get; set; }
         public DbSet<TBL_DETALLE_ENCABEZADO_FACTURA> TBL_DETALLE_ENCABEZADO_FACTURA { get; set; }
@@ -44,12 +43,12 @@ namespace ProyectoProgramacion.Modelo
         public DbSet<TBL_PAIS> TBL_PAIS { get; set; }
         public DbSet<TBL_PARAMETROS> TBL_PARAMETROS { get; set; }
         public DbSet<TBL_SERVICIOS> TBL_SERVICIOS { get; set; }
-        public DbSet<TBL_TIPO_MOVIMIENTO_CAJA> TBL_TIPO_MOVIMIENTO_CAJA { get; set; }
         public DbSet<TBL_TIPO_USUARIO> TBL_TIPO_USUARIO { get; set; }
         public DbSet<TBL_TIPO_VEHICULO> TBL_TIPO_VEHICULO { get; set; }
         public DbSet<TBL_USUARIOS> TBL_USUARIOS { get; set; }
         public DbSet<TBL_VEHICULO> TBL_VEHICULO { get; set; }
         public DbSet<TBL_VEHICULO_CLIENTE> TBL_VEHICULO_CLIENTE { get; set; }
+        public DbSet<TBL_APERTURA_CAJA> TBL_APERTURA_CAJA { get; set; }
     
         public virtual ObjectResult<RetornaCantones_Result> RetornaCantones(string nombre, Nullable<int> id_Provincia)
         {
@@ -887,6 +886,43 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("CANTIDAD", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_AGREGA_DETALLE_Result>("SP_AGREGA_DETALLE", fK_ENCABEZADOParameter, fK_SERVICIOParameter, cANTIDADParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNA_PARAMETROS_Result> SP_RETORNA_PARAMETROS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNA_PARAMETROS_Result>("SP_RETORNA_PARAMETROS");
+        }
+    
+        public virtual int SP_REGISTRAR_APERTURA_CAJA(Nullable<decimal> mONTO, Nullable<int> fK_USUARIO)
+        {
+            var mONTOParameter = mONTO.HasValue ?
+                new ObjectParameter("MONTO", mONTO) :
+                new ObjectParameter("MONTO", typeof(decimal));
+    
+            var fK_USUARIOParameter = fK_USUARIO.HasValue ?
+                new ObjectParameter("FK_USUARIO", fK_USUARIO) :
+                new ObjectParameter("FK_USUARIO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_APERTURA_CAJA", mONTOParameter, fK_USUARIOParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNAR_APERTURA_CAJA_FECHA_Result> SP_RETORNAR_APERTURA_CAJA_FECHA()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_APERTURA_CAJA_FECHA_Result>("SP_RETORNAR_APERTURA_CAJA_FECHA");
+        }
+    
+        public virtual ObjectResult<SP_RETORNAR_CIERRES_CAJA_Result> SP_RETORNAR_CIERRES_CAJA()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_CIERRES_CAJA_Result>("SP_RETORNAR_CIERRES_CAJA");
+        }
+    
+        public virtual int SP_REGISTRAR_CIERRE_CAJA(Nullable<int> fK_USUARIO)
+        {
+            var fK_USUARIOParameter = fK_USUARIO.HasValue ?
+                new ObjectParameter("FK_USUARIO", fK_USUARIO) :
+                new ObjectParameter("FK_USUARIO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_CIERRE_CAJA", fK_USUARIOParameter);
         }
     }
 }

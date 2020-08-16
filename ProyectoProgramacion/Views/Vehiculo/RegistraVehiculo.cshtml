@@ -44,8 +44,7 @@
 
                     <div class="form-group">
                         <label>Pais Fabricante</label>
-                        <select name="Pais" id="Pais" class="form-control">
-                        </select>
+                        <select name="Pais" id="Pais" class="form-control"></select>
                     </div>
 
                     <div class="form-group">
@@ -79,10 +78,9 @@
     </div>
 
 </div>
-
+@Html.ValidationSummary(true)
 @section Scripts{
-
+<script src="~/Scripts/ScriptGenerico.js"></script>
     <script src="~/Scripts/RegistroVehiculo/RegistrarVehiculo.js"></script>
-    @Html.ValidationSummary(true)
 
 }
