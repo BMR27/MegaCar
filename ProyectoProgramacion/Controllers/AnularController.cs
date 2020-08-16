@@ -19,6 +19,15 @@ namespace ProyectoProgramacion.Controllers
             return View();
         }
         /* RETORNA LAS FACTURAS */
+        public ActionResult RetornarFacturas()
+        {
+            List<SP_RETORNAR_FACTURAS_Result> ListaFacturas =
+                this.ModeloDB.SP_RETORNAR_FACTURAS().ToList();
+            return Json(ListaFacturas);
+        }
+
+        /* ANULAR UNA FACTURA */
+
         #endregion
 
     }

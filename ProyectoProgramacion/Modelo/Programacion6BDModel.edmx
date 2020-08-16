@@ -464,6 +464,9 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <Parameter Name="version" Type="int" Mode="In" />
           <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
         </Function>
+        <Function Name="SP_ANULAR_FACTURA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_FACTURA" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_CONSULTAR_VEHICULO_POR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PLACA" Type="char" Mode="In" />
         </Function>
@@ -1543,6 +1546,9 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
             <Parameter Name="MONTO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_RETORNAR_FACTURAS" ReturnType="Collection(programacion6Model.SP_RETORNAR_FACTURAS_Result)" />
+          <FunctionImport Name="SP_ANULAR_FACTURA">
+            <Parameter Name="ID_FACTURA" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -2578,6 +2584,7 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ANULAR_FACTURA" FunctionName="programacion6Model.Store.SP_ANULAR_FACTURA" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

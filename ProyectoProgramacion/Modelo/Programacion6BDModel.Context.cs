@@ -975,5 +975,14 @@ namespace ProyectoProgramacion.Modelo
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_FACTURAS_Result>("SP_RETORNAR_FACTURAS");
         }
+    
+        public virtual int SP_ANULAR_FACTURA(Nullable<int> iD_FACTURA)
+        {
+            var iD_FACTURAParameter = iD_FACTURA.HasValue ?
+                new ObjectParameter("ID_FACTURA", iD_FACTURA) :
+                new ObjectParameter("ID_FACTURA", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ANULAR_FACTURA", iD_FACTURAParameter);
+        }
     }
 }

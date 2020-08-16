@@ -2,7 +2,7 @@
     <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" rel="stylesheet" />
     <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
 }
-    }
+    
 @{
     ViewBag.Title = "Modulo Anular Factura";
 }
@@ -15,11 +15,18 @@
 
         </div>
     </div>
+    <br />
+    <div class="row">
+        <input type="button" name="btnAnular" id="btnAnular" value="Anular Factura" class="btn btn-success" />
+    </div>
+    <div id="divAlerta" class="alert alert-success">
+        <label id="lblMensaje"></label>
+    </div>
 </div>
 @Html.ValidationSummary(true)
 @section Scripts{
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
     <script src="~/Scripts/ScriptGenerico.js"></script>
-
+    <script src="~/Scripts/Anular/Anular.js"></script>
 }
