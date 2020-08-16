@@ -1,0 +1,25 @@
+﻿@section CSS{
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
+}
+    }
+@{
+    ViewBag.Title = "Modulo Anular Factura";
+}
+<div class="container">
+    <div class="jumbotron">
+        <h2>@this.ViewBag.Title</h2>
+    </div>
+    <div class="row">
+        <div id="divListaFacturas">
+
+        </div>
+    </div>
+</div>
+@Html.ValidationSummary(true)
+@section Scripts{
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
+    <script src="~/Scripts/ScriptGenerico.js"></script>
+
+}

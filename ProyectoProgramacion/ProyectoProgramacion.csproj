@@ -126,6 +126,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AnularController.cs" />
     <Compile Include="Controllers\BienvenidaController.cs" />
     <Compile Include="Controllers\CajaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
@@ -212,6 +213,9 @@
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\SP_RETORNAR_FABRICANTES_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\SP_RETORNAR_FACTURAS_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\SP_RETORNA_MARCA_Result.cs">
@@ -330,6 +334,7 @@
       <DependentUpon>programacion6BDModel.edmx</DependentUpon>
       <LastGenOutput>programacion6BDModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\Anular\Anular.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Modelo\programacion6BDModel.edmx">
@@ -405,6 +410,7 @@
     <Content Include="Views\VehiculosPorCliente\VehiculoPorCliente.cshtml" />
     <Content Include="Views\Factura\FacturarServicio.cshtml" />
     <Content Include="Views\Caja\CajaVista.cshtml" />
+    <Content Include="Views\Anular\AnularFormulario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

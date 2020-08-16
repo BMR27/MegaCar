@@ -924,5 +924,56 @@ namespace ProyectoProgramacion.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_CIERRE_CAJA", fK_USUARIOParameter);
         }
+    
+        public virtual int SP_MODIFICAR_PARAMETROS(Nullable<int> iD_PARAMETROS, string nOMBRE, string cORREO_APERTURA, string cORREO_CIERRE, Nullable<decimal> mONTO)
+        {
+            var iD_PARAMETROSParameter = iD_PARAMETROS.HasValue ?
+                new ObjectParameter("ID_PARAMETROS", iD_PARAMETROS) :
+                new ObjectParameter("ID_PARAMETROS", typeof(int));
+    
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            var cORREO_APERTURAParameter = cORREO_APERTURA != null ?
+                new ObjectParameter("CORREO_APERTURA", cORREO_APERTURA) :
+                new ObjectParameter("CORREO_APERTURA", typeof(string));
+    
+            var cORREO_CIERREParameter = cORREO_CIERRE != null ?
+                new ObjectParameter("CORREO_CIERRE", cORREO_CIERRE) :
+                new ObjectParameter("CORREO_CIERRE", typeof(string));
+    
+            var mONTOParameter = mONTO.HasValue ?
+                new ObjectParameter("MONTO", mONTO) :
+                new ObjectParameter("MONTO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MODIFICAR_PARAMETROS", iD_PARAMETROSParameter, nOMBREParameter, cORREO_APERTURAParameter, cORREO_CIERREParameter, mONTOParameter);
+        }
+    
+        public virtual int SP_REGISTRAR_PARAMETROS(string nOMBRE, string cORREO_APERTURA, string cORREO_CIERRE, Nullable<decimal> mONTO)
+        {
+            var nOMBREParameter = nOMBRE != null ?
+                new ObjectParameter("NOMBRE", nOMBRE) :
+                new ObjectParameter("NOMBRE", typeof(string));
+    
+            var cORREO_APERTURAParameter = cORREO_APERTURA != null ?
+                new ObjectParameter("CORREO_APERTURA", cORREO_APERTURA) :
+                new ObjectParameter("CORREO_APERTURA", typeof(string));
+    
+            var cORREO_CIERREParameter = cORREO_CIERRE != null ?
+                new ObjectParameter("CORREO_CIERRE", cORREO_CIERRE) :
+                new ObjectParameter("CORREO_CIERRE", typeof(string));
+    
+            var mONTOParameter = mONTO.HasValue ?
+                new ObjectParameter("MONTO", mONTO) :
+                new ObjectParameter("MONTO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_PARAMETROS", nOMBREParameter, cORREO_APERTURAParameter, cORREO_CIERREParameter, mONTOParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNAR_FACTURAS_Result> SP_RETORNAR_FACTURAS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_FACTURAS_Result>("SP_RETORNAR_FACTURAS");
+        }
     }
 }

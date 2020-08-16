@@ -559,6 +559,13 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <Parameter Name="IDPAIS" Type="int" Mode="In" />
           <Parameter Name="NOMBRE_NUEVO" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_MODIFICAR_PARAMETROS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_PARAMETROS" Type="int" Mode="In" />
+          <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
+          <Parameter Name="CORREO_APERTURA" Type="varchar" Mode="In" />
+          <Parameter Name="CORREO_CIERRE" Type="varchar" Mode="In" />
+          <Parameter Name="MONTO" Type="money" Mode="In" />
+        </Function>
         <Function Name="SP_MODIFICAR_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_SERVICIO" Type="int" Mode="In" />
           <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
@@ -610,6 +617,12 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
         </Function>
         <Function Name="SP_REGISTRAR_PAIS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NOMBRE_PAIS" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_REGISTRAR_PARAMETROS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
+          <Parameter Name="CORREO_APERTURA" Type="varchar" Mode="In" />
+          <Parameter Name="CORREO_CIERRE" Type="varchar" Mode="In" />
+          <Parameter Name="MONTO" Type="money" Mode="In" />
         </Function>
         <Function Name="SP_REGISTRAR_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
@@ -677,6 +690,7 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
         <Function Name="SP_RETORNAR_FABRICANTES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FK_PAIS" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_RETORNAR_FACTURAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Validar_Inicio_Sesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="USUARIO" Type="varchar" Mode="In" />
@@ -1513,8 +1527,22 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <FunctionImport Name="SP_RETORNAR_APERTURA_CAJA_FECHA" ReturnType="Collection(programacion6Model.SP_RETORNAR_APERTURA_CAJA_FECHA_Result)" />
           <FunctionImport Name="SP_RETORNAR_CIERRES_CAJA" ReturnType="Collection(programacion6Model.SP_RETORNAR_CIERRES_CAJA_Result)" />
           <FunctionImport Name="SP_REGISTRAR_CIERRE_CAJA">
-            <Parameter Name="FK_USUARIO" Mode="In" Type="Int32" />
+          <Parameter Name="FK_USUARIO" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_MODIFICAR_PARAMETROS">
+            <Parameter Name="ID_PARAMETROS" Mode="In" Type="Int32" />
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="CORREO_APERTURA" Mode="In" Type="String" />
+            <Parameter Name="CORREO_CIERRE" Mode="In" Type="String" />
+            <Parameter Name="MONTO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_REGISTRAR_PARAMETROS">
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="CORREO_APERTURA" Mode="In" Type="String" />
+            <Parameter Name="CORREO_CIERRE" Mode="In" Type="String" />
+            <Parameter Name="MONTO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_RETORNAR_FACTURAS" ReturnType="Collection(programacion6Model.SP_RETORNAR_FACTURAS_Result)" />
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -1851,6 +1879,13 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <Property Type="DateTime" Name="C_FECHA" Nullable="false" Precision="23" />
           <Property Type="Decimal" Name="C_MONTO" Nullable="false" Precision="19" />
           <Property Type="Int32" Name="C_FK_USUARIO" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_RETORNAR_FACTURAS_Result">
+          <Property Type="Int32" Name="C_ID_ENCABEZADO_FACTURA" Nullable="false" />
+          <Property Type="DateTime" Name="C_FECHA" Nullable="false" Precision="23" />
+          <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="182" />
+          <Property Type="String" Name="C_TOTAL" Nullable="true" />
+          <Property Type="String" Name="ESTADO" Nullable="false" MaxLength="7" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2530,6 +2565,19 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_REGISTRAR_CIERRE_CAJA" FunctionName="programacion6Model.Store.SP_REGISTRAR_CIERRE_CAJA" />
+          <FunctionImportMapping FunctionImportName="SP_MODIFICAR_PARAMETROS" FunctionName="programacion6Model.Store.SP_MODIFICAR_PARAMETROS" />
+          <FunctionImportMapping FunctionImportName="SP_REGISTRAR_PARAMETROS" FunctionName="programacion6Model.Store.SP_REGISTRAR_PARAMETROS" />
+          <FunctionImportMapping FunctionImportName="SP_RETORNAR_FACTURAS" FunctionName="programacion6Model.Store.SP_RETORNAR_FACTURAS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_RETORNAR_FACTURAS_Result">
+                <ScalarProperty Name="C_ID_ENCABEZADO_FACTURA" ColumnName="C_ID_ENCABEZADO_FACTURA" />
+                <ScalarProperty Name="C_FECHA" ColumnName="C_FECHA" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="C_TOTAL" ColumnName="C_TOTAL" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
