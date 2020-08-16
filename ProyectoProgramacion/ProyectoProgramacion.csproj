@@ -136,6 +136,7 @@
     <Compile Include="Controllers\MarcaVehiculoController.cs" />
     <Compile Include="Controllers\ModelosController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\ParametrosController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Controllers\TipoVehiculoController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
@@ -362,6 +363,7 @@
     <Content Include="Scripts\Modelos\ModeloVehiculo.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Pais\RegistrarPais.js" />
+    <Content Include="Scripts\Parametros\Parametros.js" />
     <Content Include="Scripts\Registro Cliente\ModificarCliente.js" />
     <Content Include="Scripts\Registro Cliente\RegistroCliente.js" />
     <Content Include="Scripts\RegistroVehiculo\ModificarVehiculo.js" />
@@ -411,6 +413,7 @@
     <Content Include="Views\Factura\FacturarServicio.cshtml" />
     <Content Include="Views\Caja\CajaVista.cshtml" />
     <Content Include="Views\Anular\AnularFormulario.cshtml" />
+    <Content Include="Views\Parametros\Parametros.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

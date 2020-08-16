@@ -22,7 +22,7 @@ namespace ProyectoProgramacion.Controllers
         public ActionResult MostrarParametros()
         {
             List<SP_RETORNA_PARAMETROS_Result> ListaParametros =
-                this.ModeloDB.SP_RETORNA_PARAMETROS(null).ToList();
+                this.ModeloDB.SP_RETORNA_PARAMETROS().ToList();
 
             return Json(new
             {
@@ -41,7 +41,7 @@ namespace ProyectoProgramacion.Controllers
                 filas = this.ModeloDB.SP_REGISTRAR_PARAMETROS(ModeloVista.C_NOMBRE_ORGANIZACION,
                                                               ModeloVista.C_CORREO_APERTURA,
                                                               ModeloVista.C_CORREO_CIERRE,
-                                                              ModeloVista.c_MONTO_MINIMO);
+                                                              ModeloVista.C_MONTO_MINIMO);
             }
             catch (Exception error)
             {
@@ -74,11 +74,12 @@ namespace ProyectoProgramacion.Controllers
             int filas = 0;
             try
             {
-                filas = this.ModeloDB.SP_MODIFICAR_SERVICIO(ModeloVista.C_ID_PARAMETROS,
-                                                            ModeloVista.C_NOMBRE_ORGANIZACION,
-                                                            ModeloVista.C_CORREO_APERTURA,
-                                                            ModeloVista.C_CORREO_CIERRE,
-                                                            ModeloVista.c_MONTO_MINIMO);
+                filas = this.ModeloDB.SP_MODIFICAR_PARAMETROS(ModeloVista.C_ID_PARAMETROS,
+                                                              ModeloVista.C_NOMBRE_ORGANIZACION,
+                                                              ModeloVista.C_CORREO_APERTURA,
+                                                              ModeloVista.C_CORREO_CIERRE,
+                                                              ModeloVista.C_MONTO_MINIMO
+                                                            );
             }
             catch (Exception error)
             {
