@@ -1,11 +1,10 @@
 ﻿
-
 @section CSS{
     <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" rel="stylesheet" />
     <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
 }
 @{
-    ViewBag.Title = "Parametros";
+    ViewBag.Title = "Listado de Parametros";
 }
 <div class="container">
     <div class="jumbotron">
@@ -33,7 +32,7 @@
     <!-- Button to Open the Modal -->
     <button type="button" class="btn btn-primary" name="btnRegistrarParametro" id="btnRegistrarParametro" data-toggle="modal" data-target="#myModal">Registrar Parametro</button>
     <button type="button" class="btn btn-primary" name="btnModificar" id="btnModificar" value="Modificar" data-toggle="modal" data-target="#myModal">Modificar Parametro</button>
-   
+
 
     <!-- The Modal -->
     <div class="modal fade" id="myModal" data-backdrop="static">
@@ -54,13 +53,17 @@
                                 <label>Nombre de la organizacion</label>
                                 <input class="form-control" type="text" name="C_NOMBRE_ORGANIZACION" id="C_NOMBRE_ORGANIZACION" placeholder="Ingrese una organizacion" value="" />
                             </div>
-                            <div id="divIdServicio" class="form-group">
-                                <label>Correo de Apertura</label>
-                                <input class="form-control" type="text" name="C_CORREO_APERTURA" id="C_CORREO_APERTURA" value="" readonly />
+                            <div id="divIdParametro" class="form-group">
+                                <label>Id de parametro</label>
+                                <input class="form-control" type="text" name="C_ID_PARAMETROS" id="C_ID_PARAMETROS" value="" readonly />
                             </div>
-                            <div id="divIdServicio" class="form-group">
+                            <div class="form-group">
+                                <label>Correo de Apertura</label>
+                                <input class="form-control" type="text" name="C_CORREO_APERTURA" id="C_CORREO_APERTURA" placeholder="Ingrese un correo de apertura" value="" />
+                            </div>
+                            <div class="form-group">
                                 <label>Correo de Cierre</label>
-                                <input class="form-control" type="text" name="C_CORREO_CIERRE" id="C_CORREO_CIERRE" value="" readonly />
+                                <input class="form-control" type="text" name="C_CORREO_CIERRE" id="C_CORREO_CIERRE" placeholder="Ingrese un correo de cierre" value="" />
                             </div>
                             <div class="form-group">
                                 <label>Monto</label>
@@ -96,5 +99,5 @@
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
     <script src="~/Scripts/ScriptGenerico.js"></script>
-    <script src="~/Scripts/Servicios/Servicios.js"></script>
+    <script src="~/Scripts/Parametros/Parametros.js"></script>
 }
