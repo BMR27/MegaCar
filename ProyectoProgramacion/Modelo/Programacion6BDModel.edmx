@@ -55,15 +55,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="TBL_APERTURA_CIERRE_CAJA">
-          <Key>
-            <PropertyRef Name="C_ID_APERTURA" />
-          </Key>
-          <Property Name="C_ID_APERTURA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="C_FECHA_MOVIMIENTO" Type="datetime" Nullable="false" />
-          <Property Name="C_FK_TIPO_MOVIMIENTO" Type="int" Nullable="false" />
-          <Property Name="C_FK_USUARIO" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="TBL_BITACORA_ERRORES">
           <Key>
             <PropertyRef Name="C_CONSECUTIVO" />
@@ -250,30 +241,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TBL_APERT__C_FK___123EB7A3">
-          <End Role="TBL_TIPO_MOVIMIENTO_CAJA" Type="Self.TBL_TIPO_MOVIMIENTO_CAJA" Multiplicity="1" />
-          <End Role="TBL_APERTURA_CIERRE_CAJA" Type="Self.TBL_APERTURA_CIERRE_CAJA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TBL_TIPO_MOVIMIENTO_CAJA">
-              <PropertyRef Name="C_ID_MOVIMIENTO" />
-            </Principal>
-            <Dependent Role="TBL_APERTURA_CIERRE_CAJA">
-              <PropertyRef Name="C_FK_TIPO_MOVIMIENTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TBL_APERT__C_FK___1332DBDC">
-          <End Role="TBL_USUARIOS" Type="Self.TBL_USUARIOS" Multiplicity="1" />
-          <End Role="TBL_APERTURA_CIERRE_CAJA" Type="Self.TBL_APERTURA_CIERRE_CAJA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TBL_USUARIOS">
-              <PropertyRef Name="C_ID_USUARIO" />
-            </Principal>
-            <Dependent Role="TBL_APERTURA_CIERRE_CAJA">
-              <PropertyRef Name="C_FK_USUARIO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__TBL_DETAL__C_FK___1AD3FDA4">
           <End Role="TBL_ENCABEZADO_FACTURA" Type="Self.TBL_ENCABEZADO_FACTURA" Multiplicity="1" />
           <End Role="TBL_DETALLE_ENCABEZADO_FACTURA" Type="Self.TBL_DETALLE_ENCABEZADO_FACTURA" Multiplicity="*" />
@@ -433,6 +400,9 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="FN_CONVIERTE_MONTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+          <Parameter Name="MONTO" Type="money" Mode="In" />
+        </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="RetornaCantones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombre" Type="varchar" Mode="In" />
@@ -596,6 +566,13 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <Parameter Name="MARCA" Type="int" Mode="In" />
           <Parameter Name="MODELO" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_REGISTRAR_APERTURA_CAJA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MONTO" Type="money" Mode="In" />
+          <Parameter Name="FK_USUARIO" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_REGISTRAR_CIERRE_CAJA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_USUARIO" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Registrar_Cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CEDULA" Type="char" Mode="In" />
           <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
@@ -660,6 +637,7 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
         <Function Name="SP_RETORNA_PAIS_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="C_ID_PAIS" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_RETORNA_PARAMETROS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_RETORNA_SERVICIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
         </Function>
@@ -683,6 +661,8 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
         <Function Name="sp_RetornaCliente_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Cedula" Type="char" Mode="In" />
         </Function>
+        <Function Name="SP_RETORNAR_APERTURA_CAJA_FECHA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_RETORNAR_CIERRES_CAJA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_RETORNAR_FABRICANTES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FK_PAIS" Type="int" Mode="In" />
         </Function>
@@ -696,7 +676,6 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <EntitySet Name="Distrito" EntityType="Self.Distrito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBL_APERTURA_CIERRE_CAJA" EntityType="Self.TBL_APERTURA_CIERRE_CAJA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_BITACORA_ERRORES" EntityType="Self.TBL_BITACORA_ERRORES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_CLIENTE" EntityType="Self.TBL_CLIENTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_DETALLE_ENCABEZADO_FACTURA" EntityType="Self.TBL_DETALLE_ENCABEZADO_FACTURA" Schema="dbo" store:Type="Tables" />
@@ -721,14 +700,6 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <AssociationSet Name="Distrito_ref_Canton" Association="Self.Distrito_ref_Canton">
             <End Role="Canton" EntitySet="Canton" />
             <End Role="Distrito" EntitySet="Distrito" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TBL_APERT__C_FK___123EB7A3" Association="Self.FK__TBL_APERT__C_FK___123EB7A3">
-            <End Role="TBL_TIPO_MOVIMIENTO_CAJA" EntitySet="TBL_TIPO_MOVIMIENTO_CAJA" />
-            <End Role="TBL_APERTURA_CIERRE_CAJA" EntitySet="TBL_APERTURA_CIERRE_CAJA" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TBL_APERT__C_FK___1332DBDC" Association="Self.FK__TBL_APERT__C_FK___1332DBDC">
-            <End Role="TBL_USUARIOS" EntitySet="TBL_USUARIOS" />
-            <End Role="TBL_APERTURA_CIERRE_CAJA" EntitySet="TBL_APERTURA_CIERRE_CAJA" />
           </AssociationSet>
           <AssociationSet Name="FK__TBL_DETAL__C_FK___1AD3FDA4" Association="Self.FK__TBL_DETAL__C_FK___1AD3FDA4">
             <End Role="TBL_ENCABEZADO_FACTURA" EntitySet="TBL_ENCABEZADO_FACTURA" />
@@ -1567,6 +1538,16 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
             <Parameter Name="FK_SERVICIO" Mode="In" Type="Int32" />
             <Parameter Name="CANTIDAD" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_REGISTRAR_APERTURA_CAJA">
+            <Parameter Name="MONTO" Mode="In" Type="Decimal" />
+            <Parameter Name="FK_USUARIO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_REGISTRAR_CIERRE_CAJA">
+            <Parameter Name="FK_USUARIO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_RETORNA_PARAMETROS" ReturnType="Collection(programacion6Model.SP_RETORNA_PARAMETROS_Result)" />
+          <FunctionImport Name="SP_RETORNAR_APERTURA_CAJA_FECHA" ReturnType="Collection(programacion6Model.SP_RETORNAR_APERTURA_CAJA_FECHA_Result)" />
+          <FunctionImport Name="SP_RETORNAR_CIERRES_CAJA" ReturnType="Collection(programacion6Model.SP_RETORNAR_CIERRES_CAJA_Result)" />
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
           <Property Type="Int32" Name="id_Canton" Nullable="false" />
@@ -1863,6 +1844,25 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <Property Type="String" Name="C_TOTAL" Nullable="true" />
           <Property Type="String" Name="C_TOTAL_IMPUESTO" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="SP_RETORNA_PARAMETROS_Result">
+          <Property Type="Int32" Name="C_ID_PARAMETROS" Nullable="false" />
+          <Property Type="String" Name="C_NOMBRE_ORGANIZACION" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_CORREO_APERTURA" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="C_CORREO_CIERRE" Nullable="false" MaxLength="30" />
+          <Property Type="Decimal" Name="C_MONTO_MINIMO" Nullable="false" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="SP_RETORNAR_APERTURA_CAJA_FECHA_Result">
+          <Property Type="Int32" Name="C_ID_APERTURA" Nullable="false" />
+          <Property Type="DateTime" Name="C_FECHA" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="C_MONTO" Nullable="false" Precision="19" />
+          <Property Type="Int32" Name="C_FK_USUARIO" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_RETORNAR_CIERRES_CAJA_Result">
+          <Property Type="Int32" Name="C_ID_CIERRE" Nullable="false" />
+          <Property Type="DateTime" Name="C_FECHA" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="C_MONTO" Nullable="false" Precision="19" />
+          <Property Type="Int32" Name="C_FK_USUARIO" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1920,16 +1920,6 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBL_APERTURA_CIERRE_CAJA">
-            <EntityTypeMapping TypeName="programacion6Model.TBL_APERTURA_CIERRE_CAJA">
-              <MappingFragment StoreEntitySet="TBL_APERTURA_CIERRE_CAJA">
-                <ScalarProperty Name="C_ID_APERTURA" ColumnName="C_ID_APERTURA" />
-                <ScalarProperty Name="C_FECHA_MOVIMIENTO" ColumnName="C_FECHA_MOVIMIENTO" />
-                <ScalarProperty Name="C_FK_TIPO_MOVIMIENTO" ColumnName="C_FK_TIPO_MOVIMIENTO" />
-                <ScalarProperty Name="C_FK_USUARIO" ColumnName="C_FK_USUARIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2513,6 +2503,39 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
                 <ScalarProperty Name="SUBTOTAL_FACTURA" ColumnName="SUBTOTAL_FACTURA" />
                 <ScalarProperty Name="C_TOTAL" ColumnName="C_TOTAL" />
                 <ScalarProperty Name="C_TOTAL_IMPUESTO" ColumnName="C_TOTAL_IMPUESTO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_REGISTRAR_APERTURA_CAJA" FunctionName="programacion6Model.Store.SP_REGISTRAR_APERTURA_CAJA" />
+          <FunctionImportMapping FunctionImportName="SP_REGISTRAR_CIERRE_CAJA" FunctionName="programacion6Model.Store.SP_REGISTRAR_CIERRE_CAJA" />
+          <FunctionImportMapping FunctionImportName="SP_RETORNA_PARAMETROS" FunctionName="programacion6Model.Store.SP_RETORNA_PARAMETROS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_RETORNA_PARAMETROS_Result">
+                <ScalarProperty Name="C_ID_PARAMETROS" ColumnName="C_ID_PARAMETROS" />
+                <ScalarProperty Name="C_NOMBRE_ORGANIZACION" ColumnName="C_NOMBRE_ORGANIZACION" />
+                <ScalarProperty Name="C_CORREO_APERTURA" ColumnName="C_CORREO_APERTURA" />
+                <ScalarProperty Name="C_CORREO_CIERRE" ColumnName="C_CORREO_CIERRE" />
+                <ScalarProperty Name="C_MONTO_MINIMO" ColumnName="C_MONTO_MINIMO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_RETORNAR_APERTURA_CAJA_FECHA" FunctionName="programacion6Model.Store.SP_RETORNAR_APERTURA_CAJA_FECHA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_RETORNAR_APERTURA_CAJA_FECHA_Result">
+                <ScalarProperty Name="C_ID_APERTURA" ColumnName="C_ID_APERTURA" />
+                <ScalarProperty Name="C_FECHA" ColumnName="C_FECHA" />
+                <ScalarProperty Name="C_MONTO" ColumnName="C_MONTO" />
+                <ScalarProperty Name="C_FK_USUARIO" ColumnName="C_FK_USUARIO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_RETORNAR_CIERRES_CAJA" FunctionName="programacion6Model.Store.SP_RETORNAR_CIERRES_CAJA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_RETORNAR_CIERRES_CAJA_Result">
+                <ScalarProperty Name="C_ID_CIERRE" ColumnName="C_ID_CIERRE" />
+                <ScalarProperty Name="C_FECHA" ColumnName="C_FECHA" />
+                <ScalarProperty Name="C_MONTO" ColumnName="C_MONTO" />
+                <ScalarProperty Name="C_FK_USUARIO" ColumnName="C_FK_USUARIO" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

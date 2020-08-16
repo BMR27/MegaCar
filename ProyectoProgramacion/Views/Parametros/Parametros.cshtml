@@ -1,0 +1,100 @@
+﻿
+
+@section CSS{
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
+}
+@{
+    ViewBag.Title = "Parametros";
+}
+<div class="container">
+    <div class="jumbotron">
+        <h1>@this.ViewBag.Title</h1>
+        <p>Mantenimiento de los parametros, insertar, modificar</p>
+    </div>
+
+    <div id="divListaParametros">
+
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div id="divAlertaElimina" class="alert alert-success">
+                <label id="lblElimina"></label>
+            </div>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Mantenimiento de Parametros</h2>
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" name="btnRegistrarParametro" id="btnRegistrarParametro" data-toggle="modal" data-target="#myModal">Registrar Parametro</button>
+    <button type="button" class="btn btn-primary" name="btnModificar" id="btnModificar" value="Modificar" data-toggle="modal" data-target="#myModal">Modificar Parametro</button>
+   
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Registro de nuevo parametro</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <center>
+                        <form id="frmRegistroParametro" action="/" method="post">
+                            <div class="form-group">
+                                <label>Nombre de la organizacion</label>
+                                <input class="form-control" type="text" name="C_NOMBRE_ORGANIZACION" id="C_NOMBRE_ORGANIZACION" placeholder="Ingrese una organizacion" value="" />
+                            </div>
+                            <div id="divIdServicio" class="form-group">
+                                <label>Correo de Apertura</label>
+                                <input class="form-control" type="text" name="C_CORREO_APERTURA" id="C_CORREO_APERTURA" value="" readonly />
+                            </div>
+                            <div id="divIdServicio" class="form-group">
+                                <label>Correo de Cierre</label>
+                                <input class="form-control" type="text" name="C_CORREO_CIERRE" id="C_CORREO_CIERRE" value="" readonly />
+                            </div>
+                            <div class="form-group">
+                                <label>Monto</label>
+                                <input class="form-control" type="text" name="C_MONTO_MINIMO" id="C_MONTO_MINIMO" placeholder="Ingrese un monto" value="" />
+                            </div>
+                            <div class="form-group">
+                                <div id="AlertaExito" class="alert alert-success">
+                                    <label id="lblMensaje"></label>
+                                </div>
+                            </div>
+                        </form>
+                    </center>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-success" name="btnRegistrar" id="btnRegistrar" value="Registrar Parametro" form="frmRegistroParametro" />
+                    <input type="button" class="btn btn-success" name="btnModificarParametro" id="btnModificarParametro" value="Modificar Parametro" form="frmRegistroParametro" />
+                    <button type="reset" class="btn btn-warning" form="frmRegistroParametro">Limpiar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@Html.ValidationSummary(true)
+@section Scripts{
+
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
+    <script src="~/Scripts/ScriptGenerico.js"></script>
+    <script src="~/Scripts/Servicios/Servicios.js"></script>
+}
