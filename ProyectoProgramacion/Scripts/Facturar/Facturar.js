@@ -20,7 +20,7 @@
 });
 function EventosClick() {
     $("#btnCrearFactura").on("click", function () {
-        CreaFactura();
+        ConsultarAperturaCaja();
     });
     $("#btnModificarPrecio").on("click", function () {
         var formulario = $("#frmFormularioServicios")
@@ -176,7 +176,40 @@ function procesarServicios(data) {
         ddlServicios.append(nuevaOpción);
     });
 }
+/* VALIDAMOS LAS APERTURAS DE CAJA */
+function ConsultarAperturaCaja() {
+    var url = '/caja/RetornarAperturasDeCaja';
+    var parametros = {};
+    var funcion = ProcesarConsultarAperturaCaja;
+    ejecutaAjax(url, parametros,funcion)
+}
 
+function ProcesarConsultarAperturaCaja(data) {
+    if (data.length > 0) {
+        ConsultarCierreCaja();
+    }
+    else
+    {
+        $("#mensajeCreaFactura").text("Debe registrar una apertura de caja para continuar");
+        MostrarAlertaCreaFactura();
+    }
+}
+
+/* VALIDAMOS EL CIERRE DE LA CAJA */
+function ConsultarCierreCaja() {
+    var url = '/caja/RetornarCierreDeCaja';
+    var parametros = {};
+    var funcion = ProcesarConsultarCierreCaja;
+    ejecutaAjax(url, parametros, funcion)
+}
+function ProcesarConsultarCierreCaja(data) {
+    if (data.length == 0) {
+        CreaFactura();
+    } else {
+        $("#mensajeCreaFactura").text("Existe un Cierre realizado no puede crear la factura");
+        MostrarAlertaCreaFactura();
+    }
+}
 //FUNCION CREA UNA FACTURA
 function CreaFactura() {
     var urlMetodo = '/Factura/CrearFactura'

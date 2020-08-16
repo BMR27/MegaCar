@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Mantenimiento de Caja";
+}
+<div class="container">
+    <div class="jumbotron">
+        <h2>@this.ViewBag.Title</h2>
+        <p>Registramos las aperturas de las cajas y los respectivos cierres</p>
+    </div>
+    <div class="row">
+        <input type="button" name="btnAperturaCaja" id="btnAperturaCaja" class="btn btn-success" value="Apertura Caja" data-toggle="modal" data-target="#myModal" />
+        <input type="button" name="btnCierreCaja" id="btnCierreCaja" class="btn btn-primary" value="Cierre Caja" />
+    </div>
+    <div id="divCierre" class="alert label-info">
+        <label id="lblMensajeCierre"></label>
+    </div>
+    <div class="row">
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Apertura de caja</h4>
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <center>
+                            <form id="frmAperturaCaja" action="/" method="post">
+                                <div class="form-group">
+                                    <label>Monto Apertura</label>
+                                    <input type="number" name="C_MONTO" id="C_MONTO" placeholder="Ingrese un monto" class="form-control" value="" />
+                                </div>
+                                <div id="alerta" class="alert alert-info">
+                                    <label id="lblMensaje"></label>
+                                </div>
+                            </form>
+                        </center>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-success" name="btnRegistrar" id="btnRegistrar" value="Registrar" form="frmAperturaCaja" />
+                        <button type="reset" class="btn btn-warning" form="frmAperturaCaja">Limpiar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</div>
+
+@Html.ValidationSummary(true)
+@section Scripts{
+    <script src="~/Scripts/ScriptGenerico.js"></script>
+    <script src="~/Scripts/Caja/Caja.js"></script>
+}

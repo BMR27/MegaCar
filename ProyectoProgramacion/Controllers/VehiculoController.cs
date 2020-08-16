@@ -42,6 +42,13 @@ namespace ProyectoProgramacion.Controllers
                 this.ModeloDB.SP_RETORNA_MARCA(Convert.ToInt32(C_ID_MARCA)).ToList();
             return Json(ListaMarcas);
         }
+        /* RETORNA LAS MARCAS POR SU FABRICANTE */
+        public ActionResult RetornaMarcasFabricante(string C_ID_FABRICANTE)
+        {
+            List<SP_RETORNA_MARCA_Result> ListaMarcas =
+                this.ModeloDB.SP_RETORNA_MARCA(Convert.ToInt32(C_ID_FABRICANTE)).ToList();
+            return Json(ListaMarcas);
+        }
         /* RETORNA LA LISTA DE LOS MODELOS */
 
         public ActionResult RetornaModelos(string C_ID_MODELO)

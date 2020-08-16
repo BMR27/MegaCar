@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BienvenidaController.cs" />
+    <Compile Include="Controllers\CajaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\FabricanteController.cs" />
     <Compile Include="Controllers\FacturaController.cs" />
@@ -134,7 +135,6 @@
     <Compile Include="Controllers\MarcaVehiculoController.cs" />
     <Compile Include="Controllers\ModelosController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
-    <Compile Include="Controllers\ParametrosController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Controllers\TipoVehiculoController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
@@ -205,6 +205,12 @@
     <Compile Include="Modelo\sp_RetornaCliente_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\SP_RETORNAR_APERTURA_CAJA_FECHA_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\SP_RETORNAR_CIERRES_CAJA_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\SP_RETORNAR_FABRICANTES_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
@@ -218,6 +224,9 @@
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\SP_RETORNA_PAIS_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\SP_RETORNA_PARAMETROS_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\SP_RETORNA_SERVICIOS_ID_Result.cs">
@@ -241,7 +250,7 @@
     <Compile Include="Modelo\sysdiagrams.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\TBL_APERTURA_CIERRE_CAJA.cs">
+    <Compile Include="Modelo\TBL_APERTURA_CAJA.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_BITACORA_ERRORES.cs">
@@ -275,9 +284,6 @@
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_SERVICIOS.cs">
-      <DependentUpon>programacion6BDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modelo\TBL_TIPO_MOVIMIENTO_CAJA.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TBL_TIPO_USUARIO.cs">
@@ -334,6 +340,7 @@
       <DependentUpon>programacion6BDModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Caja\Caja.js" />
     <Content Include="Scripts\Fabricantes\Fabricantes.js" />
     <Content Include="Scripts\Facturar\Facturar.js" />
     <Content Include="Scripts\InicioSesion\InicioSesion.js" />
@@ -397,7 +404,7 @@
     <Content Include="Views\Servicios\Servicio_Producto.cshtml" />
     <Content Include="Views\VehiculosPorCliente\VehiculoPorCliente.cshtml" />
     <Content Include="Views\Factura\FacturarServicio.cshtml" />
-    <Content Include="Views\Parametros\Parametros.cshtml" />
+    <Content Include="Views\Caja\CajaVista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

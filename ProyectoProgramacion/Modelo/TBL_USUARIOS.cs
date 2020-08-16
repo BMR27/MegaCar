@@ -16,8 +16,8 @@ namespace ProyectoProgramacion.Modelo
     {
         public TBL_USUARIOS()
         {
-            this.TBL_APERTURA_CIERRE_CAJA = new HashSet<TBL_APERTURA_CIERRE_CAJA>();
             this.TBL_INGRESOS_USUARIOS = new HashSet<TBL_INGRESOS_USUARIOS>();
+            this.TBL_APERTURA_CAJA = new HashSet<TBL_APERTURA_CAJA>();
         }
     
         public int C_ID_USUARIO { get; set; }
@@ -29,8 +29,8 @@ namespace ProyectoProgramacion.Modelo
         public int C_FK_TIPO { get; set; }
         public bool C_ESTADO { get; set; }
     
-        public virtual ICollection<TBL_APERTURA_CIERRE_CAJA> TBL_APERTURA_CIERRE_CAJA { get; set; }
         public virtual ICollection<TBL_INGRESOS_USUARIOS> TBL_INGRESOS_USUARIOS { get; set; }
         public virtual TBL_TIPO_USUARIO TBL_TIPO_USUARIO { get; set; }
+        public virtual ICollection<TBL_APERTURA_CAJA> TBL_APERTURA_CAJA { get; set; }
     }
 }
