@@ -3,6 +3,13 @@
     ViewBag.Title = "Modificar el Nombre de un País";
 }
 
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
+
 <div class="jumbotron">
     <h1>@ViewBag.Title</h1>
 </div>

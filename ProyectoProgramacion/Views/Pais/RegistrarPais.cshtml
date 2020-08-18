@@ -2,6 +2,13 @@
 @{
     ViewBag.Title = "Registrar País";
 }
+
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
 <div class="jumbotron">
     <center>
         <h2>@ViewBag.Title</h2>
@@ -24,5 +31,5 @@
 
 @Html.ValidationSummary(true)
 @section Scripts{
-<script src="~/Scripts/Pais/RegistrarPais.js"></script>
+    <script src="~/Scripts/Pais/RegistrarPais.js"></script>
 }

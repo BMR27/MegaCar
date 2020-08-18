@@ -3,6 +3,13 @@
     ViewBag.Title = "BienvenidaUsuario";
 }
 
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
+
 <div class="jumbotron">
     <center>
         <h1>Bienvenido</h1>
@@ -12,7 +19,7 @@
 
 <div class="container">
     <center>
-        <video controls="controls" width="320" height="240">
+        <video controls="controls" width="854" height="480">
             <source src="~/Video/5%20Pasos%20Para%20Mantener%20Su%20Auto%20Limpio%20(470p_30fps_H264-128kbit_AAC).mp4" type="video/mp4" />
         </video>
     </center>

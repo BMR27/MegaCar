@@ -3,9 +3,16 @@
     ViewBag.Title = "Cliente Eliminado satisfactoriamente";
 }
 
-    <div class="jumbotron">
-        <center>
-            <h1>@ViewBag.Title</h1>
-            <a href="~/Cliente/MostrarCliente">Regresar</a>
-        </center>
-    </div>
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
+
+<div class="jumbotron">
+    <center>
+        <h1>@ViewBag.Title</h1>
+        <a href="~/Cliente/MostrarCliente">Regresar</a>
+    </center>
+</div>

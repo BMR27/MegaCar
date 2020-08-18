@@ -3,7 +3,7 @@ $(function () {
     ConsultarListaParametros();
     OcultarAlertasBotones();
     CapturarDatosFormulario();
-    ValidarRegistroParametros();
+    ValidarRegistroParametros(); 
     ObetenerDatoGrid();
 });
 
@@ -16,7 +16,7 @@ function OcultarAlertasBotones() {
 }
 
 //VALIDAR FORMULARIO
-function ValidarRegistroServicio() {
+function ValidarRegistroParametros() {
     $("#frmRegistroParametro").validate(
         {
             rules: {
@@ -26,12 +26,12 @@ function ValidarRegistroServicio() {
                     minlength: 1
                 },
                 C_CORREO_APERTURA: {
-                    required: true,
-                    email:true
+                    required: true
+                    
                 },
                 C_CORREO_CIERRE: {
-                    required: true,
-                    email: true
+                    required: true
+                    
                 },
                 C_MONTO_MINIMO: {
                     required: true
@@ -48,6 +48,7 @@ function CapturarDatosFormulario() {
     $("#btnRegistrarParametro").on("click", function () {
         $("#btnRegistrar").show();
         $("#btnModificarParametro").hide();
+        $("#divListaParametros").hide();
     });
 
     $("#btnRegistrar").click(function () {
@@ -152,6 +153,7 @@ function creaGrid(data) {
 
 
 //MUESTRA EL RESULTADO AL REGISTRAR O MODIFICAR UN PARAMETRO
+
 function MostrarResultadoRegistro(data) {
     //alert(data.resultado);
     //$("#lblMensaje").val(data.resultado);
@@ -208,7 +210,7 @@ function ObtenerDatosModificarParametros() {
     var urlMetodo = '/Parametros/ModificarParametro'
     var parametros = {
         C_ID_PARAMETROS: $("#C_ID_PARAMETROS").val(),
-        C_CORREO_APERTURA: $("# C_CORREO_APERTURA").val(),
+        C_CORREO_APERTURA: $("#C_CORREO_APERTURA").val(),
         C_CORREO_CIERRE: $("#C_CORREO_CIERRE").val(),
         C_MONTO_MINIMO: $("#C_MONTO_MINIMO").val()
     };

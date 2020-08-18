@@ -7,6 +7,12 @@
 @{
     ViewBag.Title = "Servicio y Producto";
 }
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
 <div class="container">
     <div class="jumbotron">
         <h1>@this.ViewBag.Title</h1>
@@ -51,7 +57,7 @@
                     <center>
                         <form id="frmRegistroServicio" action="/" method="post">
                             <div class="form-group">
-                                <label>Nombre del servicio</label>        
+                                <label>Nombre del servicio</label>
                                 <input class="form-control" type="text" name="C_NOMBRE_SERVICIO" id="C_NOMBRE_SERVICIO" placeholder="Ingrese un servicio" value="" />
                             </div>
                             <div id="divIdServicio" class="form-group">
@@ -59,7 +65,7 @@
                                 <input class="form-control" type="text" name="C_ID_SERVICIO" id="C_ID_SERVICIO" value="" readonly />
                             </div>
                             <div class="form-group">
-                                <label>Precio</label>                             
+                                <label>Precio</label>
                                 <input class="form-control" type="text" name="C_PRECIO" id="C_PRECIO" placeholder="Ingrese un precio" value="" />
                             </div>
                             <div class="form-group">
@@ -76,7 +82,7 @@
                     <input type="button" class="btn btn-success" name="btnRegistrar" id="btnRegistrar" value="Registrar Servicio" form="frmRegistroServicio" />
                     <input type="button" class="btn btn-success" name="btnModificarServicio" id="btnModificarServicio" value="Modificar Servicio" form="frmRegistroServicio" />
                     <button type="reset" class="btn btn-warning" form="frmRegistroServicio">Limpiar</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button> 
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
 
             </div>

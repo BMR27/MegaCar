@@ -2,6 +2,12 @@
 @{
     ViewBag.Title = "Modificar Tipo de vehiculo";
 }
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
 <div class="jumbotron">
     <center>
         <h2>@ViewBag.Title</h2>

@@ -2,6 +2,12 @@
 @{
     ViewBag.Title = "Modificar Vehiculo";
 }
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
 
 <div class="jumbotron">
     <center>
@@ -25,12 +31,12 @@
 
             <div class="form-group">
                 <label class="control-label">Cantidad de Ruedas del Vehiculo:</label>
-                <input type="text" name="C_CANT_RUEDAS" id="C_CANT_RUEDAS" placeholder="Cantidad de ruedas" class="form-control"value="@Model.C_CANT_RUEDAS" />
+                <input type="text" name="C_CANT_RUEDAS" id="C_CANT_RUEDAS" placeholder="Cantidad de ruedas" class="form-control" value="@Model.C_CANT_RUEDAS" />
             </div>
 
             <div class="form-group">
                 <label class="control-label">Año del Vehiculo:</label>
-                <input type="text" name="C_YEAR" id="C_YEAR" placeholder="Año"class="form-control"value="@Model.C_YEAR" />
+                <input type="text" name="C_YEAR" id="C_YEAR" placeholder="Año" class="form-control" value="@Model.C_YEAR" />
             </div>
 
             <div class="form-group">
@@ -163,6 +169,6 @@
 
 @Html.ValidationSummary(true)
 @section Scripts{
-<script src="~/Scripts/ScriptGenerico.js"></script>
+    <script src="~/Scripts/ScriptGenerico.js"></script>
     <script src="~/Scripts/RegistroVehiculo/ModificarVehiculo.js"></script>
 }

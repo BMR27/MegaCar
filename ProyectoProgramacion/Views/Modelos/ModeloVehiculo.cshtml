@@ -5,6 +5,12 @@
 @{
     ViewBag.Title = "Listado de Modelos de Vehiculos";
 }
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
 <div class="container">
     <div class="jumbotron">
         <h1>@this.ViewBag.Title</h1>

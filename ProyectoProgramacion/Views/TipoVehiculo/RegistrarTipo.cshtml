@@ -2,10 +2,16 @@
 @{
     ViewBag.Title = "";
 }
-    <div class="jumbotron">
-        <center><h2>Registrar Tipo de vehiculo</h2></center>
-        <h2>@ViewBag.Title</h2>
-    </div>
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
+<div class="jumbotron">
+    <center><h2>Registrar Tipo de vehiculo</h2></center>
+    <h2>@ViewBag.Title</h2>
+</div>
 <div class="container">
     <center>
         <form id="frmRegistrarTipo" action="RegistrarTipo" method="post">
@@ -24,5 +30,5 @@
 </div>
 @Html.ValidationSummary(true)
 @section Scripts{
-<script src="~/Scripts/Tipos Vehiculo/RegistrarTipoVehiculo.js"></script>
+    <script src="~/Scripts/Tipos Vehiculo/RegistrarTipoVehiculo.js"></script>
 }

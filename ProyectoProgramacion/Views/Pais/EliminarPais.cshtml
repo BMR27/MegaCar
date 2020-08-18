@@ -3,6 +3,13 @@
     ViewBag.Title = "País Eliminado";
 }
 
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
+
 <div class="jumbotron">
 
     <h2>@ViewBag.Title</h2>

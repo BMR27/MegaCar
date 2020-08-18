@@ -1,6 +1,13 @@
 ﻿
 @{
     ViewBag.Title = "RegistraVehiculo";
+
+}
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
 }
 <div class="container">
 
@@ -80,7 +87,7 @@
 </div>
 @Html.ValidationSummary(true)
 @section Scripts{
-<script src="~/Scripts/ScriptGenerico.js"></script>
+    <script src="~/Scripts/ScriptGenerico.js"></script>
     <script src="~/Scripts/RegistroVehiculo/RegistrarVehiculo.js"></script>
 
 }

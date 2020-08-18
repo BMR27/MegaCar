@@ -3,6 +3,13 @@
     ViewBag.Title = "Lista de Clientes Registrados";
 }
 
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
+
 <div class="jumbotron">
     <center>
         <h1>@ViewBag.Title</h1>

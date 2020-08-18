@@ -6,6 +6,14 @@
 @{
     ViewBag.Title = "Vehiculo Por Cliente";
 }
+
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
+
 <div class="jumbotron">
     <h1>@this.ViewBag.Title</h1>
     <p>Lista de Vehiculos por cliente</p>
@@ -61,7 +69,7 @@
                                     }
                                 </select>
                             </div>
-                           
+
                             <div class="form-group">
                                 <div id="AlertaExito" class="alert alert-success">
                                     <label id="lblMensaje"></label>

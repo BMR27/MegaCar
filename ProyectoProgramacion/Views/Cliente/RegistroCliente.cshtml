@@ -3,97 +3,104 @@
     ViewBag.Title = "RegistroCliente";
 }
 
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
+
 <body>
-<div class="container">
+    <div class="container">
 
-    <div class="main">
-        <div class="titulo">
-            <div class="jumbotron">
-                <center><h2>Registro de Clientes</h2></center>
+        <div class="main">
+            <div class="titulo">
+                <div class="jumbotron">
+                    <center><h2>Registro de Clientes</h2></center>
+                </div>
             </div>
+            <section class="formulario">
+                <center>
+                    <form id="frmRegistraCliente" action="RegistroCliente" method="post">
+
+                        <div class="form-group">
+                            <label class="control-label">Nombre del Cliente:</label>
+                            <input type="text" name="C_NOMBRE_CLIENTE" id="C_NOMBRE_CLIENTE" placeholder="Escriba su nombre" value="" class="form-control"
+                                   title="Ingreso el nombre del cliente" data-toggle="tooltip" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Apellido 1:</label>
+                            <input type="text" name="C_APELLIDO1" id="C_APELLIDO1" placeholder="Escriba su primer apellido" value="" class="form-control"
+                                   title="Ingreso su primer apellido" data-toggle="tooltip" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Apellido 2:</label>
+                            <input type="text" name="C_APELLIDO2" id="C_APELLIDO2" placeholder="Escriba su segundo apellido" value="" class="form-control"
+                                   title="Ingreso su segundo apellido" data-toggle="tooltip" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Cedula:(000+000000000)</label>
+                            <input type="text" name="C_CEDULA" id="C_CEDULA" placeholder="Cedula" value="" class="form-control"
+                                   title="Ingrese el numero de cedula" data-toggle="tooltip" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Correo Electronico:</label>
+                            <input type="text" name="C_CORREO" id="C_CORREO" placeholder="Escriba su correo electronico" value="" class="form-control"
+                                   title="Ingrese su correo electronico" data-toggle="tooltip" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Direccion:</label>
+                            <input type="text" name="C_DIRECCION" id="C_DIRECCION" placeholder="Escriba su direccion" value="" class="form-control"
+                                   title="Ingrese su direccion" data-toggle="tooltip" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Telefono:</label>
+                            <input type="text" name="C_TELEFONO" id="C_TELEFONO" placeholder="Escriba su telefono" value="" class="form-control"
+                                   title="Ingrese su telefono" data-toggle="tooltip" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Provincia:</label>
+                            <select name="C_FK_PROVINCIA" id="C_FK_PROVINCIA" class="form-control">
+                                <option value="">Seleccione una Provincia</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Canton:</label>
+                            <select name="C_FK_CANTON" id="C_FK_CANTON" class="form-control">
+                                <option value="">Seleccione un Canton</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Distrito:</label>
+                            <select name="C_FK_DISTRITO" id="C_FK_DISTRITO" class="form-control">
+                                <option value="">Seleccione un Distrito</option>
+                            </select>
+                        </div>
+
+                        <div class="bottom">
+                            <input type="submit" name="btnRegistrar" id="btnRegistrar" value="Registrar" class="btn btn-success" />
+                            <input type="reset" name="btnLimpiar" id="btnLimpiar" value="Limpiar" class="btn btn-primary" />
+                        </div>
+
+                    </form>
+                </center>
+            </section>
         </div>
-        <section class="formulario">
-            <center>
-                <form id="frmRegistraCliente" action="RegistroCliente" method="post">
 
-                    <div class="form-group">
-                        <label class="control-label">Nombre del Cliente:</label>
-                        <input type="text" name="C_NOMBRE_CLIENTE" id="C_NOMBRE_CLIENTE" placeholder="Escriba su nombre" value="" class="form-control"
-                               title="Ingreso el nombre del cliente" data-toggle="tooltip" />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">Apellido 1:</label>
-                        <input type="text" name="C_APELLIDO1" id="C_APELLIDO1" placeholder="Escriba su primer apellido" value="" class="form-control"
-                               title="Ingreso su primer apellido" data-toggle="tooltip" />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">Apellido 2:</label>
-                        <input type="text" name="C_APELLIDO2" id="C_APELLIDO2" placeholder="Escriba su segundo apellido" value="" class="form-control"
-                               title="Ingreso su segundo apellido" data-toggle="tooltip" />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">Cedula:(000+000000000)</label>
-                        <input type="text" name="C_CEDULA" id="C_CEDULA" placeholder="Cedula" value="" class="form-control"
-                               title="Ingrese el numero de cedula" data-toggle="tooltip" />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">Correo Electronico:</label>
-                        <input type="text" name="C_CORREO" id="C_CORREO" placeholder="Escriba su correo electronico" value="" class="form-control"
-                               title="Ingrese su correo electronico" data-toggle="tooltip" />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">Direccion:</label>
-                        <input type="text" name="C_DIRECCION" id="C_DIRECCION" placeholder="Escriba su direccion" value="" class="form-control"
-                               title="Ingrese su direccion" data-toggle="tooltip" />
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">Telefono:</label>
-                        <input type="text" name="C_TELEFONO" id="C_TELEFONO" placeholder="Escriba su telefono" value="" class="form-control"
-                               title="Ingrese su telefono" data-toggle="tooltip" />
-                    </div>
-
-                    <div class="form-group">
-                        <label>Provincia:</label>
-                        <select name="C_FK_PROVINCIA" id="C_FK_PROVINCIA" class="form-control">
-                            <option value="">Seleccione una Provincia</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Canton:</label>
-                        <select name="C_FK_CANTON" id="C_FK_CANTON" class="form-control">
-                            <option value="">Seleccione un Canton</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Distrito:</label>
-                        <select name="C_FK_DISTRITO" id="C_FK_DISTRITO" class="form-control">
-                            <option value="">Seleccione un Distrito</option>
-                        </select>
-                    </div>
-
-                    <div class="bottom">
-                        <input type="submit" name="btnRegistrar" id="btnRegistrar" value="Registrar" class="btn btn-success" />
-                        <input type="reset" name="btnLimpiar" id="btnLimpiar" value="Limpiar" class="btn btn-primary" />
-                    </div>
-
-                </form>
-            </center>
-        </section>
     </div>
-
-</div>
-    </body>
+</body>
 
 @Html.ValidationSummary(true)
 @section Scripts{
     <script src="~/Scripts/Registro Cliente/RegistroCliente.js"></script>
-   
+
 }

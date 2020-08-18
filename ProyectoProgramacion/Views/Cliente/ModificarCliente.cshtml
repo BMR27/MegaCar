@@ -1,5 +1,12 @@
 ﻿@model ProyectoProgramacion.Modelo.sp_RetornaCliente_ID_Result
 @{ ViewBag.Title = "Modificar Cliente"; }
+
+@{
+    if (Convert.ToBoolean(this.Session["Logueado"]) == false)
+    {
+        Response.Redirect("http://localhost:64943/");
+    }
+}
 <div class="jumbotron">
     <center>
         <h1>@ViewBag.Title</h1>
@@ -48,7 +55,7 @@
                 <select name="C_FK_PROVINCIA" id="C_FK_PROVINCIA" class="form-control">
                     <option value="">Seleccione una Provincia</option>
                     @{ foreach (ProyectoProgramacion.Modelo.RetornaProvincias_Result item in
-                                                this.ViewBag.ListaProvincias)
+                                                 this.ViewBag.ListaProvincias)
                         {
                             bool esIdProvinciaModelo = item.id_Provincia == Model.id_Provincia;
 
@@ -69,17 +76,19 @@
                 <select name="C_FK_CANTON" id="C_FK_CANTON" class="form-control">
                     <option value="">Seleccione un Canton</option>
                     @{ foreach (ProyectoProgramacion.Modelo.RetornaCantones_Result item in
-                                             this.ViewBag.ListaCantones)
+                                              this.ViewBag.ListaCantones)
                         {
                             bool esIdCantonModelo = item.id_Canton == Model.id_Canton;
 
 
                             if (esIdCantonModelo)
                             {
-                                <option value="@item.id_Canton" selected> @item.nombre </option> }
+                                <option value="@item.id_Canton" selected> @item.nombre </option>
+ }
                             else
                             {
-                                <option value="@item.id_Canton"> @item.nombre </option> }
+                                <option value="@item.id_Canton"> @item.nombre </option>
+ }
                         } }
                 </select>
             </div>
@@ -88,7 +97,7 @@
                 <select name="C_FK_DISTRITO" id="C_FK_DISTRITO" class="form-control">
                     <option value="">Seleccione un Distrito</option>
                     @{ foreach (ProyectoProgramacion.Modelo.RetornaDistrito_Result item in
-                                         this.ViewBag.ListaDistritos)
+                                          this.ViewBag.ListaDistritos)
                         {
                             bool esIdDistritoModelo = item.id_Distrito == Model.id_Distrito;
 
