@@ -147,7 +147,7 @@ namespace ProyectoProgramacion.Controllers
             {
                 /* VARIABLES */
                 string Emisor = "andreyazofeifaalvarado@gmail.com";
-                string Contraseña = "melany18";
+                string Contraseña = "amsklahsf@185$%3";
                 string Receptor = "";
                 string Asunto = "";
                 string Mensaje = "";

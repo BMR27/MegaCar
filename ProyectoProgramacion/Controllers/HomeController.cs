@@ -37,9 +37,17 @@ namespace ProyectoProgramacion.Controllers
                 Response.Write("<script language=javascript>alert('Usuario no encontrado');</script>");
                 return View("Index");
             }
-
-                      
         }
+
+            [AllowAnonymous]
+        public ActionResult Logout()
+        {
+            HttpCookie myCookie = new HttpCookie("ASP.NET_SessionId");
+            myCookie.Expires = DateTime.Now.AddDays(-1d);
+            Response.Cookies.Add(myCookie);
+            return RedirectToAction("Index", "Home");
+        
+         }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
