@@ -13,6 +13,7 @@ namespace ProyectoProgramacion.Controllers
         {
             sp_Validar_Inicio_Sesion_Result DatosUsuario =
                 (sp_Validar_Inicio_Sesion_Result)this.Session["DatosUsuario"];
+           
             return View(DatosUsuario);
         }
     }

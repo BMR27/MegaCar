@@ -1002,5 +1002,14 @@ namespace ProyectoProgramacion.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_REPORTE_VEHICULO_CLIENTE_Result>("SP_REPORTE_VEHICULO_CLIENTE", fK_CLIENTEParameter);
         }
+    
+        public virtual ObjectResult<SP_REPORTE_SERVICIO_CLIENTE_Result> SP_REPORTE_SERVICIO_CLIENTE(Nullable<int> fK_CLIENTE)
+        {
+            var fK_CLIENTEParameter = fK_CLIENTE.HasValue ?
+                new ObjectParameter("FK_CLIENTE", fK_CLIENTE) :
+                new ObjectParameter("FK_CLIENTE", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_REPORTE_SERVICIO_CLIENTE_Result>("SP_REPORTE_SERVICIO_CLIENTE", fK_CLIENTEParameter);
+        }
     }
 }

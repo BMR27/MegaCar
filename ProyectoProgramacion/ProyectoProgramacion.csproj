@@ -204,6 +204,9 @@
     <Compile Include="Modelo\sp_helpdiagrams_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\SP_REPORTE_SERVICIO_CLIENTE_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\SP_REPORTE_VEHICULO_CLIENTE_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
