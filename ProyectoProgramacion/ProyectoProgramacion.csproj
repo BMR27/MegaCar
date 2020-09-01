@@ -184,6 +184,9 @@
     <Compile Include="Modelo\SP_AGREGA_DETALLE_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\SP_CIERRE_CAJA_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\SP_CONSULTAR_VEHICULOS_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
@@ -200,6 +203,9 @@
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\sp_helpdiagrams_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\SP_REPORTE_VEHICULO_CLIENTE_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\sp_RetornaCliente_ID_Result.cs">
