@@ -467,6 +467,9 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
         <Function Name="SP_ANULAR_FACTURA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_FACTURA" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_CIERRE_CAJA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FECHA" Type="date" Mode="In" />
+        </Function>
         <Function Name="SP_CONSULTAR_VEHICULO_POR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PLACA" Type="char" Mode="In" />
         </Function>
@@ -651,6 +654,9 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_REPORTE_VEHICULO_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_CLIENTE" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_RETORNA_MARCA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FK_FABRICANTE" Type="int" Mode="In" />
@@ -1547,7 +1553,13 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           </FunctionImport>
           <FunctionImport Name="SP_RETORNAR_FACTURAS" ReturnType="Collection(programacion6Model.SP_RETORNAR_FACTURAS_Result)" />
           <FunctionImport Name="SP_ANULAR_FACTURA">
-            <Parameter Name="ID_FACTURA" Mode="In" Type="Int32" />
+          <Parameter Name="ID_FACTURA" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CIERRE_CAJA" ReturnType="Collection(programacion6Model.SP_CIERRE_CAJA_Result)">
+            <Parameter Name="FECHA" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_REPORTE_VEHICULO_CLIENTE" ReturnType="Collection(programacion6Model.SP_REPORTE_VEHICULO_CLIENTE_Result)">
+            <Parameter Name="FK_CLIENTE" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RetornaCantones_Result">
@@ -1892,6 +1904,18 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
           <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="182" />
           <Property Type="String" Name="C_TOTAL" Nullable="true" />
           <Property Type="String" Name="ESTADO" Nullable="false" MaxLength="7" />
+        </ComplexType>
+        <ComplexType Name="SP_CIERRE_CAJA_Result">
+          <Property Type="String" Name="USUARIO" Nullable="false" MaxLength="182" />
+          <Property Type="String" Name="FECHA" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="MONTO" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_REPORTE_VEHICULO_CLIENTE_Result">
+          <Property Type="String" Name="C_NOMBRE_MODELO" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_NOMBRE_MARCA" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="C_PLACA" Nullable="false" MaxLength="6" />
+          <Property Type="Int16" Name="C_CANT_PUERTAS" Nullable="false" />
+          <Property Type="String" Name="C_YEAR" Nullable="false" MaxLength="4" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2585,6 +2609,26 @@ advertencia 6035: La relación 'FK__TBL_VEHIC__C_FK___690797E6' tiene columnas q
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_ANULAR_FACTURA" FunctionName="programacion6Model.Store.SP_ANULAR_FACTURA" />
+          <FunctionImportMapping FunctionImportName="SP_CIERRE_CAJA" FunctionName="programacion6Model.Store.SP_CIERRE_CAJA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_CIERRE_CAJA_Result">
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_REPORTE_VEHICULO_CLIENTE" FunctionName="programacion6Model.Store.SP_REPORTE_VEHICULO_CLIENTE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="programacion6Model.SP_REPORTE_VEHICULO_CLIENTE_Result">
+                <ScalarProperty Name="C_NOMBRE_MODELO" ColumnName="C_NOMBRE_MODELO" />
+                <ScalarProperty Name="C_NOMBRE_MARCA" ColumnName="C_NOMBRE_MARCA" />
+                <ScalarProperty Name="C_PLACA" ColumnName="C_PLACA" />
+                <ScalarProperty Name="C_CANT_PUERTAS" ColumnName="C_CANT_PUERTAS" />
+                <ScalarProperty Name="C_YEAR" ColumnName="C_YEAR" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

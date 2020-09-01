@@ -984,5 +984,23 @@ namespace ProyectoProgramacion.Modelo
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ANULAR_FACTURA", iD_FACTURAParameter);
         }
+    
+        public virtual ObjectResult<SP_CIERRE_CAJA_Result> SP_CIERRE_CAJA(Nullable<System.DateTime> fECHA)
+        {
+            var fECHAParameter = fECHA.HasValue ?
+                new ObjectParameter("FECHA", fECHA) :
+                new ObjectParameter("FECHA", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CIERRE_CAJA_Result>("SP_CIERRE_CAJA", fECHAParameter);
+        }
+    
+        public virtual ObjectResult<SP_REPORTE_VEHICULO_CLIENTE_Result> SP_REPORTE_VEHICULO_CLIENTE(Nullable<int> fK_CLIENTE)
+        {
+            var fK_CLIENTEParameter = fK_CLIENTE.HasValue ?
+                new ObjectParameter("FK_CLIENTE", fK_CLIENTE) :
+                new ObjectParameter("FK_CLIENTE", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_REPORTE_VEHICULO_CLIENTE_Result>("SP_REPORTE_VEHICULO_CLIENTE", fK_CLIENTEParameter);
+        }
     }
 }
