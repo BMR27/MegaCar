@@ -25,61 +25,88 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                     @{
+                        ProyectoProgramacion.Modelo.sp_Validar_Inicio_Sesion_Result DatosUsuario =
+                 (ProyectoProgramacion.Modelo.sp_Validar_Inicio_Sesion_Result)this.Session["DatosUsuario"];
                         if (Convert.ToBoolean(this.Session["Logueado"]) == true)
                         {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Clientes</a>
-                                <div class="dropdown-menu" style="background-color:black">
-                                    <ul class="nav navbar-nav">
-                                        <li>@Html.ActionLink("Registro Clientes", "RegistroCliente", "Cliente")</li>
-                                        <li>@Html.ActionLink("Listado Clientes", "MostrarCliente", "Cliente")</li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Vehiculos</a>
-                                <div class="dropdown-menu" style="background-color:black">
-                                    <ul class="nav navbar-nav">
-                                        <li>@Html.ActionLink("Registro Vehiculos", "RegistraVehiculo", "Vehiculo")</li>
-                                        <li>@Html.ActionLink("Listado Vehiculos", "MostrarVevhiculos", "Vehiculo")</li>
-                                        <li>@Html.ActionLink("Registro de Tipos", "RegistrarTipo", "TipoVehiculo")</li>
-                                    </ul>
-                                </div>
-                            </li>
+                            if (DatosUsuario.C_FK_TIPO == 0)
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Clientes</a>
+                                    <div class="dropdown-menu" style="background-color:black">
+                                        <ul class="nav navbar-nav">
+                                            <li>@Html.ActionLink("Registro Clientes", "RegistroCliente", "Cliente")</li>
+                                            <li>@Html.ActionLink("Listado Clientes", "MostrarCliente", "Cliente")</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Vehiculos</a>
+                                    <div class="dropdown-menu" style="background-color:black">
+                                        <ul class="nav navbar-nav">
+                                            <li>@Html.ActionLink("Registro Vehiculos", "RegistraVehiculo", "Vehiculo")</li>
+                                            <li>@Html.ActionLink("Listado Vehiculos", "MostrarVevhiculos", "Vehiculo")</li>
+                                            <li>@Html.ActionLink("Registro de Tipos", "RegistrarTipo", "TipoVehiculo")</li>
+                                        </ul>
+                                    </div>
+                                </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Pais</a>
-                                <div class="dropdown-menu" style="background-color:black">
-                                    <ul class="nav navbar-nav">
-                                        <li>@Html.ActionLink("Registro Pais", "RegistrarPais", "Pais")</li>
-                                        <li>@Html.ActionLink("Listado de Pais", "MostrarListaPaises", "Pais")</li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Reportes</a>
-                                <div class="dropdown-menu" style="background-color:black">
-                                    <ul class="nav navbar-nav">
-                                        <li>@Html.ActionLink("Reportes Clientes", "RegistraVehiculo", "Vehiculo")</li>
-                                        <li>@Html.ActionLink("Reportes Vehiculo", "RegistraVehiculo", "Vehiculo")</li>
-                                        <li>@Html.ActionLink("Otros", "RegistraVehiculo", "Vehiculo")</li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Mantenimientos</a>
-                                <div class="dropdown-menu" style="background-color:black">
-                                    <ul class="nav navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Pais</a>
+                                    <div class="dropdown-menu" style="background-color:black">
+                                        <ul class="nav navbar-nav">
+                                            <li>@Html.ActionLink("Registro Pais", "RegistrarPais", "Pais")</li>
+                                            <li>@Html.ActionLink("Listado de Pais", "MostrarListaPaises", "Pais")</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Reportes</a>
+                                    <div class="dropdown-menu" style="background-color:black">
+                                        <ul class="nav navbar-nav">
+                                            <li>@Html.ActionLink("Reportes Clientes", "RegistraVehiculo", "Vehiculo")</li>
+                                            <li>@Html.ActionLink("Reportes Vehiculo", "RegistraVehiculo", "Vehiculo")</li>
+                                            <li>@Html.ActionLink("Otros", "RegistraVehiculo", "Vehiculo")</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Mantenimientos</a>
+                                    <div class="dropdown-menu" style="background-color:black">
+                                        <ul class="nav navbar-nav">
 
-                                        <li>@Html.ActionLink("Registrar Fabricante", "ListarFabricanteVehiculo", "Fabricante")</li>
-                                        <li>@Html.ActionLink("Registrar Modelo ", "ModeloVehiculo", "Modelos")</li>
-                                        <li>@Html.ActionLink("Registrar Marca ", "ListarMarcaVehiculo", "MarcaVehiculo")</li>
-                                        <li>@Html.ActionLink("Registrar Servicio ", "Servicio_Producto", "Servicios")</li>
-                                        <li>@Html.ActionLink("Registrar Parametro", "Parametros", "Parametros")</li>
-                                        <li>@Html.ActionLink("Caja ", "CajaVista", "Caja")</li>
-                                    </ul>
-                                </div>
-                            </li>
+                                            <li>@Html.ActionLink("Registrar Fabricante", "ListarFabricanteVehiculo", "Fabricante")</li>
+                                            <li>@Html.ActionLink("Registrar Modelo ", "ModeloVehiculo", "Modelos")</li>
+                                            <li>@Html.ActionLink("Registrar Marca ", "ListarMarcaVehiculo", "MarcaVehiculo")</li>
+                                            <li>@Html.ActionLink("Registrar Servicio ", "Servicio_Producto", "Servicios")</li>
+                                            <li>@Html.ActionLink("Registrar Parametro", "Parametros", "Parametros")</li>
+                                            <li>@Html.ActionLink("Caja ", "CajaVista", "Caja")</li>
+                                            <li>@Html.ActionLink("Facturar", "FacturarServicio", "Factura")</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Reportes</a>
+                                    <div class="dropdown-menu" style="background-color:black">
+                                        <ul class="nav navbar-nav">
+                                            <li>@Html.ActionLink("Reportes", "FacturarServicio", "Factura")</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                            else if (DatosUsuario.C_FK_TIPO == 1)
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Reportes</a>
+                                    <div class="dropdown-menu" style="background-color:black">
+                                        <ul class="nav navbar-nav">
+                                            <li>@Html.ActionLink("Reportes", "FacturarServicio", "Factura")</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+
+
                             <li class="nav-item text-right">
                                 <a class="nav-link text-right" href="/Home/Logout">
                                     <button type="button" id="signout" class="btn btn-danger btn-sm text-right text-align-right">

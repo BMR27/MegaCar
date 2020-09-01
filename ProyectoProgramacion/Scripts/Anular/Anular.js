@@ -3,7 +3,15 @@
     RetornarFacturas();
     /* OCULTAMOS LA ALERTA */
     OcultarAlerta();
+    /* EVENTOS CLICK */
+    EventosClick();
 });
+
+function EventosClick() {
+    $("#btnAnular").on("click", function () {
+        AnularFactura();
+    });
+}
 /* OCULTAR ALERTA */
 function OcultarAlerta() {
     $("#divAlerta").hide();
@@ -51,4 +59,29 @@ function ProcesarRetornarFacturas(data) {
 
 
     });
+}
+
+/* ANULAR FACTURA */
+function AnularFactura() {
+    var url = '/Anular/AnularFactura'
+    /* CAPTURAMOS LOS DATOS DEL GRID */
+    var grid = $("#divListaFacturas").data("kendoGrid");
+    var selectedDataItem = grid.dataItem(grid.select());
+    var parametros = {
+        C_ID_ENCABEZADO_FACTURA: selectedDataItem.C_ID_ENCABEZADO_FACTURA
+    }
+    var funcion = ProcesarAnularFactura;
+    ejecutaAjax(url, parametros, funcion);
+}
+function ProcesarAnularFactura(Data) {
+    $("#lblMensaje").text(Data.resultado);
+    MostrarAlertaExito();
+    RetornarFacturas();
+}
+
+//MOSTRAMOS ALERTA
+function MostrarAlertaExito() {
+    $('#divAlerta').fadeTo(2000, 500).slideUp(500, function () {
+        $("#divAlerta").slideUp(500);
+    }); //muestro mediante id
 }

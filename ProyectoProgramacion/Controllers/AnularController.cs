@@ -27,7 +27,32 @@ namespace ProyectoProgramacion.Controllers
         }
 
         /* ANULAR UNA FACTURA */
+        [HttpPost]
+        public ActionResult AnularFactura(SP_RETORNAR_FACTURAS_Result ModeloVista)
+        {
+            string mensaje = string.Empty;
+            int filas = 0;
+            try
+            {
+                 filas = this.ModeloDB.SP_ANULAR_FACTURA(ModeloVista.C_ID_ENCABEZADO_FACTURA);
+            }
+            catch (Exception error)
+            {
 
+                mensaje = error.Message;
+            }
+            finally
+            {
+                if (filas > 0)
+                {
+                    mensaje = "Factura Anulada con exito";
+                }
+            }
+            return Json(new
+            {
+                resultado = mensaje
+            });
+        }
         #endregion
 
     }
