@@ -21,10 +21,10 @@ namespace ProyectoProgramacion.Controllers
 
         //CONSULTA LOS SERVICIOS
         [HttpPost]
-        public ActionResult MostrarServicios()
+        public ActionResult MostrarServicios(sp_RetornaCliente_Result ModeloVista)
         {
             List<SP_REPORTE_SERVICIO_CLIENTE_Result> ListaServicios =
-                this.ModeloDB.SP_REPORTE_SERVICIO_CLIENTE(null).ToList();
+                this.ModeloDB.SP_REPORTE_SERVICIO_CLIENTE(ModeloVista.C_ID_CLIENTE).ToList();
 
             return Json(new
             {

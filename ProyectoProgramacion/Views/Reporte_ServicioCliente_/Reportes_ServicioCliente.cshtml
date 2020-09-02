@@ -8,12 +8,12 @@
     ViewBag.Title = "Reportes Servicio Cliente";
 }
 
-@{
+@*@{
     if (Convert.ToBoolean(this.Session["Logueado"]) == false)
     {
         Response.Redirect("http://localhost:64943/");
     }
-}
+}*@
 <div class="container">
     <div class="jumbotron">
         <h1>@this.ViewBag.Title</h1>
@@ -58,7 +58,7 @@
                         <form id="frmReportes_Servicios" action="/" method="post">
                             <div class="form-group">
                                 <label>Cliente</label>
-                                <select class="form-control" name="C_NOMBRE_CLIENTE" id="C_NOMBRE_CLIENTE"></select>
+                                <select class="form-control" name="cliente" id="cliente"></select>
                             </div>
                             <div id="divIdServicio" class="form-group">
                                 <label>Id de Servicio</label>
