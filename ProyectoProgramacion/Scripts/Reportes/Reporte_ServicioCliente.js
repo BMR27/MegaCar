@@ -14,8 +14,9 @@ function OcultarAlertasBotones() {
     $("#divAlertaElimina").hide();
 }
 
+
 //VALIDAR FORMULARIO
-function ValidarRegistroFabricante() {
+function ValidarRegistroCliente() {
     $("#frmReportes_Servicios").validate(
         {
             rules: {
