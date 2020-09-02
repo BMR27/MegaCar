@@ -13,7 +13,7 @@ namespace ProyectoProgramacion.Controllers
         #region INSTANCIAS
         programacionBDEntities ModeloDB = new programacionBDEntities();
         #endregion
-        // GET: Reporte_ServicioCliente_
+        // GET: Reporte_ServicioCliente
         public ActionResult Reportes_ServicioCliente()
         {
             return View();
@@ -24,7 +24,7 @@ namespace ProyectoProgramacion.Controllers
         public ActionResult MostrarServicios()
         {
             List<SP_REPORTE_SERVICIO_CLIENTE_Result> ListaServicios =
-                this.ModeloDB.SP_REPORTE_VEHICULO_CLIENTE(null).ToList();
+                this.ModeloDB.SP_REPORTE_SERVICIO_CLIENTE(null).ToList();
 
             return Json(new
             {
