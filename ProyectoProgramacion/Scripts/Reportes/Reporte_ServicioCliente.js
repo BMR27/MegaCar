@@ -41,8 +41,9 @@ function OcultarAlertasBotones() {
     $("#divAlertaElimina").hide();
 }
 
+
 //VALIDAR FORMULARIO
-function ValidarRegistroFabricante() {
+function ValidarRegistroCliente() {
     $("#frmReportes_Servicios").validate(
         {
             rules: {
@@ -93,6 +94,22 @@ function creaGrid(data) {
             {
                 field: 'C_NOMBRE_MARCA',
                 title: 'Nombre Marca'
+            },
+            {
+                field: 'C_NOMBRE_MODELO',
+                title: 'Nombre Modelo'
+            },
+            {
+                field: 'C_CANTIDAD',
+                title: 'Cantidad'
+            },
+            {
+                field: 'C_PRECIO',
+                title: 'Precio'
+            },
+            {
+                field: 'C_SUBTOTAL',
+                title: 'Subtotal'
             }
             
         ]

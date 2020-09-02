@@ -23,6 +23,8 @@ namespace ProyectoProgramacion.Controllers
         [HttpPost]
         public ActionResult MostrarServicios(sp_RetornaCliente_Result ModeloVista)
         {
+            
+    
             List<SP_REPORTE_SERVICIO_CLIENTE_Result> ListaServicios =
                 this.ModeloDB.SP_REPORTE_SERVICIO_CLIENTE(ModeloVista.C_ID_CLIENTE).ToList();
 
