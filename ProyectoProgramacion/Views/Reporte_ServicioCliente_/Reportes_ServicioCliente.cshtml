@@ -8,12 +8,12 @@
     ViewBag.Title = "Reportes Servicio Cliente";
 }
 
-@*@{
+@{
     if (Convert.ToBoolean(this.Session["Logueado"]) == false)
     {
         Response.Redirect("http://localhost:64943/");
     }
-}*@
+}
 <div class="container">
     <div class="jumbotron">
         <h1>@this.ViewBag.Title</h1>
@@ -37,9 +37,13 @@
 
 <div class="container">
     <h2>Reportes de Servicio Clientes</h2>
-    <!-- Button to Open the Modal -->
-    <button type="button" class="btn btn-primary" name="btnConsultarCliente" id="btnConsultarCliente" data-toggle="modal" data-target="#myModal">Consultar Cliente</button>
-    
+    <div class="form-group">
+        <label>Cliente</label>
+        <select class="form-control" name="cliente" id="cliente"></select>
+    </div>
+
+    <input type="button" class="btn btn-success" name="btnConsultar" id="btnConsultar" value="Consultar Cliente" form="frmReportes_Servicios" />
+   
 
     <!-- The Modal -->
     <div class="modal fade" id="myModal" data-backdrop="static">
@@ -60,10 +64,7 @@
                                 <label>Cliente</label>
                                 <select class="form-control" name="cliente" id="cliente"></select>
                             </div>
-                            <div id="divIdServicio" class="form-group">
-                                <label>Id de Servicio</label>
-                                <input class="form-control" type="text" name="C_ID_SERVICIO" id="C_ID_SERVICIO" value="" readonly />
-                            </div>
+
                             <div class="form-group">
                                 <div id="AlertaExito" class="alert alert-success">
                                     <label id="lblMensaje"></label>
@@ -71,12 +72,6 @@
                             </div>
                         </form>
                     </center>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <input type="button" class="btn btn-success" name="btnConsultar" id="btnConsultar" value="Consultar Cliente" form="frmReportes_Servicios" />             
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
 
             </div>
