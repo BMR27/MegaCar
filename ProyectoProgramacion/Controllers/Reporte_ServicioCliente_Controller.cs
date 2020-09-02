@@ -13,7 +13,7 @@ namespace ProyectoProgramacion.Controllers
         #region INSTANCIAS
         programacionBDEntities ModeloDB = new programacionBDEntities();
         #endregion
-        // GET: Reporte_ServicioCliente_
+        // GET: Reporte_ServicioCliente
         public ActionResult Reportes_ServicioCliente()
         {
             return View();

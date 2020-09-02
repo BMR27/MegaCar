@@ -378,6 +378,7 @@
     <Content Include="Scripts\Registro Cliente\RegistroCliente.js" />
     <Content Include="Scripts\RegistroVehiculo\ModificarVehiculo.js" />
     <Content Include="Scripts\RegistroVehiculo\RegistrarVehiculo.js" />
+    <Content Include="Scripts\Reportes\Reporte_ServicioCliente.js" />
     <Content Include="Scripts\ScriptGenerico.js" />
     <Content Include="Scripts\Servicios\Servicios.js" />
     <Content Include="Scripts\Tipos Vehiculo\RegistrarTipoVehiculo.js" />
@@ -424,10 +425,10 @@
     <Content Include="Views\Caja\CajaVista.cshtml" />
     <Content Include="Views\Anular\AnularFormulario.cshtml" />
     <Content Include="Views\Parametros\Parametros.cshtml" />
+    <Content Include="Views\Reporte_ServicioCliente_\Reportes_ServicioCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Reporte_ServicioCliente_\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
