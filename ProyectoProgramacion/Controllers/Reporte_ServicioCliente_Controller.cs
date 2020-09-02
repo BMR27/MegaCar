@@ -24,7 +24,7 @@ namespace ProyectoProgramacion.Controllers
         public ActionResult MostrarServicios()
         {
             List<SP_REPORTE_SERVICIO_CLIENTE_Result> ListaServicios =
-                this.ModeloDB.SP_REPORTE_VEHICULO_CLIENTE(null).ToList();
+                this.ModeloDB.SP_REPORTE_SERVICIO_CLIENTE(null).ToList();
 
             return Json(new
             {

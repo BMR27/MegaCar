@@ -19,6 +19,7 @@ namespace ProyectoProgramacion.Controllers
         // GET: Caja
         public ActionResult CajaVista()
         {
+            
             return View();
         }
         /* RETORNA LOS PARAMETROS DE LA CAJA */
