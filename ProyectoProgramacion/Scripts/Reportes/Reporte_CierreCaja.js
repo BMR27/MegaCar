@@ -1,60 +1,27 @@
 ﻿//Document ready
 $(function () {
-    //ConsultarListaServicios();
-    //OcultarAlertasBotones();
-    //CapturarDatosFormulario();
-    MostrarFecha();
     crearDataPicker();
-    //ObetenerDatoGrid();
     EventoClick();
 });
 
 function EventoClick() {
     $("#btnConsultar").on("click", function () {
-        ConsultarListaVehiculos();
+        ConsultarCierreCaja();
     });
 }
 
 function crearDataPicker() {
-    $("#C_FECHA").datepicker({
+    $("#datepicker").datepicker({
         changeMonth: true,
         changeYear: true,
         yearRange: "c-50:c+1",
-        dateFormat: "yy/mm/dd"});
-}
-
-
-
-
-//FUNCION MUESTRA LOS CIERRES
-function MostrarFecha() {
-    var urlMetodo = '/Caja/RetornarCierreDeCaja'
-    var parametros = {};
-    var funcion = procesarResultadoCliente;
-    ejecutaAjax(urlMetodo, parametros, funcion);
-}
-
-function procesarResultadoCliente(data) {
-    var ddlCliente = $("#cliente");
-    ddlCliente.empty();
-    var nuevaOpción = "<option value=''>Seleccione una Cliente</option>";
-    ddlCliente.append(nuevaOpción);
-    $(data).each(function () {
-        var ClienteActual = this;
-        nuevaOpción = "<option value='" + ClienteActual.C_ID_CLIENTE + "'>" + ClienteActual.C_NOMBRE_CLIENTE + " " + ClienteActual.C_APELLIDO1 + " " + ClienteActual.C_APELLIDO2 + "</option>";
-        ddlCliente.append(nuevaOpción);
+        dateFormat: "yy/mm/dd"
     });
-}
-//OCULTAR ALERTAS Y BOTONES
-function OcultarAlertasBotones() {
-    $("#AlertaExito").hide();
-    $("#divIdServicio").hide();
-    $("#divAlertaElimina").hide();
 }
 
 
 //VALIDAR FORMULARIO
-function ValidarRegistroCliente() {
+function ValidarCierreCaja() {
     $("#frmReportes_CierreCaja").validate(
         {
             rules: {
@@ -66,19 +33,17 @@ function ValidarRegistroCliente() {
 
             }
 
-
-
         }
     );
 }
 
 
 /*consulta la lista de cierres*/
-function ConsultarListaCierres() {
+function ConsultarCierreCaja() {
     /////construir la dirección del método del servidor
     var urlMetodo = '/Reporte_CierreCaja_/MostrarCierres'
     var parametros = {
-        C_FECHA: $("#C_FECHA").val()
+        C_FECHA: $("#datepicker").val()
     };
     var funcion = creaGrid;
     ///ejecuta la función $.ajax utilizando un método genérico
@@ -117,7 +82,9 @@ function creaGrid(data) {
 
         ]
 
-
     });
 }
+
+
+
 

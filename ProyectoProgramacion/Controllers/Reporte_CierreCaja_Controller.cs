@@ -20,11 +20,11 @@ namespace ProyectoProgramacion.Controllers
 
         //CONSULTA LOS CIERRES DE CAJA
         [HttpPost]
-        public ActionResult MostrarCierres(SP_CIERRE_CAJA_Result ModeloVista)
+        public ActionResult MostrarCierres(SP_RETORNAR_CIERRES_CAJA_Result ModeloVista)
         {
 
             List<SP_CIERRE_CAJA_Result> ListaCierreCaja =
-                this.ModeloDB.SP_CIERRE_CAJA(null).ToList();
+                this.ModeloDB.SP_CIERRE_CAJA(ModeloVista.C_FECHA).ToList();
 
             return Json(new
             {

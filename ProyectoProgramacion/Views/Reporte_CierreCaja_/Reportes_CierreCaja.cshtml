@@ -2,18 +2,19 @@
 @section CSS{
     <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.common.min.css" rel="stylesheet" />
     <link href="https://kendo.cdn.telerik.com/2020.2.617/styles/kendo.blueopal.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 }
 
 @{
     ViewBag.Title = "Reportes Cierre Caja";
 }
 
-@{
+@*@{
     if (Convert.ToBoolean(this.Session["Logueado"]) == false)
     {
         Response.Redirect("http://localhost:64943/");
-    }
-}
+    }*@
+@*}*@
 <div class="container">
     <div class="jumbotron">
         <h1>@this.ViewBag.Title</h1>
@@ -30,7 +31,7 @@
     <h2>Reportes de los Cierres de Caja</h2>
     <div class="form-group">
         <label>Fecha:</label>
-        <input type="datetime" name="C_FECHA" id="C_FECHA" />
+        <input type="text" name="datepicker" id="datepicker" />
 
     </div>
 
@@ -42,6 +43,7 @@
 
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="~/Scripts/ScriptGenerico.js"></script>
     <script src="~/Scripts/Reportes/Reporte_CierreCaja.js"></script>
 }
