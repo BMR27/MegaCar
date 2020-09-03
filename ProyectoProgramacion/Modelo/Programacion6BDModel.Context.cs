@@ -971,11 +971,6 @@ namespace ProyectoProgramacion.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REGISTRAR_PARAMETROS", nOMBREParameter, cORREO_APERTURAParameter, cORREO_CIERREParameter, mONTOParameter);
         }
     
-        public virtual ObjectResult<SP_RETORNAR_FACTURAS_Result> SP_RETORNAR_FACTURAS()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_FACTURAS_Result>("SP_RETORNAR_FACTURAS");
-        }
-    
         public virtual int SP_ANULAR_FACTURA(Nullable<int> iD_FACTURA)
         {
             var iD_FACTURAParameter = iD_FACTURA.HasValue ?
@@ -983,15 +978,6 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("ID_FACTURA", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ANULAR_FACTURA", iD_FACTURAParameter);
-        }
-    
-        public virtual ObjectResult<SP_CIERRE_CAJA_Result> SP_CIERRE_CAJA(Nullable<System.DateTime> fECHA)
-        {
-            var fECHAParameter = fECHA.HasValue ?
-                new ObjectParameter("FECHA", fECHA) :
-                new ObjectParameter("FECHA", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CIERRE_CAJA_Result>("SP_CIERRE_CAJA", fECHAParameter);
         }
     
         public virtual ObjectResult<SP_REPORTE_VEHICULO_CLIENTE_Result> SP_REPORTE_VEHICULO_CLIENTE(Nullable<int> fK_CLIENTE)
@@ -1010,6 +996,29 @@ namespace ProyectoProgramacion.Modelo
                 new ObjectParameter("FK_CLIENTE", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_REPORTE_SERVICIO_CLIENTE_Result>("SP_REPORTE_SERVICIO_CLIENTE", fK_CLIENTEParameter);
+        }
+    
+        public virtual ObjectResult<SP_CIERRE_CAJA_Result> SP_CIERRE_CAJA(Nullable<System.DateTime> fECHA)
+        {
+            var fECHAParameter = fECHA.HasValue ?
+                new ObjectParameter("FECHA", fECHA) :
+                new ObjectParameter("FECHA", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CIERRE_CAJA_Result>("SP_CIERRE_CAJA", fECHAParameter);
+        }
+    
+        public virtual ObjectResult<SP_RETORNAR_FACTURAS_Result> SP_RETORNAR_FACTURAS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_FACTURAS_Result>("SP_RETORNAR_FACTURAS");
+        }
+    
+        public virtual ObjectResult<SP_RETORNAR_FACTURAS_ID_Result> SP_RETORNAR_FACTURAS_ID(Nullable<int> iD_FACTURA)
+        {
+            var iD_FACTURAParameter = iD_FACTURA.HasValue ?
+                new ObjectParameter("ID_FACTURA", iD_FACTURA) :
+                new ObjectParameter("ID_FACTURA", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_RETORNAR_FACTURAS_ID_Result>("SP_RETORNAR_FACTURAS_ID", iD_FACTURAParameter);
         }
     }
 }
