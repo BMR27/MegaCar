@@ -19,10 +19,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("MEGACAR", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <img src="~/Imagenes/7.JPG"  width="125" height="50" /><br />
+              
             </div>
             <div class="navbar-collapse collapse">
+               
                 <ul class="nav navbar-nav">
+
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                     @{
                         ProyectoProgramacion.Modelo.sp_Validar_Inicio_Sesion_Result DatosUsuario =
@@ -60,16 +63,7 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Reportes</a>
-                                    <div class="dropdown-menu" style="background-color:black">
-                                        <ul class="nav navbar-nav">
-                                            <li>@Html.ActionLink("Reportes Clientes", "RegistraVehiculo", "Vehiculo")</li>
-                                            <li>@Html.ActionLink("Reportes Vehiculo", "RegistraVehiculo", "Vehiculo")</li>
-                                            <li>@Html.ActionLink("Otros", "RegistraVehiculo", "Vehiculo")</li>
-                                        </ul>
-                                    </div>
-                                </li>
+
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Mantenimientos</a>
                                     <div class="dropdown-menu" style="background-color:black">
@@ -80,7 +74,15 @@
                                             <li>@Html.ActionLink("Registrar Marca ", "ListarMarcaVehiculo", "MarcaVehiculo")</li>
                                             <li>@Html.ActionLink("Registrar Servicio ", "Servicio_Producto", "Servicios")</li>
                                             <li>@Html.ActionLink("Registrar Parametro", "Parametros", "Parametros")</li>
-                                            <li>@Html.ActionLink("Caja ", "CajaVista", "Caja")</li>
+                                            <li>@Html.ActionLink("Registrar Vehiculo por Cliente", "Parametros", "Parametros")</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Caja y Factura</a>
+                                    <div class="dropdown-menu" style="background-color:black">
+                                        <ul class="nav navbar-nav">
+                                            <li>@Html.ActionLink("Mantenimiento de Caja", "CajaVista", "Caja")</li>
                                             <li>@Html.ActionLink("Facturar", "FacturarServicio", "Factura")</li>
                                         </ul>
                                     </div>
@@ -89,7 +91,9 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Reportes</a>
                                     <div class="dropdown-menu" style="background-color:black">
                                         <ul class="nav navbar-nav">
-                                            <li>@Html.ActionLink("Reportes", "FacturarServicio", "Factura")</li>
+                                            <li>@Html.ActionLink("Reportes Servicio Clientes", "Reportes_ServicioCliente", "Reporte_ServicioCliente_")</li>
+                                            <li>@Html.ActionLink("Reportes Vehiculo Cliente", "Reportes_VehiculoCliente", "Reporte_VehiculoCliente_")</li>
+                                            <li>@Html.ActionLink("Reportes Cierres", "Reportes_CierreCaja", "Reporte_CierreCaja_")</li>
                                         </ul>
                                     </div>
                                 </li>
@@ -129,7 +133,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>  © 2020 Copyright: Universidad Castro Carazo, Ing. Andrey Azofeifa Alvarado & Ing. Bryan Mejia</p>
         </footer>
     </div>
 

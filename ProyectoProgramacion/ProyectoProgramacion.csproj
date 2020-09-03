@@ -337,6 +337,8 @@
     <Content Include="Imagenes\3.jpg" />
     <Content Include="Imagenes\4.jpg" />
     <Content Include="Imagenes\5.jpg" />
+    <Content Include="Imagenes\6.jpg" />
+    <Content Include="Imagenes\7.JPG" />
     <Content Include="Modelo\programacion6BDModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>programacion6BDModel.edmx</DependentUpon>
