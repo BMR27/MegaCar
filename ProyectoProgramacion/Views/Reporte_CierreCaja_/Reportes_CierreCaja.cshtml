@@ -5,7 +5,7 @@
 }
 
 @{
-    ViewBag.Title = "Reportes Servicio Cliente";
+    ViewBag.Title = "Reportes Cierre Caja";
 }
 
 @{
@@ -17,23 +17,24 @@
 <div class="container">
     <div class="jumbotron">
         <h1>@this.ViewBag.Title</h1>
-        <p>Reportes de los servicios dados a los clientes</p>
+        <p>Reportes de los cierres de caja</p>
     </div>
 
-    <div id="divListaServicios">
+    <div id="divListaCierreCaja">
 
     </div>
-   
+
 </div>
 
 <div class="container">
-    <h2>Reportes de Servicio Clientes</h2>
+    <h2>Reportes de los Cierres de Caja</h2>
     <div class="form-group">
-        <label>Cliente</label>
-        <select class="form-control" name="cliente" id="cliente"></select>
+        <label>Fecha:</label>
+        <input type="datetime" name="C_FECHA" id="C_FECHA" />
+
     </div>
 
-    <input type="button" class="btn btn-success" name="btnConsultar" id="btnConsultar" value="Consultar Cliente" form="frmReportes_Servicios" />
+    <input type="button" class="btn btn-success" name="btnConsultar" id="btnConsultar" value="Consultar Fecha" form="frmReportes_CierreCaja" />
 </div>
 
 @Html.ValidationSummary(true)
@@ -42,5 +43,5 @@
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/kendo.all.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2020.2.617/js/jszip.min.js"></script>
     <script src="~/Scripts/ScriptGenerico.js"></script>
-    <script src="~/Scripts/Reportes/Reporte_ServicioCliente.js"></script>
-    }
+    <script src="~/Scripts/Reportes/Reporte_CierreCaja.js"></script>
+}

@@ -137,7 +137,9 @@
     <Compile Include="Controllers\ModelosController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\ParametrosController.cs" />
+    <Compile Include="Controllers\Reporte_CierreCaja_Controller.cs" />
     <Compile Include="Controllers\Reporte_ServicioCliente_Controller.cs" />
+    <Compile Include="Controllers\Reporte_VehiculoCliente_Controller.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Controllers\TipoVehiculoController.cs" />
     <Compile Include="Controllers\VehiculoController.cs" />
@@ -378,7 +380,9 @@
     <Content Include="Scripts\Registro Cliente\RegistroCliente.js" />
     <Content Include="Scripts\RegistroVehiculo\ModificarVehiculo.js" />
     <Content Include="Scripts\RegistroVehiculo\RegistrarVehiculo.js" />
+    <Content Include="Scripts\Reportes\Reporte_CierreCaja.js" />
     <Content Include="Scripts\Reportes\Reporte_ServicioCliente.js" />
+    <Content Include="Scripts\Reportes\Reporte_VehiculoCliente.js" />
     <Content Include="Scripts\ScriptGenerico.js" />
     <Content Include="Scripts\Servicios\Servicios.js" />
     <Content Include="Scripts\Tipos Vehiculo\RegistrarTipoVehiculo.js" />
@@ -426,6 +430,8 @@
     <Content Include="Views\Anular\AnularFormulario.cshtml" />
     <Content Include="Views\Parametros\Parametros.cshtml" />
     <Content Include="Views\Reporte_ServicioCliente_\Reportes_ServicioCliente.cshtml" />
+    <Content Include="Views\Reporte_VehiculoCliente_\Reportes_VehiculoCliente.cshtml" />
+    <Content Include="Views\Reporte_CierreCaja_\Reportes_CierreCaja.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
