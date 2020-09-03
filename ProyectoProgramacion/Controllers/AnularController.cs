@@ -32,9 +32,20 @@ namespace ProyectoProgramacion.Controllers
         {
             string mensaje = string.Empty;
             int filas = 0;
+            /* CONSULTAMOS PRIMERO PARA VERIFICAR LA FECHA */
+            List<SP_RETORNAR_FACTURAS_ID_Result> Factura =
+                this.ModeloDB.SP_RETORNAR_FACTURAS_ID(ModeloVista.C_ID_ENCABEZADO_FACTURA).ToList();
             try
             {
-                 filas = this.ModeloDB.SP_ANULAR_FACTURA(ModeloVista.C_ID_ENCABEZADO_FACTURA);
+                if (Factura.Count > 0)
+                {
+
+                    filas = this.ModeloDB.SP_ANULAR_FACTURA(ModeloVista.C_ID_ENCABEZADO_FACTURA);
+                }
+                else
+                {
+                    mensaje = "Factura No se puede eliminar tiene mas de 15 días de facturada";
+                }
             }
             catch (Exception error)
             {

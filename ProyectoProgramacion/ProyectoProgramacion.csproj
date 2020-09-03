@@ -228,6 +228,9 @@
     <Compile Include="Modelo\SP_RETORNAR_FABRICANTES_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\SP_RETORNAR_FACTURAS_ID_Result.cs">
+      <DependentUpon>programacion6BDModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\SP_RETORNAR_FACTURAS_Result.cs">
       <DependentUpon>programacion6BDModel.tt</DependentUpon>
     </Compile>

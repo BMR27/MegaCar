@@ -64,22 +64,17 @@ function creaGrid(data) {
         toolbar: ["search"],
         columns: [
             {
-                field: 'C_NOMBRE',
-                title: 'Nombre'
+                field: 'USUARIO',
+                title: 'Nombre Usuario'
             },
             {
-                field: 'C_APELLIDO1',
-                title: 'Apellido'
-            },
-            {
-                field: 'C_MONTO',
-                title: 'Monto'
-            },
-            {
-                field: 'C_FECHA',
+                field: 'FECHA',
                 title: 'Fecha'
+            },
+            {
+                field: 'MONTO',
+                title: 'Monto del cierre'
             }
-
         ]
 
     });

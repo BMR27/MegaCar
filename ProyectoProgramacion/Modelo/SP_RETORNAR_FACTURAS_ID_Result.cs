@@ -11,7 +11,7 @@ namespace ProyectoProgramacion.Modelo
 {
     using System;
     
-    public partial class SP_RETORNAR_FACTURAS_Result
+    public partial class SP_RETORNAR_FACTURAS_ID_Result
     {
         public int C_ID_ENCABEZADO_FACTURA { get; set; }
         public string C_FECHA { get; set; }
