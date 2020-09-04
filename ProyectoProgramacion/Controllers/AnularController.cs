@@ -61,6 +61,7 @@ namespace ProyectoProgramacion.Controllers
             }
             return Json(new
             {
+                //retornamos
                 resultado = mensaje
             });
         }
